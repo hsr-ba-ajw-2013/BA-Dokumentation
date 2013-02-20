@@ -2,11 +2,14 @@
 # Makefile for HSR-LateX-Template
 #
 
-MAIN_TEX = main.tex
+BASENAME = main
+MAIN_TEX = $(BASENAME).tex
 BULD_CMD = ./bin/latexmk.pl -pdf $(MAIN_TEX)
+DEST_NAME = Thesis
 
 # Don't ask me why.
 all: build
+	mv $(BASENAME).pdf $(DEST_NAME).pdf
 
 build:
 	@@$(BULD_CMD)
@@ -14,9 +17,12 @@ build:
 live:
 	@@$(BULD_CMD) --pvc
 
-clean:
-	@@rm main.aux main.glo main.idx main.ist
-	@@rm main.lof main.out main.pdf main.toc
-	@@rm main.glg main.gls *.log main.bbl
-	@@rm main.blg main.fdb_latexmk main.fls main.ilg
-	@@rm main.ind
+clean-auxilary:
+	-rm $(BASENAME).aux $(BASENAME).glo $(BASENAME).idx $(BASENAME).ist
+	-rm $(BASENAME).lof $(BASENAME).out $(BASENAME).toc
+	-rm $(BASENAME).glg $(BASENAME).gls *.log $(BASENAME).bbl
+	-rm $(BASENAME).blg $(BASENAME).fdb_latexmk $(BASENAME).fls $(BASENAME).ilg
+	-rm $(BASENAME).ind $(BASENAME).ind $(BASENAME).ilg $(BASENAME).fls
+
+clean: clean-auxilary
+	-rm $(BASENAME).pdf
