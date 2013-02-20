@@ -29,6 +29,7 @@
 \usepackage{booktabs}
 \usepackage{tabularx}
 \definecolor{lightgray}{rgb}{.9,.9,.9}
+\usepackage{pdfpages}
 
 
 % Sylings for Tables
