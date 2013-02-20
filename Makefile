@@ -9,7 +9,7 @@ DEST_NAME = Thesis
 
 # Don't ask me why.
 all: build
-	mv $(BASENAME).pdf $(DEST_NAME).pdf
+	@@mv $(BASENAME).pdf $(DEST_NAME).pdf
 
 build:
 	@@$(BULD_CMD)
