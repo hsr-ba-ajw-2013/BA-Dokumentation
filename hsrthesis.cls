@@ -38,7 +38,7 @@
 		\begin{titlepage}
 		% Logos
 		\begin{picture}(0,200)(0,-100)
-      		\put(-60, -30){\includegraphics[height=30mm]{images/hsrlogo.png}}
+      		\put(45, -30){\includegraphics[height=30mm]{images/hsrlogo.png}}
 		\end{picture}
 
 		% title
