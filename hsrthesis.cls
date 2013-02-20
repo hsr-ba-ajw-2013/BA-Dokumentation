@@ -21,12 +21,23 @@
 \usepackage{ngerman}
 \usepackage{glossaries}
 \usepackage{color}
-\usepackage{listings} \lstset{backgroundcolor=\color{lightgrey}} \lstset{language=Java}
+\usepackage{listings} \lstset{backgroundcolor=\color{lightgray}} \lstset{language=Java}
 \usepackage{wrapfig}
 \usepackage{url}
 \usepackage{float}
 \usepackage{natbib}
-\definecolor{lightgrey}{rgb}{.9,.9,.9}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+
+
+% Sylings for Tables
+%%%%%%%%%%%%%%%%%%%%
+\newcommand*\heading[1]{\bfseries{#1}}
+\newcommand*\beforeheading{\toprule}
+\newcommand*\afterheading{\midrule}
+\newcommand*\normalline{}
+\newcommand*\lastline{\bottomrule}
 
 
 
