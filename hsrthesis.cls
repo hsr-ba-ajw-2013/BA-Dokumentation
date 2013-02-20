@@ -39,7 +39,6 @@
 		% Logos
 		\begin{picture}(0,200)(0,-100)
       		\put(-60, -30){\includegraphics[height=30mm]{images/hsrlogo.png}}
-      		\put(200, -15){\includegraphics[height=20mm]{images/partnerlogo.png}}
 		\end{picture}
 
 		% title
@@ -60,7 +59,7 @@
 				\ifthenelse{\equal{\thesisauthora}{}}{\message{blub}}{\ifthenelse{\equal{\thesisauthorb}{}}{\emph{Autor:} & \thesisauthora\\[3pt]}{\ifthenelse{\equal{\thesisauthorc}{}}{\emph{Autoren:} & \thesisauthora \ \& \thesisauthorb\\[3pt]}{\emph{Autoren:} & \thesisauthora \ \& \thesisauthorb \ \& \thesisauthorc\\[3pt]}}}
 				% Checking Supporter
 				\ifthenelse{\equal{\professor}{}}{\\}{\emph{Betreuer:} & \professor\\[3pt]}
-					\emph{Projektpartner:} & \partner\\[3pt]
+					%\emph{Projektpartner:} & \partner\\[3pt]
 					\emph{Arbeitsperiode:} & \timeperiode\\[3pt]
 					\emph{Arbeitsumfang:} & \workload\\[3pt]
 					\emph{Link:} & \url{\linktothesis}

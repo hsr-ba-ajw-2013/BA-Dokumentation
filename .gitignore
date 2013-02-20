@@ -64,3 +64,7 @@ Thumbs.db
 *.bak
 *.fls
 *.fdb_latexmk
+
+
+
+*.pdf
