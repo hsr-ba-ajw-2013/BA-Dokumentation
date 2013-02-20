@@ -1,6 +1,6 @@
 \subsection*{14.02.2013 Vorbesprechung}
 
-\subsubsection*{Teilnehmer}
+\paragraph*{Teilnehmer}
 
 \begin{itemize}
 	\item Hans Rudin, HRU (HSR)
@@ -11,12 +11,214 @@
 	\item Michael Weibel, MWE (Team, Protokoll)
 \end{itemize}
 
+\paragraph*{Traktanden}
+\begin{itemize}
+	\item StoryboardBuilder -- was ist der aktuelle Stand
+	\item Ideen/Diskussion andere Themen
+\end{itemize}
+
 \paragraph*{StoryboardBuilder}
 \begin{itemize}
 	\item Ende Januar Entscheid: nicht weiterentwickeln
-	\item
-	\item Daniel Hiltebrand, DHI (Crealogix)
-	\item Manuel Alabor, MAL (Team)
-	\item Alexandre Joly, AJO (Team)
-	\item Michael Weibel, MWE (Team, Protokoll)
+	\item Nicht weil Produkt/Markt nicht interessant ist
+	\item Ziel war: damit die Crealogix UX-Services zu unterstützen
+	\item Crealogix wird keine UX-Services gegen aussen mehr anbieten
+		\begin{itemize}
+			\item mehr interne Projekte betreuen
+		\end{itemize}
+	\item Zwei Schwerpunkte: Education \& Financial Services
+		\begin{itemize}
+			\item StoryboardBuilder gehört nicht zu einem solchen Schwerpunkt
+		\end{itemize}
+	\item Dies obwohl das Potential für das Produkt gesehen wird
+	\item Anforderungsspezifikation verfeinert bis Ende Januar
+	\item Technischer Prototyp gestartet, aber wieder gestoppt aufgrund der Neuorientierung
+	\item Idee wäre: StoryboardBuilder an externe Firma weitergeben
+	\item Bestehende Mitbewerber bauen ihre Angebote aus
 \end{itemize}
+
+\paragraph*{Diskussion BA}
+\begin{itemize}
+	\item Frage an die Runde: ist es interessant für euch, die Entwicklung des StoryboardBuilders in der BA weiterzuführen?
+	\begin{itemize}
+		\item MAL: Wie würde das aussehen?
+		\begin{itemize}
+			\item DHI: Beispiel aufgrund gewählter Technologie zu entwickeln
+			\item DHI: Auf Basis der fachlichen Spezifikation der Crealogix
+			\item HRU: BA sollte nicht zu einer Fleissarbeit werden
+			\item HRU: Was wären denn die Herausforderungen wenn das in der BA weiterentwickelt werden würde?
+			\item HRU: Die momentane Ausgangslage ist anders, da kein wirklicher Kunde existiert
+			\item DHI: Es sind sicher einige Ideen da, die technisch Herausfordernd sind
+			\item DHI: Grafische Repräsentation auf Screen, Objektmodell umsetzen
+			\item DHI: Wie gesagt, hat auch nichts dagegen, wenn eine neue Arbeit gemacht werden würde
+			\item DHI: Laut Kenntnisstand von DHI sollte auch von Seiten der Industriepartner weniger Betreuung beinhalten, mehr vom Team
+		\end{itemize}
+	\end{itemize}
+	\item KGA: Was ist nun der Anspruch an das Meeting? Müssen wir am Ende des Meeting schon wissen was gemacht werden soll?
+	\begin{itemize}
+		\item DHI: Ist offen, hat keinen Anspruch auf Entscheid jetzt - sollte aber bald geschehen, da Bachelorarbeit bald startet
+	\end{itemize}
+	\item DHI: Hat div. Alternativen die man anschauen könnte
+	\item MAL: für ihn ist das Durchführen der BA mit dem StoryboardBuilder nicht mehr besonders interessant, aufgrund Änderungen seitens Crealogix
+	\begin{itemize}
+		\item DHI: Ja das stimmt, BA würde nicht mehr zu einem realen Projekt führen
+	\end{itemize}
+	\item MWE: gehts ähnlich wie MAL
+	\item DHI: Thema 1
+	\begin{itemize}
+		\item {\bf Kino-Reservationssystem}
+		\item Kennt Kinobesitzer in Rapperswil
+		\item Buchungssystem
+		\item Mit Anbindung an Kassensystem
+		\item nicht nur für einzelne Plätze
+		\item sondern auch Firmenanlässe, Frauenkino, Catering etc.
+		\item Konzeptionell entwerfen
+		\item soweit wie möglich implementieren
+		\item könnte sehr interessant sein, DHI's Meinung nach
+	\end{itemize}
+	\item DHI: Thema 2
+	\begin{itemize}
+		\item {\bf Personal Financing Management}
+		\item Zusatz zu E-Banking
+		\item Eigene Zahlungen analyisieren
+		\item Verschiedene Banken
+		\item Soviel für Versicherung, Einkauf, etc.
+		\item Basiert auf einer isländisch-schwedischen Firma
+		\item Integrationsarbeit (in ein Bankensystem einbauen)
+		\item MAL: Geht es darum, das zu integrieren und anschaulich darzustellen, Data-Mining ist aber bereits gemacht?
+		\begin{itemize}
+			\item DHI: Ja
+			\begin{itemize}
+				\item Schwierigkeit: Sicherheit
+				\item Zertifizierung, Authentifizierung
+				\item nur Teilaspekt möglich zum lösen
+				\item Versch. Komponenten
+				\item Aspekt wichtig auf welcher sich die BA konzentrieren soll
+			\end{itemize}
+			\item DHI: müsste das genauer anschauen wie das machbar wäre
+			\begin{itemize}
+				\item da es ein sehr grosses System wäre
+				\item müsste verifizieren ob das gehen soll
+			\end{itemize}
+		\end{itemize}
+		\item HRU: wäre das so kurzfristig machbar?
+		\begin{itemize}
+			\item DHI: müsste angeschaut werden
+			\item DHI: Verträge bestehen
+			\item DHI: Anders ist E-Banking in Java mit Oracle
+			\begin{itemize}
+				\item DHI: Verfügbar machen möglich
+			\end{itemize}
+		\end{itemize}
+		\item HRU: Zwei Komponenten, was ist Webfrontend?
+		\begin{itemize}
+			\item DHI: Netty server von airlock für Authentifizierung
+			\item DHI: möglichst HTML das übers web geht
+			\item DHI: J2EE - JSP vorne
+		\end{itemize}
+		\item HRU: Isländische Software
+		\begin{itemize}
+			\item DHI: .NET basiert
+			\item DHI: hat aber eine WCF/REST/AJAX Schnittstelle welche relativ gut ins Frontend integrierbar wäre
+			\item DHI: von einem System ins andere transferieren (Oracle zu MSSQL DB)
+			\item Statistisch aufwerten und wieder anzeigen
+			\item machbarkeit unklar, muss verifiziert werden
+		\end{itemize}
+	\end{itemize}
+	\item MAL: was hat HRU für Projekte
+	\begin{itemize}
+		\item MAL: Realtime-Themen wären interessant (Mobile, Chat, Messaging?)
+		\item HRU: hat keine Projekte
+	\end{itemize}
+	\item DHI: hat evtl. noch andere Projekte, müsste das aber noch anschauen
+	\item MAL: Bis Testumgebung steht würden wohl Wochen vergehen
+	\begin{itemize}
+		\item DHI: stimmt wohl
+	\end{itemize}
+	\item MWE: Persönlich interessiert vorallem an WebRTC
+	\item HRU: Was ist mit WebRTC gemeint? 
+	\begin{itemize}
+		\item MWE: Near-Realtime Communication (Daten, Video, Audio) zw. Browser
+	\end{itemize}
+	\item MWE: Was wäre denn für Crealogix interessant -- Zentrale Frage
+	\begin{itemize}
+		\item DHI: Crealogix muss nicht unbedingt dabei sein, wenn nicht nötig
+	\end{itemize}
+	\item update Maus-Scanner
+	\begin{itemize}
+		\item MAL: wäre denn Mobile auch ein Thema?
+		\item DHI: Mobile ist sehr zentral
+	\end{itemize}
+	\item HRU: Gibt es denn Fraktionen (web/mobile) im Team?
+	\begin{itemize}
+		\item MWE: Web-Mensch, aber Mobile wäre auch sehr interessant
+	\end{itemize}
+	\item DHI: Fragt bei Crealogix CEO/Entwicklungsleiter nach bzgl. Mobile
+	\item MAL: E-Learning wäre auch interessant bzgl. Mobile
+	\begin{itemize}
+		\item DHI: könnte nachfragen obs da auch was geben würde
+	\end{itemize}
+	\item AJO: Auch vorallem an Mobile interessiert
+	\begin{itemize}
+		\item arbeitet auch vorallem in Mobile
+		\item HRU: Auch sie MAL?
+		\item \emph{MAL bejaht}
+	\end{itemize}
+	\item müsste nachfragen, wäre aber sicher interessant
+	\item MAL: wäre sicher interessant auf DHI's Themen zu warten, andererseits müsste auch Teamintern bzw. mit KGA/HRU geschaut werden
+	\item DHI: Wann beginnt die Arbeit? -- Montag 18.02.2013
+	\item DHI: 3 Bereiche Education
+	\begin{enumerate}
+		\item Campusmanagement
+		\item Time2Learn
+		\begin{itemize}
+			\item 30'000 die mit T2L arbeiten
+			\item Mit Center For Young Professionals zusammenarbeit (Evtl. da was interessantes)
+			\item in Bubikon
+		\end{itemize}
+	\end{enumerate}
+	\item DHI: was machen wenn nichts herauskommt?
+	\begin{itemize}
+		\item DHI: würde gerne wieder mit Team zusammenarbeiten, wenn möglich
+	\end{itemize}
+	\item HRU: Wäre schon der Weg zum gehen
+	\begin{itemize}
+		\item parallel müssten Überlegungen angestellt werden, ob es andere Themen geben würde 
+		\item gibt den 3 Studierenden möglichst freie Hand
+	\end{itemize}
+	\item KGA: Termin bis wann die Entscheidung fällen müsste
+	\begin{itemize}
+		\item HRU: allerspätistens erste Woche
+		\item DHI: wird noch heute mit den 3 Crealogix Leuten Kontakt aufnehmen
+		\item DHI: bis Morgen, 15.0.2 Antwort wenn möglich
+		\item MAL: Mittwoch zu spät oder zu früh?
+		\item HRU: Wann sind Sie (Studierende) an der HSR? -- MO/DI/MI
+		\item HRU: Mittwoch wäre nicht unbedingt zu spät
+		\item MAL: Mittwoch wäre Zusammenkunft um definitiv zu entscheiden. Aber mit Kommunikation bis dann
+		\item MAL: DHI kann sicher schnell entscheiden, je nach dem pers. Anwesenheit nicht nötig
+		\item DHI: würde gerne pers. dabei sein
+	\end{itemize}
+	\item DHI: gibt morgen Feedback
+	\item HRU: das ist gut -- in der Runde Team/HSR diskutieren was gemacht werden kann
+\end{itemize}
+
+\paragraph*{Diskussion mit Team/HSR (ohne DHI)}
+\begin{itemize}
+\item KGA: die beiden Themen tönen also nicht besonders interessant für das Team?
+\item Team: Ja -- Thema 2 wäre interessant aber wohl zu gross für die kurze Zeit
+\item HRU: Reservationssystem vorallem Businessanalyse
+\item HRU: Sicher gut zu schauen, was DHI einbringt
+\item HRU: aber auch schauen was Team/HSR für Ideen hat
+\item KGA: was wäre ursprünglich SA-Idee gewesen?
+\begin{itemize}
+	\item MWE: XMPP Server in node.js -- modular, flexibel (u.a. auch bzgl. Datenbankanbindung)
+	\item MAL: und auch Skalierbarkeit von node.js interessant
+\end{itemize}
+\item MAL: interessant wäre vielleicht auch Frontend Framework
+\item HRU: Alle miteinander auf dem Laufenden halten bzgl. Ideen
+\item \ldots weitere eher informelle Diskussion mit Team/HSR \ldots
+\end{itemize}
+
+\paragraph*{Nächstes Meeting}
+
+Mittwoch, 20. Februar 2013, 10:10 Uhr
