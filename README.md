@@ -5,6 +5,4 @@
 * Michael Weibel
 
 ## LaTeX Template
-Diese Dokumentation baut auf dem [HSR LaTeX Template](https://github.com/fbentele/HSR-LaTex-Template) von @fbentele auf.
-
-Thanks Mate!
+Ursprünglich inspiriert von [HSR LaTeX Template](https://github.com/fbentele/HSR-LaTex-Template) by @fbentele. Thanks Mate!

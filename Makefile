@@ -1,11 +1,13 @@
 #
-# Makefile for HSR-LateX-Template
+# Makefile for Bachelor Thesis PDF
+#
+# Requirements:
+#  - Luatex
 #
 
 BASENAME = thesis
 MAIN_TEX = $(BASENAME).tex
 BULD_CMD = ./bin/latexmk.pl -pdflatex=lualatex -pdf $(MAIN_TEX)
-DEST_NAME = Thesis
 
 
 all: build
