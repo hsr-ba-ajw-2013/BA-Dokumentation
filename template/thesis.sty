@@ -1,0 +1,369 @@
+
+% Fonts
+
+%\setmainfont{Helvetica Neue}
+
+
+\usepackage{titlesec}
+\usepackage{ellipsis}
+
+\newcommand\SectionFontStyle{\fontspec{Helvetica Neue}}
+
+
+
+\definecolor{sectioncolor}{RGB}{0, 0, 0}
+
+
+\bibliographystyle {alpha}
+
+
+\titleformat{\chapter}[display]
+  {\usekomafont{chapter}\Large \color{sectioncolor}}
+  {
+  \LARGE\MakeUppercase{\chaptertitlename} \Huge \thechapter \filright
+  }
+  {1pt}
+  {\titlerule \vspace{0.9pc} \filright \color{sectioncolor}}
+  [\color{sectioncolor} \vspace{0.9pc} \filright {\titlerule}]
+
+
+
+
+
+
+
+
+
+%% Fussnoten =============================================================
+% Keine hochgestellten Ziffern in der Fussnote (KOMA-Script-spezifisch):
+\deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
+\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fussnote
+ 
+\setlength{\dimen\footins}{10\baselineskip} % Beschraenkt den Platz von Fussnoten auf 10 Zeilen
+ 
+\interfootnotelinepenalty=10000 % Verhindert das Fortsetzen von
+                                % Fussnoten auf der gegenüberligenden Seite
+
+
+
+
+%% Schriften (Sections )==================================================
+% -- Koma Schriften --
+\setkomafont{chapter}{\huge\SectionFontStyle}    % Chapter
+\setkomafont{sectioning}{\SectionFontStyle} %  % Titelzeilen % \bfseries
+\setkomafont{pagenumber}{\bfseries\SectionFontStyle}             % Seitenzahl
+\setkomafont{pagehead}{\small\sffamily}        % Kopfzeile
+%\setkomafont{pagefoot}{\small\sffamily}        % Kopfzeile
+\setkomafont{descriptionlabel}{\itshape}        % Kopfzeile
+%
+ 
+%\addtokomafont{sectioning}{\color{sectioncolor}} % Farbe der Ueberschriften
+%	\addtokomafont{chapter}{\color{sectioncolor}} % Farbe der Ueberschriften
+\renewcommand*{\raggedsection}{\raggedright} % Titelzeile linksbuendig, haengend
+
+
+
+
+
+
+
+
+
+%% Kopf und Fusszeilen====================================================
+%%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/koma-script/scrguide.pdf
+\usepackage[%
+   automark,         % automatische Aktualisierung der Kolumnentitel
+   nouppercase,      % Grossbuchstaben verhindern
+   %markuppercase    % Grossbuchstaben erzwingen
+   %markusedcase     % vordefinierten Stil beibehalten
+   %komastyle,       % Stil von Koma Script
+   %standardstyle,   % Stil der Standardklassen
+]{scrpage2}
+ 
+   \pagestyle{scrheadings} % Seite mit Headern
+%\pagestyle{empty} % Seiten ohne Header
+%
+% loescht voreingestellte Stile
+\clearscrheadings
+\clearscrplain
+%
+% Was steht wo...
+   % Oben aussen: Kapitel und Section
+   % Unten aussen: Seitenzahl
+   % \ohead{\headmark} % Oben außen: Setzt Kapitel und Section automatisch
+   % \ofoot[\pagemark]{\pagemark}
+   % oder...
+   % Oben aussen: Seitenzahlen
+   % Oben innen: Kapitel und Section
+   \ohead{\pagemark}
+   \ihead{\headmark}
+% Vollstaendige Liste der moeglichen Positionierungen
+% \lehead[scrplain-links-gerade]{scrheadings-links-gerade}
+% \cehead[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
+% \rehead[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
+% \lefoot[scrplain-links-gerade]{scrheadings-links-gerade}
+% \cefoot[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
+% \refoot[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
+% \lohead[scrplain-links-ungerade]{scrheadings-links-ungerade}
+% \cohead[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
+% \rohead[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
+% \lofoot[scrplain-links-ungerade]{scrheadings-links-ungerade}
+% \cofoot[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
+% \rofoot[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
+% \ihead[scrplain-innen]{scrheadings-innen}
+% \chead[scrplain-zentriert]{scrheadings-zentriert}
+% \ohead[scrplain-außen]{scrheadings-außen}
+% \ifoot[scrplain-innen]{scrheadings-innen}
+% \cfoot[scrplain-zentriert]{scrheadings-zentriert}
+% \ofoot[scrplain-außen]{scrheadings-außen}
+ 
+ 
+%\usepackage{lastpage} % Stellt 'LastPage' zur Verfuegung
+%\cfoot[Seite \pagemark~von \pageref{LastPage}]{} % Seitenzahl von Anzahl Seiten
+ 
+% Angezeigte Abschnitte im Header
+   \automark[section]{chapter} %[rechts]{links}
+%
+% Linien (moegliche Kombination mit Breiten)
+   %\setheadtopline{}     % modifiziert die Parameter fuer die Linie ueber dem Seitenkopf
+   \setheadsepline{.4pt}[\color{black}]
+                         % modifiziert die Parameter fuer die Linie zwischen Kopf
+                         % und Textkörper
+   %\setfootsepline{}    % modifiziert die Parameter fuer die Linie zwischen Text
+                         % und Fuß
+   %\setfootbotline{}    % modifiziert die Parameter fuer die Linie unter dem Seitenfuss
+ 
+% Groesse des Headers
+%\setlength{\headheight}{1.1\baselineskip}
+% -> eingestellt über Option 'headlines'.
+ 
+% Breite von Kopf und Fusszeile einstellen
+% \setheadwidth[Verschiebung]{Breite}
+% \setfootwidth[Verschiebung]{Breite}
+% mögliche Werte
+% paper - die Breite des Papiers
+% page - die Breite der Seite
+% text - die Breite des Textbereichs
+% textwithmarginpar - die Breite des Textbereichs inklusive dem Seitenrand
+% head - die aktuelle Breite des Seitenkopfes
+% foot - die aktuelle Breite des Seitenfusses
+\setheadwidth[0pt]{text}
+\setfootwidth[0pt]{text}
+
+
+
+
+
+
+
+
+
+   \colorlet{tablesubheadcolor}{gray!30}
+   \colorlet{tableheadcolor}{gray!25}
+   \colorlet{tableblackheadcolor}{black!100}
+   \colorlet{tablerowcolor}{gray!10.0}
+
+
+
+
+%%% -| Neue Spaltendefinitionen 'columntypes' |--
+%
+% Belegte Spaltentypen:
+% l - links
+% c - zentriert
+% r - rechts
+% p,m,b  - oben, mittig, unten
+% X - tabularx Auto-Spalte
+
+% um Tabellenspalten mit Flattersatz zu setzen, muss \\ vor
+% (z.B.) \raggedright geschuetzt werden:
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+
+
+% Spalten mit Flattersatz und definierte Breite:
+% m{} -> mittig
+% p{} -> oben
+% b{} -> unten
+%
+% Linksbuendig:
+\newcolumntype{v}[1]{>{\PreserveBackslash\RaggedRight\hspace{0pt}}p{#1}}
+\newcolumntype{M}[1]{>{\PreserveBackslash\RaggedRight\hspace{0pt}}m{#1}}
+% % Rechtsbuendig :
+% \newcolumntype{R}[1]{>{\PreserveBackslash\RaggedLeft\hspace{0pt}}m{#1}}
+% \newcolumntype{S}[1]{>{\PreserveBackslash\RaggedLeft\hspace{0pt}}p{#1}}
+% % Zentriert :
+% \newcolumntype{Z}[1]{>{\PreserveBackslash\Centering\hspace{0pt}}m{#1}}
+% \newcolumntype{A}[1]{>{\PreserveBackslash\Centering\hspace{0pt}}p{#1}}
+
+\newcolumntype{Y}{>{\PreserveBackslash\RaggedLeft\hspace{0pt}}X}
+%%% Spalten fuer Mathematik
+%
+% serifenlose Matheschrift
+\newcolumntype{s}[1]{%
+	>{\DC@{.}{,}{#1}\mathsf\bgroup}l%
+	<{\egroup\DV@end}%
+}
+
+% Tabellenspaltentyp fuer den Kopf: (Farbe + Ausrichtung)
+\newcolumntype{H}[1]{>{\columncolor{tableheadcolor}}l}
+
+
+
+
+
+
+
+%%% ---|Layout der Tabellen |-------------------
+
+% Neue Umgebung fuer Tabellen:
+
+\newenvironment{Tabelle}[2][c]{%
+  \tablestylecommon
+  \begin{longtable}[#1]{#2}
+  }
+  {\end{longtable}%
+  \tablerestoresettings
+}
+
+
+% Groesse der Schrift in Tabellen
+\newcommand{\tablefontsize}{ \footnotesize}
+\newcommand{\tableheadfontsize}{\footnotesize}
+
+% Layout der Tabelle: Ausrichtung, Schrift, Zeilenabstand
+\newcommand\tablestylecommon{%
+  \renewcommand{\arraystretch}{1.4} % Groessere Abstaende zwischen Zeilen
+  \normalfont\normalsize            %
+  \sffamily\tablefontsize           % Serifenlose und kleine Schrift
+  \centering%                       % Tabelle zentrieren
+}
+
+\newcommand{\tablestyle}{
+	\tablestylecommon
+	%\tablealtcolored
+}
+
+% Ruecksetzten der Aenderungen
+\newcommand\tablerestoresettings{%
+  \renewcommand{\arraystretch}{1}% Abstaende wieder zuruecksetzen
+  \normalsize\rmfamily % Schrift wieder zuruecksetzen
+}
+
+% Tabellenkopf: Serifenlos+fett+schraeg+Schriftfarbe
+\renewcommand\tablehead{%
+  \tableheadfontsize%
+  \sffamily\bfseries%
+  \slshape
+  %\color{white}
+}
+
+\newcommand\tablesubheadfont{%
+  \tableheadfontsize%
+  \sffamily\bfseries%
+  \slshape
+  %\color{white}
+}
+
+
+\newcommand\tableheadcolor{%
+	%\rowcolor{tablesubheadcolor}
+	%\rowcolor{tableblackheadcolor}
+	\rowcolor{tableheadcolor}%
+}
+
+\newcommand\tablesubheadcolor{%
+	%\rowcolor{tablesubheadcolor}
+	%\rowcolor{tableblackheadcolor}
+}
+
+
+\newcommand{\tableend}{\arrayrulecolor{black}\hline}
+
+% Tabellenkopf (1=Spaltentyp, 2=Text)
+% \newcommand{\tablehead}[2]{
+%   \multicolumn{1}{#1@{}}{%
+%     \raisebox{.1mm}{% Ausrichtung der Beschriftung
+%       #2%
+%     }\rule{0pt}{4mm}}% unsichtbare Linie, die die Kopfzeile hoeher macht
+% }
+
+
+\newcommand{\tablesubhead}[2]{%
+  \multicolumn{#1}{>{\columncolor{tablesubheadcolor}}l}{\tablesubheadfont #2}%
+}
+
+% Tabellenbody (=Inhalt)
+\newcommand\tablebody{%
+\tablefontsize\sffamily\upshape%
+}
+
+\newcommand\tableheadshaded{%
+	\rowcolor{tableheadcolor}%
+}
+\newcommand\tablealtcolored{%
+	\rowcolors{1}{tablerowcolor}{white!100}%
+}
+%%% --------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%% Inhaltsverzeichnis (Schrift, Aussehen) sowie weitere Verzeichnisse ====
+ 
+\setcounter{secnumdepth}{2}    % Abbildungsnummerierung mit groesserer Tiefe
+\setcounter{tocdepth}{2}		 % Inhaltsverzeichnis mit groesserer Tiefe
+%
+ 
+
+
+
+
+
+% Sylings for Tables
+%%%%%%%%%%%%%%%%%%%%
+%\newcommand*\heading[1]{\bfseries{#1}}
+%\newcommand*\beforeheading{\toprule}
+%\newcommand*\afterheading{\midrule}
+%\newcommand*\normalline{}
+%\newcommand*\lastline{\bottomrule}
+
