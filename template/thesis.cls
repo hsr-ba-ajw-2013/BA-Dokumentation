@@ -19,7 +19,7 @@
 \usepackage{wrapfig}
 \usepackage{url}
 \usepackage{float}
-\usepackage{natbib}
+\usepackage[style=alphabetic]{biblatex}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{pdfpages}
@@ -30,3 +30,6 @@
 \usepackage[some]{background}
 \usepackage{multicol}
 \usepackage{geometry}
+\usepackage{tocstyle}
+
+\bibliography{content/indexes/bibliography}

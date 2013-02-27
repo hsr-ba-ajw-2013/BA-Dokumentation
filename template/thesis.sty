@@ -9,6 +9,10 @@
 \setkomafont{pagehead}{\small\sffamily}                 % Heading
 \setkomafont{descriptionlabel}{\itshape}                % Heading
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Encoding of TOC (and hyperlinks in general)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\hypersetup{pdfencoding=auto}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Colors
@@ -78,9 +82,15 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Table of Contents/Figures/Tables
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setcounter{secnumdepth}{2}       % Abbildungsnummerierung mit groesserer Tiefe
 \setcounter{tocdepth}{2}          % Inhaltsverzeichnis mit groesserer Tiefe
+
+\usetocstyle{allwithdot}
+% sans serif fonts for all levels
+\settocfeature[toc][0]{entryhook}{\sffamily}
+\settocfeature[toc][1]{entryhook}{\sffamily}
+\settocfeature[toc][2]{entryhook}{\sffamily}
 
 % Figure and Table Directory one level deeper in hierarchy:
 \KOMAoption{listof}{leveldown}
@@ -88,10 +98,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bibliography
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibliographystyle {alpha}
+%\bibliographystyle {alpha}
 
 % Redefine the bibliography chapter title from "chapter*{...}" to "chapter{...}":
-\renewcommand{\bibsection}{\chapter{\bibname}}
+%\renewcommand{\bibsection}{\chapter{\bibname}}
+\defbibheading{references}[\refname]{\chapter{#1}}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
