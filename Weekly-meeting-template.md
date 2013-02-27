@@ -1,6 +1,7 @@
-# Weekly meeting template
+# Weekly Meeting
+## XX.YY.ZZZZ
 
-# Teilnehmer
+## Teilnehmer
 * HSR/IFS
 	- Hans Rudin (HRU)
 	- Kevin Gaunt (KGA)
@@ -14,7 +15,7 @@
 * Protokoll: YYY
 
 
-# Agenda
+## Agenda
 * Genehmigung des letzten Protokolls
 * Rückblick
 * Aktuelle Themen
@@ -22,21 +23,21 @@
 	- ...
 * Ausblick
 
-# Genehmigung des letzten Protokolls
+## Genehmigung des letzten Protokolls
 Das letzte Protokoll wurde von allen Teilnehmern akzeptiert.
 
-# Rückblick
-## MWE
+## Rückblick
+### MWE
 
-## AJO
+### AJO
 
-## MAL
+### MAL
 
 
-# Aktuelle Themen
-## ...
+## Thema 1 ...
 
-## ...
+## Thema 2 ...
+
 
 
 # Ausblick
