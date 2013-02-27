@@ -11,8 +11,8 @@
 \usepackage{mathptmx}
 \usepackage{hyperref}
 \usepackage{array}
-\usepackage{ngerman}
-\usepackage{glossaries}
+\usepackage[ngerman]{babel, translator}
+\usepackage[toc]{glossaries}
 \usepackage{color}
 \usepackage[table]{xcolor}
 \usepackage{listings}
