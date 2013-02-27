@@ -1,8 +1,23 @@
 \appendix
 
-\chapter{Abbildungs- und Tabellenverzeichnisse}
+\chapter{Abbildungen, Tabellen \& Quellcodes}
 \listoffigures
 \listoftables
+
+% Dirty Hack to omit the default output of a chapter-header from \lstlistoflistings
+% Just disable the built-in command temporarly... IN YA FACE!
+\section*{Quellcodeverzeichnis}
+
+\newcommand\stdchapter{}
+\newcommand\stdaddcontentsline{}
+\let\stdchapter\chapter
+\let\stdaddcontentsline\addcontentsline
+\def\chapter*#1{}
+\renewcommand\addcontentsline[3]{}
+\lstlistoflistings
+\let\chapter\stdchapter
+\let\addcontentsline\stdaddcontentsline
+
 
 \bibliography{index/bibliography}
 

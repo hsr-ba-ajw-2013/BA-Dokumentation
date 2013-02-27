@@ -15,8 +15,7 @@
 \usepackage{glossaries}
 \usepackage{color}
 \usepackage[table]{xcolor}
-\definecolor{lightgray}{rgb}{.9,.9,.9}
-\usepackage{listings} \lstset{backgroundcolor=\color{lightgray}} \lstset{language=Java}
+\usepackage{listings}
 \usepackage{wrapfig}
 \usepackage{url}
 \usepackage{float}
@@ -25,9 +24,6 @@
 \usepackage{tabularx}
 \usepackage{pdfpages}
 \usepackage{fontspec}
-
-% Figure and Table Directory one level deeper in hierarchy:
-\KOMAoption{listof}{leveldown}
-
-% Redefine the bibliography chapter title from "chapter*{...}" to "chapter{...}":
-\renewcommand{\bibsection}{\chapter{\bibname}}
+\usepackage{titlesec}
+\usepackage{ellipsis}
+\usepackage[automark, nouppercase]{scrpage2}

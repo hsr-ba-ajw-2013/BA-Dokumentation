@@ -1,22 +1,57 @@
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fonts
-
-%\setmainfont{Helvetica Neue}
-
-
-\usepackage{titlesec}
-\usepackage{ellipsis}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand\SectionFontStyle{\fontspec{Helvetica Neue}}
 
+\setkomafont{chapter}{\huge\SectionFontStyle}           % Chapter
+\setkomafont{sectioning}{\SectionFontStyle}             % Section
+\setkomafont{pagenumber}{\bfseries\SectionFontStyle}    % Pagenumber
+\setkomafont{pagehead}{\small\sffamily}                 % Heading
+\setkomafont{descriptionlabel}{\itshape}                % Heading
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Colors
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \definecolor    color-syntax
+% \colorlet       xcolor-syntax
 
 \definecolor{sectioncolor}{RGB}{0, 0, 0}
+\definecolor{chaptercolor}{RGB}{0, 0, 0}
+
+\colorlet{tablesubheadcolor}{gray!30}
+\colorlet{tableheadcolor}{gray!25}
+\colorlet{tableblackheadcolor}{black!100}
+\colorlet{tablerowcolor}{gray!10.0}
+
+\colorlet{listingbackground}{gray!10.0}
+\colorlet{stringcolor}{green!40!black!100}
+\colorlet{commentcolor}{green!40!black!100}
 
 
-\bibliographystyle {alpha}
+\addtokomafont{chapter}{\color{chaptercolor}}           % Chapter Font
+\addtokomafont{sectioning}{\color{sectioncolor}}        % Section Font
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Page Heading
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand*{\raggedsection}{\raggedright} % Titelzeile linksbuendig, haengend
+
+\pagestyle{scrheadings} % Seite mit Headern
+\clearscrheadings
+\clearscrplain
+  \ohead{\pagemark}
+  \ihead{\headmark}
+   \automark[section]{chapter}
+   \setheadsepline{.4pt}[\color{black}]
+\setheadwidth[0pt]{text}
+\setfootwidth[0pt]{text}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Chapter
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \titleformat{\chapter}[display]
   {\usekomafont{chapter}\Large \color{sectioncolor}}
   {
@@ -27,144 +62,69 @@
   [\color{sectioncolor} \vspace{0.9pc} \filright {\titlerule}]
 
 
-
-
-
-
-
-
-
-%% Fussnoten =============================================================
-% Keine hochgestellten Ziffern in der Fussnote (KOMA-Script-spezifisch):
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Footnotes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
-\addtolength{\skip\footins}{\baselineskip} % Abstand Text <-> Fussnote
- 
-\setlength{\dimen\footins}{10\baselineskip} % Beschraenkt den Platz von Fussnoten auf 10 Zeilen
- 
-\interfootnotelinepenalty=10000 % Verhindert das Fortsetzen von
-                                % Fussnoten auf der gegenüberligenden Seite
+\addtolength{\skip\footins}{\baselineskip}      % Abstand Text <-> Fussnote
+\setlength{\dimen\footins}{10\baselineskip}     % Beschraenkt den Platz von
+                                                % Fussnoten auf 10 Zeilen
+\interfootnotelinepenalty=10000                 % Verhindert das Fortsetzen von
+                                                % Fussnoten auf der
+                                                % gegenüberligenden Seite
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Table of Contents/Figures/Tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\setcounter{secnumdepth}{2}       % Abbildungsnummerierung mit groesserer Tiefe
+\setcounter{tocdepth}{2}          % Inhaltsverzeichnis mit groesserer Tiefe
+
+% Figure and Table Directory one level deeper in hierarchy:
+\KOMAoption{listof}{leveldown}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bibliography
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle {alpha}
+
+% Redefine the bibliography chapter title from "chapter*{...}" to "chapter{...}":
+\renewcommand{\bibsection}{\chapter{\bibname}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Code Listings
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstset{
+        basicstyle=\small\ttfamily, % Standardschrift
+        numbers=left,               % Ort der Zeilennummern
+        numberstyle=\tiny,          % Stil der Zeilennummern
+        numbersep=5pt,              % Abstand der Nummern zum Text
+        tabsize=2,                  % Groesse von Tabs
+        extendedchars=true,         %
+        breaklines=true,            % Zeilen werden Umgebrochen
+        backgroundcolor=\color{listingbackground},
+        stringstyle=\color{stringcolor}, % Farbe der String
+        commentstyle=\color{commentcolor}, % Farbe der String
+        showspaces=false,           % Leerzeichen anzeigen ?
+        showtabs=false,             % Tabs anzeigen ?
+        showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
+        language=Java,
+        captionpos=b,
+        abovecaptionskip=6mm
+}
+
+\renewcommand{\lstlistlistingname}{Quellcodes}
+\renewcommand{\lstlistingname}{Quellcode}
 
 
 
-
-%% Schriften (Sections )==================================================
-% -- Koma Schriften --
-\setkomafont{chapter}{\huge\SectionFontStyle}    % Chapter
-\setkomafont{sectioning}{\SectionFontStyle} %  % Titelzeilen % \bfseries
-\setkomafont{pagenumber}{\bfseries\SectionFontStyle}             % Seitenzahl
-\setkomafont{pagehead}{\small\sffamily}        % Kopfzeile
-%\setkomafont{pagefoot}{\small\sffamily}        % Kopfzeile
-\setkomafont{descriptionlabel}{\itshape}        % Kopfzeile
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
- 
-%\addtokomafont{sectioning}{\color{sectioncolor}} % Farbe der Ueberschriften
-%	\addtokomafont{chapter}{\color{sectioncolor}} % Farbe der Ueberschriften
-\renewcommand*{\raggedsection}{\raggedright} % Titelzeile linksbuendig, haengend
-
-
-
-
-
-
-
-
-
-%% Kopf und Fusszeilen====================================================
-%%% Doc: ftp://tug.ctan.org/pub/tex-archive/macros/latex/contrib/koma-script/scrguide.pdf
-\usepackage[%
-   automark,         % automatische Aktualisierung der Kolumnentitel
-   nouppercase,      % Grossbuchstaben verhindern
-   %markuppercase    % Grossbuchstaben erzwingen
-   %markusedcase     % vordefinierten Stil beibehalten
-   %komastyle,       % Stil von Koma Script
-   %standardstyle,   % Stil der Standardklassen
-]{scrpage2}
- 
-   \pagestyle{scrheadings} % Seite mit Headern
-%\pagestyle{empty} % Seiten ohne Header
+% http://www.matthiaspospiech.de/latex/vorlagen/
 %
-% loescht voreingestellte Stile
-\clearscrheadings
-\clearscrplain
-%
-% Was steht wo...
-   % Oben aussen: Kapitel und Section
-   % Unten aussen: Seitenzahl
-   % \ohead{\headmark} % Oben außen: Setzt Kapitel und Section automatisch
-   % \ofoot[\pagemark]{\pagemark}
-   % oder...
-   % Oben aussen: Seitenzahlen
-   % Oben innen: Kapitel und Section
-   \ohead{\pagemark}
-   \ihead{\headmark}
-% Vollstaendige Liste der moeglichen Positionierungen
-% \lehead[scrplain-links-gerade]{scrheadings-links-gerade}
-% \cehead[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
-% \rehead[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
-% \lefoot[scrplain-links-gerade]{scrheadings-links-gerade}
-% \cefoot[scrplain-mittig-gerade]{scrheadings-mittig-gerade}
-% \refoot[scrplain-rechts-gerade]{scrheadings-rechts-gerade}
-% \lohead[scrplain-links-ungerade]{scrheadings-links-ungerade}
-% \cohead[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
-% \rohead[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
-% \lofoot[scrplain-links-ungerade]{scrheadings-links-ungerade}
-% \cofoot[scrplain-mittig-ungerade]{scrheadings-mittig-ungerade}
-% \rofoot[scrplain-rechts-ungerade]{scrheadings-rechts-ungerade}
-% \ihead[scrplain-innen]{scrheadings-innen}
-% \chead[scrplain-zentriert]{scrheadings-zentriert}
-% \ohead[scrplain-außen]{scrheadings-außen}
-% \ifoot[scrplain-innen]{scrheadings-innen}
-% \cfoot[scrplain-zentriert]{scrheadings-zentriert}
-% \ofoot[scrplain-außen]{scrheadings-außen}
- 
- 
-%\usepackage{lastpage} % Stellt 'LastPage' zur Verfuegung
-%\cfoot[Seite \pagemark~von \pageref{LastPage}]{} % Seitenzahl von Anzahl Seiten
- 
-% Angezeigte Abschnitte im Header
-   \automark[section]{chapter} %[rechts]{links}
-%
-% Linien (moegliche Kombination mit Breiten)
-   %\setheadtopline{}     % modifiziert die Parameter fuer die Linie ueber dem Seitenkopf
-   \setheadsepline{.4pt}[\color{black}]
-                         % modifiziert die Parameter fuer die Linie zwischen Kopf
-                         % und Textkörper
-   %\setfootsepline{}    % modifiziert die Parameter fuer die Linie zwischen Text
-                         % und Fuß
-   %\setfootbotline{}    % modifiziert die Parameter fuer die Linie unter dem Seitenfuss
- 
-% Groesse des Headers
-%\setlength{\headheight}{1.1\baselineskip}
-% -> eingestellt über Option 'headlines'.
- 
-% Breite von Kopf und Fusszeile einstellen
-% \setheadwidth[Verschiebung]{Breite}
-% \setfootwidth[Verschiebung]{Breite}
-% mögliche Werte
-% paper - die Breite des Papiers
-% page - die Breite der Seite
-% text - die Breite des Textbereichs
-% textwithmarginpar - die Breite des Textbereichs inklusive dem Seitenrand
-% head - die aktuelle Breite des Seitenkopfes
-% foot - die aktuelle Breite des Seitenfusses
-\setheadwidth[0pt]{text}
-\setfootwidth[0pt]{text}
-
-
-
-
-
-
-
-
-
-   \colorlet{tablesubheadcolor}{gray!30}
-   \colorlet{tableheadcolor}{gray!25}
-   \colorlet{tableblackheadcolor}{black!100}
-   \colorlet{tablerowcolor}{gray!10.0}
-
-
-
 
 %%% -| Neue Spaltendefinitionen 'columntypes' |--
 %
@@ -196,20 +156,9 @@
 % \newcolumntype{A}[1]{>{\PreserveBackslash\Centering\hspace{0pt}}p{#1}}
 
 \newcolumntype{Y}{>{\PreserveBackslash\RaggedLeft\hspace{0pt}}X}
-%%% Spalten fuer Mathematik
-%
-% serifenlose Matheschrift
-\newcolumntype{s}[1]{%
-	>{\DC@{.}{,}{#1}\mathsf\bgroup}l%
-	<{\egroup\DV@end}%
-}
 
 % Tabellenspaltentyp fuer den Kopf: (Farbe + Ausrichtung)
 \newcolumntype{H}[1]{>{\columncolor{tableheadcolor}}l}
-
-
-
-
 
 
 
@@ -304,66 +253,3 @@
 	\rowcolors{1}{tablerowcolor}{white!100}%
 }
 %%% --------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-%% Inhaltsverzeichnis (Schrift, Aussehen) sowie weitere Verzeichnisse ====
- 
-\setcounter{secnumdepth}{2}    % Abbildungsnummerierung mit groesserer Tiefe
-\setcounter{tocdepth}{2}		 % Inhaltsverzeichnis mit groesserer Tiefe
-%
- 
-
-
-
-
-
-% Sylings for Tables
-%%%%%%%%%%%%%%%%%%%%
-%\newcommand*\heading[1]{\bfseries{#1}}
-%\newcommand*\beforeheading{\toprule}
-%\newcommand*\afterheading{\midrule}
-%\newcommand*\normalline{}
-%\newcommand*\lastline{\bottomrule}
-

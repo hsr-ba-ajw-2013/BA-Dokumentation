@@ -64,8 +64,7 @@ Thumbs.db
 *.bak
 *.fls
 *.fdb_latexmk
+*.lol
 
 
-
-Thesis.pdf
-main.pdf
+thesis.pdf
