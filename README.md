@@ -1,8 +1,23 @@
 # BA Thesis "Architekturkonzepte moderner Web-Applikationen"
-## Autoren
+## Author
 * Manuel Alabor
 * Alexandre Joly
 * Michael Weibel
 
+
 ## LaTeX Template
-Ursprünglich inspiriert von [HSR LaTeX Template](https://github.com/fbentele/HSR-LaTex-Template) by @fbentele. Thanks Mate!
+### Reuse
+Feel free to base your own LaTeX template upon our work. To keep it political correct, you find a copy of the MIT license below.
+
+### Initial Inspiration & Credits
+* Originally inspired by [HSR LaTeX Template](https://github.com/fbentele/HSR-LaTex-Template) by @fbentele. Thanks Mate!
+* Some styles are based upon or are copied from [Matthias Pospeich](http://www.matthiaspospiech.de/latex/vorlagen/)'s awesome LaTeX template. Thanks you!
+
+### License
+Copyright (c) 2013 Manuel Alabor, Alexandre Joly & Michael Weibel
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
