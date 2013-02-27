@@ -12,7 +12,7 @@
 \usepackage{hyperref}
 \usepackage{array}
 \usepackage{ngerman}
-\usepackage{glossaries}
+\usepackage[toc]{glossaries}
 \usepackage{color}
 \usepackage[table]{xcolor}
 \definecolor{lightgray}{rgb}{.9,.9,.9}
@@ -31,3 +31,8 @@
 
 % Redefine the bibliography chapter title from "chapter*{...}" to "chapter{...}":
 \renewcommand{\bibsection}{\chapter{\bibname}}
+
+% Redefine the glossary chapter title from "chapter*{...}" to "chapter{...}"
+\setglossarysection{chapter}
+% Title of glossary translated to German
+\renewcommand*{\glossaryname}{Glossar}
