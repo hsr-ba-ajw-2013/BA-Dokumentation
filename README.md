@@ -11,7 +11,7 @@ Feel free to base your own LaTeX template upon our work. To stay correct, there 
 
 ### Initial Inspiration & Credits
 * Originally inspired by [HSR LaTeX Template](https://github.com/fbentele/HSR-LaTex-Template) by @fbentele. Thanks Mate!
-* Some styles are based upon or are copied from [Matthias Pospeich](http://www.matthiaspospiech.de/latex/vorlagen/)'s awesome LaTeX template. Thanks you!
+* Some styles are based upon or are copied from [Matthias Pospeich](http://www.matthiaspospiech.de/latex/vorlagen/)'s awesome LaTeX template. Thank you!
 
 ### License
 Copyright (c) 2013 Manuel Alabor, Alexandre Joly & Michael Weibel
