@@ -19,7 +19,7 @@
 \usepackage{wrapfig}
 \usepackage{url}
 \usepackage{float}
-\usepackage{natbib}
+\usepackage[style=alphabetic]{biblatex}
 \usepackage{booktabs}
 \usepackage{tabularx}
 \usepackage{pdfpages}
@@ -27,3 +27,6 @@
 \usepackage{titlesec}
 \usepackage{ellipsis}
 \usepackage[automark, nouppercase]{scrpage2}
+\usepackage{tocstyle}
+
+\bibliography{content/indexes/bibliography}

@@ -65,6 +65,7 @@ Thumbs.db
 *.fls
 *.fdb_latexmk
 *.lol
-
+*.run.xml
+*-blx.bib
 
 thesis.pdf
