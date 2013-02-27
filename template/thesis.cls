@@ -31,5 +31,6 @@
 \usepackage{multicol}
 \usepackage{geometry}
 \usepackage{tocstyle}
+\usepackage{tikz-uml}
 
 \bibliography{content/indexes/bibliography}
