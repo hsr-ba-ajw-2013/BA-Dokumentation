@@ -11,7 +11,7 @@
 \usepackage{mathptmx}
 \usepackage{hyperref}
 \usepackage{array}
-\usepackage{ngerman}
+\usepackage[ngerman]{babel, translator}
 \usepackage[toc]{glossaries}
 \usepackage{color}
 \usepackage[table]{xcolor}
@@ -34,5 +34,3 @@
 
 % Redefine the glossary chapter title from "chapter*{...}" to "chapter{...}"
 \setglossarysection{chapter}
-% Title of glossary translated to German
-\renewcommand*{\glossaryname}{Glossar}
