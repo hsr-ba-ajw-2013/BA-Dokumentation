@@ -1,5 +1,4 @@
-# Weekly Meeting
-## XX.YY.ZZZZ
+# Weekly Meeting XX.YY.ZZZZ
 
 ## Teilnehmer
 * HSR/IFS
