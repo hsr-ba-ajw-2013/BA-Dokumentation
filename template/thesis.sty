@@ -16,8 +16,11 @@
 % \definecolor    color-syntax
 % \colorlet       xcolor-syntax
 
+\definecolor{titlepagecolor}{HTML}{0D3F6E}
+\definecolor{titlepagefontcolor}{RGB}{255,255,255}
+
 \definecolor{sectioncolor}{RGB}{0, 0, 0}
-\definecolor{chaptercolor}{RGB}{0, 0, 0}
+\colorlet{chaptercolor}{titlepagefontcolor}
 
 \colorlet{tablesubheadcolor}{gray!30}
 \colorlet{tableheadcolor}{gray!25}
@@ -41,10 +44,10 @@
 \pagestyle{scrheadings} % Seite mit Headern
 \clearscrheadings
 \clearscrplain
-  \ohead{\pagemark}
-  \ihead{\headmark}
-   \automark[section]{chapter}
-   \setheadsepline{.4pt}[\color{black}]
+	\ohead{\pagemark}
+	\ihead{\headmark}
+		\automark[section]{chapter}
+		\setheadsepline{.4pt}[\color{black}]
 \setheadwidth[0pt]{text}
 \setfootwidth[0pt]{text}
 
@@ -52,14 +55,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\titleformat{\chapter}[display]
-  {\usekomafont{chapter}\Large \color{sectioncolor}}
-  {
-  \LARGE\MakeUppercase{\chaptertitlename} \Huge \thechapter \filright
-  }
-  {1pt}
-  {\titlerule \vspace{0.9pc} \filright \color{sectioncolor}}
-  [\color{sectioncolor} \vspace{0.9pc} \filright {\titlerule}]
+\titleformat{\chapter}[block]%              
+		{\usekomafont{chapter}\Large\color{chaptercolor}\bfseries % Chaptertitle Format
+		\tikz[overlay]\path [fill=titlepagecolor](50mm,240mm)circle[x radius=290mm, y radius=250mm];} % Backgroundshape
+		{\normalfont\usekomafont{chapter}\large \chaptertitlename \hspace{0.1em} \thechapter} % "Chapter XY" formatting
+		{0.8em} % Space betweend "Chapter XY" and Chaptername
+		{} % Before
+		[\vspace{5mm}] % After
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -68,10 +70,10 @@
 \deffootnote{1.5em}{1em}{\makebox[1.5em][l]{\thefootnotemark}}
 \addtolength{\skip\footins}{\baselineskip}      % Abstand Text <-> Fussnote
 \setlength{\dimen\footins}{10\baselineskip}     % Beschraenkt den Platz von
-                                                % Fussnoten auf 10 Zeilen
+																								% Fussnoten auf 10 Zeilen
 \interfootnotelinepenalty=10000                 % Verhindert das Fortsetzen von
-                                                % Fussnoten auf der
-                                                % gegenüberligenden Seite
+																								% Fussnoten auf der
+																								% gegenüberligenden Seite
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -101,22 +103,22 @@
 % Code Listings
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lstset{
-        basicstyle=\small\ttfamily, % Standardschrift
-        numbers=left,               % Ort der Zeilennummern
-        numberstyle=\tiny,          % Stil der Zeilennummern
-        numbersep=5pt,              % Abstand der Nummern zum Text
-        tabsize=2,                  % Groesse von Tabs
-        extendedchars=true,         %
-        breaklines=true,            % Zeilen werden Umgebrochen
-        backgroundcolor=\color{listingbackground},
-        stringstyle=\color{stringcolor}, % Farbe der String
-        commentstyle=\color{commentcolor}, % Farbe der String
-        showspaces=false,           % Leerzeichen anzeigen ?
-        showtabs=false,             % Tabs anzeigen ?
-        showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
-        language=Java,
-        captionpos=b,
-        abovecaptionskip=5mm
+				basicstyle=\small\ttfamily, % Standardschrift
+				numbers=left,               % Ort der Zeilennummern
+				numberstyle=\tiny,          % Stil der Zeilennummern
+				numbersep=5pt,              % Abstand der Nummern zum Text
+				tabsize=2,                  % Groesse von Tabs
+				extendedchars=true,         %
+				breaklines=true,            % Zeilen werden Umgebrochen
+				backgroundcolor=\color{listingbackground},
+				stringstyle=\color{stringcolor}, % Farbe der String
+				commentstyle=\color{commentcolor}, % Farbe der String
+				showspaces=false,           % Leerzeichen anzeigen ?
+				showtabs=false,             % Tabs anzeigen ?
+				showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
+				language=Java,
+				captionpos=b,
+				abovecaptionskip=5mm
 }
 
 \renewcommand{\lstlistlistingname}{Quellcodes}
@@ -171,11 +173,11 @@
 % Neue Umgebung fuer Tabellen:
 
 \newenvironment{Tabelle}[2][c]{%
-  \tablestylecommon
-  \begin{longtable}[#1]{#2}
-  }
-  {\end{longtable}%
-  \tablerestoresettings
+	\tablestylecommon
+	\begin{longtable}[#1]{#2}
+	}
+	{\end{longtable}%
+	\tablerestoresettings
 }
 
 
@@ -185,10 +187,10 @@
 
 % Layout der Tabelle: Ausrichtung, Schrift, Zeilenabstand
 \newcommand\tablestylecommon{%
-  \renewcommand{\arraystretch}{1.4} % Groessere Abstaende zwischen Zeilen
-  \normalfont\normalsize            %
-  \sffamily\tablefontsize           % Serifenlose und kleine Schrift
-  \centering%                       % Tabelle zentrieren
+	\renewcommand{\arraystretch}{1.4} % Groessere Abstaende zwischen Zeilen
+	\normalfont\normalsize            %
+	\sffamily\tablefontsize           % Serifenlose und kleine Schrift
+	\centering%                       % Tabelle zentrieren
 }
 
 \newcommand{\tablestyle}{
@@ -198,23 +200,23 @@
 
 % Ruecksetzten der Aenderungen
 \newcommand\tablerestoresettings{%
-  \renewcommand{\arraystretch}{1}% Abstaende wieder zuruecksetzen
-  \normalsize\rmfamily % Schrift wieder zuruecksetzen
+	\renewcommand{\arraystretch}{1}% Abstaende wieder zuruecksetzen
+	\normalsize\rmfamily % Schrift wieder zuruecksetzen
 }
 
 % Tabellenkopf: Serifenlos+fett+schraeg+Schriftfarbe
 \renewcommand\tablehead{%
-  \tableheadfontsize%
-  \sffamily\bfseries%
-  \slshape
-  %\color{white}
+	\tableheadfontsize%
+	\sffamily\bfseries%
+	\slshape
+	%\color{white}
 }
 
 \newcommand\tablesubheadfont{%
-  \tableheadfontsize%
-  \sffamily\bfseries%
-  \slshape
-  %\color{white}
+	\tableheadfontsize%
+	\sffamily\bfseries%
+	\slshape
+	%\color{white}
 }
 
 
@@ -242,7 +244,7 @@
 
 
 \newcommand{\tablesubhead}[2]{%
-  \multicolumn{#1}{>{\columncolor{tablesubheadcolor}}l}{\tablesubheadfont #2}%
+	\multicolumn{#1}{>{\columncolor{tablesubheadcolor}}l}{\tablesubheadfont #2}%
 }
 
 % Tabellenbody (=Inhalt)

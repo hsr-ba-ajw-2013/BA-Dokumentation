@@ -5,7 +5,7 @@
 \LoadClass[a4paper]{scrreprt} % KOMAscript
 
 % Packages:
-\RequirePackage{graphicx}
+\usepackage{graphicx}
 \usepackage{lipsum}
 \usepackage{textcomp}
 \usepackage{mathptmx}
@@ -27,3 +27,6 @@
 \usepackage{titlesec}
 \usepackage{ellipsis}
 \usepackage[automark, nouppercase]{scrpage2}
+\usepackage[some]{background}
+\usepackage{multicol}
+\usepackage{geometry}

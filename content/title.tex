@@ -1,7 +1,48 @@
-\subject{Bachelorarbeit}
-\date{Frühjahressemester 2013}
-\title{Architekturkonzepte moderner Web-Applikationen}
-\subtitle{Hochschule für Technik Rapperswil, HSR}
-\author{Manuel Alabor, Alexandre Joly \& Michael Weibel}
+\begin{titlepage}
+	% Page Settings:
+	\newgeometry{top=110mm,right=30mm,bottom=20mm,left=30mm}
+	\backgroundsetup{scale=1,angle=0,opacity=1,contents={
+		\begin{tikzpicture}[remember picture,overlay]
+			\path [fill=titlepagecolor]
+			(0,-175mm)circle[x radius=290mm, y radius=250mm];
+			\node [anchor=south west] (image) at (-0.5\paperwidth+8mm,0.5\paperheight-39mm) {\includegraphics[height=25mm]{content/images/hsrlogo.png}};
+		\end{tikzpicture}}
+	}
 
-\maketitle
+	% Apply Page settings:
+	\thispagestyle{empty}
+	\BgThispage
+
+	% Content:
+	\sffamily\color{titlepagefontcolor}
+	\begin{center}
+		\Large
+		Bachelorarbeit\\[5mm]
+	   
+		\Huge\bfseries
+		Architekturkonzepte moderner\\
+		Web-Applikationen\\[15mm]
+
+		\large\normalfont\sffamily
+		Hochschule für Technik Rapperswil\\[1mm]
+		Frühjahressemester 2013
+	\end{center}
+	\vfill
+
+	\begin{multicols}{2}
+		\begin{tabularx}{\textwidth}{l X}
+			\bfseries Autoren & Manuel Alabor (MAL)\tabularnewline
+			& Alexandre Joly (AJO)\tabularnewline
+			& Michael Weibel (MWE)\tabularnewline
+		\end{tabularx}
+
+		\begin{tabularx}{\textwidth}{l X}
+			\bfseries Betreuer & Prof. Hans Rudin (HRU)\tabularnewline
+			\bfseries Experte & Daniel Hiltebrand (DHI)\tabularnewline
+			\bfseries Gegenleser & tbd.\tabularnewline
+		\end{tabularx}
+	\end{multicols}
+
+\end{titlepage}
+
+\restoregeometry
