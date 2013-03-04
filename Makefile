@@ -24,6 +24,7 @@ clean-auxilary:
 	-rm $(BASENAME).glg $(BASENAME).gls *.log $(BASENAME).bbl
 	-rm $(BASENAME).blg $(BASENAME).fdb_latexmk $(BASENAME).fls $(BASENAME).ilg
 	-rm $(BASENAME).ind $(BASENAME).ind $(BASENAME).ilg $(BASENAME).fls $(BASENAME).lot
+	-rm $(BASENAME).run.xml $(BASENAME).bcf $(BASENAME)-blx.bib $(BASENAME).lol
 
 clean: clean-auxilary
 	-rm $(BASENAME).pdf

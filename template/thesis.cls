@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{thesis}
+\ProvidesClass{template/thesis}
 \ProcessOptions
 
 \LoadClass[a4paper]{scrreprt} % KOMAscript
@@ -31,5 +31,6 @@
 \usepackage{multicol}
 \usepackage{geometry}
 \usepackage{tocstyle}
+\usepackage{tikz-uml}
 
 \bibliography{content/indexes/bibliography}

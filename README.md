@@ -1,5 +1,5 @@
 # BA Thesis "Architekturkonzepte moderner Web-Applikationen"
-## Author
+## Authors
 * Manuel Alabor
 * Alexandre Joly
 * Michael Weibel
@@ -7,11 +7,12 @@
 
 ## LaTeX Template
 ### Reuse
-Feel free to base your own LaTeX template upon our work. To keep it political correct, you find a copy of the MIT license below.
+Feel free to base your own LaTeX template upon our work. To stay correct, there is a copy of the MIT license below.
+Please notice: That license *only* applies to the LaTeX template. The thesis itself is property of [Hochschule für Technik Rapperswil](http://www.hsr.ch).
 
 ### Initial Inspiration & Credits
 * Originally inspired by [HSR LaTeX Template](https://github.com/fbentele/HSR-LaTex-Template) by @fbentele. Thanks Mate!
-* Some styles are based upon or are copied from [Matthias Pospeich](http://www.matthiaspospiech.de/latex/vorlagen/)'s awesome LaTeX template. Thanks you!
+* Some styles are based upon or are copied from [Matthias Pospeich](http://www.matthiaspospiech.de/latex/vorlagen/)'s awesome LaTeX template. Thank you!
 
 ### License
 Copyright (c) 2013 Manuel Alabor, Alexandre Joly & Michael Weibel

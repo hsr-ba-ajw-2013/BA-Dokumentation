@@ -67,5 +67,6 @@ Thumbs.db
 *.lol
 *.run.xml
 *-blx.bib
+*.bcf
 
 thesis.pdf
