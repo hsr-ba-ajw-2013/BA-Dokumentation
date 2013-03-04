@@ -1,7 +1,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Fonts
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand\SectionFontStyle{\fontspec{Helvetica Neue}}
+\newcommand\SectionFontStyle{\fontspec[
+	Path=./template/fonts/Open_Sans/,
+	Extension=.ttf,
+	UprightFont=*-Regular,
+	BoldFont=*-Bold,
+	ItalicFont=*-Italic,
+	BoldItalicFont=*-BoldItalic
+	]{OpenSans}
+}
 
 \setkomafont{chapter}{\huge\SectionFontStyle}           % Chapter
 \setkomafont{sectioning}{\SectionFontStyle}             % Section
