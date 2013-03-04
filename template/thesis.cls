@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{thesis}
+\ProvidesClass{template/thesis}
 \ProcessOptions
 
 \LoadClass[a4paper]{scrreprt} % KOMAscript
