@@ -19,12 +19,16 @@ wget https://raw.github.com/mweibel/BA-Dokumentation/master/travis/texlive-insta
 
 echo '---- Install texlive with install-tl ----'
 sudo ./install-tl --profile=texlive-installation.profile
+PATH=$PATH:/usr/local/texlive/2012/bin/i386-linux
 
 echo '---- Install tikz-uml ----'
 cd /tmp
-wget http://www.ensta-paristech.fr/~kielbasi/tikzuml/src/tikzuml-v1.0b-2013-02-01.tbz
-tar xjfv tikzuml-v1.0b-2013-02-01.tbz
-sudo mv tikzuml-v1.0b /usr/local/texlive/2012/texmf/tex/latex/tikzuml
+mkdir -p /usr/local/texlive/2012/texmf/tex/latex
+
+#wget http://www.ensta-paristech.fr/~kielbasi/tikzuml/src/tikzuml-v1.0b-2013-02-01.tbz
+wget https://dl.dropbox.com/u/6981682/tikzuml.zip
+unzip tikzuml.zip
+sudo mv -v tikzuml /usr/local/texlive/2012/texmf/tex/latex/tikzuml
 sudo texhash /usr/local/texlive/2012/texmf
 
 echo '######################################'
