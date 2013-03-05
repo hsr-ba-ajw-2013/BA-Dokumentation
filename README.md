@@ -1,4 +1,4 @@
-# BA Thesis "Architekturkonzepte moderner Web-Applikationen"
+# Bachelor's Thesis "Architekturkonzepte moderner Web-Applikationen"
 ## Authors
 * Manuel Alabor
 * Alexandre Joly
