@@ -1,3 +1,23 @@
+\newcommand\thesisAuthorA{Manuel Alabor}
+\newcommand\thesisAuthorB{Alexandre Joly}
+\newcommand\thesisAuthorC{Michael Weibel}
+\newcommand\thesisTitle{Architekturkonzepte moderner Web-Applikationen}
+\newcommand\thesisSubject{Bachelorarbeit}
+\newcommand\thesisSchool{Hochschule für Technik Rapperswil}
+\newcommand\thesisTerm{Frühjahressemester 2013}
+\newcommand\thesisProfessor{Prof. Hans Rudin}
+\newcommand\thesisExpert{Daniel Hiltebrand}
+\newcommand\thesisCrossReader{tbd.}
+\newcommand\thesisKeywords{roca-style, REST, web-framework, bachelor thesis}
+
+\hypersetup{
+	pdfauthor={\thesisAuthorA, \thesisAuthorB, \thesisAuthorC},
+	pdftitle={\thesisTitle},
+	pdfsubject={\thesisSubject},
+	pdfkeywords={\thesisKeywords}
+}
+
+
 \begin{titlepage}
 	% Page Settings:
 	\newgeometry{top=110mm,right=30mm,bottom=20mm,left=30mm}
@@ -17,33 +37,32 @@
 	\sffamily\color{titlepagefontcolor}
 	\begin{center}
 		\Large
-		Bachelorarbeit\\[5mm]
-	   
+		\thesisSubject\\[5mm]
+
 		\Huge\bfseries
-		Architekturkonzepte moderner\\
-		Web-Applikationen\\[15mm]
+		\thesisTitle\\[15mm]
 
 		\large\normalfont\sffamily
-		Hochschule für Technik Rapperswil\\[1mm]
-		Frühjahressemester 2013\\[15mm]
+		\thesisSchool\\[1mm]
+		\thesisTerm\\[15mm]
 
 		\vfill
 		\normalsize\normalfont\sffamily
 		Erstellt: \today, \currenttime\\[10mm]
 	\end{center}
-	
+
 
 	\begin{multicols}{2}
 		\begin{tabularx}{\textwidth}{l X}
-			\bfseries Autoren & Manuel Alabor (MAL)\tabularnewline
-			& Alexandre Joly (AJO)\tabularnewline
-			& Michael Weibel (MWE)\tabularnewline
+			\bfseries Autoren & \thesisAuthorA\tabularnewline
+			& \thesisAuthorB\tabularnewline
+			& \thesisAuthorC\tabularnewline
 		\end{tabularx}
 
 		\begin{tabularx}{\textwidth}{l X}
-			\bfseries Betreuer & Prof. Hans Rudin (HRU)\tabularnewline
-			\bfseries Experte & Daniel Hiltebrand (DHI)\tabularnewline
-			\bfseries Gegenleser & tbd.\tabularnewline
+			\bfseries Betreuer & \thesisProfessor\tabularnewline
+			\bfseries Experte & \thesisExpert\tabularnewline
+			\bfseries Gegenleser & \thesisCrossReader\tabularnewline
 		\end{tabularx}
 	\end{multicols}
 
