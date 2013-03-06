@@ -19,7 +19,7 @@ script: ./travis/setup.sh
 after_success:
     - ./travis/after_success.sh
 
-# 
+#
 # Environment Variables:
 # Customize to your needs.
 #
@@ -55,8 +55,12 @@ env:
 
         # CI_HOME
         # A shortcut to the directory where travis cloned the actual git repo
-        - CI_HOME=`pwd`/$TRAVIS_REPO_SLUG
+        - CI_HOME: `pwd`/$TRAVIS_REPO_SLUG
 
         # RESULT_PDF_PATH
         # A shortcut to the built PDF document
-        - RESULT_PDF_PATH=$CI_HOME/thesis.pdf
+        - RESULT_PDF_PATH: $CI_HOME/thesis.pdf
+
+        # TZ
+        # Timezone
+        - TZ: "Europe/Zurich"
