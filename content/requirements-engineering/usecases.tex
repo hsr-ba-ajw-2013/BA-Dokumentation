@@ -1,47 +1,54 @@
+\newpage
+
 \section{Use Cases}
 
-\subsection*{Use Cases Diagramm}
+\begin{figure}[ht!]
+	\centering{
+		\resizebox{0.8\textwidth}{!} {
+			\begin{tikzpicture}
+				\begin{umlsystem}[x=5]{Roomies}
 
-\begin{tikzpicture}
-\begin{umlsystem}[x=5]{Roomies}
+					\umlusecase[y=0]{UC1: Anmelden}
+					\umlusecase[y=-2]{UC2: WG erstellen}
+					\umlusecase[y=-4]{UC3: WG beitreten}
+					\umlusecase[y=-6]{UC4: WG verlassen}
+					\umlusecase[y=-8]{UC5: Aufgabe erstellen}
+					\umlusecase[y=-10]{UC6: Aufgabe bearbeiten}
+					\umlusecase[y=-12]{UC7: Aufgabe erledigen}
+					\umlusecase[y=-14]{UC8: Rangliste anzeigen}
+					\umlusecase[y=-16]{UC9: WG auflösen}
+					\umlusecase[y=-18]{UC10: Benutzer verwalten}
+					\umlusecase[x=6, y=-8, width=2cm]{UC11: auf Social Media Plattform teilen}
 
-\umlusecase[y=0]{UC1: Anmelden}
-\umlusecase[y=-2]{UC2: WG erstellen}
-\umlusecase[y=-4]{UC3: WG beitreten}
-\umlusecase[y=-6]{UC4: WG verlassen}
-\umlusecase[y=-8]{UC5: Aufgabe erstellen}
-\umlusecase[y=-10]{UC6: Aufgabe bearbeiten}
-\umlusecase[y=-12]{UC7: Aufgabe erledigen}
-\umlusecase[y=-14]{UC8: Rangliste anzeigen}
-\umlusecase[y=-16]{UC9: WG auflösen}
-\umlusecase[y=-18]{UC10: Benutzer verwalten}
-\umlusecase[x=6, y=-8, width=2cm]{UC11: auf Social Media Plattform teilen}
+				\end{umlsystem}
 
-\end{umlsystem}
+				\umlactor[y=-7]{Bewohner}
+				\umlactor[y=-16]{Administrator}
 
-\umlactor[y=-7]{Bewohner}
-\umlactor[y=-16]{Administrator}
+				\umlinherit{Administrator}{Bewohner}
 
-\umlinherit{Administrator}{Bewohner}
+				\umlextend{usecase-11}{usecase-3}
+				\umlextend{usecase-11}{usecase-7}
+				\umlextend{usecase-11}{usecase-8}
 
-\umlextend{usecase-11}{usecase-3}
-\umlextend{usecase-11}{usecase-7}
-\umlextend{usecase-11}{usecase-8}
+				\umlassoc{Bewohner}{usecase-1}
+				\umlassoc{Bewohner}{usecase-2}
+				\umlassoc{Bewohner}{usecase-3}
+				\umlassoc{Bewohner}{usecase-4}
+				\umlassoc{Bewohner}{usecase-5}
+				\umlassoc{Bewohner}{usecase-6}
+				\umlassoc{Bewohner}{usecase-7}
+				\umlassoc{Bewohner}{usecase-8}
+				\umlassoc{Bewohner}{usecase-11}
 
-\umlassoc{Bewohner}{usecase-1}
-\umlassoc{Bewohner}{usecase-2}
-\umlassoc{Bewohner}{usecase-3}
-\umlassoc{Bewohner}{usecase-4}
-\umlassoc{Bewohner}{usecase-5}
-\umlassoc{Bewohner}{usecase-6}
-\umlassoc{Bewohner}{usecase-7}
-\umlassoc{Bewohner}{usecase-8}
-\umlassoc{Bewohner}{usecase-11}
+				\umlassoc{Administrator}{usecase-9}
+				\umlassoc{Administrator}{usecase-10}
 
-\umlassoc{Administrator}{usecase-9}
-\umlassoc{Administrator}{usecase-10}
+				\umlnote[x=11, y=-1]{usecase-1}{Die erste Anmeldung wird als eine Registrierung interpretiert}
+				\umlnote[x=11, y=-4]{usecase-3}{Eine WG kann nur über eine Einladung (Link) beigetreten werden}
+			\end{tikzpicture}
+		}
+	}
 
-\umlnote[x=11, y=-1]{usecase-1}{Die erste Anmeldung wird als eine Registrierung interpretiert}
-\umlnote[x=11, y=-4]{usecase-3}{Eine WG kann nur über eine Einladung (Link) beigetreten werden}
-
-\end{tikzpicture}
+	\caption{Use Case Diagramm}
+\end{figure}
