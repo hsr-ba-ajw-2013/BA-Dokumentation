@@ -29,6 +29,14 @@ mkdir -p /usr/local/texlive/2012/texmf/tex/latex
 wget https://dl.dropbox.com/u/6981682/tikzuml.zip
 unzip tikzuml.zip
 sudo mv -v tikzuml /usr/local/texlive/2012/texmf/tex/latex/tikzuml
+
+echo '---- Install pdfgantt ----' 
+#wget http://mirrors.ctan.org/graphics/pgf/contrib/pgfgantt.zip
+wget https://dl.dropbox.com/u/6981682/pgfgantt.zip
+unzip pgfgantt.zip
+sudo mv -v pgfgantt /usr/local/texlive/2012/texmf/tex/latex/pgfgantt
+
+
 sudo texhash /usr/local/texlive/2012/texmf
 
 echo '######################################'
