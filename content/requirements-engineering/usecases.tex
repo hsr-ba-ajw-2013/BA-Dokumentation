@@ -96,7 +96,7 @@
 			\tabularnewline
 		\tableend
 	\end{tabularx}
-	\caption{Tabelle UC1: Anmelden}
+	\caption{UC1: Anmelden}
 \end{table}
 
 
@@ -155,7 +155,7 @@
 			\tabularnewline
 		\tableend
 	\end{tabularx}
-	\caption{Tabelle UC2: WG erstellen}
+	\caption{UC2: WG erstellen}
 \end{table}
 
 
@@ -206,7 +206,7 @@
 			\tabularnewline
 		\tableend
 	\end{tabularx}
-	\caption{Tabelle UC3: WG beitreten}
+	\caption{UC3: WG beitreten}
 \end{table}
 
 
@@ -262,6 +262,53 @@
 			\tabularnewline
 		\tableend
 	\end{tabularx}
-	\caption{Tabelle UC4: WG verlassen}
+	\caption{UC4: WG verlassen}
 \end{table}
 
+
+% Use Case 5
+\subsection{UC5: Aufgabe erstellen}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			Use Case Name &
+			UC5: Aufgabe erstellen
+			\tabularnewline
+			Scope &
+			Roomies
+			\tabularnewline
+			Primary Actor &
+			Bewohner
+			\tabularnewline
+			Stakeholders and Interest &
+			Der Bewohner möchte eine Aufgabe der WG hinzufügen
+			\tabularnewline
+			Preconditions &
+			\begin{itemize}
+				\item Der Bewohner ist angemeldet
+			\end{itemize}
+			\tabularnewline
+			Postconditions &
+			\begin{itemize}
+				\item Die Aufgabe wurde erstellt
+			\end{itemize}
+			\tabularnewline
+			Main Success Scenario &
+			\begin{enumerate}
+				\item Bewohner klickt auf 'Aufgabe hinzufügen'
+				\item System zeigt 'Neue Aufgabe'-Formular
+				\item Bewohner //TODO: DO IT LAZY BASTARD!
+			\end{enumerate}
+			\tabularnewline
+			Extensions &
+			-
+			\tabularnewline
+			Frequency of Occurence &
+			Oft
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC5: Aufgabe erstellen}
+\end{table}
