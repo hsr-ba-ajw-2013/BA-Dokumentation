@@ -4,7 +4,7 @@
 
 \begin{figure}[ht!]
 	\centering{
-		\resizebox{0.8\textwidth}{!} {
+		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
 				\begin{umlsystem}[x=5]{Roomies}
 
@@ -18,7 +18,7 @@
 					\umlusecase[y=-14]{UC8: Rangliste anzeigen}
 					\umlusecase[y=-16]{UC9: WG auflösen}
 					\umlusecase[y=-18]{UC10: Benutzer verwalten}
-					\umlusecase[x=6, y=-8, width=2cm]{UC11: auf Social Media Plattform teilen}
+					\umlusecase[x=8, y=-8, width=2cm]{UC11: auf Social Media Plattform teilen}
 
 				\end{umlsystem}
 
@@ -52,3 +52,159 @@
 
 	\caption{Use Case Diagramm}
 \end{figure}
+
+% Use Case 1
+\subsection{UC1: Anmelden}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			Use Case Name &
+			UC1: Anmelden
+			\tabularnewline
+			Scope &
+			Roomies
+			\tabularnewline
+			Primary Actor &
+			Bewohner
+			\tabularnewline
+			Stakeholders and Interest &
+			Der Bewohner möchte sich in das System anmelden.
+			\tabularnewline
+			Preconditions &
+			\begin{itemize}
+				\item Der Bewohner besitzt einen Account bei Facebook.
+			\end{itemize}
+			\tabularnewline
+			Postconditions &
+			\begin{itemize}
+				\item Der Bewohner ist in das System eingelogt.
+			\end{itemize}
+			\tabularnewline
+			Main Success Scenario &
+			\begin{enumerate}
+				\item TODO: login mit FB
+				\item tbd
+			\end{enumerate}
+			\tabularnewline
+			Extensions &
+			-
+			\tabularnewline
+			Frequency of Occurence &
+			Oft
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{Tabelle UC1: Anmelden}
+\end{table}
+
+
+% Use Case 2
+\subsection{UC2: WG erstellen}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			Use Case Name &
+			UC2: WG erstellen
+			\tabularnewline
+			Scope &
+			Roomies
+			\tabularnewline
+			Primary Actor &
+			Bewohner
+			\tabularnewline
+			Stakeholders and Interest &
+			Der Bewohner möchte eine WG erstellen.
+			\tabularnewline
+			Preconditions &
+			\begin{itemize}
+				\item Der Bewohner ist keiner WG zugeteilt.
+				\item Der Bewohner ist in das System angemeldet.
+			\end{itemize}
+			\tabularnewline
+			Postconditions &
+			\begin{itemize}
+				\item Neue WG ist erstellt.
+				\item Der Bewohner ist der WG zugeteilt.
+				\item Der Bewohner ist der Administrator der WG.
+			\end{itemize}
+			\tabularnewline
+			Main Success Scenario &
+			\begin{enumerate}
+				\item Bewohner klickt auf 'WG erstellen'
+				\item System zeigt das WG-erstell-Formular an
+				\item Bewohner trägt der Name der WG ein
+				\item TODO: weitere infos?
+				\item Bewohner klickt auf 'erstellen'
+				\item System zeigt Aufgaben der neu erstellten WG
+			\end{enumerate}
+			\tabularnewline
+			Extensions &
+			\begin{itemize}
+				\item[2a.] Bewohner gibt keinen Namen an
+				\begin{itemize}
+					\item[6.] System fordert (Fehlermeldung) Bewohner einen Namen für die WG einzugeben
+				\end{itemize}
+			\end{itemize}
+			\tabularnewline
+			Frequency of Occurence &
+			Selten
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{Tabelle UC2: WG erstellen}
+\end{table}
+
+
+% Use Case 3
+\subsection{UC3: WG beitreten}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			Use Case Name &
+			UC3: WG beitreten
+			\tabularnewline
+			Scope &
+			Roomies
+			\tabularnewline
+			Primary Actor &
+			Bewohner
+			\tabularnewline
+			Stakeholders and Interest &
+			Der Bewohner möchte einer WG beitreten
+			\tabularnewline
+			Preconditions &
+			\begin{itemize}
+				\item Der Bewohner besitzt einen Account bei Facebook.
+				\item Der Bewohner ist die Internetadresse der Einladung bekannt.
+				\item Der Bewohner ist in keine WG aktiv.
+			\end{itemize}
+			\tabularnewline
+			Postconditions &
+			\begin{itemize}
+				\item Der Bewohner ist in der WG angemeldet
+				\item Der Bewohner ist in der WG aktiv.
+			\end{itemize}
+			\tabularnewline
+			Main Success Scenario &
+			\begin{enumerate}
+				\item System zeigt Einladugsformular
+				\item Bewohner klickt auf 'WG beitreten'
+				\item System zeigt Aufgaben der WG
+			\end{enumerate}
+			\tabularnewline
+			Extensions &
+			-
+			\tabularnewline
+			Frequency of Occurence &
+			Gelegentlich
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{Tabelle UC3: WG beitreten}
+\end{table}
