@@ -208,3 +208,59 @@
 	\end{tabularx}
 	\caption{Tabelle UC3: WG beitreten}
 \end{table}
+
+
+% Use Case 4
+\subsection{UC4: WG verlassen}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			Use Case Name &
+			UC4: WG verlassen
+			\tabularnewline
+			Scope &
+			Roomies
+			\tabularnewline
+			Primary Actor &
+			Bewohner
+			\tabularnewline
+			Stakeholders and Interest &
+			Der Bewohner möchte einer WG beitreten
+			\tabularnewline
+			Preconditions &
+			\begin{itemize}
+				\item Der Bewohner ist kein Administrator der WG.
+			\end{itemize}
+			\tabularnewline
+			Postconditions &
+			\begin{itemize}
+				\item Der Bewohner ist in der WG inaktiv
+			\end{itemize}
+			\tabularnewline
+			Main Success Scenario &
+			\begin{enumerate}
+				\item Bewohner klickt auf 'Einstellungen'
+				\item System zeigt die Einstellungen vom Bewohner
+				\item Bewohner klickt auf 'WG verlassen'
+				\item System fordert eine Bestätigung des Bewohners
+				\item Bewohner bestätigt das Verlassen
+				\item System zeigt 'Auf Wiedersehen' Meldung
+			\end{enumerate}
+			\tabularnewline
+			Extensions &
+			\begin{itemize}
+				\item[5a.] Bewohner verneigt das Verlassen
+				\begin{itemize}
+					\item[6] System zeigt die Einstellungen vom Bewohner
+				\end{itemize}
+			\end{itemize}
+			\tabularnewline
+			Frequency of Occurence &
+			Gelegentlich
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{Tabelle UC3: WG beitreten}
+\end{table}
