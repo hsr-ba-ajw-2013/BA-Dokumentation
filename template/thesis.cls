@@ -33,5 +33,6 @@
 \usepackage{tocstyle}
 \usepackage{tikz-uml}
 \usepackage{datetime}
+\usepackage{pgfgantt}
 
 \bibliography{content/indexes/bibliography}

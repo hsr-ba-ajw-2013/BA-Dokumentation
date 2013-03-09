@@ -4,7 +4,7 @@ echo '#                SETUP               #'
 echo '#              - START -             #'
 echo '######################################'
 
-PATH=$PATH:/usr/local/texlive/2012/bin/i386-linux
+PATH=$PATH:/usr/local/texlive/2012/bin/x86_64-linux
 make
 
 echo '######################################'
