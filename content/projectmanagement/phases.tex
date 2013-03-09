@@ -1,11 +1,48 @@
+
 \section{Phasenplanung}
 Die Phasenplanung orientiert sich grob am \gls{RUP} und ist unterteilt in eine \emph{Inception-}, \emph{Elaboration-}, fünf \emph{Construction-} sowie jeweils eine \emph{Transition-} und \emph{Abschlussphase}.
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l l X}
+\tableheadcolor
+	\tablehead Phase &
+	\tablehead Dauer &
+	\tablehead Beschreibung \tabularnewline
+\tablebody
+	\textit{Inception} & 3 Wochen
+		& Projektsetup, genauere Definition der Aufgabe, Vorbereitungen \& Planungen\tabularnewline
+	\textit{Elaboration} & 3 Wochen
+		& Anforderungsanalysen, Entwicklung eines Architekturprototypen und genauere technische Evaluationen. Guidelines für Quellcode und Testing werden erstellt.\tabularnewline
+	\textit{Construction 1} & 2 Wochen
+		& Umsetzung des Applikationsfundaments, UI Design, Umsetzung erster als \emph{Hoch} priorisierter Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 2} & 2 Wochen
+		& Fertigstellung der restlichen als \emph{Hoch} priorisierten Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 3} & 2 Wochen
+		& Umsetzung des \emph{Gameification}-Teils der Applikation. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 4} & 2 Wochen
+		& Implementation der restlichen als \emph{Mittel} priorisierten Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 5} & 2 Wochen
+		& Umsetzung aller restlichen als \emph{Tief} priorisierten Use Cases sowie erstes Bugfixing gem. geführter Issueliste. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Transition} & 1 Wochen
+		& Abschliessende Bugfixing-Arbeiten. Codefreeze und Erstellung von Deploymentpaketen.\tabularnewline
+	\textit{Abschluss} & 2 Wochen
+		& Finalisierung der Dokumentation sowie Erstellung der HSR Artefakte \emph{A100} sowie \emph{A101}.\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Projektphasenbeschreibung}
+\end{table}
+
+Jede einzelne Phase wird jeweils von einem Meilenstein abgeschlossen, was in folgendem Gantt-Diagramm ersichtlich ist.
+
+Eine Ausnahme bildet der Meilenstein \emph{M9: Abgabe HSR Artefakte}. Zu diesem Zeitpunkt müssen die entsprechenden Artefakte \emph{A100} sowie \emph{A101} im HSR abgabebereit sein.
 
 \begin{figure}[H]
 	\begin{ganttchart}[
 			vgrid={*2{dotted},{blue},*1{black},*3{dotted},*1{black},*3{dotted},*1{black},*3{dotted},*1{black},*3{dotted},*1{blue},*4{dotted}},
 			hgrid,
-			y unit chart=6mm,
+			y unit chart=5mm,
 			x unit=4.4mm,
 			title top shift=0,
 			title label font=\small\sffamily,
