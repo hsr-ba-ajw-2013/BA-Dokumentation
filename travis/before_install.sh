@@ -21,9 +21,6 @@ echo '---- Install texlive with install-tl ----'
 sudo ./install-tl --profile=texlive-installation.profile
 export PATH=$PATH:/usr/local/texlive/2012/bin/x86_64-linux
 
-ls -la /usr/local/texlive/2012/bin/
-ls -la /usr/local/texlive/2012/bin/x86_64-linux
-
 echo '---- Prepare installation of additional modules ----'
 cd /tmp
 mkdir -p /usr/local/texlive/2012/texmf/tex/latex
@@ -41,7 +38,7 @@ unzip pgfgantt.zip
 sudo mv -v pgfgantt /usr/local/texlive/2012/texmf/tex/latex/pgfgantt
 
 echo '---- Run texhash ----'
-sudo texhash /usr/local/texlive/2012/texmf
+sudo /usr/local/texlive/2012/bin/x86_64-linux/texhash /usr/local/texlive/2012/texmf
 
 echo '######################################'
 echo '#           BEFORE_INSTALL           #'
