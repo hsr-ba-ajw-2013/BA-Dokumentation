@@ -19,7 +19,10 @@ wget https://raw.github.com/mweibel/BA-Dokumentation/master/travis/texlive-insta
 
 echo '---- Install texlive with install-tl ----'
 sudo ./install-tl --profile=texlive-installation.profile
-PATH=$PATH:/usr/local/texlive/2012/bin/x86_64-linux
+export PATH=$PATH:/usr/local/texlive/2012/bin/x86_64-linux
+
+ls -la /usr/local/texlive/2012/bin/
+ls -la /usr/local/texlive/2012/bin/x86_64-linux
 
 echo '---- Prepare installation of additional modules ----'
 cd /tmp
@@ -31,13 +34,13 @@ wget https://dl.dropbox.com/u/6981682/tikzuml.zip
 unzip tikzuml.zip
 sudo mv -v tikzuml /usr/local/texlive/2012/texmf/tex/latex/tikzuml
 
-echo '---- Install pdfgantt ----' 
+echo '---- Install pdfgantt ----'
 #wget http://mirrors.ctan.org/graphics/pgf/contrib/pgfgantt.zip
 wget https://dl.dropbox.com/u/6981682/pgfgantt.zip
 unzip pgfgantt.zip
 sudo mv -v pgfgantt /usr/local/texlive/2012/texmf/tex/latex/pgfgantt
 
-echo '---- Run texhash ----' 
+echo '---- Run texhash ----'
 sudo texhash /usr/local/texlive/2012/texmf
 
 echo '######################################'
