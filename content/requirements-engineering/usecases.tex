@@ -299,7 +299,64 @@
 			\begin{enumerate}
 				\item Bewohner klickt auf 'Aufgabe hinzufügen'
 				\item System zeigt 'Neue Aufgabe'-Formular
-				\item Bewohner //TODO: DO IT LAZY BASTARD!
+				\item Bewohner gibt Name der Aufgabe ein.
+				\item //TODO: fill some more data?
+				\item Bewohner klickt auf 'Speichern'
+				\item System zeigt Erfolgsmeldung
+			\end{enumerate}
+			\tabularnewline
+			Extensions &
+			\begin{itemize}
+				\item[5a.] Bewohner klickt auf ''
+			\end{itemize}
+			\tabularnewline
+			Frequency of Occurence &
+			Oft
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC5: Aufgabe erstellen}
+\end{table}
+
+
+% Use Case 6
+\subsection{UC6: Aufgabe bearbeiten}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			Use Case Name &
+			UC6: Aufgabe bearbeiten
+			\tabularnewline
+			Scope &
+			Roomies
+			\tabularnewline
+			Primary Actor &
+			Bewohner
+			\tabularnewline
+			Stakeholders and Interest &
+			Der Bewohner möchte eine Aufgabe der WG bearbeiten
+			\tabularnewline
+			Preconditions &
+			\begin{itemize}
+				\item Der Bewohner ist angemeldet
+				\item Aufgabe ist vorhanden
+				\item Aufgabe ist nicht als 'Erledigt' markiert
+			\end{itemize}
+			\tabularnewline
+			Postconditions &
+			\begin{itemize}
+				\item Geänderte Properties wurden gespeichert
+			\end{itemize}
+			\tabularnewline
+			Main Success Scenario &
+			\begin{enumerate}
+				\item Bewohner wählt auf Aufgabe aus
+				\item System zeigt die Eigenschaften der Aufgabe an
+				\item Bewohner verändert die Eigenschften
+				\item Bewohner klickt auf 'Speichern'
+				\item System zeigt Erfolgsmeldung
 			\end{enumerate}
 			\tabularnewline
 			Extensions &
@@ -310,5 +367,5 @@
 			\tabularnewline
 		\tableend
 	\end{tabularx}
-	\caption{UC5: Aufgabe erstellen}
+	\caption{UC6: Aufgabe bearbeiten}
 \end{table}
