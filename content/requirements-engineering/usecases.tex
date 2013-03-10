@@ -464,3 +464,54 @@
 	\end{tabularx}
 	\caption{UC8: Rangliste anzeigen}
 \end{table}
+
+
+% Use Case 9
+\subsection{UC9: WG auflösen}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			Use Case Name &
+			UC9: WG auflösen
+			\tabularnewline
+			Scope &
+			Roomies
+			\tabularnewline
+			Primary Actor &
+			Administrator
+			\tabularnewline
+			Stakeholders and Interest &
+			Der Administrator möchte die WG auflösen.
+			\tabularnewline
+			Preconditions &
+			\begin{itemize}
+				\item Der Administrator ist angemeldet
+			\end{itemize}
+			\tabularnewline
+			Postconditions &
+			\begin{itemize}
+				\item Die WG ist aus dem System gelöscht
+			\end{itemize}
+			\tabularnewline
+			Main Success Scenario &
+			\begin{enumerate}
+				\item Administrator klickt auf 'Einstellungen'
+				\item System zeigt die 'Einstellungen'
+				\item Administrator klickt auf 'WG auflösen'
+				\item System fordert Administrator die Aktion zu bestätigen
+				\item Administrator bestätigt das Auflösen der WG
+				\item System zeigt Bestätigungsmeldung
+			\end{enumerate}
+			\tabularnewline
+			Extensions &
+			-
+			\tabularnewline
+			Frequency of Occurence &
+			Selten
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC9: WG auflösen}
+\end{table}
