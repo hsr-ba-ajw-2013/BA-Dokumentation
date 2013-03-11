@@ -1,0 +1,82 @@
+\section{Produkteentwicklung}
+Die Findung einer passenden Produkteidee gestaltete sich unter den im vorherigen Abschnitt erwähnten Bedingungen nicht unbedingt als einfach:
+
+Zwar soll ein Gros des Arbeitsaufwandes in das Entwickeln einer beispielhaften Architektur fliessen, diese soll aber in einem für Studierende möglichst attraktiven Gewand präsentiert werden.
+
+\subsection{Ideenpool}
+Um die zweitrangige Prozedur der Ideenfindung pragmatisch abhandeln zu können wurde ein Workshop mit Brainstorming und anschliessender Diskussionsrunde durchgeführt. Folgende Tabelle zeigt die Favoriten aus einem Pool generierter Ideen.
+
+Die Spalte \emph{Potential} priorisiert jede Idee nach subjektiver Einschätzung des Projektteams.
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X X l}
+\tableheadcolor
+	\tablehead Idee &
+	\tablehead Pro &
+	\tablehead Contra &
+	\tablehead Potential \tabularnewline
+\tablebody
+	\textit{\gls{WG}-Aufgabenverwaltung} &
+	Viele Studierende identifizieren sich tendenziell da sie selber in einer \gls{WG} wohnen, Faktor \emph{Gamification} sehr interessant &
+	&
+	hoch\tabularnewline
+
+	\textit{Instant Messanger} &
+	Attraktive Features wären realisierbar (Realtime, Websockets etc.) &
+	Funktionelle Anforderungen könnten Rahmen sprengen &
+	mittel \tabularnewline
+
+	\textit{Aufgabenverwaltung} &
+	Evtl. gute Verwendung des Produkts &
+	``\emph{Gibt's wie Sand am Meer}'', viele bestehnde Beispielapplikationen\cite{TodoMVC} &
+	mittel \tabularnewline
+
+	\textit{Chat} &
+	&
+	Bereits oft verwendet in bestehender Vorlesung, abgenutzte Thematik &
+	tief \tabularnewline
+	
+	\textit{Forum} &
+	&
+	``\emph{Gibt's wie Sand am Meer}'' &
+	tief \tabularnewline
+\tableend
+\end{tabularx}
+\caption{Produktideenpool}
+\end{table}
+
+Am verheissungsvollsten wurde die Idee des \gls{WG} Aufgabenverwaltungstool eingeschätzt und gefiel dem gesamten Team von Beginn an ziemlich gut. Die Thematik \gls{Gamification} in einem konkreten Produkt umsetzen zu können eliminierte schlussendlich die letzten Zweifel.
+
+In einem nächsten Schritt wurde die rohe Produkteidee mit einem Mindmap (siehe Anhang \ref{sec:produkteentwicklung}) weiter ausgebaut und die ersten konkreten funktionalen Anforderungen entwickelt. Daneben konnte eine konkrete Kurzbeschreibung sowie das erste Branding für das geplatne Produkt formuliert werden.
+
+\subsection{Finale Produkteidee: Roomies}
+\emph{Roomies} soll einer \gls{WG} ermöglichen, anfallende Aufgaben leicht unter den verschiedenen Bewohnern zu organisieren. Damit auch langweilige Ämtchen endlich erledigt werden, schafft Roomies durch ein Ranglisten- und Badgesystem (\gls{Gamification}) einen Anreiz, um seine Mitbewohner übertrumpfen zu wollen.
+
+Durch das Aufgreifen einer Thematik aus dem Studentenalltag soll Roomies für lernende aus dem Modul \emph{Internettechnologien} einen leichten Einstieg in die tendenziell trockene Materie der Softwarearchitektur bieten.
+
+\subsection{Branding}
+Der namensgebende Audruck \emph{Roomie} stammt aus dem US-amerikanischen und bedeutet soviel wie \emph{Mitbewohner} oder \emph{Zimmernachbar}\cite{Roomie}. Passend dazu soll neben dem Namen auch das restliche Produktbranding an die US-amerikanische Collegewelt angelehnt werden.
+
+Vom Logo über die Farbwahl bis zum späteren User Interface Design sollen folgende Stilelemente als roter Faden verwendet werden:
+
+\begin{enumerate}
+	\item Serifenbetonte Schriftarten
+	\item \emph{Gedimmte} Farben, keine grellen Akzente
+	\item Simple, aber eingängige und klar definierte Formensprache
+	\item TODO more about college style...... % fixme
+\end{enumerate}
+
+\subsubsection*{Logo: Roomies}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=6cm]{content/images/roomies-withshadow.png}
+	\caption{Logo im College Stil: Roomies}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{content/images/logo-variants.png}
+	\caption{Logo in verschiedenen Grössenvarianten: Roomies}
+\end{figure}
