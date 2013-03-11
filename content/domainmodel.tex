@@ -15,9 +15,10 @@
 				\umlemptyclass[x=10,y=-7]{User}
 				\umlemptyclass[x=15,y=-7]{Task}
 
-				\umlemptyclass[x=2,y=-11]{Resident}
-				\umlemptyclass[x=5,y=-11]{Administrator}
-				\umlemptyclass[x=8,y=-11]{None}
+				\umlemptyclass[x=3,y=-11]{Admin}
+				\umlemptyclass[x=7,y=-11]{Resident}
+
+				\umlemptyclass[x=7,y=-15]{Community-Admin}
 
 				% notes
 				\umlnote[x=4,y=-3]{Rule}{- Timebased\\*
@@ -32,12 +33,13 @@
 				\umlassoc[mult1=1,mult2=0..*,stereo=<belongs to]{Community}{Task}
 				\umlassoc[mult1=*,mult2=*,stereo=<has]{Role}{User}
 				\umlassoc[mult1=1,mult2=0..*,stereo=creates>]{User}{Task}
-				\umlassoc[geometry=|-|,arm1=-2cm,mult1=1,mult2=0..*,stereo=fulfill>]{User}{Task} %TODO: fix it
+				\umlassoc[geometry=|-|,arm1=-2cm,mult1=1,mult2=0..*,pos2=2.8,stereo=fulfill>,pos stereo=1.5]{User}{Task} %TODO: fix it
+				\umlassoc[geometry=-|-,arm1=11cm,mult1=1..*,mult2=1,pos1=0.05,pos2=2.8,stereo=<has]{Resident}{Community}
 
 				% inherit
 				\umlinherit[geometry=|-|]{Resident}{Role}
-				\umlinherit[]{Administrator}{Role}
-				\umlinherit[geometry=|-|]{None}{Role}
+				\umlinherit[]{Community-Admin}{Resident}
+				\umlinherit[geometry=|-|]{Admin}{Role}
 
 			\end{tikzpicture}
 		}
