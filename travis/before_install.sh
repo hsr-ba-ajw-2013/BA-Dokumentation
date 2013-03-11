@@ -42,7 +42,7 @@ echo '######################################'
 
 cd /tmp
 wget https://dl.dropbox.com/u/694056/texlive.tar.gz
-tar xzvf texlive.tar.gz
+tar xzf texlive.tar.gz
 PATH=$PATH:/tmp/texlive/2012/bin/x86_64-linux
 
 echo '######################################'
