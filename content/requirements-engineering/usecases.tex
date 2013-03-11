@@ -70,7 +70,8 @@
 			Bewohner
 			\tabularnewline
 			Stakeholders and Interest &
-			Der Bewohner möchte sich in das System anmelden.
+			% TODO: Formulierung korrekt?
+			Der Bewohner möchte sich am System anmelden.
 			\tabularnewline
 			Preconditions &
 			\begin{itemize}
@@ -79,7 +80,8 @@
 			\tabularnewline
 			Postconditions &
 			\begin{itemize}
-				\item Der Bewohner ist in das System eingelogt.
+				% TODO: Formulierung korrekt?
+				\item Der Bewohner ist in das System eingeloggt.
 			\end{itemize}
 			\tabularnewline
 			Main Success Scenario &
@@ -122,7 +124,7 @@
 			Preconditions &
 			\begin{itemize}
 				\item Der Bewohner ist keiner WG zugeteilt.
-				\item Der Bewohner ist in das System angemeldet.
+				\item Der Bewohner ist am System angemeldet.
 			\end{itemize}
 			\tabularnewline
 			Postconditions &
@@ -135,8 +137,8 @@
 			Main Success Scenario &
 			\begin{enumerate}
 				\item Bewohner klickt auf 'WG erstellen'
-				\item System zeigt das WG-erstell-Formular an
-				\item Bewohner trägt der Name der WG ein
+				\item System zeigt das WG-Erstellen Formular an
+				\item Bewohner trägt den Namen der WG ein
 				\item TODO: weitere infos?
 				\item Bewohner klickt auf 'erstellen'
 				\item System zeigt Aufgaben der neu erstellten WG
@@ -146,7 +148,7 @@
 			\begin{itemize}
 				\item[2a.] Bewohner gibt keinen Namen an
 				\begin{itemize}
-					\item[6.] System fordert (Fehlermeldung) Bewohner einen Namen für die WG einzugeben
+					\item[6.] System fordert (Fehlermeldung) Bewohner auf, einen Namen für die WG einzugeben.
 				\end{itemize}
 			\end{itemize}
 			\tabularnewline
@@ -181,19 +183,20 @@
 			Preconditions &
 			\begin{itemize}
 				\item Der Bewohner besitzt einen Account bei Facebook.
-				\item Der Bewohner ist die Internetadresse der Einladung bekannt.
-				\item Der Bewohner ist in keine WG aktiv.
+				\item Dem Bewohner ist die URL der Einladung bekannt.
+				\item Der Bewohner ist in keiner WG aktiv.
 			\end{itemize}
 			\tabularnewline
 			Postconditions &
 			\begin{itemize}
+				% TODO: Formulierung korrekt?
 				\item Der Bewohner ist in der WG angemeldet
 				\item Der Bewohner ist in der WG aktiv.
 			\end{itemize}
 			\tabularnewline
 			Main Success Scenario &
 			\begin{enumerate}
-				\item System zeigt Einladugsformular
+				\item System zeigt Einladungsformular
 				\item Bewohner klickt auf 'WG beitreten'
 				\item System zeigt Aufgaben der WG
 			\end{enumerate}
@@ -244,16 +247,16 @@
 				\item Bewohner klickt auf 'Einstellungen'
 				\item System zeigt die Einstellungen vom Bewohner
 				\item Bewohner klickt auf 'WG verlassen'
-				\item System fordert eine Bestätigung des Bewohners
-				\item Bewohner bestätigt das Verlassen
-				\item System zeigt 'Auf Wiedersehen' Meldung
+				\item System fordert eine Bestätigung des Bewohners an.
+				\item Bewohner bestätigt das Verlassen.
+				\item System zeigt Erfolgsmeldung.
 			\end{enumerate}
 			\tabularnewline
 			Extensions &
 			\begin{itemize}
-				\item[5a.] Bewohner verneigt das Verlassen
+				\item[5a.] Bewohner verneint das Verlassen
 				\begin{itemize}
-					\item[6] System zeigt die Einstellungen vom Bewohner
+					\item[6] System zeigt die Einstellungen des Bewohners an.
 				\end{itemize}
 			\end{itemize}
 			\tabularnewline
@@ -283,7 +286,7 @@
 			Bewohner
 			\tabularnewline
 			Stakeholders and Interest &
-			Der Bewohner möchte eine Aufgabe der WG hinzufügen
+			Der Bewohner möchte eine Aufgabe zur WG hinzufügen
 			\tabularnewline
 			Preconditions &
 			\begin{itemize}
@@ -299,7 +302,7 @@
 			\begin{enumerate}
 				\item Bewohner klickt auf 'Aufgabe hinzufügen'
 				\item System zeigt 'Neue Aufgabe'-Formular
-				\item Bewohner gibt Name der Aufgabe ein.
+				\item Bewohner gibt den Namen der Aufgabe ein.
 				\item //TODO: fill some more data?
 				\item Bewohner klickt auf 'Speichern'
 				\item System zeigt Erfolgsmeldung
@@ -341,18 +344,19 @@
 			Preconditions &
 			\begin{itemize}
 				\item Der Bewohner ist angemeldet
+				% TODO: Der Bewohner sollte wohl noch zu der WG des Taskes gehören, oder?
 				\item Aufgabe ist vorhanden
 				\item Aufgabe ist nicht als 'Erledigt' markiert
 			\end{itemize}
 			\tabularnewline
 			Postconditions &
 			\begin{itemize}
-				\item Geänderte Properties wurden gespeichert
+				\item Geänderte Felder wurden gespeichert.
 			\end{itemize}
 			\tabularnewline
 			Main Success Scenario &
 			\begin{enumerate}
-				\item Bewohner wählt auf Aufgabe aus
+				\item Bewohner wählt die Aufgabe aus
 				\item System zeigt die Eigenschaften der Aufgabe an
 				\item Bewohner verändert die Eigenschften
 				\item Bewohner klickt auf 'Speichern'
@@ -403,7 +407,7 @@
 			\tabularnewline
 			Main Success Scenario &
 			\begin{enumerate}
-				\item Bewohner klickt auf 'Erledigt' bei einer ausgewählten Aufgabe
+				\item Bewohner klickt auf 'Erledigt' bei einer Aufgabe
 				\item System blendet die Aufgabe aus der Aufgabenliste aus
 			\end{enumerate}
 			\tabularnewline
