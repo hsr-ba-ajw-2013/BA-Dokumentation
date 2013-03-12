@@ -20,13 +20,13 @@ Die Phasenplanung orientiert sich grob am \gls{RUP} und ist unterteilt in eine \
 	\textit{Construction 2} & 2 Wochen
 		& Fertigstellung der restlichen als \emph{Hoch} priorisierten Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
 	\textit{Construction 3} & 2 Wochen
-		& Umsetzung des \emph{Gameification}-Teils der Applikation. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+		& Umsetzung des \gls{Gamification}-Teils der Applikation. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
 	\textit{Construction 4} & 2 Wochen
 		& Implementation der restlichen als \emph{Mittel} priorisierten Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
 	\textit{Construction 5} & 2 Wochen
 		& Umsetzung aller restlichen als \emph{Tief} priorisierten Use Cases sowie erstes Bugfixing gem. geführter Issueliste. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
 	\textit{Transition} & 1 Wochen
-		& Abschliessende Bugfixing-Arbeiten. Codefreeze und Erstellung von Deploymentpaketen.\tabularnewline
+		& Abschliessende Bugfixing-Arbeiten. Code-Freeze und Erstellung von Deployment-Pakete.\tabularnewline
 	\textit{Abschluss} & 2 Wochen
 		& Finalisierung der Dokumentation sowie Erstellung der HSR Artefakte \emph{A100} sowie \emph{A101}.\tabularnewline
 \tableend
@@ -36,7 +36,7 @@ Die Phasenplanung orientiert sich grob am \gls{RUP} und ist unterteilt in eine \
 
 Jede einzelne Phase wird jeweils von einem Meilenstein abgeschlossen, was in folgendem Gantt-Diagramm ersichtlich ist.
 
-Eine Ausnahme bildet der Meilenstein \emph{M9: Abgabe HSR Artefakte}. Zu diesem Zeitpunkt müssen die entsprechenden Artefakte \emph{A100} sowie \emph{A101} im HSR abgabebereit sein.
+Eine Ausnahme bildet der Meilenstein \emph{M9: Abgabe HSR Artefakte}. Zu diesem Zeitpunkt müssen die entsprechenden Artefakte \emph{A100} sowie \emph{A101} im HSR abgabebereit sein. % TODO: abgabebereit gross oder klein?
 
 \begin{figure}[H]
 	\begin{ganttchart}[
@@ -50,7 +50,7 @@ Eine Ausnahme bildet der Meilenstein \emph{M9: Abgabe HSR Artefakte}. Zu diesem 
 			milestone label font=\small\sffamily\textit
 		]{24}
 		\gantttitlelist{5,...,28}{1} \\
-		
+
 		\ganttgroup[name=inc]{Inception}{4}{6} \\
 		\ganttmilestone[name=m1]{M1: Ende Inception}{6} \\
 		\ganttgroup[name=ela]{Elaboration}{5}{7} \\
