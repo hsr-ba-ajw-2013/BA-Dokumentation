@@ -14,7 +14,7 @@
 					PRIMARY(id)
 				}
 
-				\umlclass[x=11,y=-6]{User}{
+				\umlclass[x=12,y=-6]{User}{
 					id: Integer \\
 					facebookId: Integer \\
 					name: String \\
@@ -26,14 +26,14 @@
 					UNIQUE(facebookId)
 				}
 
-				\umlclass[x=11,y=-13]{Achievement}{
+				\umlclass[x=12,y=-13]{Achievement}{
 					type: Enum \\
 					userId: Integer
 				}{
 					PRIMARY(type, userId)
 				}
 
-				\umlclass[x=18,y=-8]{Task}{
+				\umlclass[x=18,y=-6]{Task}{
 					id: Integer \\
 					name: String \\
 					description: Text \\
@@ -46,24 +46,20 @@
 				}
 
 				\umlclass[x=0,y=-6]{Role}{
-					id: Integer \\
 					type: Enum\{Resident, \\
 						CommunityAdministrator, \\
 						Administrator\}
 				}{
-					PRIMARY(id, type)
+					PRIMARY(type)
 				}
 
 				\umlclass[x=5.7,y=-6]{RoleToUser}{
 					userId: Integer \\
-					roleId: Integer
+					roleType: Integer \\
+					communityId: Integer, \\ Default: NULL
 				}{
-					PRIMARY(userId, roleId)
+					PRIMARY(userId, roleType)
 				}
-
-				\umlclass[x=0,y=-10]{Resident}{
-					communityId: Integer
-				}{}
 
 				% relation
 				\umlassoc[mult1=0..*,mult2=1]{Achievement}{User}
@@ -72,10 +68,7 @@
 				\umlassoc[mult1=1,mult2=*]{RoleToUser}{User}
 				\umlassoc[geometry=-|-, pos2=2.7, mult1=1,mult2=0..*]{User}{Task}
 				\umlassoc[geometry=|-|, arm1=-5, anchor1=0.1, pos1=0.5, pos2=2.7,mult1=1,mult2=0..*]{User}{Task}
-				\umlassoc[geometry=-|-, mult1=1, mult2=1, pos2=2.98, weight=-0.2]{Resident}{Community}
-
-				% inherit
-				\umlinherit[geometry=|-|]{Resident}{Role}
+				\umlassoc[geometry=|-, mult1=1..*, mult2=1, pos1=0.1, pos2=1.98, weight=0.1]{RoleToUser}{Community}
 			\end{tikzpicture}
 		}
 	}

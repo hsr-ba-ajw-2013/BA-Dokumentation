@@ -24,6 +24,7 @@
 
 				\umlactor[y=-7]{Bewohner}
 				\umlactor[y=-16]{Administrator}
+				\umlactor[y=-8, x=17]{Facebook}
 
 				\umlinherit{Administrator}{Bewohner}
 
@@ -44,8 +45,11 @@
 				\umlassoc{Administrator}{usecase-9}
 				\umlassoc{Administrator}{usecase-10}
 
-				\umlnote[x=11, y=-1]{usecase-1}{Die erste Anmeldung wird als eine Registrierung interpretiert}
-				\umlnote[x=11, y=-4]{usecase-3}{Eine WG kann nur über eine Einladung (Link) beigetreten werden}
+				\umlassoc{Facebook}{usecase-11}
+				\umlassoc{Facebook}{usecase-1}
+
+				\umlnote[x=13, y=0]{usecase-1}{Die erste Anmeldung wird als eine Registrierung interpretiert}
+				\umlnote[x=13, y=-3]{usecase-3}{Eine WG kann nur über eine Einladung (Link) beigetreten werden}
 			\end{tikzpicture}
 		}
 	}
@@ -68,6 +72,9 @@
 			\tabularnewline
 			Primary Actor &
 			Bewohner
+			\tabularnewline
+			Secondary Actor &
+			Facebook
 			\tabularnewline
 			Stakeholders and Interest &
 			% TODO: Formulierung korrekt?
