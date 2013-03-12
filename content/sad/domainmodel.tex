@@ -1,4 +1,4 @@
-\chapter{Domainmodel}
+\section{Domainmodel}
 
 \begin{figure}[ht!]
 	\centering{
@@ -47,3 +47,12 @@
 	\caption{Domainmodel}
 \end{figure}
 
+\subsection*{Achievements}
+Achievements (Erfolge) werden an User vergeben, wenn Sie bestimmte Regeln (Rules) erreicht haben. Regeln können Zeitbasiert (z.B. ist kürzlich einer WG beigetreten), Punktebasiert (z.B. hat 10 Aufgaben erledigt) oder auch bei Komplettierung (z.B. hat sich registriert) vergeben werden.
+Jedes Achievement hat eine Definition, im Domainmodel durch die \flqq AchievementDefinition\frqq\ erwähnt, welche das Aussehen und die Regeln bestimmen.
+
+\subsection*{Roles}
+Um die Rechte von Benutzern des Systems voneinander zu unterscheiden, wird Role Based Access Control \cite[Kapitel~8.2]{RBAC} verwendet.
+Sobald ein Benutzer einer \gls{WG} beitritt, bekommt er automatisch die Rolle \flqq Resident\frqq\ und wird dadurch zum \gls{Bewohner}.
+Falls ein Benutzer eine neue \gls{WG} erstellt, wird er automatisch zum \flqq Community-Admin\frqq.
+Applikationsweite Administratoren haben die Rolle \flqq Admin\frqq.
