@@ -4,6 +4,10 @@
 	\centering{
 		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
+				% HACK: don't display guillemots on stereotypes
+				\renewcommand\guillemotleft{}
+				\renewcommand\guillemotright{}
+
 				% row by row
 				\umlemptyclass[x=5,y=0]{Rule}
 				\umlemptyclass[x=10,y=0]{AchievementDefinition}
