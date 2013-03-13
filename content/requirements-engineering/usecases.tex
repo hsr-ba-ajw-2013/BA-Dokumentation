@@ -63,20 +63,21 @@
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
-	\tableheadcolor
+		\tableheadcolor
 		\tablehead Name &
 		\tablehead Beschreibung \tabularnewline
-
 		\tablebody
 			Bewohner &
 			Als Bewohner wird ein Anwender der Roomies Anwendung bezeichnet, der zu einer WG gehört. \newline
 			Dieser besitzt die Rechte Aufgaben seiner zugehörigen WG zu verwalten.
 			\tabularnewline
 			WG-Verwalter &
-			Der WG-Verwalter ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch als WG-Verwalter ernannt. Diese Role kann an Bewohner weitergegeben werden.
+			Der WG-Verwalter ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch als WG-Verwalter ernannt. Diese Rolle kann an Bewohner weitergegeben werden.
 			\tabularnewline
 			Facebook &
 			TODO
+			\tabularnewline
+		\tableend
 	\end{tabularx}
 	\caption{Aktoren}
 \end{table}
@@ -88,51 +89,24 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC1: Anmelden
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
-			FC
+			\textit{Mapped Requirement} &
+			-
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Secondary Actor &
+			\textit{Secondary Actor} &
 			Facebook
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Der Bewohner startet Roomies. Hier zeigt ihm das System das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die Aufgabenseite weitergeleitet.
 			\tabularnewline
-			% Stakeholders and Interest &
-			% % TODO: Formulierung korrekt?
-			% Der Bewohner möchte sich am System anmelden.
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner besitzt einen Account bei Facebook.
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	% TODO: Formulierung korrekt?
-			% 	\item Der Bewohner ist in das System eingeloggt.
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item TODO: login mit FB
-			% 	\item tbd
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% -
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Oft
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC1: Anmelden}
@@ -146,58 +120,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC2: WG erstellen
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F1
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch zu Keiner angehört. Hierfür wählt der Bewohner die Option 'WG erstellen'. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet der Bewohner auf die Aufgabenseite der WG weiter. Ebenfalls die Rolle WG-Verwalter werden dem Bewohner automatisch zugeteilt.
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Bewohner möchte eine WG erstellen.
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner ist keiner WG zugeteilt.
-			% 	\item Der Bewohner ist am System angemeldet.
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item Neue WG ist erstellt.
-			% 	\item Der Bewohner ist der WG zugeteilt.
-			% 	\item Der Bewohner ist der Administrator der WG.
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item Bewohner klickt auf 'WG erstellen'
-			% 	\item System zeigt das WG-Erstellen Formular an
-			% 	\item Bewohner trägt den Namen der WG ein
-			% 	\item TODO: weitere infos?
-			% 	\item Bewohner klickt auf 'erstellen'
-			% 	\item System zeigt Aufgaben der neu erstellten WG
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% \begin{itemize}
-			% 	\item[2a.] Bewohner gibt keinen Namen an
-			% 	\begin{itemize}
-			% 		\item[6.] System fordert (Fehlermeldung) Bewohner auf, einen Namen für die WG einzugeben.
-			% 	\end{itemize}
-			% \end{itemize}
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Selten
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC2: WG erstellen}
@@ -211,51 +148,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC3: WG beitreten
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F2
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Um in einer WG beizutreten, muss der Link zur Einladung dem 'zukünftigen' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung jedoch, ist völlig dem WG-Verwalter überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird vom System eine Bestätigung gefordert. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG 'registriert' und zur Aufgabenseite der WG weitergeleitet.
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Bewohner möchte einer WG beitreten
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner besitzt einen Account bei Facebook.
-			% 	\item Dem Bewohner ist die URL der Einladung bekannt.
-			% 	\item Der Bewohner ist in keiner WG aktiv.
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	% TODO: Formulierung korrekt?
-			% 	\item Der Bewohner ist in der WG angemeldet
-			% 	\item Der Bewohner ist in der WG aktiv.
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item System zeigt Einladungsformular
-			% 	\item Bewohner klickt auf 'WG beitreten'
-			% 	\item System zeigt Aufgaben der WG
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% -
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Gelegentlich
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC3: WG beitreten}
@@ -269,56 +176,22 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC4: WG verlassen
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F5
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Wählt ein Bewohner die Option 'WG verlassen', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System der Bewohner als inaktiv und leitet der 'Ex'-Bewohner auf eine 'Aufwiedersehen-Seite' weiter. \newline
 			Hat der Bewohner, als einziger, die Rolle 'WG-Verwalter', so muss er, vor dem inaktiv Setzen, seine Rolle einem anderen Bewohner übetragen. \newline//TODO: neuer UC???
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Bewohner möchte einer WG beitreten
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner ist kein Administrator der WG.
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner ist in der WG inaktiv
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item Bewohner klickt auf 'Einstellungen'
-			% 	\item System zeigt die Einstellungen vom Bewohner
-			% 	\item Bewohner klickt auf 'WG verlassen'
-			% 	\item System fordert eine Bestätigung des Bewohners an.
-			% 	\item Bewohner bestätigt das Verlassen.
-			% 	\item System zeigt Erfolgsmeldung.
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% \begin{itemize}
-			% 	\item[5a.] Bewohner verneint das Verlassen
-			% 	\begin{itemize}
-			% 		\item[6] System zeigt die Einstellungen des Bewohners an.
-			% 	\end{itemize}
-			% \end{itemize}
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Gelegentlich
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC4: WG verlassen}
@@ -332,52 +205,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC5: Aufgabe erstellen
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F3
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Bewohner wählt die Option 'Aufgabe erstellen'. Das System zeigt das zugehörige Formular. Nachdem der Bewohner es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet der Bewohner zurück auf die Aufgabenseite.
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Bewohner möchte eine Aufgabe zur WG hinzufügen
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner ist angemeldet
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item Die Aufgabe wurde erstellt
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item Bewohner klickt auf 'Aufgabe hinzufügen'
-			% 	\item System zeigt 'Neue Aufgabe'-Formular
-			% 	\item Bewohner gibt den Namen der Aufgabe ein.
-			% 	\item //TODO: fill some more data?
-			% 	\item Bewohner klickt auf 'Speichern'
-			% 	\item System zeigt Erfolgsmeldung
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% \begin{itemize}
-			% 	\item[5a.] Bewohner klickt auf ''
-			% \end{itemize}
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Oft
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC5: Aufgabe erstellen}
@@ -391,52 +233,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC6: Aufgabe bearbeiten
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F6
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Der Bewohner wählt die Aufgabe, welche beabeitet werden soll. Parallel zum Use Case 5: Aufgabe erstellen wird ein Formular dargestellt, jedoch mit den bereits eingefügten Daten der Aufgabe. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann der Beewohne auf die Aufgabenliste.
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Bewohner möchte eine Aufgabe der WG bearbeiten
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner ist angemeldet
-			% 	% TODO: Der Bewohner sollte wohl noch zu der WG des Taskes gehören, oder?
-			% 	\item Aufgabe ist vorhanden
-			% 	\item Aufgabe ist nicht als 'Erledigt' markiert
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item Geänderte Felder wurden gespeichert.
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item Bewohner wählt die Aufgabe aus
-			% 	\item System zeigt die Eigenschaften der Aufgabe an
-			% 	\item Bewohner verändert die Eigenschften
-			% 	\item Bewohner klickt auf 'Speichern'
-			% 	\item System zeigt Erfolgsmeldung
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% -
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Oft
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC6: Aufgabe bearbeiten}
@@ -450,47 +261,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC7: Aufgabe erledigen
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F4
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
-			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzten. Hierfür wählt er für die ensprechende Aufgabe die Option 'erledigt'. Das System setzt den Bewohner für die Eigenschaft 'Erledigt durch' und blendet die Aufgabe aus.
+			\textit{Story} &
+			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzten. Hierfür wählt er für die entsprechende Aufgabe die Option 'erledigt'. Das System setzt den Bewohner für die Eigenschaft 'Erledigt durch' und blendet die Aufgabe aus.
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Bewohner möchte eine Aufgabe der WG als 'erledigt' markieren.
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner ist angemeldet
-			% 	\item Aufgabe ist vorhanden
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item Die Aufgabe ist als 'erledigt' markiert.
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item Bewohner klickt auf 'Erledigt' bei einer Aufgabe
-			% 	\item System blendet die Aufgabe aus der Aufgabenliste aus
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% -
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Oft
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC7: Aufgabe erledigen}
@@ -504,46 +289,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC8: Rangliste anzeigen
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F7
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Der Bewohner wählt die Option 'Rangliste anzeigen'. Das System zeigt grafisch eine Rangliste aller Bewohner der WG. \newline //TODO: tbd (Filter, Wall of Shame/Fame)
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Bewohner möchte die Rangliste sehen.
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Bewohner ist angemeldet
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item System stellt die Rangliste dar.
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item Bewohner klickt auf 'Rangliste'
-			% 	\item System zeigt die Rangliste an
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% -
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Oft
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC8: Rangliste anzeigen}
@@ -557,50 +317,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC9: WG auflösen
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F9
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			WG-Verwalter
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			Als WG-Verwalter hat man die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Verwalter verlangt dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Verwalter wird auf die Startseite weitergeleitet.
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Administrator möchte die WG auflösen.
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Administrator ist angemeldet
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item Die WG ist aus dem System gelöscht
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item Administrator klickt auf 'Einstellungen'
-			% 	\item System zeigt die 'Einstellungen'
-			% 	\item Administrator klickt auf 'WG auflösen'
-			% 	\item System fordert Administrator die Aktion zu bestätigen
-			% 	\item Administrator bestätigt das Auflösen der WG
-			% 	\item System zeigt Bestätigungsmeldung
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% -
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Selten
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC9: WG auflösen}
@@ -614,45 +345,21 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC10: Benutzer verwalten
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F10
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			WG-Verwalter
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			TODO
 			\tabularnewline
-			% Stakeholders and Interest &
-			% Der Administrator möchte //TODO: Aufteilen, Benutzer verwalten ist kein Use Case. Benutzer kicken, Benutzer als Admin definieren, ...
-			% \tabularnewline
-			% Preconditions &
-			% \begin{itemize}
-			% 	\item Der Administrator ist angemeldet
-			% \end{itemize}
-			% \tabularnewline
-			% Postconditions &
-			% \begin{itemize}
-			% 	\item //TODO
-			% \end{itemize}
-			% \tabularnewline
-			% Main Success Scenario &
-			% \begin{enumerate}
-			% 	\item //TODO
-			% \end{enumerate}
-			% \tabularnewline
-			% Extensions &
-			% -
-			% \tabularnewline
-			% Frequency of Occurence &
-			% Selten
-			% \tabularnewline
 		\tableend
 	\end{tabularx}
 	\caption{UC10: Benutzer verwalten}
@@ -666,19 +373,19 @@
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			Use Case Name &
+			\textit{Use Case Name} &
 			UC11: auf Social Media Plattform teilen
 			\tabularnewline
-			Scope &
+			\textit{Scope} &
 			Roomies
 			\tabularnewline
-			Mapped Requirement &
+			\textit{Mapped Requirement} &
 			F11
 			\tabularnewline
-			Primary Actor &
+			\textit{Primary Actor} &
 			Bewohner
 			\tabularnewline
-			Story &
+			\textit{Story} &
 			TODO
 			\tabularnewline
 		\tableend
