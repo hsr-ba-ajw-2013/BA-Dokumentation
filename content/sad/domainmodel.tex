@@ -16,8 +16,10 @@
 
 				% \umlemptyclass[x=5,y=-7]{Role}
 				\umlclass[x=10,y=-7]{Resident}{
-											isAdmin\\
-											isInactive}{}
+					isAdmin\\
+					isInactive
+				}{
+				}
 				\umlemptyclass[x=5,y=-7]{AchievementDefinition}
 
 				\umlclass[x=15,y=-11]{Task}{rewardPoints}{}
@@ -51,6 +53,7 @@
 				% \umlinherit[geometry=|-|]{Admin}{Role}
 
 				% reset guillemot resets
+
 				\renewcommand\guillemotleft{\myguillemotleft}
 				\renewcommand\guillemotright{\myguillemotright}
 			\end{tikzpicture}
