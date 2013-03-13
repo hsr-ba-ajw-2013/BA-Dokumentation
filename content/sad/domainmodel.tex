@@ -5,6 +5,8 @@
 		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
 				% HACK: don't display guillemots on stereotypes
+				\newcommand\myguillemotleft\guillemotleft
+				\newcommand\myguillemotright\guillemotright
 				\renewcommand\guillemotleft{}
 				\renewcommand\guillemotright{}
 
@@ -45,6 +47,9 @@
 				\umlinherit[]{Community-Admin}{Resident}
 				\umlinherit[geometry=|-|]{Admin}{Role}
 
+				% reset guillemot resets
+				\renewcommand\guillemotleft{\myguillemotleft}
+				\renewcommand\guillemotright{\myguillemotright}
 			\end{tikzpicture}
 		}
 	}
