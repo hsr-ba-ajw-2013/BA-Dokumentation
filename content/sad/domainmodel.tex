@@ -4,55 +4,76 @@
 	\centering{
 		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
+				% HACK: don't display guillemots on stereotypes
+				\newcommand\myguillemotleft\guillemotleft
+				\newcommand\myguillemotright\guillemotright
+				\renewcommand\guillemotleft{}
+				\renewcommand\guillemotright{}
+
 				% row by row
-				\umlemptyclass[x=5,y=0]{Rule}
-				\umlemptyclass[x=10,y=0]{AchievementDefinition}
-
-				\umlemptyclass[x=10,y=-3]{Achievement}
 				\umlemptyclass[x=15,y=-3]{Community}
+				\umlemptyclass[x=5,y=-3]{Rule}
 
-				\umlemptyclass[x=5,y=-7]{Role}
-				\umlemptyclass[x=10,y=-7]{User}
-				\umlemptyclass[x=15,y=-7]{Task}
+				% \umlemptyclass[x=5,y=-7]{Role}
+				\umlclass[x=10,y=-7]{Resident}{
+											isAdmin\\
+											isInactive}{}
+				\umlemptyclass[x=5,y=-7]{AchievementDefinition}
 
-				\umlemptyclass[x=3,y=-11]{Admin}
-				\umlemptyclass[x=7,y=-11]{Resident}
+				\umlclass[x=15,y=-11]{Task}{rewardPoints}{}
+				\umlclass[x=5,y=-11]{Achievement}{rewardedAt:Date}{}
 
-				\umlemptyclass[x=7,y=-15]{Community-Admin}
+				% \umlemptyclass[x=3,y=-11]{Admin}
+				% \umlemptyclass[x=7,y=-11]{Resident}
+
+				% \umlemptyclass[x=7,y=-15]{Community-Admin}
 
 				% notes
-				\umlnote[x=4,y=-3]{Rule}{- Timebased\\*
+				\umlnote[x=9,y=-3]{Rule}{- Timebased\\*
 										- Completion based\\*
-										- Points based\\*
-										TODO}
+										- Points based\\[2mm]
+										Rules können gesammten Datenbestand auswerten.}
 
 				% relation
 				\umlassoc[mult1=1,mult2=1..*,stereo=<has]{Rule}{AchievementDefinition}
 				\umlassoc[mult1=1,mult2=0..*,stereo=defines>]{AchievementDefinition}{Achievement}
-				\umlassoc[mult1=0..*,mult2=1,stereo=belongs to>]{Achievement}{User}
+				\umlassoc[mult1=0..*,mult2=1,stereo=belongs to>]{Achievement}{Resident}
 				\umlassoc[mult1=1,mult2=0..*,stereo=<belongs to]{Community}{Task}
-				\umlassoc[mult1=*,mult2=*,stereo=<has]{Role}{User}
-				\umlassoc[mult1=1,mult2=0..*,stereo=creates>]{User}{Task}
-				\umlassoc[geometry=|-|,arm1=-2cm,mult1=1,mult2=0..*,pos2=2.8,stereo=fulfill>,pos stereo=1.5]{User}{Task}
-				\umlassoc[geometry=-|-,arm1=11cm,mult1=1..*,mult2=1,pos1=0.05,pos2=2.8,stereo=<has]{Resident}{Community}
+				\umlassoc[mult1=1..*,mult2=1,stereo=belongs to>]{Resident}{Community}
+				%\umlassoc[mult1=*,mult2=*,stereo=<has]{Role}{Resident}
+				\umlassoc[mult1=1,mult2=0..*,stereo=creates>]{Resident}{Task}
+				\umlassoc[geometry=|-,arm1=-2cm,mult1=1,mult2=0..*,pos2=1.8,stereo=fulfill>,pos stereo=1.5]{Resident}{Task}
+				% \umlassoc[geometry=-|-,arm1=11cm,mult1=1..*,mult2=1,pos1=0.05,pos2=2.8,stereo=<has]{Resident}{Community}
 
 				% inherit
-				\umlinherit[geometry=|-|]{Resident}{Role}
-				\umlinherit[]{Community-Admin}{Resident}
-				\umlinherit[geometry=|-|]{Admin}{Role}
+				% \umlinherit[geometry=|-|]{Resident}{Role}
+				% \umlinherit[]{Community-Admin}{Resident}
+				% \umlinherit[geometry=|-|]{Admin}{Role}
 
+				% reset guillemot resets
+				\renewcommand\guillemotleft{\myguillemotleft}
+				\renewcommand\guillemotright{\myguillemotright}
 			\end{tikzpicture}
 		}
 	}
 	\caption{Domainmodel}
 \end{figure}
 
-\subsection*{Achievements}
-Achievements (Erfolge) werden an User vergeben, wenn Sie bestimmte Regeln (Rules) erreicht haben. Regeln können Zeit-basiert (z.B. ist kürzlich einer WG beigetreten), Punkte-basiert (z.B. hat 10 Aufgaben erledigt) oder auch bei Komplettierung (z.B. hat sich registriert) vergeben werden.
+\subsection*{Achievement (Erfolg)}
+Achievements (Erfolge) werden an Resident vergeben, wenn Sie bestimmte Regeln (Rules) erreicht haben. Regeln können Zeit-basiert (z.B. ist kürzlich einer WG beigetreten), Punkte-basiert (z.B. hat 10 Aufgaben erledigt) oder auch bei Komplettierung (z.B. hat sich registriert) vergeben werden.
 Jedes Achievement hat eine Definition, im Domainmodel durch die \flqq AchievementDefinition\frqq\ erwähnt, welche das Aussehen und die Regeln bestimmen.
 
-\subsection*{Roles}
-Um die Rechte von Benutzern des Systems voneinander zu unterscheiden, wird Role Based Access Control \cite[Kapitel~8.2]{RBAC} verwendet.
-Sobald ein Benutzer einer \gls{WG} beitritt, bekommt er automatisch die Rolle \flqq Resident\frqq\ und wird dadurch zum \gls{Bewohner}.
-Falls ein Benutzer eine neue \gls{WG} erstellt, wird er automatisch zum \flqq Community-Admin\frqq.
-Applikationsweite Administratoren haben die Rolle \flqq Admin\frqq.
+\subsection*{AchievmentDefinition (Erfolgsdefinition)}
+TODO
+
+\subsection*{Rule (Regel)}
+TODO
+
+\subsection*{Community (WG)}
+TODO
+
+\subsection*{Resident (Bewohner)}
+Resident (Bewohner) sind die Benutzer des Systems. Bewohner mit Administrotoren-Rechte (Eigenschaft ``isAdmin'') können die Community (WG) administrieren.
+
+\subsection*{Task (Aufgabe)}
+TODO
