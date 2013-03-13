@@ -69,4 +69,9 @@ Thumbs.db
 *-blx.bib
 *.bcf
 
+# Dia files
+*.dia.*
+*.dia~
+
+
 thesis.pdf
