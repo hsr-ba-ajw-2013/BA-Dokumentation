@@ -83,15 +83,12 @@
 \end{table}
 
 % Use Case 1
-\subsection{UC1: Anmelden}
+\subsection{UC1: Anmelden}\label{subsec:uc1}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC1: Anmelden
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -105,7 +102,7 @@
 			Facebook
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner startet Roomies. Hier zeigt ihm das System das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die Aufgabenseite weitergeleitet.
+			Der Bewohner startet Roomies. Hier zeigt ihm das System das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die WG-Startseite weitergeleitet.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -114,15 +111,12 @@
 
 
 % Use Case 2
-\subsection{UC2: WG erstellen}
+\subsection{UC2: WG erstellen}\label{subsec:uc2}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC2: WG erstellen
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -133,7 +127,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch zu Keiner angehört. Hierfür wählt der Bewohner die Option 'WG erstellen'. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet der Bewohner auf die Aufgabenseite der WG weiter. Ebenfalls die Rolle WG-Verwalter werden dem Bewohner automatisch zugeteilt.
+			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch zu Keiner angehört. Hierfür wählt der Bewohner die Option ``WG erstellen''. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet der Bewohner auf die Aufgabenseite der WG weiter. Ebenfalls die Rolle WG-Verwalter werden dem Bewohner automatisch zugeteilt.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -142,15 +136,12 @@
 
 
 % Use Case 3
-\subsection{UC3: WG beitreten}
+\subsection{UC3: WG beitreten}\label{subsec:uc3}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC3: WG beitreten
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -161,7 +152,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Um in einer WG beizutreten, muss der Link zur Einladung dem 'zukünftigen' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung jedoch, ist völlig dem WG-Verwalter überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird vom System eine Bestätigung gefordert. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG 'registriert' und zur Aufgabenseite der WG weitergeleitet.
+			Um in einer WG beizutreten, muss der Link zur Einladung dem ``zukünftigen'' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung, jedoch, ist völlig dem WG-Verwalter überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird vom System eine Bestätigung gefordert. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG ``registriert'' und zur Aufgabenseite der WG weitergeleitet.\newline Infolge diese Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -170,15 +161,12 @@
 
 
 % Use Case 4
-\subsection{UC4: WG verlassen}
+\subsection{UC4: WG verlassen}\label{subsec:uc4}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC4: WG verlassen
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -189,8 +177,8 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Wählt ein Bewohner die Option 'WG verlassen', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System der Bewohner als inaktiv und leitet der 'Ex'-Bewohner auf eine 'Aufwiedersehen-Seite' weiter. \newline
-			Hat der Bewohner, als einziger, die Rolle 'WG-Verwalter', so muss er, vor dem inaktiv Setzen, seine Rolle einem anderen Bewohner übetragen. \newline//TODO: neuer UC???
+			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System der Bewohner als inaktiv und leitet der ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
+			Hat der Bewohner, als einziger, die Rolle ``WG-Verwalter'', so muss er, vor dem inaktiv Setzen, seine Rolle einem anderen Bewohner übetragen. \newline//TODO: neuer UC???
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -199,15 +187,12 @@
 
 
 % Use Case 5
-\subsection{UC5: Aufgabe erstellen}
+\subsection{UC5: Aufgabe erstellen}\label{subsec:uc5}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC5: Aufgabe erstellen
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -218,7 +203,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Bewohner wählt die Option 'Aufgabe erstellen'. Das System zeigt das zugehörige Formular. Nachdem der Bewohner es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet der Bewohner zurück auf die Aufgabenseite.
+			Bewohner wählt die Option ``Aufgabe erstellen''. Das System zeigt das zugehörige Formular. Nachdem der Bewohner es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet der Bewohner zurück auf die Aufgabenseite.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -227,15 +212,12 @@
 
 
 % Use Case 6
-\subsection{UC6: Aufgabe bearbeiten}
+\subsection{UC6: Aufgabe bearbeiten}\label{subsec:uc6}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC6: Aufgabe bearbeiten
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -255,15 +237,12 @@
 
 
 % Use Case 7
-\subsection{UC7: Aufgabe erledigen}
+\subsection{UC7: Aufgabe erledigen}\label{subsec:uc7}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC7: Aufgabe erledigen
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -274,7 +253,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzten. Hierfür wählt er für die entsprechende Aufgabe die Option 'erledigt'. Das System setzt den Bewohner für die Eigenschaft 'Erledigt durch' und blendet die Aufgabe aus.
+			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzten. Hierfür wählt er für die entsprechende Aufgabe die Option ``erledigt''. Das System setzt den Bewohner für die Eigenschaft ``Erledigt durch'' und blendet die Aufgabe aus.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -283,15 +262,12 @@
 
 
 % Use Case 8
-\subsection{UC8: Rangliste anzeigen}
+\subsection{UC8: Rangliste anzeigen}\label{subsec:uc8}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC8: Rangliste anzeigen
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -302,7 +278,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner wählt die Option 'Rangliste anzeigen'. Das System zeigt grafisch eine Rangliste aller Bewohner der WG. \newline //TODO: tbd (Filter, Wall of Shame/Fame)
+			Der Bewohner wählt die Option ``Rangliste anzeigen''. Das System zeigt grafisch eine Rangliste aller Bewohner der WG. \newline //TODO: tbd (Filter, Wall of Shame/Fame)
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -311,15 +287,12 @@
 
 
 % Use Case 9
-\subsection{UC9: WG auflösen}
+\subsection{UC9: WG auflösen}\label{subsec:uc9}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC9: WG auflösen
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -339,15 +312,12 @@
 
 
 % Use Case 10
-\subsection{UC10: Benutzer verwalten //TODO: UC aufteilen???}
+\subsection{UC10: Benutzer verwalten}\label{subsec:uc10}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC10: Benutzer verwalten
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
@@ -367,15 +337,12 @@
 
 
 % Use Case 11
-\subsection{UC11: auf Social Media Plattform teilen}
+\subsection{UC11: auf Social Media Plattform teilen}\label{subsec:uc11}
 \begin{table}[H]
 	\tablestyle
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			\textit{Use Case Name} &
-			UC11: auf Social Media Plattform teilen
-			\tabularnewline
 			\textit{Scope} &
 			Roomies
 			\tabularnewline
