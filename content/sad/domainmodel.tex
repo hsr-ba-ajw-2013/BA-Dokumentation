@@ -4,6 +4,12 @@
 	\centering{
 		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
+				% HACK: don't display guillemots on stereotypes
+				\newcommand\myguillemotleft\guillemotleft
+				\newcommand\myguillemotright\guillemotright
+				\renewcommand\guillemotleft{}
+				\renewcommand\guillemotright{}
+
 				% row by row
 				\umlemptyclass[x=15,y=-3]{Community}
 				\umlemptyclass[x=5,y=-3]{Rule}
@@ -44,6 +50,9 @@
 				% \umlinherit[]{Community-Admin}{Resident}
 				% \umlinherit[geometry=|-|]{Admin}{Role}
 
+				% reset guillemot resets
+				\renewcommand\guillemotleft{\myguillemotleft}
+				\renewcommand\guillemotright{\myguillemotright}
 			\end{tikzpicture}
 		}
 	}
