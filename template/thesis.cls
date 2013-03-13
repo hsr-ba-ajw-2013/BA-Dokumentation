@@ -34,5 +34,6 @@
 \usepackage{tikz-uml}
 \usepackage{datetime}
 \usepackage{pgfgantt}
+\usepackage{template/fontawesome}
 
 \bibliography{content/indexes/bibliography}
