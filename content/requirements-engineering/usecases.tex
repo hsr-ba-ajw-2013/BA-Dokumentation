@@ -23,11 +23,11 @@
 				\end{umlsystem}
 
 				\umlactor[y=-7]{Bewohner}
-				\umlactor[y=-16]{WG-Administrator}
+				\umlactor[y=-16]{WG-Verwalter}
 				%\umlactor[y=-25]{Administrator}
 				\umlactor[y=-8, x=17]{Facebook}
 
-				\umlinherit{WG-Administrator}{Bewohner}
+				\umlinherit{WG-Verwalter}{Bewohner}
 
 				\umlextend{usecase-11}{usecase-3}
 				\umlextend{usecase-11}{usecase-7}
@@ -43,8 +43,8 @@
 				\umlassoc{Bewohner}{usecase-8}
 				% \umlassoc{Bewohner}{usecase-11}
 
-				\umlassoc{WG-Administrator}{usecase-9}
-				\umlassoc{WG-Administrator}{usecase-10}
+				\umlassoc{WG-Verwalter}{usecase-9}
+				\umlassoc{WG-Verwalter}{usecase-10}
 
 				\umlassoc{Facebook}{usecase-11}
 				\umlassoc{Facebook}{usecase-1}
@@ -72,8 +72,11 @@
 			Als Bewohner wird ein Anwender der Roomies Anwendung bezeichnet, der zu einer WG gehört. \newline
 			Dieser besitzt die Rechte Aufgaben seiner zugehörigen WG zu verwalten.
 			\tabularnewline
-			WG-Administrator &
-			Der WG-Administrator ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch als WG-Administrator ernannt. Diese Role kann an Bewohner weitergegeben werden.
+			WG-Verwalter &
+			Der WG-Verwalter ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch als WG-Verwalter ernannt. Diese Role kann an Bewohner weitergegeben werden.
+			\tabularnewline
+			Facebook &
+			TODO
 	\end{tabularx}
 	\caption{Aktoren}
 \end{table}
@@ -90,6 +93,9 @@
 			\tabularnewline
 			Scope &
 			Roomies
+			\tabularnewline
+			Mapped Requirement &
+			FC
 			\tabularnewline
 			Primary Actor &
 			Bewohner
@@ -146,11 +152,14 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
 			Bewohner
 			\tabularnewline
 			Story &
-			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch zu Keiner angehört. Hierfür wählt der Bewohner die Option 'WG erstellen'. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet der Bewohner auf die Aufgabenseite der WG weiter. Ebenfalls die Rolle WG-Administrator werden dem Bewohner automatisch zugeteilt.
+			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch zu Keiner angehört. Hierfür wählt der Bewohner die Option 'WG erstellen'. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet der Bewohner auf die Aufgabenseite der WG weiter. Ebenfalls die Rolle WG-Verwalter werden dem Bewohner automatisch zugeteilt.
 			\tabularnewline
 			% Stakeholders and Interest &
 			% Der Bewohner möchte eine WG erstellen.
@@ -208,11 +217,14 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
 			Bewohner
 			\tabularnewline
 			Story &
-			Um in einer WG beizutreten, muss der Link zur Einladung dem 'zukünftigen' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung jedoch, ist völlig dem WG-Administrator überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird vom System eine Bestätigung gefordert. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG 'registriert' und zur Aufgabenseite der WG weitergeleitet.
+			Um in einer WG beizutreten, muss der Link zur Einladung dem 'zukünftigen' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung jedoch, ist völlig dem WG-Verwalter überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird vom System eine Bestätigung gefordert. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG 'registriert' und zur Aufgabenseite der WG weitergeleitet.
 			\tabularnewline
 			% Stakeholders and Interest &
 			% Der Bewohner möchte einer WG beitreten
@@ -263,12 +275,15 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
 			Bewohner
 			\tabularnewline
 			Story &
 			Wählt ein Bewohner die Option 'WG verlassen', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System der Bewohner als inaktiv und leitet der 'Ex'-Bewohner auf eine 'Aufwiedersehen-Seite' weiter. \newline
-			Hat der Bewohner, als einziger, die Rolle 'WG-Administrator', so muss er, vor dem inaktiv Setzen, seine Rolle einem anderen Bewohner übetragen. \newline//TODO: neuer UC???
+			Hat der Bewohner, als einziger, die Rolle 'WG-Verwalter', so muss er, vor dem inaktiv Setzen, seine Rolle einem anderen Bewohner übetragen. \newline//TODO: neuer UC???
 			\tabularnewline
 			% Stakeholders and Interest &
 			% Der Bewohner möchte einer WG beitreten
@@ -322,6 +337,9 @@
 			\tabularnewline
 			Scope &
 			Roomies
+			\tabularnewline
+			Mapped Requirement &
+			FC
 			\tabularnewline
 			Primary Actor &
 			Bewohner
@@ -379,6 +397,9 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
 			Bewohner
 			\tabularnewline
@@ -435,6 +456,9 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
 			Bewohner
 			\tabularnewline
@@ -486,6 +510,9 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
 			Bewohner
 			\tabularnewline
@@ -536,11 +563,14 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
-			WG-Administrator
+			WG-Verwalter
 			\tabularnewline
 			Story &
-			Als WG-Administrator hat man die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Administrator wird auf die Startseite weitergeleitet.
+			Als WG-Verwalter hat man die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Verwalter verlangt dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Verwalter wird auf die Startseite weitergeleitet.
 			\tabularnewline
 			% Stakeholders and Interest &
 			% Der Administrator möchte die WG auflösen.
@@ -590,8 +620,11 @@
 			Scope &
 			Roomies
 			\tabularnewline
+			Mapped Requirement &
+			FC
+			\tabularnewline
 			Primary Actor &
-			WG-Administrator
+			WG-Verwalter
 			\tabularnewline
 			Story &
 			TODO
