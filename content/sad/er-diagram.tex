@@ -12,7 +12,7 @@
 			PRIMARY(id)
 		}
 
-		\umlclass[x=12,y=-6]{User}{
+		\umlclass[x=12,y=-6]{Resident}{
 			id: Integer \\
 			facebookId: Integer \\
 			communityId: Integer \\
@@ -42,20 +42,20 @@
 			description: Text \\
 			createdAt: Date \\
 			updatedAt: Date \\
-			creatorId: User \\[1mm]
-			fulfillorId: User
+			creatorId: Resident \\[1mm]
+			fulfillorId: Resident
 		}{
 			PRIMARY(id)
 		}
 
 		% relation
-		\umlassoc[mult1=0..*,mult2=1]{Achievement}{User}
+		\umlassoc[mult1=0..*,mult2=1]{Achievement}{Resident}
 		\umlassoc[mult1=1,mult2=0..*]{Community}{Task}
-		\umlassoc[geometry=|-, mult1=1..*,mult2=1, pos2=1.9]{User}{Community}
+		\umlassoc[geometry=|-, mult1=1..*,mult2=1, pos2=1.9]{Resident}{Community}
 		% creator
-		\umlassoc[geometry=-|-, arm1=3, anchor1=40, anchor2=-28, pos2=2.0, mult2=1..*]{User}{Task}
+		\umlassoc[geometry=-|-, arm1=3, anchor1=40, anchor2=-28, pos2=2.0, mult2=1..*]{Resident}{Task}
 		% fulfillor
-		\umlassoc[geometry=-|-, anchor1=40, anchor2=-38, pos2=2.25, mult1=1,mult2=0..*]{User}{Task}
+		\umlassoc[geometry=-|-, anchor1=40, anchor2=-38, pos2=2.25, mult1=1,mult2=0..*]{Resident}{Task}
 	\end{tikzpicture}
 
 	\caption{Entity-Relationship Diagramm}
