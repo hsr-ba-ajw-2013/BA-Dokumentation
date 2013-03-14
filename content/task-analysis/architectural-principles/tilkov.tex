@@ -1,4 +1,4 @@
-\subsection{Analyse: Building large web-based systems: 10 Recommendations}
+\subsection{Building large web-based systems: 10 Recommendations}
 
 \begin{table}[H]
 \tablestyle
@@ -45,18 +45,16 @@
 \subsubsection*{Bewertung \& Einschätzung}
 Stefan Tilkovs Empfehlungen entsprechen praktisch durchgehend den Richtlinien des ROCA Manifests. Er ergänzt diese aber um einige interessante eigene Ideen.
 
-Mit \emph{TP3 Eat your own API dog food} bestärkt er die Forderung \emph{RP1 REST}, den Backend-Layer über ein Service-Interface ansprechbar zu machen noch einmal. Er hat sogar den Qualitätsanspruch, dass jedes interne API so umgesetzt wird, dass sie problemlos von einem externen Konsumenten verwendet werden könnte.
+Mit ``TP3 Eat your own API dog food'' bestärkt er die Forderung ``RP1 REST'', den Backend-Layer über ein Service-Interface ansprechbar zu machen noch einmal. Er hat sogar den Qualitätsanspruch, dass jedes interne API so umgesetzt wird, dass sie problemlos von einem externen Konsumenten verwendet werden könnte.
 
-Die Modularisierung in einzelne Komponenten beschreibt Tilkov mit einem spezifischen Beispiel \emph{TP4 Separate user identity, sign-up and self-care from product dependencies}.
+Die Modularisierung in einzelne Komponenten beschreibt Tilkov mit einem spezifischen Beispiel ``TP4 Separate user identity, sign-up and self-care from product dependencies''.
 
-Die Nutzung eines externen Identity Providers macht in der heutigen Internetwelt Sinn. Für den Benutzer bedeutet dies, dass er nicht für jede Webapplikation ein eigenes Konto mit eigenem Benutzernamen und Passwort anlegen muss. Die Applikation wiederum kann sich auf ihre Kernfunktionalität fokusieren und hat im optimalsten Fall geringere Implementationsaufwände.
+Die Nutzung eines externen Identity Providers macht in der heutigen Internetwelt Sinn. Für den Benutzer bedeutet dies, dass er nicht für jede Webapplikation ein eigenes Konto mit eigenem Benutzernamen und Passwort anlegen muss. Die Applikation wiederum kann sich auf ihre Kernfunktionalität fokussieren und hat im optimalen Fall geringere Implementationsaufwände.
 
-Als sehr positiv bewertet das Projektteam zudem die Ergänzung um einige pragmatische Software Engineering Ansätze:
+Als sehr positiv bewertet das Projektteam zudem die Ergänzung um einige pragmatische Software Engineering Ansätze im Bereich von ``Don\'t repeat yourself'' (DRY);
 
 \begin{itemize}
-	\item \emph{DRY: Don't repeat yourself}\\
-	\emph{TP7 Apply the web instead of working around it} propagiert die Verwendung aktueller Browserfeatures statt die Implementierung eigener Lösungen.\\
+	\item ``TP7 Apply the web instead of working around it'' propagiert die Verwendung aktueller Browserfeatures statt die Implementierung eigener Lösungen.\\
 	Beispiel: Validierung von Formularwerten.
-	\item \emph{Automate}\\
-	\emph{TP8 Automate everything or you will be hurt} fordert die Automatisierung jeglicher wiederkehrender Aufgaben. Continuous Integration, Unit Testing und automatisierte Deployments sind auch im Webumfeld aktueller den je.
+	\item ``TP8 Automate everything or you will be hurt'' fordert die Automatisierung jeglicher wiederkehrender Aufgaben. Continuous Integration, Unit Testing und automatisierte Deployments sind auch im Webumfeld aktueller den je.
 \end{itemize}
