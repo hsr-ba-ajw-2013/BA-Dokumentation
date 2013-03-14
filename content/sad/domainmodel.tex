@@ -11,13 +11,16 @@
 				\renewcommand\guillemotright{}
 
 				% row by row
-				\umlemptyclass[x=15,y=-3]{Community}
+				\umlclass[x=15,y=-3]{Community}{
+					enabled
+				}{
+				}
 				\umlemptyclass[x=5,y=-3]{Rule}
 
 				% \umlemptyclass[x=5,y=-7]{Role}
 				\umlclass[x=10,y=-7]{Resident}{
 					isAdmin\\
-					isInactive
+					enabled
 				}{
 				}
 				\umlemptyclass[x=5,y=-7]{AchievementDefinition}
