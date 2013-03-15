@@ -35,5 +35,6 @@
 \usepackage{datetime}
 \usepackage{pgfgantt}
 \usepackage{template/fontawesome}
+\usepackage{csquotes}
 
 \bibliography{content/indexes/bibliography}
