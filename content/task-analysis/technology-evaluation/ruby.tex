@@ -1,1 +1,62 @@
 \subsection{Ruby}
+
+Insbesondere mit dem Framework \emph{Ruby on Rails} wurde Ruby für die Entwicklung von Umfangreichen Webapplikationen seit Veröffentlichung in den 90ern immer beliebter. Mit fast kindlicher Selbstverständlichkeit bringt Ruby viele Konzepte wie Multiple Inheritance (in Form von Mixins) oder die funktionale Behandlung von jeglichen Werten/Objekten von Haus aus mit.
+
+Für den Einsteiger etwas verwirrend setzt es zudem auf eine für den Menschen ``leserliche'' Syntax als beispielsweise von Java oder anderen verwandten Sprachen gewohnt. Folgende Codebeispiele bewirken die selbe Ausgabe auf der Kommandozeile, unterscheiden sich aber deutlich in ihrer Formulierung:
+
+\begin{lstlisting}[language=Java, caption=Negierte if-Abfrage in Java]
+if(!enabled) {
+	System.out.println("Ich bin deaktiviert!");
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=Ruby, caption=Negierte if-Abfrage in Ruby]
+puts "Ich bin deaktiviert!" unless enabled
+\end{lstlisting}
+
+Für die Technologie \emph{Ruby} werden folgende Frameworks genauer betrachtet:
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X l}
+\tableheadcolor
+	\tablehead Framework &
+	\tablehead Erläuterung \tabularnewline
+\tablebody
+\textit{Ruby on Rails} &
+	Wer Webapplikationen mit Ruby umsetzen will, kommt an Ruby on Rails nicht vorbei. Der \emph{de facto} Standard bringt extrem viele Features mit und verfügt über eine breite und aktive Community. Eine mächtige Scaffoldingmaschine ermöglicht das Erstellen von grundlegenden MVC-Komponenten innert kürzester Zeit.
+	\tabularnewline
+\textit{Sinatra} &
+	Sinatra ist bekannt für seine Flexibilität und entwicklerfreundliche \gls{DSL}. Mit Sinatra sind einfache Anwendungen mit sehr wenig Quellcode möglich. Das leistungsstarke Framework kann aber durchaus auch komplexere Applikationen stemmen.
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Shortlist Analysekandidaten Ruby}
+\end{table}
+
+
+\subsubsection*{Bewertungsmatrix}
+
+\begin{table}[H]
+\newcolumntype{s}{>{\centering\hsize=0.15\hsize}X}
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{X s s s s s s s}
+\tableheadcolor
+	\tablehead &
+	\rotatebox{90}{\bfseries\textit{TK1 Eigenkonzepte} } &
+	\rotatebox{90}{\bfseries\textit{TK2 Eignung}} &
+	\rotatebox{90}{\bfseries\textit{TK3 Produtkreife}} &
+	\rotatebox{90}{\bfseries\textit{TK4 Aktualität}} &
+	\rotatebox{90}{\bfseries\textit{TK5 ``Ease of use''}} &
+	\rotatebox{90}{\bfseries\textit{TK6 Testbarkeit}} &
+	\rotatebox{90}{\bfseries\textit{Total}}
+	\tabularnewline
+\tablebody
+	\textit{Ruby on Rails}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
+	\textit{Sinatra}						&		 		&				& \twoStars		& \threeStars	&				& \oneStar		& 6 \tabularnewline
+\tableend
+\end{tabularx}
+\caption{Bewertungsmatrix Ruby Frameworks}
+\end{table}
