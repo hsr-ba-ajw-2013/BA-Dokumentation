@@ -1,1 +1,72 @@
 \subsection{Java}
+
+Schon vor dieser Bachelorarbeit kann das Projektteam diverse Erfahrungen mit Java vorweisen. Zum Einen aus privaten und beruflichen Projekten, zum Anderen auch ganz themenspezifisch aus der Studienarbeit, welche ein Semester früher durchgeführt wurde.
+
+Als Teil einer grösseren Applikation wurde dort ein Webservice mit REST-Schnittstelle umgesetzt. Zum Einsatz kamen diverse Referenzimplementierungen von Java Standard API's. Die sehr positiven Erfahrungen mit der dort orchestrierten Zusammenstellung von Bibliotheken legen den Schluss nahe, diese auch für eine potentielle Verwendung innerhalb dieser Bachelorarbeit wiederzuverwenden.
+
+Der Studienarbeit-erprobten Kombination sollen jedoch auch andere Alternativen gegenübergestellt werden. Insgesamt ergeben sich so folgende Analysekandidaten im Bereich der Technologie \emph{Java}:
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X l}
+\tableheadcolor
+	\tablehead Framework &
+	\tablehead Erläuterung \tabularnewline
+\tablebody
+\textit{Studienarbeit-Zusammenstellung} &
+	Die Zusammenstellung von \emph{Google Guice}, \emph{Jersey}, \emph{Codehaus Jackson} sowie \emph{EclipseLink} hat sehr gut harmoniert. Die Verwendung von einem Java-fremden Framework für die Implementierung des Frontends wäre jedoch erneut abzuklären.
+	\tabularnewline
+\textit{Spring} &
+	Spring hat sich in den letzten Jahren in der Industrie etablieren können. Es bietet eine Vielzahl von Subkomponenten (MVC, Beanmapping etc.).
+	\tabularnewline
+\textit{Plain JEE} &
+	Java Enterprise bietet von sich aus viele Features, welche die Frameworks von Dritten unter anderen Ansätzen umsetzen. Es gilt jedoch abzuwägen, wie gross der Aufwand ist, um beispielsweise eine REST-Serviceschnittstelle zu implementieren.
+	\tabularnewline
+\textit{Vaadin} &
+	Vaadin baut auf Googles GWT und erlaubt die serverlastige Entwicklung von Webapplikationen.
+	\tabularnewline
+\textit{Play! Framework} &
+	Seit dem Release der Version 2.0 im Frühjar 2012 erfreut sich das Play! Frameworks grosser Beliebtheit. Insbesondere die integrierten Scaffolding-Funktionalitäten und MVC-Ansätze werden gelobt.
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Shortlist Analysekandidaten Java}
+\end{table}
+
+
+\subsubsection*{Bewertungsmatrix}
+
+\begin{table}[H]
+\newcolumntype{s}{>{\centering\hsize=0.15\hsize}X}
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{X s s s s s s s}
+
+\tableheadcolor
+	\tablehead &
+	\rotatebox{90}{\bfseries\textit{TK1 Eigenkonzepte} } &
+	\rotatebox{90}{\bfseries\textit{TK2 Eignung}} &
+	\rotatebox{90}{\bfseries\textit{TK3 Produtkreife}} &
+	\rotatebox{90}{\bfseries\textit{TK4 Aktualität}} &
+	\rotatebox{90}{\bfseries\textit{TK5 ``Ease of use''}} &
+	\rotatebox{90}{\bfseries\textit{TK6 Testbarkeit}} &
+	\rotatebox{90}{\bfseries\textit{Total}}
+	\tabularnewline
+\tablebody
+	\textit{Studienarbeit-Zusammenstellung}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
+	\textit{Spring}							&		 		&				& \twoStars		& \threeStars	&				& \oneStar		& 6 \tabularnewline
+	\textit{Plain JEE} 						& 			 	& \twoStars		& \threeStars	& \threeStars	&				& \threeStars	& 8 \tabularnewline
+	\textit{Vaadin} 						& \oneStar 		& 				& \threeStars	& \twoStars		&				& \threeStars	& 8 \tabularnewline
+	\textit{Play! Framework} 				& \oneStar 		& 				& \twoStars		& \twoStars		&				& \threeStars	& 9 \tabularnewline
+\tableend
+\end{tabularx}
+\caption{Mapping Architekturrichtlinien - Systemkomponenten}
+\end{table}
+
+\subsubsection*{Interpretation}
+\emph{Plain JEE}, \emph{Vaadin} und \emph{Play! Framework} spielen ihre Stärken klar in der Produktreife und der dadurch hohen Wartbarkeit resp. Testbarkeit aus. Im Bezug auf die Eigenkonzepte benötigen alle Kandidaten einen gewissen initialen Lernaufwand. \emph{Studienarbeit-Zusammenstellung} arbeitet mit einem klar zugänglichen Schichtenmodell und verwendet über dies hinaus ein komplett vom Backend entkoppeltes Frontend. Zwar wäre eine solche Lösung auch mit \emph{Spring} und \emph{Plain JEE} möglich, jedoch versagen diese beiden Frameworks wiederum im Bezug auf die Eignung, die aufgestellten Architekturrichtlinien transparent demonstrieren zu können.
+
+Die Produktreife von \emph{Studienarbeit-Zusammenstellung} ist zu vernachlässigen. Die einzelnen Komponenten für sich haben sich bereits in länger in der Praxis bewähren können und sind lediglich genau in dieser Kombination evtl. weniger oft erprobt.
+
+Für die endgültige Auswahl einer Technologie schickt Java aufgrund vorangegangener Bewertung die \emph{Studienarbeit-Zusammenstellung} in die finale Ausscheidung.

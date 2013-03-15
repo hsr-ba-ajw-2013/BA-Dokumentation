@@ -3,35 +3,66 @@ Das Thema ``Architekturkonzepte moderner Web-Applikationen'' legt den Schluss na
 
 Unter Berücksichtigung der persönlichen Erfahrungen und Einschätzungen aller Projektteilnehmer wurde in Vereinbarung mit dem Betreuer im Zuge einer Evaluation eine Shortlist mit folgenden Technologiekandidaten zusammengestellt:
 
+\begin{itemize}
+	\item \emph{Java}\\
+	Trotz des einführenden Statements, Platzhirsche von einer engeren Auswahl auszuschliessen, war das Projektteam aufgrund der vorangegangenen Studienarbeit davon überzeugt, dass Java, insbesondere als Backendtechnologie, mit den ``jungen Wilden'' problemlos mithalten kann.
+
+	\item \emph{JavaScript}\\
+	Während den letzten zwei Jahren erlebte JavaScript eine Renaissance: Mit node.js schaffte es den Sprung vom Frontend-Layer ins Backend und erfreut sich in der OpenSource als auch der Industrie-Community grösster Beliebtheit.
+
+	\item \emph{Ruby}\\
+	Ruby hat sich in der näheren Vergangenheit zusammen mit Ruby On Rails im Markt etablieren können. Als relativ junge Technologie durfte es aus diesem Grund bei einer Evaluation nicht ignoriert werden.
+\end{itemize}
+
+In diesem Abschnitt werden übergreifende Bewertungskriterien definiert, welche anschliessend auf alle drei Technologiekandidaten, resp. deren Frameworks angwendet werden können.
+
+\newpage
+\subsection{Bewertungskriterien}
+Die folgende Tabelle definert sechs Kriterien, welche zur Bewertung einer Technologie oder eines Frameworks jeweils mit 0-3 Sternen bewertet werden können.
+
+Die Spalte \emph{Gewichtung} gibt an, als wie wichtig das betreffende Kriterium im Bezug auf die Aufgabenstellung anzusehen ist.
+
 \begin{table}[H]
 \tablestyle
 \tablealtcolored
-\begin{tabularx}{\textwidth}{l X l}
+\begin{tabularx}{\textwidth}{l l X c}
 \tableheadcolor
-	\tablehead Kandidat &
-	\tablehead Warum? &
-	\tablehead Fokus\tabularnewline
+	\tablehead ID &
+	\tablehead Kriterium &
+	\tablehead Erläuterung &
+	\tablehead Gewichtung \tabularnewline
 \tablebody
-\textit{Java} &
-	Trotz des einführenden Statements, Platzhirsche von einer engeren Auswahl auszuschliessen, war das Projektteam aufgrund der vorangegangenen Studienarbeit davon überzeugt, dass Java, insbesondere als Backendtechnologie, mit den ``jungen Wilden'' problemlos mithalten kann. &
-	Web-Frameworks\tabularnewline
-\textit{JavaScript} &
-	Während den letzten zwei Jahren erlebte JavaScript eine Renaissance: Mit node.js schaffte es den Sprung vom Frontend-Layer ins Backend und erfreut sich in der OpenSource als auch der Industrie-Community grösster Beliebtheit. &
-	node.js\tabularnewline
-	\textit{Ruby} &
-	Ruby hat sich in der näheren Vergangenheit zusammen mit Ruby On Rails im Markt etablieren können. Als relativ junge Technologie durfte es aus diesem Grund bei einer Evaluation nicht ignoriert werden. &
-	Ruby On Rails\tabularnewline
+\textit{TK1} &
+	Eigenkonzepte &
+	Wieviele eigene Konzepte \& Ideen bringt eine Technologie resp. ein Framework mit? Viele spezifische Konzepte bedeuten meistens eine steile Lernkurve für Neueinsteiger. \emph{Hohe Bewertung = Wenig Eigenkonzepte}&
+	\faStar\faStar\faStar \tabularnewline
+\textit{TK2} &
+	Eignung &
+	Wie gut eignet sich eine Technologie oder ein Framework für die Demonstration der Architekturrichtlinien? Geschieht alles ``hinter'' dem Vorhang oder sind einzelne Komponenten einsehbar? \emph{Hohe Bewertung = Hohe Eignung}&
+	\faStar\faStar\faStar \tabularnewline
+\textit{TK3} &
+	Produktreife &
+	Wie gut hat sich das Framework oder die Technologie bis jetzt in der Realität beweisen können? Wie lange existiert es schon? Gibt es eine aktive Community und wird es aktiv weiterentwickelt? \emph{Hohe Bewertung = Hohe Produktreife}&
+	\faStar\faStar\faStar\tabularnewline
+\textit{TK4} &
+	Aktualität &
+	Diese Arbeit kümmert sich um ``moderne Web-Applikationen''. So sollte auch die zu verwendende Technologie gewissermassen nicht von ``vorgestern'' sein. \emph{Hohe Bewertung = Hohe Aktualität}&
+	\faStar \tabularnewline
+\textit{TK5} &
+	``Ease of use'' &
+	Wie angenehm ist das initiale Erstellen, die Konfiguration und die Unterhaltung einer Applikation? Führt das Framework irgendwelchen ``syntactic sugar'' \cite{syntacticsugar} ein um die Arbeit zu erleichtern? \emph{Hohe Bewertung = Hoher ``Ease of use''-Faktor} &
+	\faStar\faStar \tabularnewline
+\textit{TK6} &
+	Testbarkeit &
+	Wie gut können die mit dem Framework oder der Technologie erstellte Komponenten durch Unit Tests getestet werden? \emph{Hohe Bewertung = Hohe Testbarkeit} & 
+	\faStar \tabularnewline
 \tableend
 \end{tabularx}
-\caption{Shortlist Technologieevaluation}
+\caption{Bewertungskriterien für Technologieevaluation}
 \end{table}
 
-Für jeden Kandidaten wurde ein Fokus festgelegt. Dieser sollte dazu dienen, die Richtung für die Nachforschungen vorzugeben, jedoch keinesfalls als Einschränkung dienen.
-
-Zur weiteren Analyse wurde jeder Kandidat einen Teammitglied zugeteilt. Folgende Abschnitte enthalten die Ergebnisse aus dieser.
-
-% Im Anhang \ref{sec:appendix-technology-evaluation} ``\nameref{sec:appendix-technology-evaluation}'' sind zusätzlich während der Analyse entstandene Materialien zu den jeweiligen Technologien verfügbar.
-
 \input{content/task-analysis/technology-evaluation/java}
+
 \input{content/task-analysis/technology-evaluation/javascript}
+
 \input{content/task-analysis/technology-evaluation/ruby}
