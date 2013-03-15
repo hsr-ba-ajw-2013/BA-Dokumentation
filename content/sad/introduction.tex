@@ -1,0 +1,46 @@
+\section{Einleitung}
+
+\subsection*{Frameworks}
+In der Technologie Evaluation zu \nameref{sec:technology-evaluation-javascript} stachen die beiden Frameworks Express.js \cite{Expressjs}
+und Sails.js \cite{sails} heraus.\\
+Während Express.js zwar viel stabiler ist und weitaus am Meisten genutzt wird für Javascript Web-Applikationen, ist Sails.js aufgrund der neuen
+Ideen für einen ersten Prototyp ausgewählt worden.
+
+\subsubsection*{Sails.js Prototyp}
+Um sich ein Bild von Sails.js zu machen wurde ein einfacher Prototyp \cite{SailsPrototyp} erstellt.\\[1mm]
+
+Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstellen, andererseits auch um z.B. Models oder Controllers zu erstellen.
+Wie im \nameref{sec:erdiagramm} beschrieben, werden u.a. ein Task und ein User Model (sowie entsprechende Tabelle) benötigt.\\
+Um das \gls{ORM} zu testen, wurden diese beiden Models erstellt und verwendet.\\
+Das User-Model mittels Sails.js definiert sieht so aus:\\
+
+\begin{lstlisting}[language=JavaScript, caption=User Model in Sails.js]
+var User = require('api/models/User'),
+	Community = require('api/models/Community');
+
+module.exports = {
+
+	attributes: {
+		name: "string",
+		description: "string",
+		points: "int",
+		userId: "int",
+		communityId: "int",
+	},
+
+	getUser: function() {
+		return User.find(this.userId);
+	},
+
+	getCommunity: function() {
+		return Community.find(this.communityId);
+	}
+
+};
+\end{lstlisting}
+
+Mit einer Definition eines Models wird zusätzlich zur eigentlichen Verwendung des Models in der Applikation automatisch eine \gls{REST}-API erstellt.\\
+Damit lassen sich einerseits CRUD-Operationen direkt über den Web-Browser ausführen, andererseits existiert auch die Möglichkeit Socket.IO \cite{SocketIO} zu aktivieren und Models direkt von einem offenen \gls{Websocket} verwenden.\\
+Dieses Feature macht Sails.js sehr nützlich für \gls{RealTime}-Applikationen.
+
+\subsection*{\gls{ORM}}
