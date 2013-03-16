@@ -1,5 +1,5 @@
 \subsection{JavaScript}
-
+\label{sec:technology-evaluation-javascript}
 
 \subsubsection*{Bewertungsmatrix}
 
@@ -19,11 +19,103 @@
 	\rotatebox{90}{\bfseries\textit{Total}}
 	\tabularnewline
 \tablebody
-	\textit{Express.js}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
-	\textit{Tower.js}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
-	\textit{derby}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
-	\textit{Geddy}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
-	\textit{Sails}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
+	\textit{Express.js}	&
+	\threeStars &
+	\threeStars	&
+	\twoStars &
+	\threeStars &
+	\twoStars &
+	\threeStars &
+	\directlua{
+		tex.print(math.round(
+			(3 * 3 +
+			3 * 3 +
+			2 * 3 +
+			3 * 1 +
+			2 * 2 +
+			3 * 1) / 6
+		))
+	}
+	\tabularnewline
+
+	\textit{Tower.js} &
+	\twoStars &
+	\twoStars &
+	\oneStar &
+	\threeStars &
+	\threeStars	&
+		&
+	\directlua{
+		tex.print(math.round(
+			(2 * 3 +
+			2 * 3 +
+			1 * 3 +
+			3 * 1 +
+			3 * 2 +
+			0 * 1) / 6
+		))
+	}
+	\tabularnewline
+
+
+	\textit{derby} &
+	\twoStars &
+	\oneStar &
+	\oneStar &
+	\threeStars &
+	\twoStars &
+		&
+	\directlua{
+		tex.print(math.round(
+			(2 * 3 +
+			1 * 3 +
+			1 * 3 +
+			3 * 1 +
+			2 * 2 +
+			0 * 1) / 6
+		))
+	}
+	\tabularnewline
+
+
+	\textit{Geddy} &
+	\threeStars &
+	\oneStar &
+	\twoStars &
+	\twoStars &
+	\threeStars &
+	&
+	\directlua{
+		tex.print(math.round(
+			(3 * 3 +
+			1 * 3 +
+			2 * 3 +
+			2 * 1 +
+			3 * 2 +
+			0 * 1) / 6
+		))
+	}
+	\tabularnewline
+
+
+	\textit{Sails} &
+	\twoStars &
+	\twoStars &
+	\oneStar &
+	\threeStars &
+	\twoStars &
+	\oneStar &
+	\directlua{
+		tex.print(math.round(
+			(2 * 3 +
+			2 * 3 +
+			1 * 3 +
+			3 * 1 +
+			2 * 2 +
+			1 * 1) / 6
+		))
+	}
+	\tabularnewline
 \tableend
 \end{tabularx}
 \caption{Bewertungsmatrix JavaScript Frameworks}

@@ -1,0 +1,120 @@
+\section{Einleitung}
+
+\subsection*{Frameworks}
+In der Technologie Evaluation zu \nameref{sec:technology-evaluation-javascript} stachen die beiden Frameworks Express.js \cite{Expressjs}
+und Sails.js \cite{sails} heraus.\\
+Während Express.js zwar viel stabiler ist und weitaus am Meisten genutzt wird für Javascript Web-Applikationen, ist Sails.js aufgrund der neuen
+Ideen für einen ersten Prototyp ausgewählt worden.
+
+\subsubsection*{Sails.js Prototyp}
+Um sich ein Bild von Sails.js zu machen wurde ein einfacher Prototyp \cite{SailsPrototyp} erstellt.\\[1mm]
+
+Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstellen, andererseits auch um z.B. Models oder Controllers zu erstellen.
+Wie im \nameref{sec:erdiagramm} beschrieben, werden u.a. ein Task und ein User Model (sowie entsprechende Tabelle) benötigt.\\
+Um das \gls{ORM} zu testen, wurden diese beiden Models erstellt und verwendet.\\
+Das Task-Model mittels Sails.js definiert sieht so aus:\\
+
+\begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js]
+module.exports = {
+
+	attributes: {
+		name: "string",
+		description: "string",
+		points: "int",
+		userId: "int",
+		communityId: "int",
+	},
+
+	getUser: function() {
+		return User.find(this.userId);
+	},
+
+	getCommunity: function() {
+		return Community.find(this.communityId);
+	}
+
+};
+\end{lstlisting}
+
+Mit einer Definition eines Models wird zusätzlich zur eigentlichen Verwendung des Models in der Applikation automatisch eine \gls{REST}-API erstellt.\\
+Damit lassen sich einerseits CRUD-Operationen direkt über den Web-Browser ausführen, andererseits existiert auch die Möglichkeit Socket.IO \cite{SocketIO} zu aktivieren und Models direkt von einem offenen \gls{Websocket} verwenden.\\
+Dieses Feature macht Sails.js sehr nützlich für \gls{RealTime}-Applikationen.\\[1mm]
+
+Um nun eine effektive HTML-Seite darstellen zu können wird ein Controller sowie eine View benötigt. Dies wurde im Prototyp für Aufgaben (Tasks) implementiert.\\
+
+\begin{lstlisting}[language=JavaScript, caption=Task Controller in Sails.js, label=lst:sailsjstaskcontroller]
+var TaskController = {
+	get: function(req, res) {
+		var id = req.param('id');
+		Task.find(id).done(function(err, task) {
+			User.find(task.userId).done(function(err, user) {
+				var response = {
+					'task': task,
+					'user': user,
+					'title': task.name
+				};
+
+				if (req.acceptJson) {
+					res.json(response);
+				} else if(req.isAjax && req.param('partial')) {
+					response['layout'] = false;
+					res.view(response);
+				} else {
+					res.view(response);
+				}
+			});
+		});
+	}
+
+};
+module.exports = TaskController;
+\end{lstlisting}
+
+In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' geladen. Das Code-Stück zeigt die grosse Schwäche von Waterline \cite{Waterline}, dem \gls{ORM} von Sails.js. Statt dass man auf dem ``task''-Objekt direkt ``.user'' aufrufen könnte, muss man den Umweg über ``User.find()'' gehen. \\
+Dies zeigt auf, dass Joins nicht unterstützt sind.\\[1mm]
+
+Der Controller schickt, falls HTML als Content-Type mitgeschickt wird, folgendes Template zurück.
+
+\begin{lstlisting}[language=JavaScript, caption=Task Template]
+<div id="task-display">
+	<h1>Task: <%= task.name %></h1>
+	<ul>
+		<li>Points: <%= task.points %></li>
+		<li>Created At: <%= task.createdAt %></li>
+	</ul>
+	<h2>User: <%= user.name %></h2>
+	<ul>
+		<li>Created At: <%= user.createdAt %></li>
+	</ul>
+</div>
+<a href="#" id="reload">Reload!</a>
+<script>
+	$('#reload').on('click', function() {
+		$.ajax('/task/get/?id=<%= task.id %>&partial=true', {
+			success: function(response) {
+				var $response = $('<div class="body-mock">' + response + '</div>');
+				html = $response.find('#task-display');
+				$('#task-display').replaceWith(html);
+			}
+		});
+	});
+</script>
+\end{lstlisting}
+
+Mit dem einfachen Script am Schluss des Task Templates wird aufgezeigt, wie man ohne Neuladen der Seite direkt HTML ersetzen kann. Dies ist grundsätzlich Framework-unabhängig und es wurde dabei auch nicht auf ``RP14'' (Unobtrusive JavaScript) Wert gelegt.
+
+\subsubsection*{Schlussfolgerung}
+
+Wie bereits angemerkt ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models \cite{SailsjsModelAssociations} noch das setzen von Indizes ist möglich.\\
+Weiter ist es für das User-Model nötig, BIGINTs definieren zu können. Dies ist unumgänglich, weil die Facebook User Id 64 Bit gross ist.
+
+Nebst dem ORM ist auch das Framework und die zugehörige Dokumentation zu wenig ausgereift. Auch die Community war zum Zeitpunkt der Evaluation (siehe \nameref{sec:appendix-technology-evaluation}) sehr klein.
+Alles in allem spricht relativ viel dagegen, Sails.js weiter zu verwenden. Deshalb ist ein zweiter Prototyp unter Verwendung von Express.js erstellt worden.
+
+\subsection*{Express.js Prototyp}
+
+Express.js \cite{Expressjs} ist ein sehr leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect}, sehr leicht erweitert werden kann.\\[1mm]
+Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein einfacher Prototyp \cite{ExpressjsPrototyp} erstellt.\\
+Nach der initialen Prototypen-Phase wurde der Branch allerdings mit dem Master-Branch zusammengeführt, damit der Prototyp für die eigentliche Arbeit weiterverwendet werden kann.
+
+\subsubsection*{\gls{ORM}}

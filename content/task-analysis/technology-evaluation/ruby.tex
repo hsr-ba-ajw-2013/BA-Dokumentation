@@ -1,6 +1,6 @@
 \subsection{Ruby}
 
-Insbesondere mit dem Framework \emph{Ruby on Rails} wurde Ruby für die Entwicklung von Umfangreichen Webapplikationen seit Veröffentlichung in den 90ern immer beliebter. Mit fast kindlicher Selbstverständlichkeit bringt Ruby viele Konzepte wie Multiple Inheritance (in Form von Mixins) oder die funktionale Behandlung von jeglichen Werten/Objekten von Haus aus mit.
+Insbesondere mit dem Framework \emph{Ruby on Rails} \cite{RubyOnRails} wurde Ruby für die Entwicklung von Umfangreichen Webapplikationen seit Veröffentlichung in den 90ern immer beliebter. Mit fast kindlicher Selbstverständlichkeit bringt Ruby viele Konzepte wie \gls{Multiple Inheritance} (in Form von Mixins) oder die funktionale Behandlung von jeglichen Werten/Objekten von Haus aus mit.
 
 Für den Einsteiger etwas verwirrend setzt es zudem auf eine für den Menschen ``leserliche'' Syntax als beispielsweise von Java oder anderen verwandten Sprachen gewohnt. Folgende Codebeispiele bewirken die selbe Ausgabe auf der Kommandozeile, unterscheiden sich aber deutlich in ihrer Formulierung:
 
@@ -14,30 +14,9 @@ if(!enabled) {
 puts "Ich bin deaktiviert!" unless enabled
 \end{lstlisting}
 
-Für die Technologie \emph{Ruby} werden folgende Frameworks genauer betrachtet:
+Während der kurzen Technologieevaluationsphase wurde im Bereich Ruby das Hauptaugenmerk auf \emph{Ruby on Rails} gelegt. Insbesondere die \gls{Scaffolding}tools und der von denen generierte Quellcode wurde näher begutachtet. Die Resultate sind wiederum auf die sechs Bewertungskriterien appliziert worden.
 
-\begin{table}[H]
-\tablestyle
-\tablealtcolored
-\begin{tabularx}{\textwidth}{l X l}
-\tableheadcolor
-	\tablehead Framework &
-	\tablehead Erläuterung \tabularnewline
-\tablebody
-\textit{Ruby on Rails} &
-	Wer Webapplikationen mit Ruby umsetzen will, kommt an Ruby on Rails nicht vorbei. Der \emph{de facto} Standard bringt extrem viele Features mit und verfügt über eine breite und aktive Community. Eine mächtige Scaffoldingmaschine ermöglicht das Erstellen von grundlegenden MVC-Komponenten innert kürzester Zeit.
-	\tabularnewline
-\textit{Sinatra} &
-	Sinatra ist bekannt für seine Flexibilität und entwicklerfreundliche \gls{DSL}. Mit Sinatra sind einfache Anwendungen mit sehr wenig Quellcode möglich. Das leistungsstarke Framework kann aber durchaus auch komplexere Applikationen stemmen.
-	\tabularnewline
-\tableend
-\end{tabularx}
-\caption{Shortlist Analysekandidaten Ruby}
-\end{table}
-
-
-\subsubsection*{Bewertungsmatrix}
-
+\subsubsection*{Bewertung Ruby on Rails}
 \begin{table}[H]
 \newcolumntype{s}{>{\centering\hsize=0.15\hsize}X}
 \tablestyle
@@ -54,9 +33,35 @@ Für die Technologie \emph{Ruby} werden folgende Frameworks genauer betrachtet:
 	\rotatebox{90}{\bfseries\textit{Total}}
 	\tabularnewline
 \tablebody
-	\textit{Ruby on Rails}	& \threeStars 	& \threeStars	& 				& 				& \threeStars	& \twoStars 	& 11 \tabularnewline
-	\textit{Sinatra}						&		 		&				& \twoStars		& \threeStars	&				& \oneStar		& 6 \tabularnewline
+	\textit{Ruby on Rails} &
+	\oneStar &
+	\oneStar &
+	\threeStars &
+	\oneStar &
+	\threeStars &
+	\twoStars &
+	\directlua{
+		tex.print(math.round(
+			(1 * 3 +
+			1 * 3 +
+			3 * 3 +
+			1 * 1 +
+			3 * 2 +
+			2 * 1) / 6
+		))
+	}
+	\tabularnewline
 \tableend
 \end{tabularx}
-\caption{Bewertungsmatrix Ruby Frameworks}
+\caption{Bewertung Ruby on Rails}
 \end{table}
+
+
+\subsubsection*{Interpretation}
+Nach genauerem Befassen mit Ruby on Rails sind die Einschätzung des Projektteams gespalten.
+
+Zum Einen minimiert Ruby on Rails den Aufwand für das Erledigen von Routineaufgaben extrem (\gls{Scaffolding}). Der generierte Code ist sofort verwendbar und, gute Ruby-Kenntnisse vorausgesetzt, gut erweiterbar.
+
+Zum Anderen ist aber gerade die Einfachheit, wie bspw. Controllers oder Models erzeugt und in den Applikationsablauf eingebunden werden, alles Andere als optimal wenn es darum geht, Architekturrichtlinien eindeutig und klar demonstrieren zu können.
+
+Unter dem Vorbehalt, dass Ruby on Rails für die Demonstration der definierten Architekturrichtlinien evtl. nicht die richtige Wahl sein könnte, kann das Projektteam nur eine bedingte Empfehlung für das Ruby Framework abgeben.
