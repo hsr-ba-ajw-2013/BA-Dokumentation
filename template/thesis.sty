@@ -11,12 +11,17 @@
 	]{OpenSans}
 }
 
+% Better monoscript font
+\setmonofont{DejaVu Sans Mono}
+
 \setkomafont{chapter}{\huge\SectionFontStyle}           % Chapter
 \setkomafont{sectioning}{\SectionFontStyle}             % Section
 \setkomafont{pagenumber}{\bfseries\SectionFontStyle}    % Pagenumber
 \setkomafont{pagehead}{\small\sffamily}                 % Heading
 \setkomafont{descriptionlabel}{\itshape}                % Heading
 
+% fix font-size of urls in bibliography
+\AtBeginBibliography{\def\UrlFont{\scriptsize\tt}}
 
 % Some shortcuts for fontawesome
 \def\oneStar{\faStar}
@@ -73,7 +78,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Chapter
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\titleformat{\chapter}[block]%              
+\titleformat{\chapter}[block]%
 		{\usekomafont{chapter}\Large\color{chaptercolor}\bfseries % Chaptertitle Format
 		\tikz[overlay]\path [fill=titlepagecolor](50mm,240mm)circle[x radius=290mm, y radius=250mm];} % Backgroundshape
 		{\normalfont\usekomafont{chapter}\large \chaptertitlename \hspace{0.1em} \thechapter} % "Chapter XY" formatting
@@ -128,26 +133,61 @@
 % Code Listings
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \lstset{
-				basicstyle=\small\ttfamily, % Standardschrift
-				numbers=left,               % Ort der Zeilennummern
-				numberstyle=\tiny,          % Stil der Zeilennummern
-				numbersep=5pt,              % Abstand der Nummern zum Text
-				tabsize=2,                  % Groesse von Tabs
-				extendedchars=true,         %
-				breaklines=true,            % Zeilen werden Umgebrochen
-				backgroundcolor=\color{listingbackground},
-				stringstyle=\color{stringcolor}, % Farbe der String
-				commentstyle=\color{commentcolor}, % Farbe der String
-				showspaces=false,           % Leerzeichen anzeigen ?
-				showtabs=false,             % Tabs anzeigen ?
-				showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
-				language=Java,
-				captionpos=b,
-				abovecaptionskip=5mm
+	basicstyle=\small\ttfamily, % Standardschrift
+	numbers=left,               % Ort der Zeilennummern
+	numberstyle=\tiny,          % Stil der Zeilennummern
+	numbersep=5pt,              % Abstand der Nummern zum Text
+	tabsize=2,                  % Groesse von Tabs
+	extendedchars=true,         %
+	breaklines=true,            % Zeilen werden Umgebrochen
+	backgroundcolor=\color{listingbackground},
+	stringstyle=\color{stringcolor}, % Farbe der String
+	commentstyle=\color{commentcolor}, % Farbe der String
+	showspaces=false,           % Leerzeichen anzeigen ?
+	showtabs=false,             % Tabs anzeigen ?
+	showstringspaces=false,      % Leerzeichen in Strings anzeigen ?
+	language=Java,
+	captionpos=b,
+	abovecaptionskip=5mm
 }
 
 \renewcommand{\lstlistlistingname}{Quellcodes}
 \renewcommand{\lstlistingname}{Quellcode}
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65, 0.12, 0.82}
+
+\lstdefinelanguage{JavaScript}{
+	keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+	keywordstyle=\color{blue}\bfseries,
+	ndkeywords={class, export, boolean, throw, implements, import, this},
+	ndkeywordstyle=\color{darkgray}\bfseries,
+	identifierstyle=\color{black},
+	sensitive=false,
+	comment=[l]{//},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{purple}\ttfamily,
+	stringstyle=\color{red}\ttfamily,
+	morestring=[b]',
+	morestring=[b]"
+}
+
+\lstset{
+	language=JavaScript,
+	backgroundcolor=\color{lightgray},
+	extendedchars=true,
+	basicstyle=\footnotesize\ttfamily,
+	showstringspaces=false,
+	showspaces=false,
+	numbers=left,
+	numberstyle=\footnotesize,
+	numbersep=9pt,
+	tabsize=2,
+	breaklines=true,
+	showtabs=false,
+	captionpos=b
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
