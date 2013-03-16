@@ -105,11 +105,16 @@ Mit dem einfachen Script am Schluss des Task Templates wird aufgezeigt, wie man 
 
 \subsubsection*{Schlussfolgerung}
 
-Wie bereits angemerkt ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models noch das Setzen von Indexen sind möglich.\\
-Weiter ist es für das User-Model nötig, BIGINTs definieren zu können. Dies ist unumgänglich, weil die Facebook ID 64 Bit gross ist.
+Wie bereits angemerkt ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models \cite{SailsjsModelAssociations} noch das setzen von Indizes ist möglich.\\
+Weiter ist es für das User-Model nötig, BIGINTs definieren zu können. Dies ist unumgänglich, weil die Facebook User Id 64 Bit gross ist.
 
+Nebst dem ORM ist auch das Framework und die zugehörige Dokumentation zu wenig ausgereift. Auch die Community war zum Zeitpunkt der Evaluation (siehe \nameref{sec:appendix-technology-evaluation}) sehr klein.
 Alles in allem spricht relativ viel dagegen, Sails.js weiter zu verwenden. Deshalb ist ein zweiter Prototyp unter Verwendung von Express.js erstellt worden.
 
-\subsection*{Express.js}
+\subsection*{Express.js Prototyp}
+
+Express.js \cite{Expressjs} ist ein sehr leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect}, sehr leicht erweitert werden kann.\\[1mm]
+Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein einfacher Prototyp \cite{ExpressjsPrototyp} erstellt.\\
+Nach der initialen Prototypen-Phase wurde der Branch allerdings mit dem Master-Branch zusammengeführt, damit der Prototyp für die eigentliche Arbeit weiterverwendet werden kann.
 
 \subsubsection*{\gls{ORM}}

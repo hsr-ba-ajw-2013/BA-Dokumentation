@@ -33,7 +33,24 @@ Während der kurzen Technologieevaluationsphase wurde im Bereich Ruby das Haupta
 	\rotatebox{90}{\bfseries\textit{Total}}
 	\tabularnewline
 \tablebody
-	\textit{Ruby on Rails}	& \oneStar 	& \oneStar		& \threeStars	& \oneStar	& \threeStars	& \twoStars 	& 11 \tabularnewline
+	\textit{Ruby on Rails} &
+	\oneStar &
+	\oneStar &
+	\threeStars &
+	\oneStar &
+	\threeStars &
+	\twoStars &
+	\directlua{
+		tex.print(math.round(
+			(1 * 3 +
+			1 * 3 +
+			3 * 3 +
+			1 * 1 +
+			3 * 2 +
+			2 * 1) / 6
+		))
+	}
+	\tabularnewline
 \tableend
 \end{tabularx}
 \caption{Bewertung Ruby on Rails}
