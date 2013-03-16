@@ -11,7 +11,7 @@
 	]{OpenSans}
 }
 
-% FIXME: Change to \tiny or \small
+% Better monoscript font
 \setmonofont{DejaVu Sans Mono}
 
 \setkomafont{chapter}{\huge\SectionFontStyle}           % Chapter
@@ -20,6 +20,8 @@
 \setkomafont{pagehead}{\small\sffamily}                 % Heading
 \setkomafont{descriptionlabel}{\itshape}                % Heading
 
+% fix font-size of urls in bibliography
+\AtBeginBibliography{\def\UrlFont{\scriptsize\tt}}
 
 % Some shortcuts for fontawesome
 \def\oneStar{\faStar}
