@@ -4,14 +4,14 @@ Das Thema ``Architekturkonzepte moderner Web-Applikationen'' legt den Schluss na
 Unter Berücksichtigung der persönlichen Erfahrungen und Einschätzungen aller Projektteilnehmer wurde in Vereinbarung mit dem Betreuer im Zuge einer Evaluation eine Shortlist mit folgenden Technologiekandidaten zusammengestellt:
 
 \begin{itemize}
+	\item \emph{Ruby}\\
+	Ruby hat sich in der näheren Vergangenheit zusammen mit Ruby On Rails im Markt etablieren können. Als relativ junge Technologie durfte es aus diesem Grund bei einer Evaluation nicht ignoriert werden.
+
 	\item \emph{Java}\\
 	Trotz des einführenden Statements, Platzhirsche von einer engeren Auswahl auszuschliessen, war das Projektteam aufgrund der vorangegangenen Studienarbeit davon überzeugt, dass Java, insbesondere als Backendtechnologie, mit den ``jungen Wilden'' problemlos mithalten kann.
 
 	\item \emph{JavaScript}\\
 	Während den letzten zwei Jahren erlebte JavaScript eine Renaissance: Mit node.js schaffte es den Sprung vom Frontend-Layer ins Backend und erfreut sich in der OpenSource als auch der Industrie-Community grösster Beliebtheit.
-
-	\item \emph{Ruby}\\
-	Ruby hat sich in der näheren Vergangenheit zusammen mit Ruby On Rails im Markt etablieren können. Als relativ junge Technologie durfte es aus diesem Grund bei einer Evaluation nicht ignoriert werden.
 \end{itemize}
 
 In diesem Abschnitt werden übergreifende Bewertungskriterien definiert, welche anschliessend auf alle drei Technologiekandidaten, resp. deren Frameworks angwendet werden können.
@@ -54,13 +54,13 @@ Die Spalte \emph{Gewichtung} gibt an, als wie wichtig das betreffende Kriterium 
 	\faStar\faStar \tabularnewline
 \textit{TK6} &
 	Testbarkeit &
-	Wie gut können die mit dem Framework oder der Technologie erstellte Komponenten durch Unit Tests getestet werden? \emph{Hohe Bewertung = Hohe Testbarkeit} & 
-	\faStar \tabularnewline
+	Wie gut können die mit dem Framework oder der Technologie erstellte Komponenten durch Unit Tests getestet werden? \emph{Hohe Bewertung = Hohe Testbarkeit} &
+	\faStar\faStar \tabularnewline
 \tableend
 \end{tabularx}
 \caption{Bewertungskriterien für Technologieevaluation}
+\label{tab:bewertungskriterien}
 \end{table}
-
 
 Für jedes Framework wird abschliessend eine Gesamtbewertung in Form einer Zahl errechnet. Dies geschieht mit folgender Formel:
 
@@ -76,6 +76,21 @@ Für jedes Framework wird abschliessend eine Gesamtbewertung in Form einer Zahl 
 \newpage
 \input{content/task-analysis/technology-evaluation/java}
 
-\input{content/task-analysis/technology-evaluation/javascript}
 
+Für jedes Framework wird abschliessend eine Gesamtbewertung in Form einer Zahl errechnet. Dies geschieht mit folgender Formel:
+
+\begin{figure}[H]
+	\centering
+	\large
+	\begin{math}
+		\frac{\sum \limits_{n=1}^6 Bewertung_{TK_n} \times {Gewichtung_{TK_n}}}{6}
+	\end{math}
+	\caption{Berechnungsformel Gesamtbewertung}
+\end{figure}
+
+\newpage
 \input{content/task-analysis/technology-evaluation/ruby}
+
+\input{content/task-analysis/technology-evaluation/java}
+
+\input{content/task-analysis/technology-evaluation/javascript}
