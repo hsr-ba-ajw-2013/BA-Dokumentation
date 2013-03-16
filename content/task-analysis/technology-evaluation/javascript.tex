@@ -1,6 +1,44 @@
 \subsection{JavaScript}
 \label{sec:technology-evaluation-javascript}
 
+JavaScript ist insbesondere als ``Webprogrammiersprache'' bekannt. In den vergangenen Jahren wurde es hauptsächlich innerhalb des Internetbrowsers verwendet, um starre Internetseiten mit mehr Interaktivität zu versehen. Insbesondere die Anstrengungen von Mozilla \cite{SpiderMonkey} und Google \cite{V8JavaScript} verhalfen der früher für schlechte Performance und schlechte Codequalität verschrieenen Programmiersprache zu neuem Glanz.
+
+Mit JavaScript sind heute innerhalb des Browsers komplexe und umfangreiche Applikationen problemlos umzusetzen und weit verbreitet.
+
+Die quelloffene V8 JavaScript Engine \cite{V8JavaScript} von Google hat 2009 zudem den Sprung weg vom Browser geschafft: node.js \cite{nodejs} bietet die Engine als eigenständigen Skriptinterpreter an und verfügt über eine umfangreiche, leistungsstarke und systemnahe API. Die neu entstandene Plattform erfreut sich in der Opensource Community grösster Beliebtheit. So sind seit der ersten Veröffentlichung eine Vielzahl an Frameworks und Bibliotheken zu den verschiedensten Themengebieten entstanden.
+
+Auch im Bereich der Webframeworks gibt es auf diese Weise eine Menge an interessanten Libraries zu entdecken. Für die Evaluation im Bezug auf diese Bachelorarbeit werden folgende Frameworks genauer analysiert:
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X l}
+\tableheadcolor
+	\tablehead Framework &
+	\tablehead Erläuterung \tabularnewline
+\tablebody
+\textit{Express.js} &
+	Express.js \cite{Expressjs} baut auf dem Basisframework Connect \cite{connect} auf. Das damit durchgängig umgesetzte Middleware-Konzept ermöglicht die entkoppelte Entwicklung von simplen Webservern bis hin ausgefeilten Webservices. Zu Beginn genügen max. 10 Zeilen Quellcode, um einen GET-Request \cite{HTTPRequest} entgegen zu nehmen und eine Antwort an den Aufrufer zurück zu senden. Dem Ausbau zu komplexeren Applikationen steht dank der erwähnten Middleware-Architektur jedoch nichts im Wege.
+	\tabularnewline
+\textit{Tower.js} &
+	Pate für Tower.js \cite{towerjs} steht nach eigenen Angaben des Entwicklers Ruby on Rails. Entsprechend umfangreich sind auch hier die \gls{Scaffolding}funktionalitäten. Das Framework selbst ist mit CoffeeScript \cite{CoffeeScript} entwickelt worden. Wie das Ruby-Vorbild bietet auch Tower.js ein ausgewachsenes MVC-Pattern zur Entwicklung eigener Applikationen an.
+	\tabularnewline
+\textit{derby} &
+	Das Framework Derby \cite{Derby} nimmt sich das oben eingeführte Express.js zur Grundlage und erweitert es im das Model-View-Controller-Pattern. Es bleibt dabei extrem leichtgewichtig, ermöglicht aber leider keine Browserclients welche der Anforderung des \emph{Unobtrusive JavaScripts} genügen mögen: Derby-Applikationen werden komplett im Browser gerendert und bieten keine Möglichkeit, HTML-Markup auf dem Server zu generieren.
+	\tabularnewline
+\textit{Geddy} &
+	Mit Geddy \cite{Geddy} begibt sich bereits der zweite Kandidat für node.js in den Ring, welcher sich Ruby on Rails zum Vorbild nimmt. Dementsprechend vergleichbar ist der Funktionsumfang mit Tower.js. Als wichtiger Unterschied ist jedoch zu erwähnen, dass Geddy auf CoffeeScript vollends verzichtet.
+	\tabularnewline
+\textit{Sails} &
+	Sails \cite{sails} ist der jüngste Frameworkkandidat für JavaScript resp. node.js. Die Grundkonzepte von Ruby on Rails werden mit einer Prise ``Realtime'' (\glspl{Websocket}) gewürzt. So kann jede Ressource über eine einfache REST-Schnittstelle als auch über eine Websocket-Verbindung angesprochen werden. Damit erleichtert sich das asynchrone resp. servergesteuerte Aktualisieren des Frontends.
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Shortlist Analysekandidaten JavaScript}
+\end{table}
+
+
+
 \subsubsection*{Bewertungsmatrix}
 
 \begin{table}[H]
