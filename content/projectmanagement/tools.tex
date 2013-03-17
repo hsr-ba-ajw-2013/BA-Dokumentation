@@ -1,0 +1,29 @@
+\section{Tools}
+
+Ergänzend zu diesem Abschnitt ist der Anhang \ref{sec:urls} ``\nameref{sec:urls}'' zu erwähnen. Er enthält alle wichtigen Internetadressen zu den spezifischen Tools und Code Repositories.
+
+\subsection{Projektverwaltung}
+Für die komplette Projektplanung, die Zeitrapportierung sowie das Issue-Management wird Redmine eingesetzt.
+
+Der aktuelle Stand der Arbeiten am Projekt kann hier jederzeit eingesehen werden und wird vom Projektteam aktiv aktualisiert.
+
+
+\subsection{Entwicklungsumgebung}
+Zur Entwicklung von Quellcode-Artefakten steht eine mit Vagrant \cite{Vagrant} paketierte Virtual Machine bereit. Sie enthält alle notwendigen Abhängigkeiten und Einstellungen:
+
+% FIXME bessere dokumentation der vagrant box
+
+\begin{itemize}
+	\item node.js 0.10.0
+	\item PostgreSQL 9.1
+	\item Ruby 2.0.0 (installiert via rvm)
+	\item ZSH (inkl. oh-my-zsh)
+\end{itemize}
+
+Das Code Repository enthält ein \emph{Vagrantfile} welches durch den Befehl \emph{vagrant up} in der Kommandozeile automatisch das Image der vorbereiteten VM lokal verfügbar macht und startet.
+
+\subsection{Git Repositories}
+Sowohl Quellcodeartefakte als auch die in LaTeX formulierte Thesis (dieses Dokument) wird in auf GitHub abgelegten Git Repositories versioniert bzw. zentral gespeichert.
+
+\subsection{Continious Integration}
+Für das Projekt wird Travis CI zur Continious Integration Lösung verwendet. Nähere Informationen sind im Kaptiel \ref{sec:qualitymanagement} ``\nameref{sec:qualitymanagement}'' unter ``\nameref{sec:continuousintegration}'' zu finden.
