@@ -9,13 +9,13 @@ Die Coding Guidelines werden im Kapitel \ref{sec:coding-guidelines} \nameref{sec
 Die Arbeit soll nach der \gls{TDD}-Methodik entwickelt werden.
 
 \subsection*{Testing Framework}
-Als Testing Framework soll Mocha \cite{Mocha} dienen. Mocha ermöglicht asynchrone Tests einfach zu schreiben.
+Als Testing Framework soll Mocha \cite{Mocha} dienen. Mocha ermöglicht asynchrone Tests einfach zu schreiben und bittet flexible Raporte.
 \newline
 
 Als kleine Hilfe wird Chai.JS \cite{ChaiJS} eingesetzt. Chai bittet drei angenehme Varianten Asserts zu schreiben. Die ``Should''-Variante soll für die Tests verwendet werden. Diese Variante ist einfach zu lesen und zu interpretieren und soll so die verschiedenen Tests vereinfachen. \newline
 
-//TODO: einfacherer code beispiel
-\begin{lstlisting}[language=JavaScript, caption=Chai.js Should Beispiel]
+//TODO: einfacherer code beispiel, maybe?
+\begin{lstlisting}[language=JavaScript, caption=Zusammenspiel aus Mocha und Chai.js Should]
 var chai = require('chai')
 	,config = require('../../config_test')
 	,db = require('../../lib/db');
