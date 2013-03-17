@@ -1,0 +1,49 @@
+\chapter{Qualitätsmanagement}
+
+
+\section{Coding Guideline}
+Die Coding Guidelines werden im Kapitel \ref{sec:coding-guidelines} \nameref{sec:coding-guidelines} behandelt und beschrieben.
+
+
+\section{Test Guideline}
+Die Arbeit soll nach nach test-driven development (TDD, testgetriebene Entwicklung) -Methodik entwickelt werden.
+
+\subsection*{Testing Framework}
+Als Testing Framework soll Chai.JS \cite{ChaiJS} dienen. Chai bittet drei angenehme Varianten Tests zu schreiben. Die ``Should''-Variante soll für die Tests verwendet werden. Diese Variante ist einfach zu lesen und zu interpretieren und soll so die verschiedenen Tests klar definieren. \newline
+
+//TODO: einfacherer code beispiel
+\begin{lstlisting}[language=JavaScript, caption=Chai.js Should Beispiel]
+var chai = require('chai')
+	,config = require('../../config_test')
+	,db = require('../../lib/db');
+
+	chai.should();
+
+	var sequelize = db(config);
+	describe('Get all communities', function(){
+		it('should not have any communities', function(done){
+			(function() {
+				sequelize.daoFactoryManager.getDAO('Community').all().success(function(communities) {
+					communities.should.have.length(0);
+					done();
+				}).error(function(error) {
+					throw(error);
+				})
+			}).should.not.throw();
+		});
+	});
+\end{lstlisting}
+
+
+\section{Continuous Integration}
+Dieses Projekt verwendet Travis CI als Continuous Integration Lösung.
+
+Beide Git Repositories (Code \& Thesis) verfügen über einen \gls{PushHook} welcher automatisch einen Build im CI-System auslöst.
+
+
+\section{Code Reviews}
+Laufend sollen Code Reviews durchgeführt werden. Deshalb wurde pro Projektphase ein Arbeitspacket ``Code Review'' dem Team zugeordnet.
+
+
+\section{Code Coverage Analysis}
+
