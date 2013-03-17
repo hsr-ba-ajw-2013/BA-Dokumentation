@@ -3,44 +3,33 @@
 \subsection*{Frameworks}
 In der Technologie Evaluation zu \nameref{sec:technology-evaluation-javascript} stachen die beiden Frameworks Express.js \cite{Expressjs}
 und Sails.js \cite{sails} heraus.\\
-Während Express.js zwar viel stabiler ist und weitaus am Meisten genutzt wird für Javascript Web-Applikationen, ist Sails.js aufgrund der neuen
-Ideen für einen ersten Prototyp ausgewählt worden.
+Obwohl Express.js stabiler ist und weitaus mehr genutzt wird, ist Sails.js aufgrund der neuen Ideen und interessanten Ansätzen für einen ersten Prototyp ausgewählt worden.
 
-\subsubsection*{Sails.js Prototyp}
-Um sich ein Bild von Sails.js zu machen wurde ein einfacher Prototyp \cite{SailsPrototyp} erstellt.\\[1mm]
+\subsection{Sails.js Prototyp}
+Um sich ein Bild von Sails.js zu machen wurde ein einfacher Prototyp \cite{SailsPrototyp} erstellt.\\[0.5mm]
 
-Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstellen, andererseits auch um z.B. Models oder Controllers zu erstellen.
-Wie im \nameref{sec:erdiagramm} beschrieben, werden u.a. ein Task und ein User Model (sowie entsprechende Tabelle) benötigt.\\
-Um das \gls{ORM} zu testen, wurden diese beiden Models erstellt und verwendet.\\
+Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstellen, andererseits auch um verschiedene Komponenten wie Model oder Controller zu erstellen.
+Wie im \nameref{sec:erdiagramm} beschrieben, werden u.a. ein Task und ein Resident Model (sowie entsprechende Tabelle) benötigt.\\
+Um das \gls{ORM} ``Waterline'' \cite{Waterline} zu testen, wurden diese beiden Models implementiert.\\
 Das Task-Model mittels Sails.js definiert sieht so aus:\\
 
 \begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js]
 module.exports = {
-
 	attributes: {
-		name: "string",
-		description: "string",
-		points: "int",
-		userId: "int",
-		communityId: "int",
-	},
-
-	getUser: function() {
-		return User.find(this.userId);
-	},
-
-	getCommunity: function() {
-		return Community.find(this.communityId);
+		name: "string"
+		, description: "string"
+		, points: "int"
+		, userId: "int"
+		, communityId: "int"
 	}
-
 };
 \end{lstlisting}
 
-Mit einer Definition eines Models wird zusätzlich zur eigentlichen Verwendung des Models in der Applikation automatisch eine \gls{REST}-API erstellt.\\
-Damit lassen sich einerseits CRUD-Operationen direkt über den Web-Browser ausführen, andererseits existiert auch die Möglichkeit Socket.IO \cite{SocketIO} zu aktivieren und Models direkt von einem offenen \gls{Websocket} verwenden.\\
-Dieses Feature macht Sails.js sehr nützlich für \gls{RealTime}-Applikationen.\\[1mm]
+Mit einer Definition eines Models wird automatisch eine \gls{REST}-API für dieses erstellt.\\
+Damit lassen sich einerseits CRUD-Operationen direkt über HTTP ausführen, andererseits existiert auch die Möglichkeit Socket.IO \cite{SocketIO} zu aktivieren, um Models direkt von einem offenen \gls{Websocket} zu verwenden.\\
+Dieses Feature macht Sails.js sehr nützlich für \gls{RealTime}-Applikationen.\\[0.5mm]
 
-Um nun eine effektive HTML-Seite darstellen zu können wird ein Controller sowie eine View benötigt. Dies wurde im Prototyp für Aufgaben (Tasks) implementiert.\\
+Um eine effektive HTML-Seite darstellen zu können wird ein Controller sowie eine View benötigt. Dies wurde im Prototyp für Aufgaben (Tasks) implementiert.\\
 
 \begin{lstlisting}[language=JavaScript, caption=Task Controller in Sails.js, label=lst:sailsjstaskcontroller]
 var TaskController = {
@@ -70,10 +59,10 @@ var TaskController = {
 module.exports = TaskController;
 \end{lstlisting}
 
-In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' geladen. Das Code-Stück zeigt die grosse Schwäche von Waterline \cite{Waterline}, dem \gls{ORM} von Sails.js. Statt dass man auf dem ``task''-Objekt direkt ``.user'' aufrufen könnte, muss man den Umweg über ``User.find()'' gehen. \\
-Dies zeigt auf, dass Joins nicht unterstützt sind.\\[1mm]
+In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Linien 3 und 4) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. Statt dass man auf dem ``task''-Objekt direkt ``.user'' aufrufen könnte, muss man den Umweg über ``User.find()'' gehen. \\
+Bei einem ausgereiften ORM würden solche Methoden wegen der Definition von Relationen direkt zur Verfügung stehen.\\[0.5mm]
 
-Der Controller schickt, falls HTML als Content-Type mitgeschickt wird, folgendes Template zurück.
+Der Controller antwortet auf eine Anfrage eines Browsers mit folgendem HTML:
 
 \begin{lstlisting}[language=HTML, caption=Task Template]
 <div id="task-display">
@@ -105,24 +94,22 @@ Mit dem einfachen Script am Schluss des Task Templates wird aufgezeigt, wie man 
 
 \subsubsection*{Schlussfolgerung}
 
-Wie bereits angemerkt ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models \cite{SailsjsModelAssociations} noch das setzen von Indizes ist möglich.\\
-Weiter ist es für das User-Model nötig, BIGINTs definieren zu können. Dies ist unumgänglich, weil die Facebook User Id 64 Bit gross ist.
+Wie bereits vorher angemerkt, ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models \cite{SailsjsModelAssociations} noch das setzen von Indizes ist möglich.\\
+Für das Resident-Model ist es u.a. auch nötig, Facebook IDs zu speichern. Diese sind 64 Bit gross und wegen mangelhafter Unterstützung des ORMs wäre das gar nicht möglich.
 
-Nebst dem ORM ist auch das Framework und die zugehörige Dokumentation zu wenig ausgereift. Auch die Community war zum Zeitpunkt der Evaluation (siehe das Appendix zur \nameref{sec:appendix-technology-evaluation}) sehr klein.
-Alles in allem spricht relativ viel dagegen, Sails.js weiter zu verwenden. Deshalb ist ein zweiter Prototyp unter Verwendung von Express.js erstellt worden.
+Nebst dem ORM ist auch das Framework und die zugehörige Dokumentation wenig umfangreich. Auch die Community war zum Zeitpunkt der Evaluation (siehe Anhang \ref{sec:appendix-technology-evaluation} zur \nameref{sec:appendix-technology-evaluation}) sehr klein.
+Alles in allem spricht relativ viel dagegen, Sails.js weiter zu verwenden. Aus diesem Grund ist ein zweiter Prototyp unter Verwendung von Express.js erstellt worden.
 
-\subsection*{Express.js Prototyp}
+\subsection{Express.js Prototyp}
 
-Express.js \cite{Expressjs} ist ein sehr leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect}, sehr leicht erweitert werden kann.\\[1mm]
-Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein einfacher Prototyp \cite{ExpressjsPrototyp} erstellt.\\
-Nach der initialen Prototypen-Phase wurde der Branch allerdings mit dem Master-Branch zusammengeführt, damit der Prototyp für die eigentliche Arbeit weiterverwendet werden kann.
+Express.js \cite{Expressjs} ist ein leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect}, leicht erweitert werden kann.\\[1mm]
+Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein Prototyp \cite{ExpressjsPrototyp} erstellt.\\
+Dieser Prototyp wurde dann später für die eigentliche Applikation weiterverwendet.
 
 Der initiale Startpunkt einer Express.js Applikation ist die Datei ``app.js'' \cite{ExpressjsPrototypAppjs}.\\
-Dort werden alle benutzten Middlewares registriert, die Datenbank aufgesetzt und die Routen deklariert (Bzw. die Controller registriert).\\[0.5mm]
+Dort werden alle benutzten Middlewares registriert, die Datenbank aufgesetzt und Controller registriert.\\[0.5mm]
 
-Ein ganz einfacher Controller sieht z.B. so aus:
-
-\begin{lstlisting}[language=JavaScript, caption=Controller in Express.js, label=lst:controllerInExpressjs]
+\begin{lstlisting}[language=JavaScript, caption=Beispiel eines Controllers in Express.js, label=lst:controllerInExpressjs]
 exports.index = function(req, res){
 	// first Parameter: Template File to use
 	// 2nd Parameter: Context to pass to the template
@@ -130,7 +117,7 @@ exports.index = function(req, res){
 };
 \end{lstlisting}
 
-Das zugehörige Template könnte dann folgendermassen aussehen:
+Ein zugehöriges Template kann folgendermassen aussehen:
 
 \begin{lstlisting}[language=HTML, caption=Template in Express.js, label=lst:templateInExpressjs]
 <!DOCTYPE html>
@@ -147,12 +134,12 @@ Das zugehörige Template könnte dann folgendermassen aussehen:
 </html>
 \end{lstlisting}
 
-Mit den vorangegangenen zwei Quellcode-Listings \ref{lst:controllerInExpressjs} und \ref{lst:templateInExpressjs} ist ersichtlich, dass der Applikations-Entwickler sehr grosse Kontrolle über Express.js hat.\\
-Automatisch passiert in Express.js eigentlich nichts und dies ist ein grosser Vorteil im Bezug auf die Veranschaulichung der \cite{ROCA}-Prinzipien.
+In den vorangegangenen zwei Quellcode-Listings \ref{lst:controllerInExpressjs} und \ref{lst:templateInExpressjs} ist ersichtlich, dass der Applikations-Entwickler sehr grosse Kontrolle über Express.js hat.\\
+Automatisch passiert in Express.js eigentlich nichts. Dies ist ein grosser Vorteil im Bezug auf die Veranschaulichung der \nameref{sec:architekturrichtlinien}.
 
 \subsubsection*{\gls{ORM}}
 Im Gegensatz zu den anderen evaluierten Frameworks ist bei Express.js kein ORM enthalten. Deswegen musste auch bzgl. des ORMs eine kurze Evaluation gemacht werden.
-\nameref{tab:bewertungskriterienORM} zeigt die Kriterien und Gewichtung für die Evaluation des ORMs.
+Tabelle \ref{tab:bewertungskriterienORM} zeigt die Kriterien und Gewichtung für die Evaluation des ORMs.
 
 \begin{table}[H]
 \tablestyle
@@ -190,7 +177,7 @@ Im Gegensatz zu den anderen evaluierten Frameworks ist bei Express.js kein ORM e
 \label{tab:bewertungskriterienORM}
 \end{table}
 
-Die Tabelle \ref{tab:bewertungsmatrixORM} veranschaulicht den Grund für die Verwendung von Sequelize \cite{Sequelize}.
+Die Analyse ergab eine jeweils ähnliche Total-Bewertung bezüglich der Kriterien in \ref{tab:bewertungskriterienORM}. Trotzdem lässt sich in \ref{tab:bewertungsmatrixORM} den Grund für die Verwendung von Sequelize \cite{Sequelize} auslesen.
 
 \begin{table}[H]
 \newcolumntype{s}{>{\centering\hsize=0.15\hsize}X}
@@ -263,4 +250,5 @@ Die Tabelle \ref{tab:bewertungsmatrixORM} veranschaulicht den Grund für die Ver
 \label{tab:bewertungsmatrixORM}
 \end{table}
 
-Das Total ist zwar jeweils ähnlich, jedoch stechen bei ``Sequelize'' die Produktreife und die Unterstützung für Relationen heraus.
+Wie erwähnt haben alle verglichenen ORMs eine ähnliche Gesamtbewertung. Bei ``Sequelize'' stechen jedoch die Produktreife und die Unterstützung für Relationen heraus. \\
+Diese zwei Gründe zusammen mit der Roadmap \cite{RoadmapSequelize} von Sequelize haben schliesslich zur Überzeugung geführt, dass Sequelize die richtige Wahl ist.
