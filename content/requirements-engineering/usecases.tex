@@ -152,7 +152,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Um in einer WG beizutreten, muss der Link zur Einladung dem ``zukünftigen'' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung, jedoch, ist völlig dem WG-Administrator überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird vom System eine Bestätigung gefordert. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG ``registriert'' und zur Aufgabenseite der WG weitergeleitet.\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
+			Um in einer WG beizutreten, muss der Link zur Einladung dem ``zukünftigen'' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung ist völlig dem WG-Administrator überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird er vom System gefordert das Beitreten zu bestätigen. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG ``registriert'' und zur Aufgabenseite der WG weitergeleitet.\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -177,8 +177,8 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System der Bewohner als inaktiv und leitet der ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
-			Hat der Bewohner, als einziger, die Rolle ``WG-Administrator'', so muss er, vor dem inaktiv Setzen, seine Rolle einem anderen Bewohner übetragen. \newline//TODO: neuer UC???
+			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System der Bewohner als inaktiv und leitet den ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
+			Hat der Bewohner als einziger die Rolle ``WG-Administrator'', so muss er vor dem inaktiv Setzen seine Rolle an einen anderen Bewohner übetragen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -228,7 +228,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner wählt die Aufgabe, welche beabeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' erstellen wird ein Formular dargestellt, jedoch mit den bereits eingefügten Daten der Aufgabe. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann der Beewohne auf die Aufgabenliste.
+			Der Bewohner wählt die Aufgabe, welche beabeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' erstellen wird ein Formular dargestellt, jedoch mit den bereits eingefügten Daten der Aufgabe. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann der Bewohner auf die Aufgabenliste.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -280,7 +280,6 @@
 			\tabularnewline
 			\textit{Story} &
 			Der Bewohner wählt die Option ``Rangliste anzeigen''. Das System zeigt grafisch eine Rangliste aller Bewohner der WG.
-			\newline //TODO: tbd (Filter, Wall of Shame/Fame)
 			\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
@@ -306,7 +305,7 @@
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Als WG-Administrator hat man die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Administrator wird auf die Startseite weitergeleitet.
+			Der WG-Administrator hat die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Administrator wird auf die Anmeldeseite weitergeleitet.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -331,7 +330,7 @@
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Der WG-Administrator besitzt die Rechte die Benutzer (Bewohner) der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall eins besteht darin, einem Bewohner WG-Administrator rechte zu vergeben. Fall zwei ist die Möglichkeit einen User aus Community (WG) auszuschliessen (``kicken'').
+			Der WG-Administrator besitzt das Recht die Bewohner der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall eins besteht darin, einem Bewohner WG-Administratorrechte zu vergeben. Fall zwei ist die Möglichkeit einen Bewohner aus Community (WG) auszuschliessen (``kicken'').
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -356,7 +355,7 @@
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Gewissen Interaktionen, wie \nameref{subsec:uc3}, \nameref{subsec:uc7} oder \nameref{subsec:uc8}, sollen über die Social Media Plattform Facebook geteilt werden können. Wählt der Bewohner nach einer der aufgelisteten Use Cases die zu tun. So wird einen entsprechenden Text erzeugt und auf Facebook-Profil des Bewohners geteilt.
+			Gewissen Interaktionen, wie \nameref{subsec:uc3}, \nameref{subsec:uc7} oder \nameref{subsec:uc8}, sollen über die Social Media Plattform Facebook geteilt werden können. Wählt der Bewohner nach einer der aufgelisteten Use Cases die zu tun. So wird ein entsprechender Text erzeugt und die Möglichkeit geboten, diesen auf Facebook zu teilen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
