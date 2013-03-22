@@ -1,0 +1,254 @@
+\section{Evaluation Frameworks in Node.js}
+\label{sec:evaluation-frameworks-nodejs}
+
+In der Technologie Evaluation zu \nameref{sec:technology-evaluation-javascript} stachen die beiden Frameworks Express.js \cite{Expressjs}
+und Sails.js \cite{sails} heraus.\\
+Obwohl Express.js stabiler ist und weitaus mehr genutzt wird, ist Sails.js aufgrund der neuen Ideen und interessanten Ansätzen für einen ersten Prototyp ausgewählt worden.
+
+\subsection{Sails.js Prototyp}
+Um sich ein Bild von Sails.js zu machen wurde ein einfacher Prototyp \cite{SailsPrototyp} erstellt.\\[0.5mm]
+
+Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstellen, andererseits auch um verschiedene Komponenten wie Model oder Controller zu erstellen.
+Wie im \nameref{sec:erdiagramm} beschrieben, werden u.a. ein Task und ein Resident Model (sowie entsprechende Tabelle) benötigt.\\
+Um das \gls{ORM} ``Waterline'' \cite{Waterline} zu testen, wurden diese beiden Models implementiert.\\
+Das Task-Model mittels Sails.js definiert sieht so aus:\\
+
+\begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js]
+module.exports = {
+	attributes: {
+		name: "string"
+		, description: "string"
+		, points: "int"
+		, userId: "int"
+		, communityId: "int"
+	}
+};
+\end{lstlisting}
+
+Mit einer Definition eines Models wird automatisch eine \gls{REST}-API für dieses erstellt.\\
+Damit lassen sich einerseits CRUD-Operationen direkt über HTTP ausführen, andererseits existiert auch die Möglichkeit Socket.IO \cite{SocketIO} zu aktivieren, um Models direkt von einem offenen \gls{Websocket} zu verwenden.\\
+Dieses Feature macht Sails.js sehr nützlich für \gls{RealTime}-Applikationen.\\[0.5mm]
+
+Um eine effektive HTML-Seite darstellen zu können wird ein Controller sowie eine View benötigt. Dies wurde im Prototyp für Aufgaben (Tasks) implementiert.\\
+
+\begin{lstlisting}[language=JavaScript, caption=Task Controller in Sails.js, label=lst:sailsjstaskcontroller]
+var TaskController = {
+	get: function(req, res) {
+		var id = req.param('id');
+		Task.find(id).done(function(err, task) {
+			User.find(task.userId).done(function(err, user) {
+				var response = {
+					'task': task,
+					'user': user,
+					'title': task.name
+				};
+
+				if (req.acceptJson) {
+					res.json(response);
+				} else if(req.isAjax && req.param('partial')) {
+					response['layout'] = false;
+					res.view(response);
+				} else {
+					res.view(response);
+				}
+			});
+		});
+	}
+
+};
+module.exports = TaskController;
+\end{lstlisting}
+
+In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Linien 3 und 4) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. Statt dass man auf dem ``task''-Objekt direkt ``.user'' aufrufen könnte, muss man den Umweg über ``User.find()'' gehen. \\
+Bei einem ausgereiften ORM würden solche Methoden wegen der Definition von Relationen direkt zur Verfügung stehen.\\[0.5mm]
+
+Der Controller antwortet auf eine Anfrage eines Browsers mit folgendem HTML:
+
+\begin{lstlisting}[language=HTML, caption=Task Template]
+<div id="task-display">
+	<h1>Task: <%= task.name %></h1>
+	<ul>
+		<li>Points: <%= task.points %></li>
+		<li>Created At: <%= task.createdAt %></li>
+	</ul>
+	<h2>User: <%= user.name %></h2>
+	<ul>
+		<li>Created At: <%= user.createdAt %></li>
+	</ul>
+</div>
+<a href="#" id="reload">Reload!</a>
+<script>
+	$('#reload').on('click', function() {
+		$.ajax('/task/get/?id=<%= task.id %>&partial=true', {
+			success: function(response) {
+				var $response = $('<div class="body-mock">' + response + '</div>');
+				html = $response.find('#task-display');
+				$('#task-display').replaceWith(html);
+			}
+		});
+	});
+</script>
+\end{lstlisting}
+
+Mit dem einfachen Script am Schluss des Task Templates wird aufgezeigt, wie man ohne Neuladen der Seite direkt HTML ersetzen kann. Dies ist grundsätzlich Framework-unabhängig und es wurde dabei auch nicht auf ``RP14'' (Unobtrusive JavaScript) Wert gelegt.
+
+\subsubsection*{Schlussfolgerung}
+
+Wie bereits vorher angemerkt, ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models \cite{SailsjsModelAssociations} noch das setzen von Indizes ist möglich.\\
+Für das Resident-Model ist es u.a. auch nötig, Facebook IDs zu speichern. Diese sind 64 Bit gross und wegen mangelhafter Unterstützung des ORMs wäre das gar nicht möglich.
+
+Nebst dem ORM ist auch das Framework und die zugehörige Dokumentation wenig umfangreich. Auch die Community war zum Zeitpunkt der Evaluation (siehe Anhang \ref{sec:appendix-technology-evaluation} zur \nameref{sec:appendix-technology-evaluation}) sehr klein.
+Alles in allem spricht relativ viel dagegen, Sails.js weiter zu verwenden. Aus diesem Grund ist ein zweiter Prototyp unter Verwendung von Express.js erstellt worden.
+
+\subsection{Express.js Prototyp}
+
+Express.js \cite{Expressjs} ist ein leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect}, leicht erweitert werden kann.\\[1mm]
+Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein Prototyp \cite{ExpressjsPrototyp} erstellt.\\
+Dieser Prototyp wurde dann später für die eigentliche Applikation weiterverwendet.
+
+Der initiale Startpunkt einer Express.js Applikation ist die Datei ``app.js'' \cite{ExpressjsPrototypAppjs}.\\
+Dort werden alle benutzten Middlewares registriert, die Datenbank aufgesetzt und Controller registriert.\\[0.5mm]
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel eines Controllers in Express.js, label=lst:controllerInExpressjs]
+exports.index = function(req, res){
+	// first Parameter: Template File to use
+	// 2nd Parameter: Context to pass to the template
+	res.render('index', { title: 'Express' });
+};
+\end{lstlisting}
+
+Ein zugehöriges Template kann folgendermassen aussehen:
+
+\begin{lstlisting}[language=HTML, caption=Template in Express.js, label=lst:templateInExpressjs]
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<%- LRScript %>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<p>Welcome to <%= title %></p>
+	</body>
+</html>
+\end{lstlisting}
+
+In den vorangegangenen zwei Quellcode-Listings \ref{lst:controllerInExpressjs} und \ref{lst:templateInExpressjs} ist ersichtlich, dass der Applikations-Entwickler sehr grosse Kontrolle über Express.js hat.\\
+Automatisch passiert in Express.js eigentlich nichts. Dies ist ein grosser Vorteil im Bezug auf die Veranschaulichung der \nameref{sec:architekturrichtlinien}.
+
+\subsubsection*{\gls{ORM}}
+Im Gegensatz zu den anderen evaluierten Frameworks ist bei Express.js kein ORM enthalten. Deswegen musste auch bzgl. des ORMs eine kurze Evaluation gemacht werden.
+Tabelle \ref{tab:bewertungskriterienORM} zeigt die Kriterien und Gewichtung für die Evaluation des ORMs.
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l l X c}
+\tableheadcolor
+	\tablehead ID &
+	\tablehead Kriterium &
+	\tablehead Erläuterung &
+	\tablehead Gewichtung \tabularnewline
+\tablebody
+\textit{OK1} &
+	Unterstützung DBs &
+	Wieviele unterschiedliche Datenbanken unterstützt das ORM? Werden auch \gls{NoSQL}-Datenbanken unterstützt? \emph{Hohe Bewertung = Grosse Anzahl an Datenbanken}&
+	\faStar \tabularnewline
+\textit{OK2} &
+	Relationen &
+	Sind Relationen definierbar zwischen Tabellen? Verwenden diese die Datenbank-spezifischen Foreign Keys dafür (falls möglich)? \emph{Hohe Bewertung = Relationen möglich und verwendet Datenbank-spezifische Datentypen}&
+	\faStar\faStar\faStar \tabularnewline
+\textit{OK3} &
+	Produktreife &
+	Wie gut hat sich das ORM bis jetzt in der Realität beweisen können? Wie lange existiert es schon? Gibt es eine aktive Community und wird es aktiv weiterentwickelt? \emph{Hohe Bewertung = Hohe Produktreife}&
+	\faStar\faStar\faStar\tabularnewline
+\textit{OK4} &
+	``Ease of use'' &
+	Wie angenehm ist das initiale Erstellen, die Konfiguration und die Unterhaltung von Models? Führt das ORM irgendwelchen ``syntactic sugar'' \cite{syntacticsugar} ein um die Arbeit zu erleichtern? \emph{Hohe Bewertung = Hoher ``Ease of use''-Faktor} &
+	\faStar \tabularnewline
+\textit{OK5} &
+	Testbarkeit &
+	Wie gut können die mit dem Framework oder der Technologie erstellte Komponenten durch Unit Tests getestet werden? \emph{Hohe Bewertung = Hohe Testbarkeit} &
+	\faStar\faStar \tabularnewline
+\tableend
+\end{tabularx}
+\caption{Bewertungskriterien für ORM-Evaluation}
+\label{tab:bewertungskriterienORM}
+\end{table}
+
+Die Analyse ergab eine jeweils ähnliche Total-Bewertung bezüglich der Kriterien in \ref{tab:bewertungskriterienORM}. Trotzdem lässt sich in \ref{tab:bewertungsmatrixORM} den Grund für die Verwendung von Sequelize \cite{Sequelize} auslesen.
+
+\begin{table}[H]
+\newcolumntype{s}{>{\centering\hsize=0.15\hsize}X}
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{X s s s s s s}
+\tableheadcolor
+	\tablehead &
+	\rotatebox{90}{\bfseries\textit{OK1 Unterstützung DBs} } &
+	\rotatebox{90}{\bfseries\textit{OK2 Relationen}} &
+	\rotatebox{90}{\bfseries\textit{OK3 Produktreife}} &
+	\rotatebox{90}{\bfseries\textit{OK4 ``Ease of use''}} &
+	\rotatebox{90}{\bfseries\textit{OK5 Testbarkeit}} &
+	\rotatebox{90}{\bfseries\textit{Total}}
+	\tabularnewline
+\tablebody
+	\textit{JugglingDB} &
+	\threeStars &
+	\oneStar &
+	\oneStar &
+	\twoStars &
+	\twoStars &
+	\directlua{
+		tex.print(math.round(
+			(3 * 1 +
+			1 * 3 +
+			1 * 3 +
+			2 * 1 +
+			2 * 2) / 5
+		))
+	}
+	\tabularnewline
+
+	\textit{Node-ORM2} &
+	\twoStars &
+	\twoStars	&
+	\oneStar &
+	\threeStars &
+	\oneStar &
+	\directlua{
+		tex.print(math.round(
+			(2 * 1 +
+			2 * 3 +
+			1 * 3 +
+			3 * 1 +
+			1 * 2) / 5
+		))
+	}
+	\tabularnewline
+
+	\textit{Sequelize} &
+	\oneStar &
+	\twoStars &
+	\twoStars &
+	\twoStars &
+	\oneStar &
+	\directlua{
+		tex.print(math.round(
+			(1 * 1 +
+			2 * 3 +
+			2 * 3 +
+			2 * 1 +
+			1 * 2) / 5
+		))
+	}
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Bewertungsmatrix JavaScript ORMs}
+\label{tab:bewertungsmatrixORM}
+\end{table}
+
+Wie erwähnt haben alle verglichenen ORMs eine ähnliche Gesamtbewertung. Bei ``Sequelize'' stechen jedoch die Produktreife und die Unterstützung für Relationen heraus. \\
+Diese zwei Gründe zusammen mit der Roadmap \cite{RoadmapSequelize} von Sequelize haben schliesslich zur Überzeugung geführt, dass Sequelize die richtige Wahl ist.
