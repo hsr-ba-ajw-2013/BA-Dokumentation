@@ -5,9 +5,9 @@
 * Michael Weibel
 
 ## PDF Build
-A reader friendly PDF version of this thesis is available under [http://mweibel.github.com/BA-Dokumentation/thesis.pdf](http://mweibel.github.com/BA-Dokumentation/thesis.pdf).
+A reader friendly PDF version of this thesis is available under [http://hsr-ba-ajw-2013.github.com/BA-Dokumentation/thesis.pdf](http://hsr-ba-ajw-2013.github.com/BA-Dokumentation/thesis.pdf).
 
-[![Build Status](https://travis-ci.org/mweibel/BA-Dokumentation.png)](https://travis-ci.org/mweibel/BA-Dokumentation)
+[![Build Status](https://travis-ci.org/hsr-ba-ajw-2013/BA-Dokumentation.png)](https://travis-ci.org/hsr-ba-ajw-2013/BA-Dokumentation)
 
 ## LaTeX Template
 ### Reuse
