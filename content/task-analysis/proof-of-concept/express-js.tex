@@ -1,0 +1,36 @@
+\subsection{Prototyp mit Express.js}
+
+Express.js \cite{Expressjs} ist ein leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect}, leicht erweitert werden kann.
+
+Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein Prototyp \cite{ExpressjsPrototyp} erstellt.  Dieser Prototyp wurde dann später für die eigentliche Applikation weiterverwendet.
+
+Der initiale Startpunkt einer Express.js Applikation ist die Datei ``app.js'' \cite{ExpressjsPrototypAppjs}. Dort werden alle benutzten Middlewares registriert, die Datenbank aufgesetzt und Controller registriert.
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel eines Controllers in Express.js, label=lst:controllerInExpressjs]
+exports.index = function(req, res){
+	// first Parameter: Template File to use
+	// 2nd Parameter: Context to pass to the template
+	res.render('index', { title: 'Express' });
+};
+\end{lstlisting}
+
+Ein zugehöriges Template kann folgendermassen aussehen:
+
+\begin{lstlisting}[language=HTML, caption=Template in Express.js, label=lst:templateInExpressjs]
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %></title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<%- LRScript %>
+	</head>
+	<body>
+		<h1><%= title %></h1>
+		<p>Welcome to <%= title %></p>
+	</body>
+</html>
+\end{lstlisting}
+
+In den vorangegangenen zwei Quellcode-Listings \ref{lst:controllerInExpressjs} und \ref{lst:templateInExpressjs} ist ersichtlich, dass der Applikations-Entwickler sehr grosse Kontrolle über Express.js hat.
+
+Automatisch passiert in Express.js eigentlich nichts. Dies ist ein grosser Vorteil im Bezug auf die Veranschaulichung der \nameref{sec:architekturrichtlinien}.

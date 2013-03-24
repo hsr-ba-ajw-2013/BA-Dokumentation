@@ -55,6 +55,44 @@ Am verheissungsvollsten wurde die Idee des \gls{WG} Aufgabenverwaltungstool eing
 
 In einem nächsten Schritt wurde die rohe Produktidee mit einem Mindmap weiter ausgebaut und die ersten funktionalen Anforderungen wurden entwickelt. Daneben konnte eine konkrete Kurzbeschreibung sowie das erste Branding für das geplante Produkt formuliert resp. entworfen werden.
 
+\section{Branding}
+\label{sec:appendix-branding}
+
+\subsection*{Grundfarbpalette}
+\begin{figure}[H]
+	\definecolor{spec_white}{HTML}{FFFFFF}
+	\definecolor{spec_blue}{HTML}{1A3143}
+	\definecolor{spec_red}{HTML}{A4000F}
+
+	\begin{tikzpicture}
+		\tikzstyle{colorswatch} = [rectangle,draw=none,minimum width=15mm,minimum height=15mm,thick];
+		\tikzstyle{colorspec} = [draw=none,fill=none,right];
+
+		\matrix[row sep=3mm, column sep=3mm]{
+			\node[colorswatch,draw=black,fill=spec_white]{}; &
+			\node[colorspec]{\sffamily\bfseries Neutral \normalfont\sffamily\#FFFFFF, RGB(255,255,255)}; \\
+			\node[colorswatch,fill=spec_blue]{}; &
+			\node[colorspec]{\sffamily\bfseries Akzent 1 \normalfont\sffamily\#1A3143, RGB(26,49,67)}; \\
+			\node[colorswatch,fill=spec_red]{}; &
+			\node[colorspec]{\sffamily\bfseries Akzent 2 \normalfont\sffamily\#A4000F, RGB(164,0,15)}; \\
+		};
+	\end{tikzpicture}
+	\caption{Branding Farbpalette}
+\end{figure}
+
+\subsection*{Logo \& Logovariationen}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=5cm]{content/images/roomies-withshadow.png}
+	\caption{Roomies Logo im College Stil}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{content/images/logo-variants.png}
+	\caption{Roomies Logo in verschiedenen Grössen \& Varianten}
+\end{figure}
+
 
 \section{Mindmap}
 \includepdf[pages=1,pagecommand={},scale=0.75,landscape=true]{content/appendix/mindmap-roomies.pdf}
