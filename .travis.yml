@@ -44,7 +44,7 @@ env:
         # GH_USER_NAME & GH_PROJECT_NAME
         # The Github Account you created the OAuth token with and the repo you
         # want to push the generated PDF to (gh-pages branch is used automatically)
-        - GH_USER_NAME: mweibel
+        - GH_USER_NAME: hsr-ba-ajw-2013
         - GH_PROJECT_NAME: BA-Dokumentation
 
         # GIT_AUTHOR_NAME & GIT_AUTHOR_EMAIL
