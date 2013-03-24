@@ -1,0 +1,53 @@
+\chapter{Qualitätsmanagement}
+\label{sec:qualitymanagement}
+
+\section{Coding Guideline}
+Die Coding Style Guideline ist im Anhang \ref{sec:coding-guidelines} ``\nameref{sec:coding-guidelines}'' einsehbar.
+
+
+\section{Test Guideline}
+Die Beispielapplikation wird nach der \gls{TDD}-Methodik entwickelt.
+
+\subsection{Unit Testing}
+Mocha \cite{Mocha} wird als Framework für das Erstellen von Unit Tests verwendet. Es ermöglicht das einfache Entwickeln von asynchronen Unit Tests und bietet eine vielzahl verschiedener Testreports.
+
+Um die Unit Tests mit einer möglichst angenehmen Syntax verfassen zu können wird Chai.JS \cite{ChaiJS} eingesetzt. Chai bittet drei verschiedene Assert-Varianten an. Innerhalb dieses Projekts wird die ``Should''-Formulierung verwendet:
+
+\begin{lstlisting}[language=JavaScript, caption=Beispiel eines Unit Tests mit Mocha und Chai.js]
+var chai = require('chai')
+	,config = require('../../config_test')
+	,db = require('../../lib/db');
+
+	chai.should();
+
+	var sequelize = db(config);
+	describe('Community DAO', function(){
+		it('should not have any communities', function(done){
+			(function() {
+				sequelize.daoFactoryManager.getDAO('Community').all().success(function(communities) {
+					communities.should.have.length(0);
+					done();
+				}).error(function(error) {
+					throw(error);
+				})
+			}).should.not.throw();
+		});
+	});
+\end{lstlisting}
+
+\subsection{Test Coverage Analysis}
+Zur Überprüfung der Test Coverage wird JSCover \cite{JSCover} verwendet. Es ist komplett in den \gls{CI} Prozess integriert und ermöglicht das einfache Überprüfen der aktuellsten Metriken.
+
+
+\section{Continuous Integration}
+\label{sec:continuousintegration}
+
+Mit Travis CI werden fortlaufende Builds der Beispielapplikation erstellt. Diese stellen deren Funktionalität entsprechend der vorhandenen Unit Tests sicher und führen die Test Coverage Analyse durch.
+Weiter wird jeweils eine aktuelle Version der Quellcode-Dokumentation mittels NaturalDocs erstellt.
+
+Als Besonderheit wird auch diese Dokumentation fortlaufend mit Travis CI generiert. Dazu wird LaTeX Quelltext mittels TexLive in ein PDF umgewandelt und auf dem Internet zur Verfügung gestellt.
+
+\section{Code Reviews}
+Code Reviews sind während der Projektplanungsphase bereits fix in die fünf verschiedenen Construction-Phasen eingeplant.
+
+Es werden jeweils gezielt Artefakte ausgewählt und überprüft. Dabei soll sowohl ein funktioneller Review stattfinden, als auch die Einhalteung der aufgestellten Code Guideline sichergestellt werden.

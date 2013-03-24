@@ -1,0 +1,176 @@
+\subsection{JavaScript}
+\label{sec:technology-evaluation-javascript}
+
+JavaScript ist oder war hauptsächlich als ``Webprogrammiersprache'' bekannt. In den vergangenen Jahren wurde es ausschliesslich innerhalb des Internetbrowsers verwendet um starren Internetseiten zu mehr ``Interaktivität'' zu verhelfen. Insbesondere den Anstrengungen von Mozilla \cite{SpiderMonkey} und Google \cite{V8JavaScript} verdankt der früher für schlechte Performance und Codequalität verschrieenen Programmiersprache ihren neuen Glanz: Mit JavaScript sind heute innerhalb des Browsers komplexe und umfangreiche Applikationen problemlos umzusetzen und weit verbreitet.
+
+Die quelloffene V8 JavaScript Engine \cite{V8JavaScript} von Google hat 2009 zudem den Sprung weg vom Browser geschafft: node.js \cite{nodejs} bietet die Engine als eigenständigen Skriptinterpreter an und verfügt über eine umfangreiche, leistungsstarke und systemnahe API. Die neu entstandene Plattform erfreut sich in der Opensource Community grösster Beliebtheit. So sind seit der ersten Veröffentlichung eine Vielzahl an Frameworks und Bibliotheken zu den verschiedensten Themengebieten entstanden.
+
+Auch der Bereich der Webframeworks kann so unterdessen eine Menge an interessanten Libraries aufweisen. Für die Evaluation im Bezug auf diese Bachelorarbeit werden folgende Frameworks genauer analysiert:
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X l}
+\tableheadcolor
+	\tablehead Framework &
+	\tablehead Erläuterung \tabularnewline
+\tablebody
+\textit{Express.js} &
+	Express.js \cite{Expressjs} baut auf dem Basisframework Connect \cite{connect} auf. Das damit durchgängig umgesetzte Middleware-Konzept ermöglicht die entkoppelte Entwicklung von simplen Webservern bis hin ausgefeilten Webservices. Zu Beginn genügen max. 10 Zeilen Quellcode, um einen GET-Request \cite{HTTPRequest} entgegen zu nehmen und eine Antwort an den Aufrufer zurück zu senden. Dem Ausbau zu komplexeren Applikationen steht dank der erwähnten Middleware-Architektur jedoch nichts im Wege.
+	\tabularnewline
+\textit{Tower.js} &
+	Pate für Tower.js \cite{towerjs} steht nach eigenen Angaben des Entwicklers Ruby on Rails. Entsprechend umfangreich sind auch hier die \gls{Scaffolding}funktionalitäten. Das Framework selbst ist mit CoffeeScript \cite{CoffeeScript} entwickelt worden. Wie das Ruby-Vorbild bietet auch Tower.js ein ausgewachsenes MVC-Pattern zur Entwicklung eigener Applikationen an.
+	\tabularnewline
+\textit{derby} &
+	Das Framework Derby \cite{Derby} nimmt sich das oben eingeführte Express.js zur Grundlage und erweitert es im das Model-View-Controller-Pattern. Es bleibt dabei extrem leichtgewichtig, ermöglicht aber leider keine Browserclients welche der Anforderung des \emph{Unobtrusive JavaScripts} genügen mögen: Derby-Applikationen werden komplett im Browser gerendert und bieten keine Möglichkeit, HTML-Markup auf dem Server zu generieren.
+	\tabularnewline
+\textit{Geddy} &
+	Geddy \cite{Geddy} ist ein weitere node.js Kandidat, welcher sich Ruby on Rails zum Vorbild nimmt. Dementsprechend vergleichbar ist der Funktionsumfang mit Tower.js. Einer der auffälligeren Unterschiede ist jedoch, dass Geddy auf CoffeeScript vollends verzichtet.
+	\tabularnewline
+\textit{Sails} &
+	Sails \cite{sails} ist der jüngste Frameworkkandidat für JavaScript. Die Grundkonzepte von Ruby on Rails werden mit um einen interessanten ``\gls{Realtime}''-Aspekt mittels \glspl{Websocket} erweitert. So kann jede Ressource über eine einfache REST-Schnittstelle als auch über eine \gls{Websocket}-Verbindung angesprochen werden. Damit erleichtert sich das asynchrone resp. servergesteuerte Aktualisieren des Frontends. Zusätzlich beinhaltet Sails bereits eine \gls{ORM} Bibliothek.
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Shortlist Analysekandidaten JavaScript}
+\end{table}
+
+
+
+\subsubsection*{Bewertungsmatrix}
+
+\begin{table}[H]
+\newcolumntype{s}{>{\centering\hsize=0.15\hsize}X}
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{X s s s s s s s}
+\tableheadcolor
+	\tablehead &
+	\rotatebox{90}{\bfseries\textit{TK1 Eigenkonzepte} } &
+	\rotatebox{90}{\bfseries\textit{TK2 Eignung}} &
+	\rotatebox{90}{\bfseries\textit{TK3 Produktreife}} &
+	\rotatebox{90}{\bfseries\textit{TK4 Aktualität}} &
+	\rotatebox{90}{\bfseries\textit{TK5 ``Ease of use''}} &
+	\rotatebox{90}{\bfseries\textit{TK6 Testbarkeit}} &
+	\rotatebox{90}{\bfseries\textit{Gesamtbewertung}}
+	\tabularnewline
+\tablebody
+	\textit{Express.js}	&
+	\threeStars &
+	\threeStars	&
+	\twoStars &
+	\threeStars &
+	\twoStars &
+	\threeStars &
+	\directlua{
+		tex.print(math.round(
+			(3 * 3 +
+			3 * 3 +
+			2 * 3 +
+			3 * 1 +
+			2 * 2 +
+			3 * 2) / 6
+		))
+	}
+	\tabularnewline
+
+	\textit{Tower.js} &
+	\twoStars &
+	\twoStars &
+	\oneStar &
+	\threeStars &
+	\threeStars	&
+		&
+	\directlua{
+		tex.print(math.round(
+			(2 * 3 +
+			2 * 3 +
+			1 * 3 +
+			3 * 1 +
+			3 * 2 +
+			0 * 2) / 6
+		))
+	}
+	\tabularnewline
+
+
+	\textit{derby} &
+	\twoStars &
+	\oneStar &
+	\oneStar &
+	\threeStars &
+	\twoStars &
+		&
+	\directlua{
+		tex.print(math.round(
+			(2 * 3 +
+			1 * 3 +
+			1 * 3 +
+			3 * 1 +
+			2 * 2 +
+			0 * 2) / 6
+		))
+	}
+	\tabularnewline
+
+
+	\textit{Geddy} &
+	\threeStars &
+	\oneStar &
+	\twoStars &
+	\twoStars &
+	\threeStars &
+	&
+	\directlua{
+		tex.print(math.round(
+			(3 * 3 +
+			1 * 3 +
+			2 * 3 +
+			2 * 1 +
+			3 * 2 +
+			0 * 2) / 6
+		))
+	}
+	\tabularnewline
+
+
+	\textit{Sails} &
+	\twoStars &
+	\twoStars &
+	\oneStar &
+	\threeStars &
+	\twoStars &
+	\oneStar &
+	\directlua{
+		tex.print(math.round(
+			(2 * 3 +
+			2 * 3 +
+			1 * 3 +
+			3 * 1 +
+			2 * 2 +
+			1 * 2) / 6
+		))
+	}
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Bewertungsmatrix JavaScript Frameworks}
+\end{table}
+
+
+\subsubsection*{Interpretation}
+
+Das Kandidatenfeld lässt sich grob in zwei Felder aufteilen:
+
+\begin{enumerate}
+	\item \emph{Grundlagenframework} \\
+	Das Grundlagenframework Express.js bietet ein solides und ausbaubares Fundament
+	\item \emph{MVC-Frameworks} \\
+	Tower.js, derby, Geddy und Sails setzen auf einer höheren Abstraktionsebene an und maskieren zugrundeliegende MVC-Komplexität. \\ Im Falle von Tower.js, derby und Sails wird das oben erwähnte Express.js sogar als Basis verwendet.
+\end{enumerate}
+
+Eine besondere Erwähnung verdient Sails: Es bringt als einziges Framework \gls{Realtime}-Funktionalitäten mit. Zwar zählt dieses Feature nicht zu den bewerteten Kriterien, trotzdem setzt sich Sails damit von den restlichen Kandidaten ab. Weiter bemerkenswert ist, dass Sails im Vergleich zu den restlichen MVC-Frameworks einen relativ tiefen Einblick in die Konzeptinnereien zulässt.
+
+Nach Punkten gewinnt das Basisframework Express.js ganz klar die Evaluation in der Kategorie JavaScript.
+
+Aufgrund der interessanten Ansätze welche Sails wählt, und dabei im Vergleich zu Express.js bereits ein \gls{ORM} mitbringt, entscheidet sich das Projektteam trotz der schlechteren Bewertung im Bereich JavaScript für \emph{Sails}.

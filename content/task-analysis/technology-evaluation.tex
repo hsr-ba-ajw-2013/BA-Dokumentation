@@ -1,0 +1,86 @@
+\section{Technologieevaluation}
+Das Thema ``Architekturkonzepte moderner Web-Applikationen'' legt den Schluss nahe, neben aktuellsten Architekturprinzipien auch auf die neusten Technologien bei der Umsetzung der Beispielapplikation zu setzen. Im Bereich der Technologiewahl soll dementsprechend ganz bewusst auf etablierte Platzhirsche wie Java oder C\# (in Verbindung mit deren Web-Frameworks) verzichtet werden.
+
+Unter Berücksichtigung der persönlichen Erfahrungen und Einschätzungen aller Projektteilnehmer wurde in Vereinbarung mit dem Betreuer im Zuge einer Evaluation eine Shortlist mit folgenden Technologiekandidaten zusammengestellt:
+
+\begin{itemize}
+	\item \emph{Ruby}\\
+	Ruby hat sich in der näheren Vergangenheit zusammen mit Ruby On Rails im Markt etablieren können. Als relativ junge Technologie durfte es aus diesem Grund bei einer Evaluation nicht ignoriert werden.
+
+	\item \emph{Java}\\
+	Trotz des einführenden Statements, Platzhirsche von einer engeren Auswahl auszuschliessen, war das Projektteam aufgrund der vorangegangenen Studienarbeit davon überzeugt, dass Java, insbesondere als Backendtechnologie, mit den ``jungen Wilden'' problemlos mithalten kann.
+
+	\item \emph{JavaScript}\\
+	Während den letzten zwei Jahren erlebte JavaScript eine Renaissance: Mit node.js schaffte es den Sprung vom Frontend-Layer ins Backend und erfreut sich in der OpenSource als auch der Industrie-Community grösster Beliebtheit.
+\end{itemize}
+
+Im folgenden Abschnitt werden übergreifende Bewertungskriterien definiert, welche anschliessend auf alle drei Technologiekandidaten, resp. deren Frameworks angwendet werden können.
+
+\newpage
+\subsection{Bewertungskriterien \& Gesamtbewertung}
+Die folgende Tabelle definert sechs Kriterien, welche zur Bewertung einer Technologie oder eines Frameworks jeweils mit 0-3 Sternen bewertet werden können.
+
+Die Spalte \emph{Gewichtung} gibt an, als wie wichtig das betreffende Kriterium im Bezug auf die Aufgabenstellung anzusehen ist.
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l l X c}
+\tableheadcolor
+	\tablehead ID &
+	\tablehead Kriterium &
+	\tablehead Erläuterung &
+	\tablehead Gewichtung \tabularnewline
+\tablebody
+\textit{TK1} &
+	Eigenkonzepte &
+	Wie viele eigene Konzepte \& Ideen bringt eine Technologie resp. ein Framework mit? Viele spezifische Konzepte bedeuten eine steile Lernkurve für Neueinsteiger und sind darum tendenziell ungeeignet für die Verwendung in einem Unterrichtsmodul. \emph{Hohe Bewertung = Wenig Eigenkonzepte}&
+	\faStar\faStar\faStar \tabularnewline
+\textit{TK2} &
+	Eignung &
+	Wie gut eignet sich eine Technologie oder ein Framework für die Demonstration der Architekturrichtlinien? Geschieht alles ``hinter'' dem Vorhang oder sind einzelne Komponenten einsehbar? \emph{Hohe Bewertung = Hohe Eignung}&
+	\faStar\faStar\faStar \tabularnewline
+\textit{TK3} &
+	Produktreife &
+	Wie gut hat sich das Framework oder die Technologie bis jetzt in der Realität beweisen können? Wie lange existiert es schon? Gibt es eine aktive Community und wird es aktiv weiterentwickelt? \emph{Hohe Bewertung = Hohe Produktreife}&
+	\faStar\faStar\faStar\tabularnewline
+\textit{TK4} &
+	Aktualität &
+	Diese Arbeit befasst sich um ``moderne Web-Applikationen''. So sollte auch die zu verwendende Technologie gewissermassen nicht von ``vorgestern'' sein. \emph{Hohe Bewertung = Hohe Aktualität}&
+	\faStar \tabularnewline
+\textit{TK5} &
+	``Ease of use'' &
+	Wie angenehm ist das initiale Erstellen, die Konfiguration und die Unterhaltung einer Applikation? Führt das Framework irgendwelchen ``syntactic sugar'' \cite{syntacticsugar} ein um die Arbeit zu erleichtern? \emph{Hohe Bewertung = Hoher ``Ease of use''-Faktor} &
+	\faStar\faStar \tabularnewline
+\textit{TK6} &
+	Testbarkeit &
+	Wie gut können die mit dem Framework oder der Technologie erstellte Komponenten durch Unit Tests getestet werden? \emph{Hohe Bewertung = Hohe Testbarkeit} &
+	\faStar\faStar \tabularnewline
+\tableend
+\end{tabularx}
+\caption{Bewertungskriterien für Technologieevaluation}
+\label{tab:bewertungskriterien}
+\end{table}
+
+
+Für jedes Framework wird abschliessend eine Gesamtbewertung in Form einer Zahl errechnet. Dies geschieht mit folgender Formel:
+
+\begin{figure}[H]
+	\centering
+	\large
+	\begin{math}
+		\frac{\sum \limits_{n=1}^6 Bewertung_{TK_n} \times {Gewichtung_{TK_n}}}{6}
+	\end{math}
+	\caption{Berechnungsformel Gesamtbewertung}
+\end{figure}
+
+
+\newpage
+\input{content/task-analysis/technology-evaluation/ruby}
+
+\input{content/task-analysis/technology-evaluation/java}
+
+\input{content/task-analysis/technology-evaluation/javascript}
+
+\newpage
+\input{content/task-analysis/technology-evaluation/showdown}

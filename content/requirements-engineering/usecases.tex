@@ -1,0 +1,363 @@
+\newpage
+
+\section{Use Cases}
+
+\begin{figure}[h!]
+	\centering{
+		\resizebox{0.9\textwidth}{!} {
+			\begin{tikzpicture}
+				\begin{umlsystem}[x=5]{Roomies}
+
+					\umlusecase[y=0]{UC1: Anmelden}
+					\umlusecase[y=-2]{UC2: WG erstellen}
+					\umlusecase[y=-4]{UC3: WG beitreten}
+					\umlusecase[y=-6]{UC4: WG verlassen}
+					\umlusecase[y=-8]{UC5: Aufgabe erstellen}
+					\umlusecase[y=-10]{UC6: Aufgabe bearbeiten}
+					\umlusecase[y=-12]{UC7: Aufgabe erledigen}
+					\umlusecase[y=-14]{UC8: Rangliste anzeigen}
+					\umlusecase[y=-16]{UC9: WG auflösen}
+					\umlusecase[y=-18]{UC10: Benutzer verwalten}
+					\umlusecase[x=8, y=-8, width=2cm]{UC11: auf Social Media Plattform teilen}
+
+				\end{umlsystem}
+
+				\umlactor[y=-7]{Bewohner}
+				\umlactor[y=-16]{WG-Administrator}
+				%\umlactor[y=-25]{Administrator}
+				\umlactor[y=-8, x=17]{Facebook}
+
+				\umlinherit{WG-Administrator}{Bewohner}
+
+				\umlextend{usecase-11}{usecase-3}
+				\umlextend{usecase-11}{usecase-7}
+				\umlextend{usecase-11}{usecase-8}
+
+				\umlassoc{Bewohner}{usecase-1}
+				\umlassoc{Bewohner}{usecase-2}
+				\umlassoc{Bewohner}{usecase-3}
+				\umlassoc{Bewohner}{usecase-4}
+				\umlassoc{Bewohner}{usecase-5}
+				\umlassoc{Bewohner}{usecase-6}
+				\umlassoc{Bewohner}{usecase-7}
+				\umlassoc{Bewohner}{usecase-8}
+				% \umlassoc{Bewohner}{usecase-11}
+
+				\umlassoc{WG-Administrator}{usecase-9}
+				\umlassoc{WG-Administrator}{usecase-10}
+
+				\umlassoc{Facebook}{usecase-11}
+				\umlassoc{Facebook}{usecase-1}
+
+				\umlnote[x=13, y=0]{usecase-1}{Die erste Anmeldung wird als eine Registrierung interpretiert}
+				\umlnote[x=13, y=-3]{usecase-3}{Eine WG kann nur über eine Einladung (Link) beigetreten werden}
+			\end{tikzpicture}
+		}
+	}
+
+	\caption{Use Case Diagramm}
+\end{figure}
+
+\subsection{Akteure}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tableheadcolor
+		\tablehead Name &
+		\tablehead Beschreibung \tabularnewline
+		\tablebody
+			Bewohner &
+			Als Bewohner wird ein Anwender der Roomies Anwendung bezeichnet, der zu einer WG gehört. \newline
+			Dieser besitzt die Rechte Aufgaben seiner WG zu verwalten.
+			\tabularnewline
+			WG-Administrator &
+			Der WG-Administrator ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch zu deren Administrator. Diese Rolle kann an Bewohner weitergegeben werden.
+			\tabularnewline
+			Facebook &
+			Facebook ist die Schnittstelle zur Social Media Plattform. Diese ermöglicht dem System auf die Daten des Bewohners, die auf Facebook verfügbar sind, zuzugreifen. So einen einfachen Login anzubieten und Daten zu teilen.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{Aktoren}
+\end{table}
+
+% Use Case 1
+\subsection{UC1: Anmelden}\label{subsec:uc1}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			-
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Secondary Actor} &
+			Facebook
+			\tabularnewline
+			\textit{Story} &
+			Der Bewohner startet Roomies. Hier zeigt ihm das System das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die WG-Startseite weitergeleitet.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC1: Anmelden}
+\end{table}
+
+
+% Use Case 2
+\subsection{UC2: WG erstellen}\label{subsec:uc2}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F1
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch zu Keiner angehört. Hierfür wählt der Bewohner die Option ``WG erstellen''. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet der Bewohner auf die Aufgabenseite der WG weiter. Ebenfalls die Rolle WG-Administrator werden dem Bewohner automatisch zugeteilt.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC2: WG erstellen}
+\end{table}
+
+
+% Use Case 3
+\subsection{UC3: WG beitreten}\label{subsec:uc3}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F2
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			Um in einer WG beizutreten, muss der Link zur Einladung dem ``zukünftigen'' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung ist dem WG-Administrator überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird er vom System gefordert das Beitreten zu bestätigen. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG ``registriert'' und zur Aufgabenseite der WG weitergeleitet.\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC3: WG beitreten}
+\end{table}
+
+
+% Use Case 4
+\subsection{UC4: WG verlassen}\label{subsec:uc4}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F5
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System der Bewohner als inaktiv und leitet den ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
+			Hat der Bewohner als einziger die Rolle ``WG-Administrator'', so muss er vor dem inaktiv Setzen seine Rolle an einen anderen Bewohner übetragen.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC4: WG verlassen}
+\end{table}
+
+
+% Use Case 5
+\subsection{UC5: Aufgabe erstellen}\label{subsec:uc5}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F3
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			Bewohner wählt die Option ``Aufgabe erstellen''. Das System zeigt das zugehörige Formular. Nachdem der Bewohner es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet der Bewohner zurück auf die Aufgabenseite.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC5: Aufgabe erstellen}
+\end{table}
+
+
+% Use Case 6
+\subsection{UC6: Aufgabe bearbeiten}\label{subsec:uc6}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F6
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			Der Bewohner wählt die Aufgabe, welche beabeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' erstellen wird ein Formular dargestellt, jedoch mit den bereits eingefügten Daten der Aufgabe. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann der Bewohner auf die Aufgabenliste.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC6: Aufgabe bearbeiten}
+\end{table}
+
+
+% Use Case 7
+\subsection{UC7: Aufgabe erledigen}\label{subsec:uc7}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F4
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzten. Hierfür wählt er für die entsprechende Aufgabe die Option ``erledigt''. Das System setzt den Bewohner für die Eigenschaft ``Erledigt durch'' und blendet die Aufgabe aus.
+			\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC7: Aufgabe erledigen}
+\end{table}
+
+
+% Use Case 8
+\subsection{UC8: Rangliste anzeigen}\label{subsec:uc8}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F7
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			Der Bewohner wählt die Option ``Rangliste anzeigen''. Das System zeigt grafisch eine Rangliste aller Bewohner der WG.
+			\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC8: Rangliste anzeigen}
+\end{table}
+
+
+% Use Case 9
+\subsection{UC9: WG auflösen}\label{subsec:uc9}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F9
+			\tabularnewline
+			\textit{Primary Actor} &
+			WG-Administrator
+			\tabularnewline
+			\textit{Story} &
+			Der WG-Administrator hat die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Administrator wird auf die Anmeldeseite weitergeleitet.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC9: WG auflösen}
+\end{table}
+
+
+% Use Case 10
+\subsection{UC10: Benutzer verwalten}\label{subsec:uc10}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F10
+			\tabularnewline
+			\textit{Primary Actor} &
+			WG-Administrator
+			\tabularnewline
+			\textit{Story} &
+			Der WG-Administrator besitzt das Recht die Bewohner der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall eins besteht darin, einem Bewohner WG-Administratorrechte zu vergeben. Fall zwei ist die Möglichkeit einen Bewohner aus Community (WG) auszuschliessen (``kicken'').
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC10: Benutzer verwalten}
+\end{table}
+
+
+% Use Case 11
+\subsection{UC11: auf Social Media Plattform teilen}\label{subsec:uc11}
+\begin{table}[H]
+	\tablestyle
+	\tablealtcolored
+	\begin{tabularx}{\textwidth}{lX}
+		\tablebody
+			% \textit{Scope} &
+			% Roomies
+			% \tabularnewline
+			\textit{Mapped Requirement} &
+			F11
+			\tabularnewline
+			\textit{Primary Actor} &
+			Bewohner
+			\tabularnewline
+			\textit{Story} &
+			Gewissen Interaktionen, wie \nameref{subsec:uc3}, \nameref{subsec:uc7} oder \nameref{subsec:uc8}, sollen über die Social Media Plattform Facebook geteilt werden können. Wählt der Bewohner nach einer der aufgelisteten Use Cases die zu tun. So wird ein entsprechender Text erzeugt und die Möglichkeit geboten, diesen auf Facebook zu teilen.
+			\tabularnewline
+		\tableend
+	\end{tabularx}
+	\caption{UC11: auf Social Media Plattform teilen}
+\end{table}

@@ -1,0 +1,84 @@
+\section{Domainmodel}
+
+\begin{figure}[ht!]
+	\centering{
+		\resizebox{0.9\textwidth}{!} {
+			\begin{tikzpicture}
+				% HACK: don't display guillemots on stereotypes
+				\newcommand\myguillemotleft\guillemotleft
+				\newcommand\myguillemotright\guillemotright
+				\renewcommand\guillemotleft{}
+				\renewcommand\guillemotright{}
+
+				% row by row
+				\umlclass[x=15,y=-3]{Community}{
+					enabled
+				}{
+				}
+				\umlemptyclass[x=5,y=-3]{Rule}
+
+				% \umlemptyclass[x=5,y=-7]{Role}
+				\umlclass[x=10,y=-7]{Resident}{
+					isAdmin\\
+					enabled
+				}{
+				}
+				\umlemptyclass[x=5,y=-7]{AchievementDefinition}
+
+				\umlclass[x=15,y=-11]{Task}{rewardPoints}{}
+				\umlclass[x=5,y=-11]{Achievement}{rewardedAt:Date}{}
+
+				% \umlemptyclass[x=3,y=-11]{Admin}
+				% \umlemptyclass[x=7,y=-11]{Resident}
+
+				% \umlemptyclass[x=7,y=-15]{Community-Admin}
+
+				% notes
+				\umlnote[x=9,y=-3]{Rule}{- Timebased\\*
+										- Completion based\\*
+										- Points based\\[2mm]
+										Rules können gesammten Datenbestand auswerten.}
+
+				% relation
+				\umlassoc[mult1=1,mult2=1..*,stereo=<has]{Rule}{AchievementDefinition}
+				\umlassoc[mult1=1,mult2=0..*,stereo=defines>]{AchievementDefinition}{Achievement}
+				\umlassoc[mult1=0..*,mult2=1,stereo=belongs to>]{Achievement}{Resident}
+				\umlassoc[mult1=1,mult2=0..*,stereo=<belongs to]{Community}{Task}
+				\umlassoc[mult1=1..*,mult2=1,stereo=belongs to>]{Resident}{Community}
+				%\umlassoc[mult1=*,mult2=*,stereo=<has]{Role}{Resident}
+				\umlassoc[mult1=1,mult2=0..*,stereo=creates>]{Resident}{Task}
+				\umlassoc[geometry=|-,arm1=-2cm,mult1=1,mult2=0..*,pos2=1.8,stereo=fulfill>,pos stereo=1.5]{Resident}{Task}
+				% \umlassoc[geometry=-|-,arm1=11cm,mult1=1..*,mult2=1,pos1=0.05,pos2=2.8,stereo=<has]{Resident}{Community}
+
+				% inherit
+				% \umlinherit[geometry=|-|]{Resident}{Role}
+				% \umlinherit[]{Community-Admin}{Resident}
+				% \umlinherit[geometry=|-|]{Admin}{Role}
+
+				% reset guillemot resets
+
+				\renewcommand\guillemotleft{\myguillemotleft}
+				\renewcommand\guillemotright{\myguillemotright}
+			\end{tikzpicture}
+		}
+	}
+	\caption{Domainmodel}
+\end{figure}
+
+\subsection*{Achievement (Erfolg)}
+Achievements (Erfolge) werden an einen Resident vergeben, wenn Sie bestimmte Regeln (Rules) erreicht haben.
+
+\subsection*{Rule (Regel)}
+Rules (Regeln) bestimmen, wann ein Resident Achievement erreicht hat und dieses bekommen. Diese Regeln können Zeitbasiert (z.B. ist kürzlich einer \gls{WG} beigetreten), Punktebasiert (z.B. hat 10 Aufgaben erledigt) oder auch bei Komplettierung (z.B. hat sich registriert) vergeben werden.
+
+\subsection*{AchievementDefinition (Erfolgsdefinition)}
+Damit die zu erreichenden Erfolge ersichtlich sind, müssen sie definiert werden. Hierfür wird AchievementDefinition (Erfolgsdefinition) benötigt. Die Erfolgsdefinition bestimmt wie ein Achievement auszusehen hat und mit welcher Regel es verknüpft ist.
+
+\subsection*{Community (\gls{WG})}
+Community (WG) definiert die Wohngemeinschaft, in welcher sich die Bewohner befinden. Tasks werden immer einer WG zugeteilt.
+
+\subsection*{Resident (Bewohner)}
+Resident (Bewohner) sind die Benutzer des Systems. Bewohner mit Administrotoren-Rechte (Eigenschaft ``isAdmin'') können zusätzlich die Community (\gls{WG}) administrieren.
+
+\subsection*{Task (Aufgabe)}
+Tasks (Aufgaben) sind die eigentlichen ``TODOs'' der \gls{WG}. Bewohner der WG können solche erstellen, bearbeiten und erledigen. Durch dass Erledigen einer Aufgabe gewinnt der Bewohner Punkte, welche sein Rang innerhalb der WG verbessert.

@@ -1,0 +1,117 @@
+\subsection{Resource-oriented Client Architecture (ROCA)}
+
+\subsubsection*{Backend-Layer}
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l l X}
+\tableheadcolor
+	\tablehead ID &
+	\tablehead Prinzip &
+	\tablehead Erläuterung\tabularnewline
+\tablebody
+	\textit{RP1} & REST &
+	Kommunikation mit Serverressourcen folgt dem REST-Prinzip \cite{REST}
+	\tabularnewline
+
+	\textit{RP2} & Application Logic &
+	Die Businesslogik der Applikation soll im Backend bleiben.
+	\tabularnewline
+
+	\textit{RP3} & HTTP &
+	Ergänzend zu \emph{RP1} findet die Kommunikation mit Serverressourcen über wohldefinierte RESTful HTTP Requests \cite{HTTPRequest} statt 
+	\tabularnewline
+
+	\textit{RP4} & Link &
+	Alle URI's weisen zu einer eindeutigen Ressource.
+	\tabularnewline
+	
+	\textit{RP5} & Non-Browser &
+	Die Serverkomponente kann ohne Browser resp. Frontendkomponente (z.B. mit \emph{wget} \cite{wget} oder \emph{curl} \cite{curl}) verwendet werden.
+	\tabularnewline
+	
+	\textit{RP6} & Should-Formats &
+	Serverressourcen können ihre Daten in verschiedenen Formaten (JSON, XML) ausliefern.
+	\tabularnewline
+	
+	\textit{RP7} & Auth &
+	\emph{HTTP Basic Authentication over SSL} \cite{HTTPBasicAuth} wird als grundlegender Sicherheitsmechanismus eingesetzt. Um ältere Clients abzudecken, können formularbasierte Logins in Verbindung mit Cookies eingesetzt werden. Cookies sollen dabei jegliche zustandsbezogene Informationen enthalten.
+	\tabularnewline
+	
+	\textit{RP8} & Cookies &
+	Cookies werden nur zur Authentifizierung oder zum Tracking des Benutzers verwendet.
+	\tabularnewline
+	
+	\textit{RP9} & Session &
+	Eine Webapplikation soll im Grossen und Ganzen zustandslos sein. Ausnahme bildet bspw. die Authentifizierung eines Benutzers.
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Die ROCA Architekturprinzipien: Backend}
+\end{table}
+
+\subsubsection*{Frontend-Layer}
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l l X}
+\tableheadcolor
+	\tablehead ID &
+	\tablehead Prinzip &
+	\tablehead Erläuterung\tabularnewline
+\tablebody
+	\textit{RP10} & Browser-Controls &
+	Die Verwendung von Browser-Steuerelementen (Zurück, Aktualisieren usw.) müssen wie erwartet funktionieren und die Applikation nicht unerwartet beeinflussen.
+	\tabularnewline
+	
+	\textit{RP11} & POSH &
+	Vom Backend generiertes HTML ist semantisch korrekt \cite{SemanticHTML} und ist frei von Darstellungsinformationen
+	\tabularnewline
+	
+	\textit{RP12} & Accessibility &
+	Alle Ansichten können von Accessibility Tools (z.B. Screen Reader für Sehbehinderte) verarbeitet werden.
+	\tabularnewline
+	
+	\textit{RP13} & Progressive Enhancement &
+	Die Darstellung des Frontends soll auf aktuellsten Browsern top aussehen, aber auch auf älteren mit weniger Features verwendbar sein.
+	\tabularnewline
+	
+	\textit{RP14} & Unobtrusive JavaScript &
+	Die grundlegenden Funktionalitäten des Frontends müssen auch ohne JavaScript verwendbar sein.
+	\tabularnewline
+	
+	\textit{RP15} & No Duplication &
+	Eine Duplizierung von Businesslogik auf dem Frontend-Layer soll vermieden werden (vgl. \emph{RP2})
+	\tabularnewline
+	
+	\textit{RP16} & Know Structure &
+	Der Backendlayer soll so wenig wie möglich über die finale Struktur des HTML-Markups auf dem Frontend ``kennen''.
+	\tabularnewline
+	
+	\textit{RP17} & Static Assets &
+	Jeglicher JavaScript oder CSS Quellcode soll nicht dynamisch auf dem Backend generiert werden. Die Verwendung von Präprozessoren (SASS \cite{SASS}, LESS \cite{LESS} oder CoffeeScript \cite{CoffeeScript}) sind erlaubt und sollen sogar genutzt werden.
+	\tabularnewline
+	
+	\textit{RP18} & History API &
+	Von JavaScript ausgelöste Navigation soll über das HTML 5 History API \cite{HTML5HistoryAPI} im Browser abgebildet werden.
+	\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Die ROCA Architekturprinzipien: Frontend}
+\end{table}
+
+\subsubsection*{Bewertung \& Einschätzung}
+Die 18 Richtlinien des ROCA Manifests \cite{ROCA} propagieren eine verteilte Systemarchitektur.
+
+Dabei wird die eigentliche Applikationslogik klar auf dem Backend-Layer implementiert. Dieser wird über eine wohldefinierte REST Serviceschnittstelle  angesprochen und gesteuert.
+
+Im Frontend-Layer werden zwar die neusten Browserfeatures wie CSS 3 oder verschiedenste HTML 5 Features verwendet, es wird aber auch darauf geachtet dass das User Interface zu älteren Browsern kompatibel bleibt.
+
+Das Projektteam kann alle ROCA Richtlinien unterstützen. Einige Bedenken sind jedoch bezüglich der Prinzipien ``RP13: Progressive Enhancement'' und ``RP14: Unobtrusive JavaScript'' anzubringen:
+
+\begin{itemize}
+	\item Ein blindes Umsetzen dieser beiden Richtlinien führt unweigerlich zu Trade-Offs in der User Experience und/oder bedeutet einen Mehraufwand in der Umsetzung.
+	\item Situationsabhängig muss entschieden werden, wie wichtig die Unterstützung von alten Browsern wirklich ist
+	\item Gehört die Optimierung für Suchmaschinen zu den als hoch priorisierten Anforderungen, so sind auch diese beiden Richtlinien von grösster Bedeutung
+	\item Sollen lediglich aktuelle Browser auf unterschiedlichen Geräten (Smartphones, Tablets etc.) bedient werden, kann durch Verwendung von Responsive Design Techniken \cite{ResponsiveDesign} problemlos die Progressive Enhancement Anforderung umgesetzt werden.
+\end{itemize}

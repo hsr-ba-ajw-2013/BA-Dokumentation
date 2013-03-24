@@ -1,0 +1,61 @@
+\subsection{Entscheidung}
+
+Nach eingängiger Auseinandersetzung mit den drei Technologien Ruby, Java und JavaScript ergeben sich für die finale Technologieentscheidung folgende drei Frameworkkandidaten:
+
+
+\begin{table}[H]
+\newcolumntype{s}{>{\centering\hsize=0.15\hsize}X}
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{X s s s s s s s}
+
+\tableheadcolor
+	\tablehead &
+	\rotatebox{90}{\bfseries\textit{TK1 Eigenkonzepte} } &
+	\rotatebox{90}{\bfseries\textit{TK2 Eignung}} &
+	\rotatebox{90}{\bfseries\textit{TK3 Produktreife}} &
+	\rotatebox{90}{\bfseries\textit{TK4 Aktualität}} &
+	\rotatebox{90}{\bfseries\textit{TK5 ``Ease of use''}} &
+	\rotatebox{90}{\bfseries\textit{TK6 Testbarkeit}}
+	\tabularnewline
+\tablebody
+	\textit{Ruby: Ruby on Rails} &
+	\oneStar &
+	\oneStar &
+	\threeStars &
+	\oneStar &
+	\threeStars &
+	\twoStars
+	\tabularnewline
+
+	\textit{Java: Studienarbeit-Zusammenstellung}	&
+	\threeStars &
+	\threeStars &
+		&
+		&
+	\threeStars &
+	\twoStars
+	\tabularnewline
+
+	\textit{JavaScript: Sails} &
+	\twoStars &
+	\twoStars &
+	\oneStar &
+	\threeStars &
+	\twoStars &
+	\oneStar
+	\tabularnewline
+
+\tableend
+\end{tabularx}
+\caption{Finale Frameworkkandidaten für Technologieentscheidung}
+\end{table}
+
+
+Im Entscheidungsmeeting vom 6. März (siehe Anhang \ref{sec:meetings} ``\nameref{sec:meetings}'') wurde ausgiebig darüber diskutiert, welche Technologie resp. welches Framework für die bevorstehende Implementation der Beispielapplikation die am geeignetste sein könnte.
+
+Vergleicht man die finalen Kandidaten anhand der Auswahlkriterien, sehen die Bewertungen meist ziemlich ausgeglichen aus. Die Betrachtung des Kriteriums \emph{TK4 Aktualität} lässt jedoch im Bezug auf die grundlegende Idee dieser Arbeit, sich mit neuen Technologien auseinanderzusetzen, bereits eine ziemlich gute Vorsortierung zu. So wird klar, dass \emph{Java} keine Option für eine Umsetzung sein kann.
+
+Weiter besitzt das Framework \emph{Sails} im Vergleich zu \emph{Ruby on Rails} einen ziemlich schlechten \emph{TK3 Produktreife}-Wert. Die Neugier auf eine unverbrauchte Technologie und die Herausforderung, etwas frisches auszuprobieren war jedoch beim Betreuer als auch beim Projektteam ein nicht zu vernachlässigender Faktor. So entschieden sich die Anwesenden abschliessend gegen \emph{Ruby on Rails} und \emph{Ruby}.
+\\ \\
+Als Gewinner aus der gesamten Evaluation geht so schlussendlich \emph{JavaScript} hervor. Mit dem Framework \emph{Sails} soll die Beispielapplikation auf \emph{node.js} implementiert werden.

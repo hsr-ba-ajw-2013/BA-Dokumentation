@@ -1,0 +1,77 @@
+
+\section{Phasenplanung}
+Die Phasenplanung orientiert sich grob am \gls{RUP} und ist unterteilt in eine \emph{Inception-}, \emph{Elaboration-}, fünf \emph{Construction-} sowie jeweils eine \emph{Transition-} und \emph{Abschlussphase}.
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l l X}
+\tableheadcolor
+	\tablehead Phase &
+	\tablehead Dauer &
+	\tablehead Beschreibung \tabularnewline
+\tablebody
+	\textit{Inception} & 3 Wochen
+		& Projektsetup, genauere Definition der Aufgabe, Vorbereitungen \& Planungen\tabularnewline
+	\textit{Elaboration} & 3 Wochen
+		& Anforderungsanalysen, Entwicklung eines Architekturprototypen und genauere technische Evaluationen. Guidelines für Quellcode und Testing werden erstellt.\tabularnewline
+	\textit{Construction 1} & 2 Wochen
+		& Umsetzung des Applikationsfundaments, UI Design, Umsetzung erster als \emph{Hoch} priorisierter Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 2} & 2 Wochen
+		& Fertigstellung der restlichen als \emph{Hoch} priorisierten Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 3} & 2 Wochen
+		& Umsetzung des \gls{Gamification}-Teils der Applikation. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 4} & 2 Wochen
+		& Implementation der restlichen als \emph{Mittel} priorisierten Use Cases. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Construction 5} & 2 Wochen
+		& Umsetzung aller restlichen als \emph{Tief} priorisierten Use Cases sowie erstes Bugfixing gem. geführter Issueliste. Qualitätssicherung in Form von Reviews \& Unit Testing.\tabularnewline
+	\textit{Transition} & 1 Wochen
+		& Abschliessende Bugfixing-Arbeiten. Code-Freeze und Erstellung von Deployment-Pakete.\tabularnewline
+	\textit{Abschluss} & 2 Wochen
+		& Finalisierung der Dokumentation sowie Erstellung der HSR Artefakte \emph{A100} sowie \emph{A101}.\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Projektphasenbeschreibung}
+\end{table}
+
+Im Projektverwaltungstool (siehe \nameref{sec:tools}) ist ergänzend eine detailierte Arbeitspaketplanung mit aktuellem Arbeitsstatus verfügbar.
+
+Jede Phase wird jeweils von einem Meilenstein abgeschlossen, was in folgendem Gantt-Diagramm ersichtlich ist:
+
+\begin{figure}[H]
+	\begin{ganttchart}[
+			vgrid={*2{dotted},{blue},*1{black},*3{dotted},*1{black},*3{dotted},*1{black},*3{dotted},*1{black},*3{dotted},*1{blue},*4{dotted}},
+			hgrid,
+			y unit chart=5mm,
+			x unit=4.4mm,
+			title top shift=0,
+			title label font=\small\sffamily,
+			group label font=\small\sffamily\bfseries,
+			milestone label font=\small\sffamily\textit
+		]{24}
+		\gantttitlelist{5,...,28}{1} \\
+
+		\ganttgroup[name=inc]{Inception}{4}{6} \\
+		\ganttmilestone[name=m1]{M1: Ende Inception}{6} \\
+		\ganttgroup[name=ela]{Elaboration}{5}{7} \\
+		\ganttmilestone[name=m2]{M2: Ende Elaboration}{7} \\
+		\ganttgroup[name=c1]{Construction 1}{8}{9} \\
+		\ganttmilestone[name=m3]{M3: Ende Construction 1}{9} \\
+		\ganttgroup[name=c2]{Construction 2}{10}{11} \\
+		\ganttmilestone[name=m4]{M4: Ende Construction 2}{11} \\
+		\ganttgroup[name=c3]{Construction 3}{12}{13} \\
+		\ganttmilestone[name=m5]{M5: Ende Construction 3}{13} \\
+		\ganttgroup[name=c4]{Construction 4}{14}{15} \\
+		\ganttmilestone[name=m6]{M6: Ende Construction 4}{15} \\
+		\ganttgroup[name=c5]{Construction 5}{16}{17} \\
+		\ganttmilestone[name=m7]{M7: Ende Construction 5}{17} \\
+		\ganttgroup[name=tran]{Transition}{18}{18} \\
+		\ganttmilestone[name=m8]{M8: Ende Transition}{18} \\
+		\ganttgroup[name=absch]{Abschluss}{19}{20} \\
+		\ganttmilestone[name=m9]{M9: Abgabe HSR Artef.}{19} \\
+		\ganttmilestone[name=m10]{M10: Abgabe BA}{20}
+	\end{ganttchart}
+	\caption{Phasenübersicht mit Meilensteinen, Kalenderwochen Februar bis Juli 2013}
+\end{figure}
+
+Die beiden Phasen \emph{Inception} und \emph{Elaboration} sind überlappend geplant, da zu Beginn des Projekts die Aufgabenstellung noch nicht abschliessend definiert war. Die Überlappung ermöglicht das vorbereitende Erledigen von \emph{Elaboration} Artefakten.

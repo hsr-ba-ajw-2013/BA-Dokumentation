@@ -1,0 +1,11 @@
+\section{Einleitung}
+
+Wie im Abschnitt \ref{sec:proof-of-concept} ``\nameref{sec:proof-of-concept}'' beschrieben, wurde \emph{Express.js} \cite{Expressjs} für
+die Implementation der Beispielapplikation ausgewählt.
+
+\subsection{Code-Struktur}
+In Node.JS ist es unter den erfahreneren (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}) Entwicklern relativ üblich eine Applikation in mehr oder weniger komplett eigenständige Komponenten zu unterteilen.\\
+Dies sieht man u.a. auch an den installierbaren Komponenten auf NPM \cite{NPM}, in welchen es für sehr kleine Logiken eigene Komponenten hat.\\
+Die Beispielapplikation ``Roomies'' folgt diesem Beispiel ebenfalls. Möglichst jede Komponente (z.B. auch ein Controller) ist abgetrennt von der Applikation und wird von dieser aufgerufen um eigene Initialisierungen zu machen.\\[0.5mm]
+
+%TODO: z.B.

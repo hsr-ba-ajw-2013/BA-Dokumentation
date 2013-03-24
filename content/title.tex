@@ -1,0 +1,71 @@
+\newcommand\thesisAuthorA{Manuel Alabor}
+\newcommand\thesisAuthorB{Alexandre Joly}
+\newcommand\thesisAuthorC{Michael Weibel}
+\newcommand\thesisTitle{Architekturkonzepte moderner Web-Applikationen}
+\newcommand\thesisSubject{Bachelorarbeit}
+\newcommand\thesisSchool{Hochschule für Technik Rapperswil}
+\newcommand\thesisTerm{Frühjahressemester 2013}
+\newcommand\thesisProfessor{Prof. Hans Rudin}
+\newcommand\thesisExpert{Daniel Hiltebrand}
+\newcommand\thesisCrossReader{Prof. Dr. Ruedi Stoop}
+\newcommand\thesisKeywords{roca-style, REST, web-framework, bachelor thesis, express.js}
+
+\hypersetup{
+	pdfauthor={\thesisAuthorA, \thesisAuthorB, \thesisAuthorC},
+	pdftitle={\thesisTitle},
+	pdfsubject={\thesisSubject},
+	pdfkeywords={\thesisKeywords}
+}
+
+
+\begin{titlepage}
+	% Page Settings:
+	\newgeometry{top=110mm,right=30mm,bottom=20mm,left=30mm}
+	\backgroundsetup{scale=1,angle=0,opacity=1,contents={
+		\begin{tikzpicture}[remember picture,overlay]
+			\path [fill=titlepagecolor]
+			(0,-175mm)circle[x radius=290mm, y radius=250mm];
+			\node [anchor=south west] (image) at (-0.5\paperwidth+8mm,0.5\paperheight-39mm) {\includegraphics[height=25mm]{content/images/hsrlogo.png}};
+		\end{tikzpicture}}
+	}
+
+	% Apply Page settings:
+	\thispagestyle{empty}
+	\BgThispage
+
+	% Content:
+	\sffamily\color{titlepagefontcolor}
+	\begin{center}
+		\Large
+		\thesisSubject\\[5mm]
+
+		\Huge\bfseries
+		\thesisTitle\\[15mm]
+
+		\large\normalfont\sffamily
+		\thesisSchool\\[1mm]
+		\thesisTerm\\[15mm]
+
+		\vfill
+		\normalsize\normalfont\sffamily
+		Erstellt: \today, \currenttime\\[10mm]
+	\end{center}
+
+
+	\begin{multicols}{2}
+		\begin{tabularx}{\textwidth}{l X}
+			\bfseries Autoren & \thesisAuthorA\tabularnewline
+			& \thesisAuthorB\tabularnewline
+			& \thesisAuthorC\tabularnewline
+		\end{tabularx}
+
+		\begin{tabularx}{\textwidth}{l X}
+			\bfseries Betreuer & \thesisProfessor\tabularnewline
+			\bfseries Experte & \thesisExpert\tabularnewline
+			\bfseries Gegenleser & \thesisCrossReader\tabularnewline
+		\end{tabularx}
+	\end{multicols}
+
+\end{titlepage}
+
+\restoregeometry
