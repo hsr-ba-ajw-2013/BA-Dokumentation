@@ -25,10 +25,10 @@ Auch der Bereich der Webframeworks kann so unterdessen eine Menge an interessant
 	Das Framework Derby \cite{Derby} nimmt sich das oben eingeführte Express.js zur Grundlage und erweitert es im das Model-View-Controller-Pattern. Es bleibt dabei extrem leichtgewichtig, ermöglicht aber leider keine Browserclients welche der Anforderung des \emph{Unobtrusive JavaScripts} genügen mögen: Derby-Applikationen werden komplett im Browser gerendert und bieten keine Möglichkeit, HTML-Markup auf dem Server zu generieren.
 	\tabularnewline
 \textit{Geddy} &
-	Mit Geddy \cite{Geddy} begibt sich bereits der zweite Kandidat für node.js in den Ring, welcher sich Ruby on Rails zum Vorbild nimmt. Dementsprechend vergleichbar ist der Funktionsumfang mit Tower.js. Als wichtiger Unterschied ist jedoch zu erwähnen, dass Geddy auf CoffeeScript vollends verzichtet.
+	Geddy \cite{Geddy} ist ein weitere node.js Kandidat, welcher sich Ruby on Rails zum Vorbild nimmt. Dementsprechend vergleichbar ist der Funktionsumfang mit Tower.js. Einer der auffälligeren Unterschiede ist jedoch, dass Geddy auf CoffeeScript vollends verzichtet.
 	\tabularnewline
 \textit{Sails} &
-	Sails \cite{sails} ist der jüngste Frameworkkandidat für JavaScript resp. node.js. Die Grundkonzepte von Ruby on Rails werden mit einer Prise ``Realtime'' (\glspl{Websocket}) gewürzt. So kann jede Ressource über eine einfache REST-Schnittstelle als auch über eine Websocket-Verbindung angesprochen werden. Damit erleichtert sich das asynchrone resp. servergesteuerte Aktualisieren des Frontends. Zusätzlich beinhaltet Sails bereits eine \gls{ORM} Bibliothek.
+	Sails \cite{sails} ist der jüngste Frameworkkandidat für JavaScript. Die Grundkonzepte von Ruby on Rails werden mit um einen interessanten ``\gls{Realtime}''-Aspekt mittels \glspl{Websocket} erweitert. So kann jede Ressource über eine einfache REST-Schnittstelle als auch über eine \gls{Websocket}-Verbindung angesprochen werden. Damit erleichtert sich das asynchrone resp. servergesteuerte Aktualisieren des Frontends. Zusätzlich beinhaltet Sails bereits eine \gls{ORM} Bibliothek.
 	\tabularnewline
 \tableend
 \end{tabularx}
@@ -166,11 +166,11 @@ Das Kandidatenfeld lässt sich grob in zwei Felder aufteilen:
 	\item \emph{Grundlagenframework} \\
 	Das Grundlagenframework Express.js bietet ein solides und ausbaubares Fundament
 	\item \emph{MVC-Frameworks} \\
-	Tower.js, derby, Geddy und Sails setzen auf einer höheren Abstraktionsebene an und maskieren zugrundeliegende MVC-Komplexität. \\ Im Falle von Tower.js, derby und Sails wird sogar Express.js als Basis verwendet.
+	Tower.js, derby, Geddy und Sails setzen auf einer höheren Abstraktionsebene an und maskieren zugrundeliegende MVC-Komplexität. \\ Im Falle von Tower.js, derby und Sails wird das oben erwähnte Express.js sogar als Basis verwendet.
 \end{enumerate}
 
 Eine besondere Erwähnung verdient Sails: Es bringt als einziges Framework \gls{RealTime}-Funktionalitäten mit. Zwar zählt dieses Feature nicht zu den bewerteten Kriterien, trotzdem setzt sich Sails damit von den restlichen Kandidaten ab. Weiter bemerkenswert ist, dass Sails im Vergleich zu den restlichen MVC-Frameworks einen relativ tiefen Einblick in die Konzeptinnereien zulässt.
 
-Nach Punkten gewinnt das Basisframework Express.js ganz klar die Ausscheidung in der Kategorie JavaScript.
+Nach Punkten gewinnt das Basisframework Express.js ganz klar die Evaluation in der Kategorie JavaScript.
 
-Aufgrund der interessanten Ansätze welche Sails wählt, und dabei im Vergleich zu Express.js bereits ein \gls{ORM} mitbringt, soll den Punkten zum Trotz \emph{Sails} für JavaScript in der finalen Evaluationsrunde mit den restlichen Frameworks verglichen werden.
+Aufgrund der interessanten Ansätze welche Sails wählt, und dabei im Vergleich zu Express.js bereits ein \gls{ORM} mitbringt, entscheidet sich das Projektteam trotz der schlechteren Bewertung im Bereich JavaScript für \emph{Sails}.
