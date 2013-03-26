@@ -39,7 +39,7 @@ env:
         # travis encrypt GH_OAUTH_TOKEN=b2797fff05e7461c4c8174fae08fb006cbadba9f
         #
         # Copy the resulting "secure" property here:
-        - secure: "brYMYg7SYW/h268Z1v3v5/HkYSywm+L4DtUhl79oh0pmrpzsCP90nYkeZxWc\n9iveKPUSOSRsNiQmTkhRZ65Z13/CcXhzW/EeeZXa7LdxIJtEtft8LVcVc8Op\nUcjHVP6n5hx1joNV+JhXxtPClK8YC8DxMkcfiS/cg5/UtpkWE3o="
+        - secure: "AULkBgHqLbNbyzP5aQReyvXeV9SILenyofzkhve3lEUgn7UEvjxmpUKc05PO\neSw6MY9VZi26KFjBJN7ZLhx7pKEEfP16Q9Qs8uqL+2BzpZE/EQ8/egcO4UKQ\nleP2JhodJnEeCRlo1m71kYhyV4S8gKtqXBGAIOO01Mwl8oilQLo="
 
         # GH_USER_NAME & GH_PROJECT_NAME
         # The Github Account you created the OAuth token with and the repo you
@@ -50,8 +50,8 @@ env:
         # GIT_AUTHOR_NAME & GIT_AUTHOR_EMAIL
         # When pushing to the gh-pages branch, these informtion are used to
         # perform the git commit
-        - GIT_AUTHOR_NAME: "Manuel Alabor"
-        - GIT_AUTHOR_EMAIL: "msites@msites.net"
+        - GIT_AUTHOR_NAME: "TravisCI"
+        - GIT_AUTHOR_EMAIL: ""
 
         # CI_HOME
         # A shortcut to the directory where travis cloned the actual git repo
