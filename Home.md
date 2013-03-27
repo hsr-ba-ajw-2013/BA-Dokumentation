@@ -1,2 +1,0 @@
-## Inhalt
-* [[Meetings]]
