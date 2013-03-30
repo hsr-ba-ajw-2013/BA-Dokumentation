@@ -1,1 +1,16 @@
 \section{RP8 Cookies}
+\label{sec:principle-rp8-cookies}
+Um einen User während einer Session authentifizieren zu können verwendet Express.js
+\cite{Expressjs} die \gls{Middleware} ``connect-session'' \cite{ConnectSession}.\\
+Sobald ein User authentifiziert ist, sendet der Server dem Browser des Users ein eindeutiges
+Cookie mit einer Session-ID.\\
+Diese Session-ID wird mit allen weitergehenden Abfragen mitgeschickt.
+
+In der ``Roomies''-Applikation werden die Middlewares folgendermassen verwendet:
+
+\begin{lstlisting}[language=JavaScript, caption=Connect Session/Cookie Middleware, label=lst:connect-session-middleware]
+app.use(express.cookieParser());
+app.use(express.session({ secret: config.sessionSecret }));
+\end{lstlisting}
+
+Dieser Quelltext ist in der Datei ``middleware/http.js'' \cite{RoomiesMiddlewareHttp} zu finden.
