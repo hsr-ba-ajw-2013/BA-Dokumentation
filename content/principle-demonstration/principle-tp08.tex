@@ -1,1 +1,88 @@
 \section{TP8 Automate everything or you will be hurt}
+
+TP8 greift einen allgemein gültigen Vorsatz aus dem Software Engineering auf: Mit ``\emph{Don't repeat yourself}'' wird zum einen sich wiederholender Quellcode minimiert, als auch wiederkehrende Aufgaben automatisiert.
+
+Entwickelt man den \emph{DRY}-Ansatz weiter, so landet man unweigerlich bei der Verwendung von automatisierten Tests und Deployments mittels Continuous Integration Systemen.
+
+\subsection*{Geplante Umsetzung}
+In der Tabelle \ref{fig:how-to-show-principles-matrix} war geplant, die Richtlinie TP8 mittels der Entwicklungsumgebungstools zu demonstrieren.
+
+Folgende Aufgaben konnten im Zuge dieser Planung automatisiert werden:
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X}
+\tableheadcolor
+	\tablehead ID &
+	\tablehead Aufgabe
+	\tabularnewline
+\tablebody
+	\textit{TP8.1} & Starten der Beispielapplikation\tabularnewline
+	\textit{TP8.2} & Ausführung der Unit Tests\tabularnewline
+	\textit{TP8.3} & Qualitative Überprüfung des Quellcodes (Code Style Guidelines)\tabularnewline
+	\textit{TP8.4} & Umwandlung von SASS zu CSS Stylesheets\tabularnewline
+	\textit{TP8.5} & Erstellung von Quellcode Dokumentation\tabularnewline
+	\textit{TP8.6} & Veröffentlichung von Dokumentation (dieses Dokument, aber auch Quellcode Dokumentation), Testergebnisse und Test Code Coverage Berichten\tabularnewline
+	\textit{TP8.7} & Umwandlung des LaTeX Quellcodes zur finalen PDF Dokumentation\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Automatisierte Aufgaben}
+\end{table}
+
+
+\subsection*{Konkrete Umsetzung}
+Als Kernkomponente für die Automatisierung der definierten Aufgaben wird ein \emph{Makefile} (\cite{RoomiesMakefile} und \cite{ThesisMakefile}) verwendet. Dieses wird von \emph{GNU Make} \cite{make} interpretiert und ermöglicht so das Ausführen von verschiedensten Operationen.
+
+Das Listing \ref{lst:makefileTesting} zeigt exemplarisch die Befehlsdefinition für das Ausführen der Unit sowie funktionalen Tests.
+
+\begin{lstlisting}[language=Bash, caption=Ausschnitt Makefile: Testing \cite{RoomiesMakefile}, label=lst:makefileTesting]
+REPORTER = spec
+TEST_CMD = NODE_ENV=test ./node_modules/.bin/mocha --require test/runner.js --globals config
+
+test: test-unit test-functional
+
+test-unit:
+	@echo "Running Unit Tests:"
+	@$(TEST_CMD) --reporter $(REPORTER) src/lib/*/test.js
+
+test-functional:
+	@echo "Running Functional Tests:"
+	@$(TEST_CMD) --reporter $(REPORTER) test/*-test.js
+\end{lstlisting}
+
+Soll nun der Task \emph{test} aufgerufen werden, geschieht dies durch den einfachen Befehl \emph{make test} auf der Kommandozeile.
+
+
+\subsection*{Continuous Integration}
+Die Vorgestellten Aufgaben können sowohl lokal auf dem Entwicklerrechner als auch auf dem Continuous Integration System ausgeführt werden.
+
+Wie im Kaptiel \ref{sec:qualitymanagement} ``\nameref{sec:qualitymanagement}'' definiert, wird hierzu die Open Source Plattform Travis CI \cite{TravisCI} verwendet. Der folgende Quelltext zeigt die \emph{.travis.yml} Datei \cite{RoomiesTravisYML}. Sie steuert die Ausführung eines Builds auf Travis:
+
+\begin{lstlisting}[language=XML, caption=.travis.yml \cite{RoomiesTravisYML}, label=lst:roomiesTravisYML]
+before_install:
+    - ./travis/before_install.sh
+
+after_success:
+    - ./travis/after_success.sh
+
+language: node_js
+node_js:
+  - 0.8
+
+script: "make docs test-coverage lint"
+
+env:
+    global:
+        - secure: "eWkg0QTrYfWbPpitHRZWvtnTD2gTZsHEfZI1/cVA3mUs1Vycx/bNHzAt4fNm\nWR7EsTkaNLkc6p3JA797kwIyCugt+0D2tTdn7ra532Gye9u/KGjJB38HuJ0A\nQxibB+ahyAOJL+NjRNAQsME2lFmNv950/4sRbXYybijxJD6fqcw="
+
+        - GH_USER_NAME: hsr-ba-ajw-2013
+        - GH_PROJECT_NAME: BA
+        - GIT_AUTHOR_NAME: "TravisCI"
+        - GIT_AUTHOR_EMAIL: ""
+
+        - CI_HOME=`pwd`/$TRAVIS_REPO_SLUG
+        - RESULT_UNIT_COVERAGE_PATH=$CI_HOME/unit-coverage.html
+        - RESULT_FUNCTIIONAL_COVERAGE_PATH=$CI_HOME/functional-coverage.html
+        - RESULT_DOCS=$CI_HOME/docs
+\end{lstlisting}
