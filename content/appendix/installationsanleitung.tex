@@ -1,1 +1,63 @@
 \chapter{Installationsanleitung}
+
+\section{Mit Vagrant}
+
+\subsection*{Grundvoraussetzungen}
+Folgende Software muss im Voraus installiert sein. Es wird hier nicht genauer
+darauf eingegangen wie diese installiert wird.
+
+\begin{itemize}
+	\item \textbf{git} \cite{git}
+	\item \textbf{Vagrant} \cite{Vagrant}
+	\item \textbf{Virtualbox} \cite{Virtualbox}
+\end{itemize}
+
+\subsection*{Installation der Roomies-Virtualbox}
+Für ``<TAG>'' muss der richtige ``git tag'' eingesetzt werden. Falls das nicht gewünscht ist, kann auch auf dem ``master''-Branch gearbeitet werden.
+
+\begin{lstlisting}[language=Bash, caption=Installationsanleitung Vagrant}
+~ $> git clone git://github.com/hsr-ba-ajw-2013/BA.git && cd BA
+
+# Virtualbox starten
+~BA/ $> vagrant up
+
+# Zur Virtualbox per SSH verbinden
+~BA/ $> vagrant ssh
+
+# Initiales setup
+~BA/ $> ./install.sh
+
+# Applikation starten
+~BA/ $> npm start
+\end{lstlisting}
+
+\section{Ohne Vagrant}
+
+\subsection*{Grundvoraussetzungen}
+Folgende Software muss im Voraus installiert sein. Es wird hier nicht genauer
+darauf eingegangen wie diese installiert wird.
+
+\begin{itemize}
+	\item \textbf{Node.js} Version 0.8.x \cite{nodejs}\\
+		Eventuell mittels \textbf{NVM} \cite{NVM} falls nicht anders möglich.
+	\item \textbf{PostgreSQL} \cite{PostgreSQL} oder SQLite \cite{SQLite}
+	\item \textbf{GNU Make} \cite{GNUmake}
+	\item \textbf{git} \cite{git}
+\end{itemize}
+
+\subsection*{Installation der Roomies-Applikation}
+
+Für ``<TAG>'' muss der richtige ``git tag'' eingesetzt werden. Falls das nicht gewünscht ist, kann auch auf dem ``master''-Branch gearbeitet werden.
+
+\begin{lstlisting}[language=Bash, caption=Installationsanleitung Vagrant}
+~ $> git clone git://github.com/hsr-ba-ajw-2013/BA.git && cd BA
+
+# Initiales setup
+~BA/ $> ./install.sh
+
+# Applikation starten
+~BA/ $> npm start
+\end{lstlisting}
+
+\subsubsection*{Konfiguration}
+Für die Konfiguration müssen die Datenbank-Informationen angepasst werden.
