@@ -8,4 +8,49 @@ In Node.JS ist es unter den erfahreneren (\cite{TJH_ComponentStructure}, \cite{I
 Dies sieht man u.a. auch an den installierbaren Komponenten auf NPM \cite{NPM}, in welchen es für sehr kleine Logiken eigene Komponenten hat.\\
 Die Beispielapplikation ``Roomies'' folgt diesem Beispiel ebenfalls. Möglichst jede Komponente (z.B. auch ein Controller) ist abgetrennt von der Applikation und wird von dieser aufgerufen um eigene Initialisierungen zu machen.\\[0.5mm]
 
-%TODO: z.B.
+Dies veranschaulicht die folgende Ordner-Struktur:
+\begin{verbatim}
+├── src
+│   ├── lib
+│   │   ├── cluster
+│   │   ├── community
+│   │   │   └── views
+│   │   │   └── controller.js
+│   │   │   └── index.js
+│   │   │   └── model.js
+│   │   │   └── test.js
+│   │   ├── facebook-channel
+│   │   │   └── views
+│   │   ├── home
+│   │   │   └── views
+│   │   ├── login
+│   │   │   └── views
+│   │   ├── middleware
+│   │   ├── resident
+│   │   │   └── views
+│   │   └── task
+│   │       └── views
+│   ├── public
+│   │   ├── font
+│   │   ├── images
+│   │   ├── javascripts
+│   │   │   └── lib
+│   │   └── stylesheets
+│   └── shared
+│       ├── exceptions
+│       ├── layouts
+│       ├── locales
+│       ├── partials
+│       ├── policies
+│       ├── sass
+│       │   └── vendor
+│       ├── test
+│       ├── utils
+│       ├── validators
+│       └── views
+├── test
+└── travis
+\end{verbatim}
+
+Jede Komponente unter lib/ ist in sich abgeschlossen und ist über die Datei ``index.js''
+ansprechbar.

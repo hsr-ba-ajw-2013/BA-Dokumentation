@@ -36,5 +36,6 @@
 \usepackage{pgfgantt}
 \usepackage{template/fontawesome}
 \usepackage{csquotes}
+\usepackage{verbatim}
 
 \bibliography{content/indexes/bibliography}
