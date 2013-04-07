@@ -1,6 +1,31 @@
 \section{TP4 Separate user identity and sign-up (...)}
 \label{sec:principle-tp4-seperate-user-identity}
 
+Ein Grossteil der Dienste im Internet verlangen heute nach der Erstellung eines Benutzerkontos. Ein Forum lässt beispielsweise das verfassen von Beiträgen erst zu, nachdem sich der potentielle Autor mit seiner E-Mail-Adresse, einem Benutzernamen und einem Passwort erfolgreich registriert hat.
+
+Eine solche Registrierung hat für den Besucher als auch für einen Dienstbetreiber auf den ersten Blick nur Vorteile:
+
+\begin{itemize}
+	\item Die User Experience vom Benutzer angepasst/optimiert werden (Bspw. das Speichern der eigenen Zeitzone für korrekte Datums- und Zeitangaben, Personalisierung der Frontseite usw.)
+	\item Sicherstellung der Identität: Jeder Benutzername wird immer von derselben Person verwendet
+	\item Der Betreiber kann seine Besucher über Neuerungen Informieren
+	\item Durch gezielte Auswertung und Statistiken kann der Betreiber sein Angebot optimieren
+\end{itemize}
+
+Bei genauerer Analyse ergeben sich aber auch nicht zu vernachlässigende negative Faktoren:
+
+\begin{itemize}
+	\item Der Benutzer muss bei jedem neuen Dienst erneut ein Konto erstellen und möglicherweise wiederholt die gleichen Angaben machen
+	\item Der Betreiber muss sich um die Speicherung und Sicherheit der Benutzerinformationen kümmern
+	\item Nach einer gewissen Zeit hat ein Benutzer tendenziell keine Kontrolle mehr darüber, wo er sich überall einmal angemeldet hat und seine Informationen hinterlegt hat
+\end{itemize}
+
+Beide Auflistungen von Vor- und Nachteilen sind exemplarisch und nicht abschliessend. Trotzdem ergeben sie jedoch einen guten Überblick über die Thematik.
+
+Tilkovs TP4 schlägt die Separierung von Benutzerinformationen und Registrierung vor. Der Vorreiter OpenID \cite{OpenID}, jedoch insbesondere die immer beliebter werdenden sozialen Netzwerke ermöglichen eben diese Auftrennung.
+
+Hierbei erstellt der Benutzer bspw. bei Facebook einmalig ein Konto.
+
 
 \subsection*{Geplante Umsetzung}
 
