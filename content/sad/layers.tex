@@ -1,5 +1,8 @@
 \section{Software Layers}
 
+Die folgenden Diagramme beschreiben die Umsetzung zuerst Technologie-Unabhängig und danach mit der effektiven Implementation.\\
+Durchgezogene Pfeile sind dabei als synchrone Kommunikation zu verstehen. Gestrichelte Pfeile als asynchrone Kommunikation.
+
 \subsection*{Technologie-Unabhängig}
 
 \begin{figure}[ht!]
@@ -9,6 +12,18 @@
 
 	\caption{Software Layers -- Technologie-Unabhängig}
 \end{figure}
+
+\subsubsection*{Client-Side}
+Diese Schicht wird im Browser selber als JavaScript ausgeführt und synchronisiert sich mit dem Server über URLs.
+
+\subsubsection*{Business}
+In der Business-Schicht wird die eigentliche Business-Logik definiert und mit der Datenbank über Models kommuniziert.
+
+\subsubsection*{Language Framework}
+Das Language Framework wird von \gls{nodejs} zur Verfügung gestellt.
+
+\subsubsection*{Security}
+Sowohl Client wie auch Server beinhalten einige Sicherheitsmassnahmen um zu gewährleisten, dass ein \gls{Bewohner} immer authentisiert ist und keine gefährlichen Daten übermitteln kann.
 
 \newpage
 \subsection*{Implementation}
@@ -20,3 +35,25 @@
 
 	\caption{Software Layers}
 \end{figure}
+
+\subsubsection*{Client-Side MVC}
+Auf der Client-Seite im Browser wird ebenfalls das MVC-Pattern \cite{MVC} verwendet. Dies ermöglicht eine entkoppelte Implementation.\\
+Das Client-Side MVC ist auf Backbone.js \cite{Backbonejs} aufgebaut.
+
+\subsubsection*{Handlebars Views}
+Die Präsentations-Schicht ist auf Handlebars \cite{Handlebars} aufgebaut. Dieses Templating-System ermöglicht View-Tempaltes ohne Logik.
+
+\subsubsection*{Winston}
+Winston \cite{Winston} ist ein Logging-Framework für \gls{nodejs}.
+
+\subsubsection*{CSRF}
+\gls{CSRF}-Schicht um CSRF-Attacken zu verhindern.
+
+\subsubsection*{Validation}
+Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und gereinigt (sanitized).
+
+\subsubsection*{Passport}
+Passport \cite{Passportjs} ist ein authentication-Framework für \gls{nodejs}. Und ermöglicht durch verschiedene Strategien (Strategy-Pattern \cite{StrategyPattern}) das einloggen mittels z.B. Facebook-Connect \cite{FacebookConnect}.
+
+\subsubsection*{Escaping}
+Jede Datenbank-Query muss Escaped werden, damit keine invaliden User-Input Daten die Datenbank erreichen können. Das ORM stellt dies bereits zur Verfügung.

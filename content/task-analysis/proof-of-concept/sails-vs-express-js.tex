@@ -5,7 +5,8 @@ Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstelle
 
 Um das \gls{ORM} ``Waterline'' \cite{Waterline} zu testen, wurden diese beiden Models implementiert. Das Task-Model mittels Sails.js definiert sieht so aus:
 
-\begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js (Name wird durch Dateiname definiert.)]
+\begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js]
+// Filename is 'Task.js', therefore the Model will be named 'Task'.
 module.exports = {
 	attributes: {
 		name: "string"
