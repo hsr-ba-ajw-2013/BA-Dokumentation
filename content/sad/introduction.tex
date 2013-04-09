@@ -1,4 +1,23 @@
 \section{Einleitung}
 
-Wie im Abschnitt \ref{sec:proof-of-concept} ``\nameref{sec:proof-of-concept}'' beschrieben, wurde \emph{Express.js} \cite{Expressjs} für
-die Implementation der Beispielapplikation ausgewählt.
+Die Architektur besteht aus den folgenden grundlegenden Elementen:
+\begin{itemize}
+	\item Backend-Applikation mit \emph{Express.js} \cite{Expressjs}
+	\item Frontend-Applikation mit \emph{Backbone.js} \cite{Backbonejs}
+	\item \emph{PostgreSQL} \cite{PostgreSQL} Datenbank, welche mit dem \gls{ORM} \emph{Sequelize} \cite{Sequelize} angesprochen wird
+\end{itemize}
+
+\subsection{Backend-Applikation}
+
+Die Backend-Applikation ist eine Komponenten-basierte MVC Applikation und ermöglicht dadurch eine gute Trennung von Zuständigkeiten (Separation of Concerns \cite{SeparationOfConcerns}) und niedrige Kopplung.
+
+Um das Prinzip \gls{DRY} zu erfüllen, werden Controllers und Templates mit dem Frontend geteilt.
+
+\subsection{Frontend-Applikation}
+
+Die Frontend-Applikation ist ebenfalls MVC-basiert und holt die entsprechende Logik vom geteilten Backend-Code.
+Im Optimalfall (Der Client-Browser hat JavaScript aktiviert) wird das Backend nur für die Datenübertragung angesprochen. Alles andere passiert direkt im Browser des Clients.
+
+\subsection{ORM}
+
+Das \gls{ORM} verwendet PostgreSQL \cite{PostgreSQL} als Datenbank und stellt einfache Schnittstellen zum Abfragen oder Speichern von Daten zur Verfügung.
