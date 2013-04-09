@@ -6,54 +6,54 @@ Die folgende Matrix zeigt auf, an welchen Stellen der Beispielapplikation welche
 Es ist weiter ersichtlich, dass jedes Richtlinie an mindestens einer Systemkomponenten demonstriert werden kann.
 
 \begin{figure}[H]
-\begin{table}[H]
-\tablestyle
-\tablealtcolored
-\begin{tabularx}{\textwidth}{X|c c c c c|c c c c|c c}
-\tableheadcolor
-	\tablehead &
-	\multicolumn{5}{c|}{\bfseries\textit{Backend}} &
-	\multicolumn{4}{c|}{\bfseries\textit{Frontend}} &
-	\bfseries\textit{Tools}
-	\tabularnewline
-\tableheadcolor
-	\tablehead &
-	\rotatebox{90}{Models} &
-	\rotatebox{90}{Businesslogik} &
-	\rotatebox{90}{Autentifizierung} &
-	\rotatebox{90}{Rendering Engine} &
-	\rotatebox{90}{Service Interface} &
-	\rotatebox{90}{HTML Markup} &
-	\rotatebox{90}{CSS Styling} &
-	\rotatebox{90}{JavaScript Code} &
-	\rotatebox{90}{Struktur} &
-	\tabularnewline
-\tablebody
-	RP1	REST & & & & & \faOk & & & & & \tabularnewline
-	RP2 Application logic & & \faOk & & & & & & & & \tabularnewline
-	RP3 HTTP & & & & & \faOk & & & & & \tabularnewline
-	RP4 Link & & & & & \faOk & & & & \faOk & \tabularnewline
-	RP5 Non-Browser & & & & & \faOk & & & & & \tabularnewline
-	RP6 Should-Formats & & & & & \faOk & & & & & \tabularnewline
-	RP7 Auth & & & \faOk & & & & & & & \tabularnewline
-	RP8 Cookies & & & \faOk & & \faOk & & & & & \tabularnewline
-	RP9 Session & & & \faOk & & & & & & \faOk & \tabularnewline
-	RP10 Browser-Controls & & & & \faOk & & & & \faOk & \faOk & \tabularnewline
-	RP11 POSH & & & & \faOk & & \faOk & \faOk & & & \tabularnewline
-	RP12 Accessibility & & & & \faOk & & \faOk & \faOk & & & \tabularnewline
-	RP13 Progressive Enhancement & & & & & & \faOk & \faOk & \faOk & & \tabularnewline
-	RP14 Unobtrusive JavaScript & & & & & & \faOk & & \faOk & & \tabularnewline
-	RP15 No Duplication & \faOk & \faOk & & \faOk & & & & \faOk & & \tabularnewline
-	RP16 Know Structure & & & & & \faOk & \faOk & \faOk & & & \tabularnewline
-	RP17 Static Assets & & & & & & & \faOk & \faOk & & \faOk \tabularnewline
-	RP18 History API & & & & & & & & \faOk & & \tabularnewline
-	TP3 Eat your own API dog food & & & & & \faOk & & & & & \tabularnewline
-	TP4 Separate user identity and sign-up (...) & & & \faOk & & & & & & & \tabularnewline
-	TP7 Apply the Web instead of working around & & & & & \faOk & \faOk & \faOk & \faOk & \faOk & \tabularnewline
-	TP8 Automate everything or you will be hurt & & & & & & & & & & \faOk \tabularnewline
-\tableend
-\end{tabularx}
-\caption{Mapping Architekturrichtlinien - Systemkomponenten}
-\label{fig:how-to-show-principles-matrix}
-\end{table}
+	\begin{table}[H]
+		\tablestyle
+		\tablealtcolored
+		\begin{tabularx}{\textwidth}{X|c c c c c|c c c c|c c}
+			\tableheadcolor
+				\tablehead &
+				\multicolumn{5}{c|}{\bfseries\textit{Backend}} &
+				\multicolumn{4}{c|}{\bfseries\textit{Frontend}} &
+				\bfseries\textit{Tools}
+				\tabularnewline
+			\tableheadcolor
+				\tablehead &
+				\rotatebox{90}{Models} &
+				\rotatebox{90}{Businesslogik} &
+				\rotatebox{90}{Autentifizierung} &
+				\rotatebox{90}{Rendering Engine} &
+				\rotatebox{90}{Service Interface} &
+				\rotatebox{90}{HTML Markup} &
+				\rotatebox{90}{CSS Styling} &
+				\rotatebox{90}{JavaScript Code} &
+				\rotatebox{90}{Struktur}
+				\tabularnewline
+			\tablebody
+				RP1	REST & & & & & \faOk & & & & & \tabularnewline
+				RP2 Application logic & & \faOk & & & & & & & & \tabularnewline
+				RP3 HTTP & & & & & \faOk & & & & & \tabularnewline
+				RP4 Link & & & & & \faOk & & & & \faOk & \tabularnewline
+				RP5 Non-Browser & & & & & \faOk & & & & & \tabularnewline
+				RP6 Should-Formats & & & & & \faOk & & & & & \tabularnewline
+				RP7 Auth & & & \faOk & & & & & & & \tabularnewline
+				RP8 Cookies & & & \faOk & & \faOk & & & & & \tabularnewline
+				RP9 Session & & & \faOk & & & & & & \faOk & \tabularnewline
+				RP10 Browser-Controls & & & & \faOk & & & & \faOk & \faOk & \tabularnewline
+				RP11 POSH & & & & \faOk & & \faOk & \faOk & & & \tabularnewline
+				RP12 Accessibility & & & & \faOk & & \faOk & \faOk & & & \tabularnewline
+				RP13 Progressive Enhancement & & & & & & \faOk & \faOk & \faOk & & \tabularnewline
+				RP14 Unobtrusive JavaScript & & & & & & \faOk & & \faOk & & \tabularnewline
+				RP15 No Duplication & \faOk & \faOk & & \faOk & & & & \faOk & & \tabularnewline
+				RP16 Know Structure & & & & & \faOk & \faOk & \faOk & & & \tabularnewline
+				RP17 Static Assets & & & & & & & \faOk & \faOk & & \faOk \tabularnewline
+				RP18 History API & & & & & & & & \faOk & & \tabularnewline
+				TP3 Eat your own API dog food & & & & & \faOk & & & & & \tabularnewline
+				TP4 Separate user identity and sign-up (...) & & & \faOk & & & & & & & \tabularnewline
+				TP7 Apply the Web instead of working around & & & & & \faOk & \faOk & \faOk & \faOk & \faOk & \tabularnewline
+				TP8 Automate everything or you will be hurt & & & & & & & & & & \faOk \tabularnewline
+			\tableend
+		\end{tabularx}
+	\end{table}
+	\caption{Mapping Architekturrichtlinien - Systemkomponenten}
+	\label{fig:how-to-show-principles-matrix}
 \end{figure}
