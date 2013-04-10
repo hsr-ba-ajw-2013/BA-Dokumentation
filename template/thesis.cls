@@ -37,5 +37,6 @@
 \usepackage{template/fontawesome}
 \usepackage{csquotes}
 \usepackage{verbatim}
+\usepackage{xspace}
 
 \bibliography{content/indexes/bibliography}
