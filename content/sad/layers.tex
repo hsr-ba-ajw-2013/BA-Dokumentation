@@ -41,13 +41,13 @@ Auf der Client-Seite im Browser wird ebenfalls das MVC-Pattern \cite{MVC} verwen
 Das Client-Side MVC ist auf Backbone.js \cite{Backbonejs} aufgebaut.
 
 \subsubsection*{Handlebars Views}
-Die Präsentations-Schicht ist auf Handlebars \cite{Handlebars} aufgebaut. Dieses Templating-System ermöglicht View-Tempaltes ohne Logik.
+Die Präsentations-Schicht verwendet Handlebars \cite{Handlebars}. Dieses Templating-System forciert die Library-Benutzer zu quasi Logikfreien Templates.
 
 \subsubsection*{Winston}
 Winston \cite{Winston} ist ein Logging-Framework für \gls{nodejs}.
 
 \subsubsection*{CSRF}
-\gls{CSRF}-Schicht um CSRF-Attacken zu verhindern.
+\gls{CSRF}-Schicht um CSRF-Attacken zu verhindern. Dies wird von Express zur Verfügung \cite{ExpressjsCSRF} gestellt und muss in der Applikation aktiviert werden.
 
 \subsubsection*{Validation}
 Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und gereinigt (sanitized).
@@ -56,4 +56,4 @@ Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher
 Passport \cite{Passportjs} ist ein authentication-Framework für \gls{nodejs}. Und ermöglicht durch verschiedene Strategien (Strategy-Pattern \cite{StrategyPattern}) das einloggen mittels z.B. Facebook-Connect \cite{FacebookConnect}.
 
 \subsubsection*{Escaping}
-Jede Datenbank-Query muss Escaped werden, damit keine invaliden User-Input Daten die Datenbank erreichen können. Das ORM stellt dies bereits zur Verfügung.
+Jede Datenbank-Query muss Escaped werden, damit keine invaliden User-Input Daten die Datenbank erreichen können. Das ORM Sequelize \cite{Sequelize} stellt dies zur Verfügung.

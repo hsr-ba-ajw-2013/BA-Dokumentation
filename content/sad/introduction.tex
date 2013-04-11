@@ -11,12 +11,13 @@ Die Architektur besteht aus den folgenden grundlegenden Elementen:
 
 Die Backend-Applikation ist eine Komponenten-basierte MVC Applikation und ermöglicht dadurch eine gute Trennung von Zuständigkeiten (Separation of Concerns \cite{SeparationOfConcerns}) und niedrige Kopplung.
 
-Um das Prinzip \gls{DRY} zu erfüllen, werden Controllers und Templates mit dem Frontend geteilt.
+Um das Prinzip ``\gls{DRY}'' zu erfüllen, werden Controllers und Templates mit dem Frontend geteilt.
 
 \subsection{Frontend-Applikation}
 
 Die Frontend-Applikation ist ebenfalls MVC-basiert und holt die entsprechende Logik vom geteilten Backend-Code.
 Im Optimalfall (Der Client-Browser hat JavaScript aktiviert) wird das Backend nur für die Datenübertragung angesprochen. Alles andere passiert direkt im Browser des Clients.
+Für Suchmaschinen und Browsern mit JavaScript deaktiviert, funktioniert die Applikation aber ohne jegliche Probleme.
 
 \subsection{ORM}
 
