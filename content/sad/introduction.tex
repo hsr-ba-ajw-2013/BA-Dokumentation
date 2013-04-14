@@ -1,27 +1,29 @@
 \section{Einleitung}
 
-Die Architektur besteht aus den folgenden grundlegenden Elementen:
+Die Architektur besteht aus den folgenden Elementen:
 \begin{itemize}
-	\item Backend-Applikation mit \emph{Express.js} \cite{Expressjs}
+	\item Eine Backend-Komponente mit \emph{Express.js} \cite{Expressjs}
 	%\item Frontend-Applikation mit \emph{Backbone.js} \cite{Backbonejs}
-	\item \emph{PostgreSQL} \cite{PostgreSQL} Datenbank, welche mit dem \gls{ORM}
-		\emph{Sequelize} \cite{Sequelize} angesprochen wird
+	\item Eine mittels \emph{Sequelize} \cite{Sequelize} abstrahierte
+		\emph{PostgreSQL} \cite{PostgreSQL} Datenbank
 \end{itemize}
 
-\subsection{Backend-Applikation}
 
-Die Backend-Applikation ist eine Komponenten-basierte MVC Applikation und
-ermöglicht dadurch eine gute Trennung von Zuständigkeiten (Separation of
-Concerns \cite{SeparationOfConcerns}) und niedrige Kopplung.
+\subsection{Backend-Komponenten}
+
+Der Backend-Teil der Applikation verfügt über eine auf Komponenten-basierte
+MVC Architektur. Diese ermöglicht eine optimale Trennung von Zuständigkeiten
+\cite{SeparationOfConcerns} und damit eine niedrige Kopplung.
 
 Durch die Verwendung von \emph{Express.js} \cite{Expressjs} ist es einerseits
-sehr einfach, die ROCA-Richtlinien zu demonstrieren, andererseits ist das Layout
-der Applikation einem komplett selber überlassen.
+einfach, die definierten, projektspezifischen Architekturrichtlinien zu
+demonstrieren, andererseits ddie Strukturierung der Komponenten selber zu
+definieren.
 
-Nach mehreren Versuchen verschiedener Applikationsstrukturen, wurde
-aufgrund von einem Artikel \cite{TJH_ComponentStructure} des Haupt-Entwicklers
-von Express.js, TJ Holowaychuck \cite{TJH}, die erwähnte Komponenten-Struktur
-implementiert.
+Nach mehreren Experimenten mit verschiedenen Strukturierungen des Quellcodes
+stellte sich die von TJ Holowaychuck (Lead Entwickler von \emph{Express.js}
+\cite{TJH}) vorgestellte Komponentenaufteilung  \cite{TJH_ComponentStructure}
+als am geeignetsten heraus.
 
 % TODO: Add if done
 % Um das Prinzip ``\gls{DRY}'' zu erfüllen, werden Controllers und Templates
@@ -37,7 +39,7 @@ implementiert.
 % Für Suchmaschinen und Browsern mit JavaScript deaktiviert, funktioniert die
 % Applikation aber ohne jegliche Probleme.
 
-\subsection{ORM}
+\subsection{Datenbank und ORM}
 
-Das \gls{ORM} verwendet PostgreSQL \cite{PostgreSQL} als Datenbank und stellt
-einfache Schnittstellen zum Abfragen oder Speichern von Daten zur Verfügung.
+Das schlanke JavaScript \gls{ORM} \emph{Sequelize} \cite{Sequelize} setzt auf
+der quelloffenen Datenbank \emph{PostgreSQL} \cite{PostgreSQL}.
