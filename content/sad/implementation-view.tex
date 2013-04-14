@@ -1,14 +1,15 @@
 \section{Implementations-Sicht}
-\subsection{Code-Struktur}
-In Node.JS ist es unter den erfahreneren (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}) Entwicklern relativ üblich eine Applikation in mehr oder weniger komplett eigenständige Komponenten zu unterteilen.\\
-Dies sieht man u.a. auch an den installierbaren Komponenten auf NPM \cite{NPM}, in welchen es für sehr kleine Logiken eigene Komponenten hat.\\
-Die Beispielapplikation ``Roomies'' folgt diesem Beispiel ebenfalls. Möglichst jede Komponente (z.B. auch ein Controller) ist abgetrennt von der Applikation und wird von dieser aufgerufen um eigene Initialisierungen zu machen.\\[0.5mm]
+\subsection{Quellcode Organisation}
+Auch für Applikationen für Node.JS ist üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich in mehr oder weniger komplett eigenständige Komponenten zu unterteilen.
 
-Dies veranschaulicht die folgende Ordner-Struktur:
+Ein gutes Beispiel hierfür sind die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekappselt werden.
+
+Die Beispielapplikation ``Roomies'' folgt diesem Beispiel: Jede Komponente (Controllers, Policies usw.) ist abgetrennt von der eigentlichen Applikation. Sie werden erst zum Zeitpunkt der eigentlichen Initialisierung der Applikation eingebunden und konfiguriert.\\[0.5mm]
+
+Der folgende Auszug aus der Ordnerstruktur veranschaulicht dieses Prinzip:
 \begin{verbatim}
 ├── src
 │   ├── lib
-│   │   ├── cluster
 │   │   ├── community
 │   │   │   └── views
 │   │   │   └── controller.js
@@ -24,29 +25,24 @@ Dies veranschaulicht die folgende Ordner-Struktur:
 │   │   ├── middleware
 │   │   ├── resident
 │   │   │   └── views
-│   │   └── task
-│   │       └── views
-│   ├── public
-│   │   ├── font
-│   │   ├── images
-│   │   ├── javascripts
-│   │   │   └── lib
-│   │   └── stylesheets
-│   └── shared
-│       ├── exceptions
-│       ├── layouts
-│       ├── locales
-│       ├── partials
-│       ├── policies
-│       ├── sass
-│       │   └── vendor
-│       ├── test
-│       ├── utils
-│       ├── validators
-│       └── views
-├── test
-└── travis
+│   │   ├── task
+│   │   │   └── views
+│   │   └── ...
+│   ├── shared
+│   │   ├── locales
+│   │   ├── partials
+│   │   ├── policies
+│   │   ├── validators
+│   │   └── ...
+│   └── ...
+└── ...
 \end{verbatim}
 
-Jede Komponente unter lib/ ist in sich abgeschlossen und ist über die Datei ``index.js''
-ansprechbar.
+Jede im Verzeichnis \emph{lib} enthaltene Komponente kann mit Node.JS über mittels einem \emph{require} Befehls eingebunden werden.
+
+Dabei muss und sollte keine konkrete JavaScript Datei angegeben werden. Jede Komponente enthält eine \emph{index.js}-Datei, welche die Initialisierung der Komponente, aber auch die Repräsentation ``nach Aussen'' übernimmt.
+
+\begin{lstlisting}[language=JavaScript, caption=Einbindung der Community-Komponenten]
+// Requires actually ./lib/community/index.js:
+var Community = require('.lib/community');
+\end{lstlisting}

@@ -1,62 +1,61 @@
 \section{Software Layers}
 
-Die folgenden Diagramme beschreiben die Umsetzung zuerst Technologie-Unabhängig
-und danach mit der effektiven Implementation.
+Die folgenden Diagramme beschreiben die Umsetzung zuerst Technologie-Unabhängig und danach mit der effektiven Implementation.
 
-Durchgezogene Pfeile sind dabei als synchrone Kommunikation zu verstehen.
-Gestrichelte Pfeile als asynchrone Kommunikation.
+Durchgezogene Pfeile sind dabei als synchrone, geschtrichelte Pfeile als asynchrone Kommunikation zu interpretieren.
 
 \subsection*{Technologie-Unabhängig}
 
 \begin{figure}[ht!]
 	\centering{
-		\input{content/sad/layers-diagram}
+		\input{content/sad/diagrams/layers-diagram}
 	}
 
 	\caption{Software Layers -- Technologie-Unabhängig}
 \end{figure}
 
 \subsubsection*{Client-Side}
-Diese Schicht wird im Browser selber als JavaScript ausgeführt und synchronisiert sich mit dem Server über URLs.
+Diese Schicht wird im Browser selber als JavaScript ausgeführt und synchronisiert sich mit dem Server über eine REST Schnittstelle.
 
 \subsubsection*{Business}
 In der Business-Schicht wird die eigentliche Business-Logik definiert und mit der Datenbank über Models kommuniziert.
 
 \subsubsection*{Language Framework}
-Das Language Framework wird von \gls{nodejs} zur Verfügung gestellt.
+Das Language Framework repräsentiert die von der jeweiligen konkreten Plattform zur Verfügung gestellten API.
 
 \subsubsection*{Security}
-Sowohl Client wie auch Server beinhalten einige Sicherheitsmassnahmen um zu gewährleisten, dass ein \gls{Bewohner} immer authentisiert ist und keine gefährlichen Daten übermitteln kann.
+Sowohl Client wie auch Server beinhalten Sicherheitsmassnahmen um zu gewährleisten, dass ein \gls{Benutzer} immer authentisiert ist und keine gefährlichen Daten übermitteln kann.
 
 \newpage
 \subsection*{Implementation}
 
 \begin{figure}[ht!]
 	\centering{
-		\input{content/sad/layers-diagram-impl}
+		\input{content/sad/diagrams/layers-diagram-impl}
 	}
 
-	\caption{Software Layers}
+	\caption{Software Layers -- Implementation}
 \end{figure}
 
 \subsubsection*{Client-Side MVC}
-Auf der Client-Seite im Browser wird ebenfalls das MVC-Pattern \cite{MVC} verwendet. Dies ermöglicht eine entkoppelte Implementation.\\
+Auf der Client-Seite im Browser wird ebenfalls das MVC-Pattern \cite{MVC}verwendet. Dies ermöglicht eine entkoppelte Implementation.
+
 Das Client-Side MVC ist auf Backbone.js \cite{Backbonejs} aufgebaut.
 
 \subsubsection*{Handlebars Views}
-Die Präsentations-Schicht verwendet Handlebars \cite{Handlebars}. Dieses Templating-System forciert die Library-Benutzer zu quasi Logikfreien Templates.
+Die Präsentations-Schicht verwendet Handlebars \cite{Handlebars}. Die praxiserprobte Library ermöglicht die Erstellung von Templates mit minimaler enthaltener Programmlogik.
 
 \subsubsection*{Winston}
-Winston \cite{Winston} ist ein Logging-Framework für \gls{nodejs}.
+Winston \cite{Winston} ist ein Logging-Framework für \gls{nodejs}. Einer der grössten Vorteile von Winston ist die umfangreiche Konfigurierbarkeit, wie die unterschiedlichen Logs behandelt werden sollen.
 
 \subsubsection*{CSRF}
-\gls{CSRF}-Schicht um CSRF-Attacken zu verhindern. Dies wird von Express zur Verfügung \cite{ExpressjsCSRF} gestellt und muss in der Applikation aktiviert werden.
+\gls{CSRF}-Schicht um CSRF-Attacken zu verhindern. Dies wird von Express.js zur Verfügung gestellt \cite{ExpressjsCSRF} und muss lediglich in der entsprechenden Applikation aktiviert werden.
 
 \subsubsection*{Validation}
-Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und gereinigt (sanitized).
+Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und bereinigt.
 
 \subsubsection*{Passport}
-Passport \cite{Passportjs} ist ein authentication-Framework für \gls{nodejs}. Und ermöglicht durch verschiedene Strategien (Strategy-Pattern \cite{StrategyPattern}) das einloggen mittels z.B. Facebook-Connect \cite{FacebookConnect}.
+Passport \cite{Passportjs} ist ein Authentisierungs-Framework für \gls{nodejs}. Es bietet eine Vielzahl von Strategien (Strategy-Pattern \cite{StrategyPattern}) für das Einloggen über verschiedenste externe Authentisierungs-Provider (z.B. Facebook-Connect \cite{FacebookConnect}) an.
 
 \subsubsection*{Escaping}
-Jede Datenbank-Query muss Escaped werden, damit keine invaliden User-Input Daten die Datenbank erreichen können. Das ORM Sequelize \cite{Sequelize} stellt dies zur Verfügung.
+Um SQL-Injection \cite{sqlinjection} Attacken u.Ä. zu unterbinden, bietet das \gls{ORM} Sequelize \cite{Sequelize} umfangreiche Funktionalitäten für das Bereinigen von tendenziell gefährlichen \gls{SQL}-Abfragen an.
