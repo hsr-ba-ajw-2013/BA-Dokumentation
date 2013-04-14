@@ -1,17 +1,20 @@
-\section{Software Layers}
+\section{Software Layer Models}
 
-Die folgenden Diagramme beschreiben die Umsetzung zuerst Technologie-Unabhängig und danach mit der effektiven Implementation.
+In diesem Abschnitt werden die verschiedenen Ebenen der Architektur der Beispielapplikation beschrieben.
 
-Durchgezogene Pfeile sind dabei als synchrone, geschtrichelte Pfeile als asynchrone Kommunikation zu interpretieren.
+Um einen grundsätzlichen Einblick zu erhalten wird jede Ebene zuerst komplett unabhängig von jeglicher konkreter Technologie vorgestellt. In einem weiteren Schritt werden die verwendeten Technologien eingeführt und kurz erläutert.
 
-\subsection*{Technologie-Unabhängig}
+In der Diagrammen stehen durchgezogene Pfeile jeweils für einen synchronen, gestrichelte Pfeile für einen asynchrone Kommunikationsvorgang.
+
+
+\subsection*{Technologieneutral}
 
 \begin{figure}[ht!]
 	\centering{
 		\input{content/sad/diagrams/layers-diagram}
 	}
 
-	\caption{Software Layers -- Technologie-Unabhängig}
+	\caption{Software Layers -- Technologieneutral}
 \end{figure}
 
 \subsubsection*{Client-Side}
@@ -27,14 +30,14 @@ Das Language Framework repräsentiert die von der jeweiligen konkreten Plattform
 Sowohl Client wie auch Server beinhalten Sicherheitsmassnahmen um zu gewährleisten, dass ein \gls{Benutzer} immer authentisiert ist und keine gefährlichen Daten übermitteln kann.
 
 \newpage
-\subsection*{Implementation}
+\subsection*{Konkrete Implementation}
 
 \begin{figure}[ht!]
 	\centering{
 		\input{content/sad/diagrams/layers-diagram-impl}
 	}
 
-	\caption{Software Layers -- Implementation}
+	\caption{Software Layers -- Konkrete Implementation}
 \end{figure}
 
 \subsubsection*{Client-Side MVC}
