@@ -3,22 +3,41 @@
 Die Architektur besteht aus den folgenden grundlegenden Elementen:
 \begin{itemize}
 	\item Backend-Applikation mit \emph{Express.js} \cite{Expressjs}
-	\item Frontend-Applikation mit \emph{Backbone.js} \cite{Backbonejs}
-	\item \emph{PostgreSQL} \cite{PostgreSQL} Datenbank, welche mit dem \gls{ORM} \emph{Sequelize} \cite{Sequelize} angesprochen wird
+	%\item Frontend-Applikation mit \emph{Backbone.js} \cite{Backbonejs}
+	\item \emph{PostgreSQL} \cite{PostgreSQL} Datenbank, welche mit dem \gls{ORM}
+		\emph{Sequelize} \cite{Sequelize} angesprochen wird
 \end{itemize}
 
 \subsection{Backend-Applikation}
 
-Die Backend-Applikation ist eine Komponenten-basierte MVC Applikation und ermöglicht dadurch eine gute Trennung von Zuständigkeiten (Separation of Concerns \cite{SeparationOfConcerns}) und niedrige Kopplung.
+Die Backend-Applikation ist eine Komponenten-basierte MVC Applikation und
+ermöglicht dadurch eine gute Trennung von Zuständigkeiten (Separation of
+Concerns \cite{SeparationOfConcerns}) und niedrige Kopplung.
 
-Um das Prinzip ``\gls{DRY}'' zu erfüllen, werden Controllers und Templates mit dem Frontend geteilt.
+Durch die Verwendung von \emph{Express.js} \cite{Expressjs} ist es einerseits
+sehr einfach, die ROCA-Richtlinien zu demonstrieren, andererseits ist das Layout
+der Applikation einem komplett selber überlassen.
 
-\subsection{Frontend-Applikation}
+Nach mehreren Versuchen verschiedener Applikationsstrukturen, wurde
+aufgrund von einem Artikel \cite{TJH_ComponentStructure} des Haupt-Entwicklers
+von Express.js, TJ Holowaychuck \cite{TJH}, die erwähnte Komponenten-Struktur
+implementiert.
 
-Die Frontend-Applikation ist ebenfalls MVC-basiert und holt die entsprechende Logik vom geteilten Backend-Code.
-Im Optimalfall (Der Client-Browser hat JavaScript aktiviert) wird das Backend nur für die Datenübertragung angesprochen. Alles andere passiert direkt im Browser des Clients.
-Für Suchmaschinen und Browsern mit JavaScript deaktiviert, funktioniert die Applikation aber ohne jegliche Probleme.
+% TODO: Add if done
+% Um das Prinzip ``\gls{DRY}'' zu erfüllen, werden Controllers und Templates
+% mit dem Frontend geteilt.
+
+% \subsection{Frontend-Applikation}
+
+% Die Frontend-Applikation ist ebenfalls MVC-basiert und holt die entsprechende
+% Logik vom geteilten Backend-Code.
+% Im Optimalfall (Der Client-Browser hat JavaScript aktiviert) wird das Backend
+% nur für die Datenübertragung angesprochen.
+% Alles andere passiert direkt im Browser des Clients.
+% Für Suchmaschinen und Browsern mit JavaScript deaktiviert, funktioniert die
+% Applikation aber ohne jegliche Probleme.
 
 \subsection{ORM}
 
-Das \gls{ORM} verwendet PostgreSQL \cite{PostgreSQL} als Datenbank und stellt einfache Schnittstellen zum Abfragen oder Speichern von Daten zur Verfügung.
+Das \gls{ORM} verwendet PostgreSQL \cite{PostgreSQL} als Datenbank und stellt
+einfache Schnittstellen zum Abfragen oder Speichern von Daten zur Verfügung.
