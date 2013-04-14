@@ -1,6 +1,6 @@
 \section{Domainmodel}
 
-Nach dem Domainmodel in Abbildung \ref{fig:domainmodel} werden die einzelnen Konzepte genauer erklärt.
+Das folgende Domainmodel in Abbildung \ref{fig:domainmodel} zeigt eine Übersicht über alle in der Problemdomäne enthaltenen Objekte. Zu jedem dieser ist im Anschluss eine genauere Erklärung zu finden.
 
 \begin{figure}[ht!]
 	\centering{
@@ -70,19 +70,29 @@ Nach dem Domainmodel in Abbildung \ref{fig:domainmodel} werden die einzelnen Kon
 \end{figure}
 
 \subsection*{Achievement (Erfolg)}
-Achievements (Erfolge) werden an einen Resident vergeben, wenn Sie bestimmte Regeln (Rules) erreicht haben.
+Achievements werden an einen Resident vergeben, sobald diese bestimmte Regeln ausreichend befriedigt haben.
 
 \subsection*{Rule (Regel)}
-Rules (Regeln) bestimmen, wann ein Resident Achievement erreicht hat und dieses bekommen. Diese Regeln können Zeitbasiert (z.B. ist kürzlich einer \gls{WG} beigetreten), Punktebasiert (z.B. hat 10 Aufgaben erledigt) oder auch bei Komplettierung (z.B. hat sich registriert) vergeben werden.
+Rules beschreiben, welche Aktionen oder Verhalten notwendig sind, damit ein Resident ein bestimmtes Achievment erhalten kann.
+
+Eine Rule kann verschiedene Ausprägungen haben:
+
+\begin{itemize}
+	\item Zeitbasiert\\Beispiel: Ein Resident ist bereits zwei Monate Teil einer Community.
+	\item Punktebasiert\\
+	Beispiel: Ein Resident hat durch das erledigen von Tasks 50 Punkte gesammelt.
+	\item Spezifische Aktionen\\
+	Beispiel: Ein Resident hat 10 Tasks erledigt.
+\end{itemize}
 
 \subsection*{AchievementDefinition (Erfolgsdefinition)}
-Damit die zu erreichenden Erfolge ersichtlich sind, müssen sie definiert werden. Hierfür wird AchievementDefinition (Erfolgsdefinition) benötigt. Die Erfolgsdefinition bestimmt wie ein Achievement auszusehen hat und mit welcher Regel es verknüpft ist.
+Die AchievementDefinition verknüpft ein Achievment mit den umzusetzenden Rules.
 
 \subsection*{Community (\gls{WG})}
-Community (WG) definiert die Wohngemeinschaft, in welcher sich die Bewohner befinden. Tasks werden immer einer WG zugeteilt.
+Eine Community ist eine Wohngemeinschaft in welcher mehrere Residents wohnen können. Zudem gehören Tasks immer zu einer spezifischen Community.
 
 \subsection*{Resident (Bewohner)}
-Resident (Bewohner) sind die Benutzer des Systems. Bewohner mit Administrotoren-Rechte (Eigenschaft ``isAdmin'') können zusätzlich die Community (\gls{WG}) administrieren.
+Residents sind Bewohner einer Community und die eigentlichen Benutzer des Systems. Ein Resident kann über die \emph{isAdmin}-Eigenschaft erweiterte Berechtigungen zum Verwalten von Communities sowie deren Tasks und Residents erhalten.
 
 \subsection*{Task (Aufgabe)}
-Tasks (Aufgaben) sind die eigentlichen ``TODOs'' der \gls{WG}. Bewohner der WG können solche erstellen, bearbeiten und erledigen. Durch dass Erledigen einer Aufgabe gewinnt der Bewohner Punkte, welche sein Rang innerhalb der WG verbessert.
+Eine Community führt eine Liste von zu erledigenden Aufgaben, den Tasks. Ein Resident einer Community kann Tasks erstellen, bearbeiten, löschen und erledigen. Über das Erledigen von Tasks erhält der entsprechende Resident Punkte, welche ihn auf der Community-internen Rangliste emporsteigen lassen.
