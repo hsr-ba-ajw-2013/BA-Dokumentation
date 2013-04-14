@@ -1,14 +1,45 @@
 \section{RP17 Static Assets}
 \label{sec:principle-rp17-static-assets}
 
-\subsection*{Geplante Umsetzung}
-Die ``Static Assets'' ROCA Richtlinie will dass jeglicher JavaScript Code oder CSS Stylesheets für den Client von statischer Natur ist. Dies bedeuted, dass der Server keine dynamische Generierung von diesem Code vornimmt.
+Die ``Static Assets'' ROCA Richtlinie will dass jeglicher JavaScript Code oder CSS Stylesheets für den Client von statischer Natur ist. Dies bedeutet, dass der Server keine dynamische Generierung von eben diesem Code vornimmt.
 
+\subsection*{Geplante Umsetzung}
+\subsubsection*{CSS Stylesheets}
+Die verwendeten CSS Stylesheets sollen mit dem SASS Präprozessor \cite{SASS} erstellt werden. Zwar muss der eigentliche Stylesheet Code zwar vorneweg einmalig übersetzt werden, die dadurch entstehenden Vorteile beim Entwickeln der Formatierungsinformationen sind jedoch bei Weitem grösser.
+
+Da zudem statische SASS-Quelldateien übersetzt werden, kann der Anspruch keine dynamischen CSS Formatierungen zu generieren befriedigt werden.
+
+\subsubsection*{Clientside JavaScript}
+Die JavaScript Applikation für den Client soll auf verschiedene Dateien aufgeteilt werden. Für den späteren produktiven Betrieb ist das Übertragen vieler kleinen Quellcode-Dateien jedoch nicht effektiv.
+
+Aus diesem Grund sollen auf dem Backend alle Client-Quellcode-Dateien zusammengefasst werden können und mit gängigen Methoden zur schnellstmöglichen Übertragung über das Internet optimiert werden.
+
+Ähnlich wie beim SASS-Präprozessor soll auch hier kein dynamischer Code entstehen. Es wird lediglich eine Optimierung der zu übertragenden Informationen vorgenommen.
 
 
 \subsection*{Konkrete Umsetzung}
-\subsubsection*{CSS Stylesheets}
+Beide geplanten Umsetzungen konnten erfolgreich implementiert werden.
 
+\subsubsection*{CSS Stylesheets}
+Bevor die eigentliche Beispielapplikation gestartet wird, wird die Umwandlung des SASS-Quellcodes in gewöhnlichen CSS-Quellcode vorgenommen.
+
+Die daraus entstehende Datei kann anschliessend ohne weitere Veränderungen wie gewohnt vom Webserver an den Browser des Benutzers übertragen werden.
 
 \subsubsection*{Clientside JavaScript}
+Um den auf verschiedene Dateien verteilten JavaScript Code für den Client zusammenzufassen und zu optimieren wird \emph{browserify-middleware} für Express.JS \cite{browserifymiddleware} verwendet.
 
+Der Client-seitige Quellcode kann wie in Node.JS gewohnt in CommonJS Modulen \cite{commonjsmodules} strukturiert werden. \emph{browserify-middleware} untersucht den Quellcode anschliessend und fasst die eingebundenen Module anhand der vorhandenen \emph{require}-Befehlen automatisch zu einer grossen JavaScript-Datei zusammen.
+
+Falls konfiguriert, wird diese abschliessend von Kommentaren und unnötigen Füllzeichen befreit und mittels Gzip \cite{gzip} komprimiert an den Browser des Benutzers übertragen.
+
+
+\subsection*{Diskussion}
+Das Projektteam ist davon überzeugt, dass die umgesetzten und aufgezeigten Methoden und Mechanismen für moderne Webapplikationen ein extrem hilfreiches Werkzeug sind.
+
+Im Bereich der clientseitigen JavaScript Entwicklung ermöglichen das erwähnte \emph{browserify-middleware} oder andere Bibliotheken wie RequireJS \cite{requirejs} erst das effiziente verteilen von Quellcode auf verschiedene Dateien.
+
+In die gleiche Richtung strebt SASS: Es ergänzt CSS um viele nützliche Features wie Variablen und Mixins. Daneben ermöglicht es aber, entsprechende Bibliotheken vorausgesetzt, eine extreme Vereinfachung der Entwicklung von CSS-Stylesheets, welche mit verschiedenen Browsern kompatibel ist.
+
+Sollten die vorgestellten Techniken für jede Webapplikation verwendet werden?
+
+Das Projektteam ist der Meinung, dass ab einem gewissen Projektumfang uneingeschränkt auf JavaScript-Modularisierungsmethoden und CSS-Präprozessoren gesetzt werden sollte.
