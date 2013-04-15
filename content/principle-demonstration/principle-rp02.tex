@@ -2,9 +2,27 @@
 \label{sec:principle-rp2-application-logic}
 
 \subsection*{Geplante Umsetzung}
-
+Die ``Application Logic'' ROCA-Richtlinie legt fest, dass jegliche Applikationslogik
+auf dem Server passiert und geschrieben ist.
+Entsprechend wird die Beispielapplikation bei kritischen Logiken wie Authentifizierung
+etc. die Ausführung auf den Server beschränken.
 
 \subsection*{Konkrete Umsetzung}
+Geschäftskritische Applikationslogik wie Validierung und Bereinigung von Daten, sowie
+Authentisierung und Authorisation von Usern muss immer auf dem Server passieren.
 
+Um allerdings möglichst wenig Code duplizieren zu müssen, verwendet ``Roomies''
+nahezu den gleichen Code auf Server-- wie auf Clientseite. Aus diesem Grund werden
+Teile der Applikationslogik sowohl auf dem Client, wie auch auf dem Server sein.
 
 \subsection*{Diskussion}
+Die wichtige Applikationslogik muss, wie bereits erwähnt, sicher auf dem Server liegen.
+Zudem müssen alle Daten validiert werden.
+
+Heutige Websiten und insbesondere Web-Applikationen brechen dieses Paradigma aber
+ganz bewusst, damit die Applikation insgesamt schneller ist. Wenn immer zuerst ein
+API-call zum Server gemacht werden muss, um zu überprüfen dass alles stimmt, sinkt
+die Performance und der User wird schnell gelangweilt.
+
+Für Entwickler ist es daher essenziell zu entscheiden, was unbedingt auf dem Server
+validiert werden muss und was auch auf dem Client sein kann.

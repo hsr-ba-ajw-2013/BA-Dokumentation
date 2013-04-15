@@ -2,9 +2,28 @@
 \label{sec:principle-rp4-link}
 
 \subsection*{Geplante Umsetzung}
+Jede Seite innerhalb einer Web-Applikation muss mit einer eindeutigen URL adressierbar
+sein.
+
+Dies ist eines der ersten Paradigmas des Webs und auch eines der wichtigstens. In der Vergangenheit
+ist es öfters vorgekommen, dass neuere Applikationen auf diesen ``Komfort'' verzichtet haben.
+Heutzutage ist es aber u.a. dank der History API \cite{HistoryAPI} einiges
+einfacher geworden, eindeutige URLs auch in JavaScript-lastigen Applikationen zu
+verwenden.
 
 
 \subsection*{Konkrete Umsetzung}
+Weil die Beispielapplikation so oder so den REST \cite{REST} Prinzipien entspricht,
+ist diese Richtlinie ein muss.
 
+Jede URL entspricht einer eindeutigen Ressource und kann angesprochen werden.
+Mithilfe der History API \cite{HistoryAPI} wird auch auf dem Browser die URL
+geändert, obwohl u.U. nur ein AJAX-Request gemacht wird.
 
 \subsection*{Diskussion}
+Schon Tim Berners-Lee hat vor Jahren geschrieben: ``Cool URIs don't change'' \cite{CoolURIsTBL}.
+Damit eine URL ``cool'' ist, muss sie zuerst mal vorhanden sein.
+
+Auch aus einem weiteren Grund sind URLs nur dann ``cool'', wenn sie vorhanden sind
+und niemals ändern: Mit den heuten Möglichkeiten des ``Sharing'' auf diversen Sozialen
+Netzwerken, muss es möglich sein, direkt auf die momentane Seite zu verlinken.
