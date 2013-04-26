@@ -17,3 +17,15 @@ In der Beispielapplikation wird die Session-Middleware wie folgend eingesetzt:
 app.use(express.cookieParser());
 app.use(express.session({ secret: config.sessionSecret }));
 \end{lstlisting}
+
+\subsection*{Diskussion}
+Das Einbinden von mehr Informationen in Cookies hat mehrere Nachteile:
+\begin{itemize}
+	\item Sicherheit \\
+		Wenn z.B. Username und Passwort in ein Cookie gespeichert werden, kann dies ohne Probleme von Drittpersonen mitgelesen werden. Falls HTTPS eingesetzt wird, zwar nur direkt im Browser, trotzdem ist dies ein nicht-gangbares Risiko. \\
+		Ausserdem ist es einem User möglich, Cookies abzuändern. Ohne Validierung und/oder dem Einsetzen eines \glspl{MAC} ist dies auf dem Server nicht erkennbar.
+	\item Datenmenge \\
+		Cookies werden mit jeder Anfrage und jeder Antwort des Servers mitgeschickt. Zwar ist die Grösse eines Cookies beschränkt, trotzdem wird die Datenmenge unnötig höher.
+\end{itemize}
+
+Aus diesen Gründen sollte unbedingt darauf Verzichtet werden, Cookies für andere Zwecke als für die Wiederkehrende Authentifizierung über eine Session-ID oder für Tracking zu verwenden.
