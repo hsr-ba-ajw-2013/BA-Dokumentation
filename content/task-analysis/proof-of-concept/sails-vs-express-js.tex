@@ -6,8 +6,7 @@ Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstelle
 Um das \gls{ORM} ``Waterline'' \cite{Waterline} zu testen, wurden diese beiden Models implementiert. Das Task-Model mittels Sails.js definiert sieht so aus:
 
 \begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js]
-// Filename is 'Task.js', therefore the Model will be named 'Task'.
-module.exports = {
+var Task = {
 	attributes: {
 		name: "string"
 		, description: "string"
@@ -16,6 +15,7 @@ module.exports = {
 		, communityId: "int"
 	}
 };
+module.exports = Task;
 \end{lstlisting}
 
 Mit einer Definition eines Models wird automatisch eine \gls{REST}-API für dieses erstellt.
@@ -26,39 +26,48 @@ Dieses Feature macht Sails.js sehr nützlich für \gls{Realtime}-Applikationen.
 
 Um eine effektive HTML-Seite darstellen zu können wird ein Controller sowie eine View benötigt. Dies wurde im Prototyp für Aufgaben (Tasks) implementiert.
 
+\newpage
 \begin{lstlisting}[language=JavaScript, caption=Task Controller in Sails.js, label=lst:sailsjstaskcontroller]
+function findTaskAndUser(id, next) {
+	Task.find(id).done(function(err, task) {
+		User.find(task.userId).done(function(err, user) {
+			next(task, user);
+		});
+	});
+}
+
+function renderResponse(req, res, response) {
+	if (req.acceptJson) {
+		res.json(response);
+	} else if(req.isAjax && req.param('partial')) {
+		response['layout'] = false;
+		res.view(response);
+	} else {
+		res.view(response);
+	}
+}
+
 var TaskController = {
 	get: function(req, res) {
 		var id = req.param('id');
-		Task.find(id).done(function(err, task) {
-			User.find(task.userId).done(function(err, user) {
-				var response = {
-					'task': task,
-					'user': user,
-					'title': task.name
-				};
-
-				if (req.acceptJson) {
-					res.json(response);
-				} else if(req.isAjax && req.param('partial')) {
-					response['layout'] = false;
-					res.view(response);
-				} else {
-					res.view(response);
-				}
-			});
+		findTaskAndUser(id, function(task, user) {
+			var response = {
+				'task': task,
+				'user': user,
+				'title': task.name
+			};
+			renderResponse(req, res, response);
 		});
 	}
-
 };
 module.exports = TaskController;
 \end{lstlisting}
 
-In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Linien 3 und 4) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. Statt dass man auf dem ``task''-Objekt direkt ``.user'' aufrufen könnte, muss man den Umweg über ``User.find()'' gehen.
+In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Linie 52) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. Statt dass man auf dem ``task''-Objekt direkt ``.user'' aufrufen könnte, muss man den Umweg über ``User.find()'' gehen.
 
 Bei einem ausgereiften ORM würden solche Methoden wegen der Definition von Relationen direkt zur Verfügung stehen.
 
-Der Controller antwortet auf eine Anfrage eines Browsers mit folgendem HTML:
+Der Controller verwendet das folgende Template, um das HTML zu rendern:
 
 \begin{lstlisting}[language=HTML, caption=Task Template]
 <div id="task-display">

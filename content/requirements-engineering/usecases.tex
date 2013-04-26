@@ -63,6 +63,8 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\caption{Use Case Diagramm}
 \end{figure}
 
+Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen automatischen, sich wiederholenden Auftrag (\gls{Cronjob}) ausgeführt wird, ist jener keinem Use-Case zugeordnet.
+
 \subsection{Akteure}
 \begin{table}[H]
 	\tablestyle
@@ -77,7 +79,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Dieser besitzt die Rechte Aufgaben seiner WG zu verwalten.
 			\tabularnewline
 			WG-Administrator &
-			Der WG-Administrator ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch zu deren Administrator. Diese Rolle kann an Bewohner weitergegeben werden.
+			Der WG-Administrator ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch zu deren Administrator. Diese Rolle kann an Bewohner weitergegeben werden (siehe \nameref{subsec:uc4} und \nameref{subsec:uc10}).
 			\tabularnewline
 			Facebook &
 			Facebook ist die Schnittstelle zur Social Media Plattform. Diese ermöglicht dem System auf die Daten des Bewohners, die auf Facebook verfügbar sind, zuzugreifen. So einen einfachen Login anzubieten und Daten zu teilen.
