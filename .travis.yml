@@ -51,7 +51,7 @@ env:
         # When pushing to the gh-pages branch, these informtion are used to
         # perform the git commit
         - GIT_AUTHOR_NAME: "TravisCI"
-        - GIT_AUTHOR_EMAIL: ""
+        - GIT_AUTHOR_EMAIL: "noreply@travis-ci.org"
 
         # CI_HOME
         # A shortcut to the directory where travis cloned the actual git repo
