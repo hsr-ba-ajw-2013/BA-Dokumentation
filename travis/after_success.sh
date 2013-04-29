@@ -19,6 +19,7 @@ cp $RESULT_PDF_PATH ./
 echo '---- Set git settings ----'
 git config --global user.name $GIT_AUTHOR_NAME
 git config --global user.email $GIT_AUTHOR_EMAIL
+git config --global push.default matching
 
 echo '---- Add files, commit and push ----'
 git add -A
