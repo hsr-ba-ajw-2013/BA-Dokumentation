@@ -19,7 +19,7 @@ forcebuild:
 	@@$(BULD_CMD) -f
 
 live:
-	@@$(BULD_CMD) --pvc -silent
+	@@$(BULD_CMD) --pvc
 
 clean-auxilary:
 	-rm $(BASENAME).aux $(BASENAME).glo $(BASENAME).idx $(BASENAME).ist

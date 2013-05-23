@@ -1,4 +1,46 @@
 \section{Implementations-Sicht}
+
+\subsection{Request -- Response Flow}
+
+\begin{figure}[ht!]
+	\centering{
+		\resizebox{0.9\textwidth}{!} {
+			\begin{tikzpicture}
+				\begin{umlseqdiag}
+					\umlbasicobject{Browser}
+					\umlobject[class=Barefoot]{barefoot}
+					\umlobject[class=Router]{router}
+					\umlobject[class=ApiAdapter]{apiAdapter}
+					\umlobject[class=DataStore]{dataStore}
+
+					\begin{umlcall}[op=GET]{Browser}{barefoot}
+						\begin{umlcall}[op=route\(\)]{barefoot}{router}
+							\begin{umlcallself}[op=render\(\)]{router}
+								\begin{umlcallself}[op=initDOM\(\)]{router}
+								\end{umlcallself}
+								\begin{umlcallself}[op=renderMainView\(\)]{router}
+								\end{umlcallself}
+								\begin{umlcallself}[op=renderView\(\)]{router}
+								\end{umlcallself}
+
+								\begin{umlcall}[op={read()}, with return]{router}{apiAdapter}
+								\end{umlcall}
+								\begin{umlcallself}[op=serialize\(\)]{router}
+									\begin{umlcall}[op=toJSON\(\), with return]{router}{dataStore}
+									\end{umlcall}
+								\end{umlcallself}
+								\begin{umlcallself}[op=writeHTTPResponse\(\)]{router}
+								\end{umlcallself}
+							\end{umlcallself}
+						\end{umlcall}
+					\end{umlcall}
+				\end{umlseqdiag}
+			\end{tikzpicture}
+		}
+	}
+	\caption{Request -- Response Sequenzdiagramm}
+\end{figure}
+
 \subsection{Quellcode Organisation}
 Auch für Applikationen für Node.JS ist üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich in mehr oder weniger komplett eigenständige Komponenten zu unterteilen.
 
