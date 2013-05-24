@@ -7,29 +7,36 @@
 		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
 				\begin{umlseqdiag}
-					\umlbasicobject{Browser}
+					\umlactor[class=Browser]{client}
 					\umlobject[class=Barefoot]{barefoot}
 					\umlobject[class=Router]{router}
+					%\umlobject[class=View]{view}
 					\umlobject[class=ApiAdapter]{apiAdapter}
 					\umlobject[class=DataStore]{dataStore}
 
-					\begin{umlcall}[op=GET]{Browser}{barefoot}
-						\begin{umlcall}[op=route\(\)]{barefoot}{router}
-							\begin{umlcallself}[op=render\(\)]{router}
-								\begin{umlcallself}[op=initDOM\(\)]{router}
+					\begin{umlcall}[op=GET, return=Response]{client}{barefoot}
+						\begin{umlcall}[op=route(), return=Response]{barefoot}{router}
+							\begin{umlcallself}[op=render()]{router}
+								\begin{umlcallself}[op=initDOM()]{router}
 								\end{umlcallself}
-								\begin{umlcallself}[op=renderMainView\(\)]{router}
+								\begin{umlcallself}[op=renderMainView()]{router}
 								\end{umlcallself}
-								\begin{umlcallself}[op=renderView\(\)]{router}
+								\begin{umlcallself}[op=renderView()]{router}
 								\end{umlcallself}
 
-								\begin{umlcall}[op={read()}, with return]{router}{apiAdapter}
+								\begin{umlcall}[op={sync()}, with return]{router}{apiAdapter}
+									\begin{umlcallself}[op={dispatchLocalApiCall()}]{apiAdapter}
+									\end{umlcallself}
+									\begin{umlcallself}[op={matchRoute()}, return=route]{apiAdapter}
+									\end{umlcallself}
+									\begin{umlcallself}[op={processCallbacks()}]{apiAdapter}
+									\end{umlcallself}
 								\end{umlcall}
-								\begin{umlcallself}[op=serialize\(\)]{router}
-									\begin{umlcall}[op=toJSON\(\), with return]{router}{dataStore}
+								\begin{umlcallself}[op=serialize(), return=json]{router}
+									\begin{umlcall}[op=toJSON(), with return]{router}{dataStore}
 									\end{umlcall}
 								\end{umlcallself}
-								\begin{umlcallself}[op=writeHTTPResponse\(\)]{router}
+								\begin{umlcallself}[op=writeHTTPResponse()]{router}
 								\end{umlcallself}
 							\end{umlcallself}
 						\end{umlcall}
