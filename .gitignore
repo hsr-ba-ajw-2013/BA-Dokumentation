@@ -75,3 +75,5 @@ Thumbs.db
 
 
 thesis.pdf
+
+*.sublime-*
