@@ -10,7 +10,7 @@
 					\umlactor[class=Browser]{client}
 					\umlobject[class=Barefoot]{barefoot}
 					\umlobject[class=Router]{router}
-					%\umlobject[class=View]{view}
+					\umlobject[class=View]{view}
 					\umlobject[class=ApiAdapter]{apiAdapter}
 					\umlobject[class=DataStore]{dataStore}
 
@@ -22,6 +22,12 @@
 								\begin{umlcallself}[op=renderMainView()]{router}
 								\end{umlcallself}
 								\begin{umlcallself}[op=renderView()]{router}
+									\begin{umlcall}[op=beforeRender(), with return]{router}{view}
+									\end{umlcall}
+									\begin{umlcall}[op=renderView(), return=HTML]{router}{view}
+									\end{umlcall}
+									\begin{umlcall}[op=afterRender(), with return]{router}{view}
+									\end{umlcall}
 								\end{umlcallself}
 
 								\begin{umlcall}[op={sync()}, with return]{router}{apiAdapter}
