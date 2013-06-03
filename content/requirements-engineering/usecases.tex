@@ -159,7 +159,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Um in einer WG beizutreten, muss der Link zur Einladung dem ``zukünftigen'' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung ist dem WG-Administrator überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird er vom System gefordert das Beitreten zu bestätigen. Bestätigt der Bewohner diese, wird er als Bewohner dessen WG ``registriert'' und zur Aufgabenseite der WG weitergeleitet.\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
+			Um einer WG beizutreten, muss der Link zur Einladung dem ``zukünftigen'' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung ist dem WG-Administrator überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird er vom System aufgefordert das Beitreten zu bestätigen. Bestätigt der Bewohner diese, wird er als Bewohner der WG ``registriert'' und zur Aufgabenliste weitergeleitet.\newline Infolge dieses Use Cases kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -184,7 +184,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System gefordert dies zu Bestätigen. Nach der Bestätigung setzt das System den Bewohner als inaktiv und leitet den ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
+			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System aufgefordert dies zu Bestätigen. Nach der Bestätigung setzt das System den Bewohner als inaktiv und leitet den ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
 			Hat der Bewohner als einziger die Rolle ``WG-Administrator'', so muss er vor dem inaktiv Setzen seine Rolle an einen anderen Bewohner übetragen.
 			\tabularnewline
 		\tableend
@@ -210,7 +210,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Bewohner wählt die Option ``Aufgabe erstellen''. Das System zeigt das zugehörige Formular. Nachdem der Bewohner es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet den Bewohner zurück auf die Aufgabenseite.
+			Ein Bewohner wählt die Option ``Aufgabe erstellen''. Das System zeigt das zugehörige Formular. Nachdem der Bewohner es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet den Bewohner zurück auf die Aufgabenseite.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -235,7 +235,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner wählt die Aufgabe, welche beabeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' erstellen wird ein Formular dargestellt, jedoch mit den bereits eingefügten Daten der Aufgabe. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann den Bewohner auf die Aufgabenliste.
+			Der Bewohner wählt die Aufgabe welche bearbeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' erstellen wird ein Formular mit den bereits vorhandenen Daten der Aufgabe dargestellt. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann den Bewohner auf die Aufgabenliste weiter.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -260,7 +260,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzten. Hierfür wählt er für die entsprechende Aufgabe die Option ``erledigt''. Das System setzt den Bewohner für die Eigenschaft ``Erledigt durch'' und blendet die Aufgabe aus.
+			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzen. Hierfür wählt er für die entsprechende Aufgabe die Option ``erledigt''. Das System setzt für den Bewohner die Eigenschaft ``Erledigt durch''.
 			\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
@@ -286,7 +286,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner wählt die Option ``Rangliste anzeigen''. Das System zeigt grafisch eine Rangliste aller Bewohner der WG.
+			Der Bewohner wählt die Option ``Rangliste anzeigen''. Das System zeigt eine Rangliste aller Bewohner der WG.
 			\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
@@ -312,7 +312,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Der WG-Administrator hat die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Administrator wird auf die Anmeldeseite weitergeleitet.
+			Der WG-Administrator hat die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt, dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Administrator wird auf die WG-Erstellen Seite weitergeleitet.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -337,7 +337,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Der WG-Administrator besitzt das Recht die Bewohner der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall eins besteht darin, einem Bewohner WG-Administratorrechte zu vergeben. Fall zwei ist die Möglichkeit einen Bewohner aus Community (WG) auszuschliessen (``kicken'').
+			Der WG-Administrator besitzt das Recht die Bewohner der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall eins besteht darin, einem Bewohner WG-Administratorrechte zu vergeben. Fall zwei ist die Möglichkeit einen Bewohner aus der WG auszuschliessen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -362,7 +362,7 @@ Da die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) durch einen au
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Gewissen Interaktionen, wie \nameref{subsec:uc3}, \nameref{subsec:uc7} oder \nameref{subsec:uc8}, sollen über die Social Media Plattform Facebook geteilt werden können. Wählt der Bewohner nach einer der aufgelisteten Use Cases die zu tun. So wird ein entsprechender Text erzeugt und die Möglichkeit geboten, diesen auf Facebook zu teilen.
+			Gewisse Interaktionen, wie \nameref{subsec:uc3}, \nameref{subsec:uc7} oder \nameref{subsec:uc8}, sollen über die Social Media Plattform Facebook geteilt werden können. Möchte dies der Bewohner tun, so wird ein entsprechender Text erzeugt und die Möglichkeit geboten, diesen auf Facebook zu teilen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
