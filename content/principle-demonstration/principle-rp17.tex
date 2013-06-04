@@ -5,7 +5,7 @@ Die ``Static Assets'' ROCA Richtlinie will dass jeglicher JavaScript Code oder C
 
 \subsection*{Geplante Umsetzung}
 \subsubsection*{CSS Stylesheets}
-Die verwendeten CSS Stylesheets sollen mit dem SASS Präprozessor \cite{SASS} erstellt werden. Zwar muss der eigentliche Stylesheet Code zwar vorneweg einmalig übersetzt werden, die dadurch entstehenden Vorteile beim Entwickeln der Formatierungsinformationen sind jedoch bei Weitem grösser.
+Die verwendeten CSS Stylesheets sollen mit dem SASS Präprozessor \cite{SASS} erstellt werden. Zwar muss der eigentliche Stylesheet Code vorneweg einmalig übersetzt werden, die dadurch entstehenden Vorteile beim Entwickeln der Formatierungsinformationen sind jedoch bei Weitem grösser.
 
 Da zudem statische SASS-Quelldateien übersetzt werden, kann der Anspruch keine dynamischen CSS Formatierungen zu generieren befriedigt werden.
 
@@ -21,16 +21,31 @@ Aus diesem Grund sollen auf dem Backend alle Client-Quellcode-Dateien zusammenge
 Beide geplanten Umsetzungen konnten erfolgreich implementiert werden.
 
 \subsubsection*{CSS Stylesheets}
-Bevor die eigentliche Beispielapplikation gestartet wird, wird die Umwandlung des SASS-Quellcodes in gewöhnlichen CSS-Quellcode vorgenommen.
+Zur Entwicklungszeit werden die SASS-Quellcodes bei jedem Start der Beispielapplikation neu umgewandelt. Möchte man die Applikation produktiv verwenden, kann die initial beim Ausführen des \emph{install.sh} Skripts durchgeführt werden, oder gezielt über den Kommandozeilenbefehl \emph{make precompile-sass}.
 
-Die daraus entstehende Datei kann anschliessend ohne weitere Veränderungen wie gewohnt vom Webserver an den Browser des Benutzers übertragen werden.
+Die daraus entstehende Datei kann anschliessend ohne weitere Veränderungen vom Webserver an den Browser des Benutzers übertragen werden.
 
 \subsubsection*{Clientside JavaScript}
-Um den auf verschiedene Dateien verteilten JavaScript Code für den Client zusammenzufassen und zu optimieren wird \emph{browserify-middleware} für Express.JS \cite{browserifymiddleware} verwendet.
+Mit \emph{barefoot} \cite{Barefoot} kann zwar der Server-Quellcode auch für die Client-Applikation verwendet werden. Jedoch stellt sich auch hier die Herausforderung, über verschiedenen Dateien verteilte Programmlogik in eine einzige, grössenoptimierte JavaScript-Date zusammenzufassen.
 
-Der Client-seitige Quellcode kann wie in Node.JS gewohnt in CommonJS Modulen \cite{commonjsmodules} strukturiert werden. \emph{browserify-middleware} untersucht den Quellcode anschliessend und fasst die eingebundenen Module anhand der vorhandenen \emph{require}-Befehlen automatisch zu einer grossen JavaScript-Datei zusammen.
+Zu diesem Zweck verwendet \emph{barefoot} fix die \emph{browserify-middleware} für Express.JS \cite{browserifymiddleware}. Diese Komponente ermittelt anhand vorhandener \emph{require}-Statements im Quelltext, welche CommonJS Module \cite{commonjsmodules} zusammengefasst und bereitgestellt werden müssen.
 
-Falls konfiguriert, wird diese abschliessend von Kommentaren und unnötigen Füllzeichen befreit und mittels Gzip \cite{gzip} komprimiert an den Browser des Benutzers übertragen.
+Zusammen mit einigen Zeilen \gls{Boilerplate}-Code entsteht so eine eigenständige JavaScript-Datei welche als Ganzes an den Client ausgeliefert werden kann. Falls konfiguriert, wird diese zudem von Kommentaren und unnötigen Füllzeichen befreit und mittels Gzip \cite{gzip} komprimiert. Dies bringt insbesondere im produktiven Betrieb imense Vorteile.
+
+\begin{lstlisting}[language=JavaScript, firstline=95, caption=Konfiguration der browserify Middleware \cite{RoomiesExampleConfig}, label=lst:configBrowserifyMiddleware]
+/* Browserify: */
+// Roomies uses browserify to package all neceessary CommonJS modules into
+// one big JavaScript file when delivering them to the client.
+// Use these settings to customize how that app.js file is created.
+//
+// More information about these settings is available here:
+// https://github.com/ForbesLindesay/browserify-middleware
+, clientsideJavaScriptOptimizations: {
+	debug: false
+	, gzip: true
+	, minify: true
+}
+\end{lstlisting}
 
 
 \subsection*{Diskussion}
