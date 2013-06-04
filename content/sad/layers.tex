@@ -1,4 +1,5 @@
 \section{Software Layers}
+\label{sec:sad-layers}
 
 In diesem Abschnitt werden die verschiedenen Ebenen der Architektur der Beispielapplikation beschrieben.
 
@@ -58,7 +59,7 @@ Winston \cite{Winston} ist ein Logging-Framework für \gls{nodejs}. Einer der gr
 Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und bereinigt.
 
 \subsubsection*{Passport}
-Passport \cite{Passportjs} ist ein Authentisierungs-Framework für \gls{nodejs}. Es bietet eine Vielzahl von Strategien (Strategy-Pattern \cite{StrategyPattern}) für das Einloggen über verschiedenste externe Authentisierungs-Provider (z.B. Facebook-Connect \cite{FacebookConnect}) an.
+Passport \cite{Passportjs} ist ein Authentisierungs-Framework für \gls{nodejs}. Es bietet eine Vielzahl von Strategien (Strategy-Pattern \cite{StrategyPattern}) für das Einloggen über verschiedenste externe Authentisierungs-Provider (z.B. Facebook Login for Web \cite{facebooklogin}) an.
 
 \subsubsection*{Escaping}
 Um SQL-Injection \cite{sqlinjection} Attacken u.Ä. zu unterbinden, bietet das \gls{ORM} Sequelize \cite{Sequelize} umfangreiche Funktionalitäten für das Bereinigen von tendenziell gefährlichen \gls{SQL}-Abfragen an.
