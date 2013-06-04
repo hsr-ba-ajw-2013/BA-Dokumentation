@@ -1,6 +1,10 @@
 \section{Implementations-Sicht}
 
-\subsection{Request -- Response Flow}
+\subsection{Beispiel: Verarbeitung eines Requests}
+
+Das folgende Sequenzdiagramm zeigt die Verarbeitung eines einfachen HTTP Requests und wie er auf der Serverkomponente gerendert wird.
+
+Views welche Daten aus der API-Komponente anzeigen, stellen während des Aufrufs von \emph{beforeRender()} sicher, dass diese geladen werden. Der schlussendliche Aufruf von \emph{renderView()} übernimmt die eigentliche Ausgabe ins HTML \gls{DOM}.
 
 \begin{figure}[ht!]
 	\centering{
@@ -11,37 +15,42 @@
 					\umlobject[class=Barefoot]{barefoot}
 					\umlobject[class=Router]{router}
 					\umlobject[class=View]{view}
+					\umlobject[class=Model]{model}
 					\umlobject[class=ApiAdapter]{apiAdapter}
 					\umlobject[class=DataStore]{dataStore}
 
-					\begin{umlcall}[op=GET, return=Response]{client}{barefoot}
-						\begin{umlcall}[op=route(), return=Response]{barefoot}{router}
+					\begin{umlcall}[op=GET Request, return=HTML]{client}{barefoot}
+						\begin{umlcall}[op=route(), with return]{barefoot}{router}
 							\begin{umlcallself}[op=render()]{router}
 								\begin{umlcallself}[op=initDOM()]{router}
 								\end{umlcallself}
 								\begin{umlcallself}[op=renderMainView()]{router}
 								\end{umlcallself}
+
 								\begin{umlcallself}[op=renderView()]{router}
 									\begin{umlcall}[op=beforeRender(), with return]{router}{view}
+										\begin{umlcall}[op={fetch()}, return=success()]{view}{model}
+											\begin{umlcall}[op={sync()}, return=success()]{model}{apiAdapter}
+												\begin{umlcallself}[op={dispatchLocalApiCall()}]{apiAdapter}
+												\end{umlcallself}
+												\begin{umlcallself}[op={matchRoute()}]{apiAdapter}
+												\end{umlcallself}
+												\begin{umlcallself}[op={processCallbacks()}]{apiAdapter}
+												\end{umlcallself}
+											\end{umlcall}
+										\end{umlcall}
 									\end{umlcall}
+
 									\begin{umlcall}[op=renderView(), return=HTML]{router}{view}
 									\end{umlcall}
+
 									\begin{umlcall}[op=afterRender(), with return]{router}{view}
 									\end{umlcall}
 								\end{umlcallself}
 
-								\begin{umlcall}[op={sync()}, with return]{router}{apiAdapter}
-									\begin{umlcallself}[op={dispatchLocalApiCall()}]{apiAdapter}
-									\end{umlcallself}
-									\begin{umlcallself}[op={matchRoute()}, return=route]{apiAdapter}
-									\end{umlcallself}
-									\begin{umlcallself}[op={processCallbacks()}]{apiAdapter}
-									\end{umlcallself}
+								\begin{umlcall}[op=toJSON(), with return]{router}{dataStore}
 								\end{umlcall}
-								\begin{umlcallself}[op=serialize(), return=json]{router}
-									\begin{umlcall}[op=toJSON(), with return]{router}{dataStore}
-									\end{umlcall}
-								\end{umlcallself}
+
 								\begin{umlcallself}[op=writeHTTPResponse()]{router}
 								\end{umlcallself}
 							\end{umlcallself}
@@ -51,7 +60,7 @@
 			\end{tikzpicture}
 		}
 	}
-	\caption{Request -- Response Sequenzdiagramm}
+	\caption{Sequenzdiagramm der Verarbeitung eines einfachen Requests}
 \end{figure}
 
 \subsection{Quellcode Organisation}
