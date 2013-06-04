@@ -1,45 +1,145 @@
 \section{Einleitung}
 
-Die Architektur besteht aus den folgenden Elementen:
+Die Architektur besteht aus den folgenden zwei Haupt-Elementen:
 \begin{itemize}
-	\item Eine Backend-Komponente mit \emph{Express.js} \cite{Expressjs}
-	%\item Frontend-Applikation mit \emph{Backbone.js} \cite{Backbonejs}
-	\item Eine mittels \emph{Sequelize} \cite{Sequelize} abstrahierte
-		\emph{PostgreSQL} \cite{PostgreSQL} Datenbank
+	\item Eine Shared Codebase mit \emph{Barefoot} \cite{Barefoot}
+	\item Eine API-Komponente mit \emph{Express.js} \cite{Expressjs}
 \end{itemize}
 
+\begin{figure}[ht]
+	\includegraphics[width=\textwidth]{content/images/architecture.png}
+	\caption{Architektur}
+\end{figure}
 
-\subsection{Backend-Komponenten}
+\subsection{Shared Codebase mit Barefoot}
+Barefoot \cite{Barefoot} ist ein Framework welches während der Bachelorarbeit entwickelt wurde.
+Dieses Framework ermöglicht Client und Server den gleichen Code für Controller und Templates zu benutzen und setzt auf
+Backbone.js \cite{Backbonejs} für die Code-Strukturierung auf.
 
-Der Backend-Teil der Applikation verfügt über eine auf Komponenten-basierte
-MVC Architektur. Diese ermöglicht eine optimale Trennung von Zuständigkeiten
-\cite{SeparationOfConcerns} und damit eine niedrige Kopplung.
+Als Beispiel sei hier der Router genannt:
+\begin{lstlisting}[language=JavaScript, caption=Router der Beispielapplikation, label=lst:roomiesRouter]
+module.exports = Router.extend({
+	routes: {
+		'': 'home'
+		, 'community': 'createCommunity'
+		//...
+	}
 
-Durch die Verwendung von \emph{Express.js} \cite{Expressjs} ist es einerseits
-einfach, die definierten, projektspezifischen Architekturrichtlinien zu
-demonstrieren, andererseits die Strukturierung der Komponenten selber zu
-definieren.
+	/** Function: home
+	 * Home page which renders the login button if not authorized.
+	 * Otherwise it redirects to community/create or community/:slug/tasks.
+	 */
+	, home: function home() {
+		if(!this.isAuthorized()) {
+			this.render(this.createView(HomeView));
+		} else {
+			var community = this.dataStore.get('community');
+			if(!community) {
+				this.navigate('community/create', { trigger: true });
+			} else {
+				this.navigate('community/' + community.get('slug') +
+					'/tasks', { trigger: true });
+			}
+		}
+	}
 
-Nach mehreren Experimenten mit verschiedenen Strukturierungen des Quellcodes
-stellte sich die von TJ Holowaychuck (Lead Entwickler von \emph{Express.js}
-\cite{TJH}) vorgestellte Komponentenaufteilung \cite{TJH_ComponentStructure}
-als am geeignetsten heraus.
+	/** Function: createCommunity
+	 * Create community view
+	 */
+	, createCommunity: function createCommunity() {
+		debug('create community');
+		if(!this.redirectIfNotAuthorized()) {
+			this.render(this.createView(CreateCommunityView));
+		}
+	}
+\end{lstlisting}
 
-% TODO: Add if done
-% Um das Prinzip ``\gls{DRY}'' zu erfüllen, werden Controllers und Templates
-% mit dem Frontend geteilt.
+Das Code-Beispiel \ref{lst:roomiesRouter} zeigt ein Auszug des Routers aus der Beispielapplikation.
+Dieser Router wird sowohl vom Client wie auch vom Server direkt verwendet und registriert die gezeigten URLs mit den Funktionen.
 
-% \subsection{Frontend-Applikation}
+Wie man sieht, wird für die ``home''-Route, falls der Besucher nicht eingeloggt ist, die ``HomeView'' dargestellt. Diese ist im Quellcode \ref{lst:roomiesHomeView}, ``\nameref{lst:roomiesHomeView}'' zu sehen.
 
-% Die Frontend-Applikation ist ebenfalls MVC-basiert und holt die entsprechende
-% Logik vom geteilten Backend-Code.
-% Im Optimalfall (Der Client-Browser hat JavaScript aktiviert) wird das Backend
-% nur für die Datenübertragung angesprochen.
-% Alles andere passiert direkt im Browser des Clients.
-% Für Suchmaschinen und Browsern mit JavaScript deaktiviert, funktioniert die
-% Applikation aber ohne jegliche Probleme.
+\begin{lstlisting}[language=JavaScript, caption=Router der Beispielapplikation, label=lst:roomiesHomeView]
+module.exports = View.extend({
+	el: '#main'
+	, template: templates.login
 
-\subsection{Datenbank und ORM}
+	/** Function: renderView
+	 * Renders the home view.
+	 */
+	, renderView: function renderView() {
+		this.$el.html(this.template({}));
+	}
 
-Das schlanke JavaScript \gls{ORM} \emph{Sequelize} \cite{Sequelize} kann mit der
-quelloffenen Datenbank \emph{PostgreSQL} \cite{PostgreSQL} benutzt werden.
+	/** Function: afterRender
+	 * Sets the document title.
+	 */
+	, afterRender: function afterRender(resolve) {
+		var _super = this.constructor.__super__.afterRender.bind(this);
+
+		this.setDocumentTitle(this.translate('Welcome'));
+		_super(resolve);
+	}
+});
+\end{lstlisting}
+
+\subsection{API-Komponente}
+Damit sichergestellt werden kann, dass alle Daten valid sind, ist auf Server-Seite
+eine REST-API \cite{REST} erstellt worden. Die Shared Codebase greift auf diese zu, um
+Daten zu speichern oder zu laden.
+Dabei unterscheidet ``Barefoot'' intelligent zwischen API-Aufrufen vom Server oder vom Client.
+Wird vom Client aus aufgerufen, wird ein normaler AJAX-Aufruf gemacht. Wird die API hingegen vom Server aus aufgerufen, werden direkt die entsprechend definierten Callbacks für die gewünschte
+Route aufgerufen.
+
+Der Quellcode \ref{lst:roomiesControllerExample} zeigt ein Beispiel für ein solcher Callback, während Quelltext \ref{lst:roomiesComponentExample} ein Beispiel für eine definierte API-Route aufzeigt.
+
+\begin{lstlisting}[language=JavaScript, caption=API-Controller Beispiel, label=lst:roomiesControllerExample]
+/** Function: getCommunityWithId
+ * Looks up a community with a specific ID.
+ *
+ * Parameters:
+ *   (Function) success - Callback on success. Will pass the community data
+ *                        as first argument.
+ *   (Function) error - Callback in case of an error
+ *   (String) id - The id of the community to look for.
+ */
+function getCommunityWithId(success, error, id) {
+	debug('get community with id');
+
+	var communityDao = getCommunityDao.call(this)
+
+		/* AnonymousFunction: forwardError
+		 * Forwards an error object using the error callback argument
+		 */
+		, forwardError = function forwardError(err) {
+			return error(err);
+		}
+
+		/* AnonymousFunction: afterCommunitySearch
+		 * Calls the success or error callback after searching for a community.
+		 */
+		, afterCommunitySearch = function afterCommunitySearch(community) {
+			if(!_.isNull(community)) {
+				success(community.dataValues);
+			} else {
+				forwardError(new errors.NotFoundError(
+					'Community with id ' + id + 'does not exist.')
+				);
+			}
+		};
+
+	communityDao.find({ where: { id: id, enabled: true }})
+		.success(afterCommunitySearch)
+		.error(forwardError);
+}
+\end{lstlisting}
+
+\begin{lstlisting}[language=JavaScript, caption=API-Route Beispiel, label=lst:roomiesComponentExample]
+var prefix = apiPrefix + modulePrefix;
+
+// GET /api/community/:id
+api.get(prefix + '/:id(\\d+)', [
+	basicAuthentication
+	, authorizedForCommunity
+	, controller.getCommunityWithId]);
+\end{lstlisting}
