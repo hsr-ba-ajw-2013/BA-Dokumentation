@@ -50,9 +50,18 @@ Innerhalb der Beispielapplikation soll lediglich die Facebook ID sowie der Name 
 
 \subsection*{Konkrete Umsetzung}
 
-Für die tatsächliche Anbindung des \emph{Facebook Login for Web} \cite{facebooklogin} \gls{SDK}'s wurde wie im Abschnitt \ref{sec:sad-layers} ``\nameref{sec:sad-layers}'' des Kapitels ``\nameref{sec:sad}'' beschrieben die quelloffene Bibliothek \emph{Passport} \cite{Passportjs} verwendet.
+Für die tatsächliche Anbindung des \emph{Facebook Login for Web} \cite{facebooklogin} \gls{SDK}'s wurde wie im Abschnitt \ref{sec:sad-layers} ``\nameref{sec:sad-layers}'' des Kapitels ``\nameref{sec:sad}'' beschrieben durch die quelloffene Bibliothek \emph{Passport} \cite{Passportjs} umgesetzt.
 
+Die verfügbare \emph{Authentication Strategy} für Facebook \cite{passport-facebook} ermöglicht das einfache Einbinden der Facebook Anmeldemechanismen in jede \emph{Express.js} Applikation.
 
+Zudem werden wie geplant lediglich Facebook ID und Name eines Benutzers in der Applikationsdatenbank abgelegt. Über eine öffentlich zugängliche \gls{URL} \cite{facebook-profilepicture} wird zusätzlich das aktuelle Profilbild des Benutzers in der Menüleiste von \emph{Roomies} angezeigt, jedoch nicht innerhalb der Applikation zwischengespeichert.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{content/principle-demonstration/images/roomies-navigation-loggedin.png}
+	\caption{Facebook Profilbild des angemeldeten Benutzers der Menüleiste der Beispielapplikation \emph{Roomies}}
+	\label{fig:facebook-profilepicture-roomies}
+\end{figure}
 
 
 \subsection*{Diskussion}
