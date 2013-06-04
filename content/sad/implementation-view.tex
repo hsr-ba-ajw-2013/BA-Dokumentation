@@ -1,67 +1,33 @@
 \section{Implementations-Sicht}
 
-\subsection{Beispiel: Verarbeitung eines Requests}
 
-Das folgende Sequenzdiagramm zeigt die Verarbeitung eines einfachen HTTP Requests und wie er auf der Serverkomponente gerendert wird.
+\subsection{Rendering des User Interfaces und Event-Behandlung}
+Durch die Verwendung von \emph{barefoot} \cite{Barefoot} kann die komplette Beispielapplikation sowohl eigenständig auf dem Server gerendert werden, als auch als moderne JavaScript Applikation im Browser des Endbenutzers ausgeführt werden. Aus diesem Grund zeigen die folgenden zwei Abschnitte jeweils ein separates Sequenzdiagramm: Eines für das Event-Handling auf dem Client und eines für den Rendering-Vorgang auf dem Server.
 
-Views welche Daten aus der API-Komponente anzeigen, stellen während des Aufrufs von \emph{beforeRender()} sicher, dass diese geladen werden. Der schlussendliche Aufruf von \emph{renderView()} übernimmt die eigentliche Ausgabe ins HTML \gls{DOM}.
+Grundlegende Unterschiede gibt es hierbei lediglich beim Zugriff auf den \emph{APIAdapter}. Auf dem Server werden diese direkt lokal behandelt, im Client-Browser wird die entsprechende API-Abfrage über einen HTTP REST Request übertragen.
 
-\begin{figure}[ht!]
-	\centering{
-		\resizebox{0.9\textwidth}{!} {
-			\begin{tikzpicture}
-				\begin{umlseqdiag}
-					\umlactor[class=Browser]{client}
-					\umlobject[class=Barefoot]{barefoot}
-					\umlobject[class=Router]{router}
-					\umlobject[class=View]{view}
-					\umlobject[class=Model]{model}
-					\umlobject[class=ApiAdapter]{apiAdapter}
-					\umlobject[class=DataStore]{dataStore}
+\subsubsection*{Server}
+Beim initialen Aufruf der Beispielapplikation werden die kompletten Inhalte des User Interfaces auf dem Server gem. dem Diagramm \ref{dig:serverrendering} gerendert. Sollte der Client-Browser zudem JavaScript deaktiviert haben oder nicht unterstützen, so werden auch nachfolgende Requests nach dem gleichen Schema verarbeitet und gerendert.
 
-					\begin{umlcall}[op=GET Request, return=HTML]{client}{barefoot}
-						\begin{umlcall}[op=route(), with return]{barefoot}{router}
-							\begin{umlcallself}[op=render()]{router}
-								\begin{umlcallself}[op=initDOM()]{router}
-								\end{umlcallself}
-								\begin{umlcallself}[op=renderMainView()]{router}
-								\end{umlcallself}
+\input{content/sad/diagrams/sequence-serverrendering}
 
-								\begin{umlcallself}[op=renderView()]{router}
-									\begin{umlcall}[op=beforeRender(), with return]{router}{view}
-										\begin{umlcall}[op={fetch()}, return=success()]{view}{model}
-											\begin{umlcall}[op={sync()}, return=success()]{model}{apiAdapter}
-												\begin{umlcallself}[op={dispatchLocalApiCall()}]{apiAdapter}
-												\end{umlcallself}
-												\begin{umlcallself}[op={matchRoute()}]{apiAdapter}
-												\end{umlcallself}
-												\begin{umlcallself}[op={processCallbacks()}]{apiAdapter}
-												\end{umlcallself}
-											\end{umlcall}
-										\end{umlcall}
-									\end{umlcall}
+\subsubsection*{Client}
+Das Sequenzdiagramm \ref{dig:clientrendering} zeigt den Kontrollfluss nachdem der Benutzer im Browser auf einen Eintrag im Navigationsmenü geklickt hat.
 
-									\begin{umlcall}[op=renderView(), return=HTML]{router}{view}
-									\end{umlcall}
+Es gilt zu beachten dass die Aufrufe auf den \emph{APIAdapter} nicht lokal verarbeitet werden sondern direkt auf dem Server.
 
-									\begin{umlcall}[op=afterRender(), with return]{router}{view}
-									\end{umlcall}
-								\end{umlcallself}
+\input{content/sad/diagrams/sequence-clientrendering}
 
-								\begin{umlcall}[op=toJSON(), with return]{router}{dataStore}
-								\end{umlcall}
 
-								\begin{umlcallself}[op=writeHTTPResponse()]{router}
-								\end{umlcallself}
-							\end{umlcallself}
-						\end{umlcall}
-					\end{umlcall}
-				\end{umlseqdiag}
-			\end{tikzpicture}
-		}
-	}
-	\caption{Sequenzdiagramm der Verarbeitung eines einfachen Requests}
-\end{figure}
+\subsection{APIAdapter}
+Wie bereits erwähnt kann der \emph{APIAdapter} auf dem Server sowohl mit server-lokalen Requests als auch mit HTTP REST Anfragen umgehen.
+
+Das Diagramm \ref{dig:apiAdapter} verdeutlicht die Abläufe im innern des Adapters für den jeweiligen Anfragemodus.
+
+Hinter dem Element \emph{Controllers} stehen neben dem eigentlichen Controller zusätzlich diverse Sicherheitspolicies und Validatoren, welche eingehende Requests prüfen und ggf. abweisen können, bevor sie zur eigentlichen Geschäftslogik gelangen.
+
+\input{content/sad/diagrams/sequence-apiadapter}
+
 
 \subsection{Quellcode Organisation}
 Auch für Applikationen für Node.JS ist üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich in mehr oder weniger komplett eigenständige Komponenten zu unterteilen.

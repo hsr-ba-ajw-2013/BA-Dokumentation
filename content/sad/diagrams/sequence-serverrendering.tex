@@ -1,0 +1,51 @@
+\begin{figure}[H]
+	\centering{
+		\resizebox{0.9\textwidth}{!} {
+			\begin{tikzpicture}
+				\begin{umlseqdiag}
+					\umlactor[class=Browser]{client}
+					\umlobject[class=Barefoot]{barefoot}
+					\umlobject[class=Router]{router}
+					\umlobject[class=View]{view}
+					\umlobject[class=Model]{model}
+					\umlobject[class=ApiAdapter]{apiAdapter}
+					\umlobject[class=DataStore]{dataStore}
+
+					\begin{umlcall}[op=GET Request, return=HTML]{client}{barefoot}
+						\begin{umlcall}[op=route(), with return]{barefoot}{router}
+							\begin{umlcallself}[op=render()]{router}
+								\begin{umlcallself}[op=initDOM()]{router}
+								\end{umlcallself}
+								\begin{umlcallself}[op=renderMainView()]{router}
+								\end{umlcallself}
+
+								\begin{umlcallself}[op=renderView()]{router}
+									\begin{umlcall}[op=beforeRender(), with return]{router}{view}
+										\begin{umlcall}[op={fetch()}, return=success()]{view}{model}
+											\begin{umlcall}[op={sync()}, return=success()]{model}{apiAdapter}
+											\end{umlcall}
+										\end{umlcall}
+									\end{umlcall}
+
+									\begin{umlcall}[op=renderView(), return=HTML]{router}{view}
+									\end{umlcall}
+
+									\begin{umlcall}[op=afterRender(), with return]{router}{view}
+									\end{umlcall}
+								\end{umlcallself}
+
+								\begin{umlcall}[op=toJSON(), with return]{router}{dataStore}
+								\end{umlcall}
+
+								\begin{umlcallself}[op=writeHTTPResponse()]{router}
+								\end{umlcallself}
+							\end{umlcallself}
+						\end{umlcall}
+					\end{umlcall}
+				\end{umlseqdiag}
+			\end{tikzpicture}
+		}
+	}
+	\caption{Sequenzdiagramm: Rendering und Event-Verarbeitung auf dem Server}
+	\label{dig:serverrendering}
+\end{figure}

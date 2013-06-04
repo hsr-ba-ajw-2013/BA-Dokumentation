@@ -1,0 +1,46 @@
+\begin{figure}[H]
+	\centering{
+		\resizebox{0.9\textwidth}{!} {
+			\begin{tikzpicture}
+				\begin{umlseqdiag}
+					\umlactor[class=Caller]{caller}
+					\umlboundary[class=ExpressJS]{expressJs}
+					\umlobject[class=APIAdapter]{apiAdapter}
+					\umlmulti[class=Controllers]{controller}
+					\umldatabase[class=Persistency]{db}
+
+					\begin{umlfragment}[type=alt, label={Server-local}, inner xsep=12]
+						\begin{umlcall}[op={sync()}, return={success()}, dt=8]{caller}{apiAdapter}
+							\begin{umlcallself}[op={dispatchLocalApiCall()}]{apiAdapter}
+							\end{umlcallself}
+							\begin{umlcallself}[op={processCallbacks()}]{apiAdapter}
+							\end{umlcallself}
+							\begin{umlcall}[op={handler()}, return={success()}]{apiAdapter}{controller}
+								\begin{umlcall}[op={consume}, with return]{controller}{db}
+								\end{umlcall}
+							\end{umlcall}
+						\end{umlcall}
+
+						\umlfpart[HTTP REST]
+
+						\begin{umlcall}[op={HTTP Request}, return={JSON Response}]{caller}{expressJs}
+							\begin{umlcallself}[op={Dispatch}]{expressJs}
+							\end{umlcallself}
+							\begin{umlcall}[op={handler()}, return={JSON Object}]{expressJs}{apiAdapter}
+								\begin{umlcallself}[op={processCallbacks}]{apiAdapter}
+								\end{umlcallself}
+								\begin{umlcall}[op={handler()}, return={success()}]{apiAdapter}{controller}
+									\begin{umlcall}[op={consume}, with return]{controller}{db}
+									\end{umlcall}
+								\end{umlcall}
+							\end{umlcall}
+						\end{umlcall}
+					\end{umlfragment}
+
+				\end{umlseqdiag}
+			\end{tikzpicture}
+		}
+	}
+	\caption{Sequenzdiagramm: APIAdapter im server-lokalen sowie HTTP REST Modus}
+	\label{dig:apiAdapter}
+\end{figure}

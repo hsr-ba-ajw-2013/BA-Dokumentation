@@ -1,0 +1,44 @@
+\begin{figure}[H]
+	\centering{
+		\resizebox{0.9\textwidth}{!} {
+			\begin{tikzpicture}
+				\begin{umlseqdiag}
+					\umlactor[class=Browser]{client}
+					\umlobject[class=Router]{router}
+					\umlobject[class=View]{view}
+					\umlobject[class=Model]{model}
+					\umlobject[class=Backbone]{backbone}
+					\umlobject[class=ApiAdapter]{apiAdapter}
+
+					\begin{umlcall}[op=Click Menu Item, with return]{client}{view}
+						\begin{umlcall}[op=navigate(), with return]{view}{router}
+							\begin{umlcallself}[op=render()]{router}
+								\begin{umlcallself}[op=renderView()]{router}
+									\begin{umlcall}[op=beforeRender(), with return]{router}{view}
+										\begin{umlcall}[op={fetch()}, return=success()]{view}{model}
+											\begin{umlcall}[op={sync()}, return=success()]{model}{backbone}
+												\begin{umlcall}[op={HTTP REST Request}, return=HTTP Response]{backbone}{apiAdapter}
+												\end{umlcall}
+											\end{umlcall}
+										\end{umlcall}
+									\end{umlcall}
+
+									\begin{umlcall}[op=renderView(), return=HTML]{router}{view}
+									\end{umlcall}
+
+									\begin{umlcall}[op=afterRender(), with return]{router}{view}
+									\end{umlcall}
+								\end{umlcallself}
+
+								\begin{umlcallself}[op=Replace DOM Element]{router}
+								\end{umlcallself}
+							\end{umlcallself}
+						\end{umlcall}
+					\end{umlcall}
+				\end{umlseqdiag}
+			\end{tikzpicture}
+		}
+	}
+	\caption{Sequenzdiagramm: Rendering und Event-Verarbeitung auf dem Client}
+	\label{dig:clientrendering}
+\end{figure}
