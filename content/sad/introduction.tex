@@ -1,8 +1,8 @@
 \section{Einleitung}
 
-Die Architektur besteht aus den folgenden zwei Haupt-Elementen:
+Die Architektur besteht aus den folgenden zwei Haupt-Komponenten:
 \begin{itemize}
-	\item Eine Shared Codebase mit \emph{Barefoot} \cite{Barefoot}
+	\item Eine Shared Codebase mit \emph{barefoot} \cite{Barefoot}
 	\item Eine API-Komponente mit \emph{Express.js} \cite{Expressjs}
 \end{itemize}
 
@@ -11,7 +11,7 @@ Die Architektur besteht aus den folgenden zwei Haupt-Elementen:
 	\caption{Architektur}
 \end{figure}
 
-\subsection{Shared Codebase mit Barefoot}
+\subsection{Shared Codebase mit barefoot}
 Barefoot \cite{Barefoot} ist ein Framework welches während der Bachelorarbeit entwickelt wurde.
 Dieses Framework ermöglicht Client und Server den gleichen Code für Controller und Templates zu benutzen und setzt auf
 Backbone.js \cite{Backbonejs} für die Code-Strukturierung auf.
@@ -57,7 +57,8 @@ module.exports = Router.extend({
 Das Code-Beispiel \ref{lst:roomiesRouter} zeigt ein Auszug des Routers aus der Beispielapplikation.
 Dieser Router wird sowohl vom Client wie auch vom Server direkt verwendet und registriert die gezeigten URLs mit den Funktionen.
 
-Wie man sieht, wird für die ``home''-Route, falls der Besucher nicht eingeloggt ist, die ``HomeView'' dargestellt. Diese ist im Quellcode \ref{lst:roomiesHomeView}, ``\nameref{lst:roomiesHomeView}'' zu sehen.
+Wie man sieht, wird für die ``home''-Route, falls der Besucher nicht eingeloggt ist,
+die ``HomeView'' dargestellt. Diese ist im Quellcode \ref{lst:roomiesHomeView}, ``\nameref{lst:roomiesHomeView}'' zu sehen.
 
 \begin{lstlisting}[language=JavaScript, caption=Router der Beispielapplikation, label=lst:roomiesHomeView]
 module.exports = View.extend({
@@ -87,11 +88,14 @@ module.exports = View.extend({
 Damit sichergestellt werden kann, dass alle Daten valid sind, ist auf Server-Seite
 eine REST-API \cite{REST} erstellt worden. Die Shared Codebase greift auf diese zu, um
 Daten zu speichern oder zu laden.
-Dabei unterscheidet ``Barefoot'' intelligent zwischen API-Aufrufen vom Server oder vom Client.
-Wird vom Client aus aufgerufen, wird ein normaler AJAX-Aufruf gemacht. Wird die API hingegen vom Server aus aufgerufen, werden direkt die entsprechend definierten Callbacks für die gewünschte
-Route aufgerufen.
+Dabei unterscheidet ``barefoot'' intelligent zwischen API-Aufrufen vom Server oder vom Client.
+Wird vom Client aus aufgerufen, wird ein normaler AJAX-Aufruf gemacht. Wird die API
+hingegen vom Server aus aufgerufen, werden direkt die entsprechend definierten
+Callbacks für die gewünschte Route aufgerufen.
 
-Der Quellcode \ref{lst:roomiesControllerExample} zeigt ein Beispiel für ein solcher Callback, während Quelltext \ref{lst:roomiesComponentExample} ein Beispiel für eine definierte API-Route aufzeigt.
+Der Quellcode \ref{lst:roomiesControllerExample} zeigt ein Beispiel für ein solcher
+Callback, während Quelltext \ref{lst:roomiesComponentExample} ein Beispiel für
+eine definierte API-Route aufzeigt.
 
 \begin{lstlisting}[language=JavaScript, caption=API-Controller Beispiel, label=lst:roomiesControllerExample]
 /** Function: getCommunityWithId
@@ -143,3 +147,13 @@ api.get(prefix + '/:id(\\d+)', [
 	, authorizedForCommunity
 	, controller.getCommunityWithId]);
 \end{lstlisting}
+
+Die Beispielapplikation ist somit nach einem adaptierten MVC-Pattern aufgebaut, welches man als ``MVCCT'' beschreiben kann. \\
+Die einzelnen Komponenten haben folgende Aufgabe:
+\begin{itemize}
+	\item{\textbf{M}odel ist das traditionelle Model welches zwischen Server \& Client geshared wird}
+	\item{\textbf{V}iew ist eine ``Barefoot.View'' \cite{BarefootView} und rendert Templates}
+	\item{\textbf{C}ontroller ist ein ``Route''-Controller, welcher aufgrund von URLs die richtige View aufruft}
+	\item{\textbf{C}ontroller ist ein API-Controller, welcher die REST-API-Logik \cite{REST} kapselt}
+	\item{\textbf{T}emplate ist ein ``Handlebars''-Template \cite{Handlebars}}
+\end{itemize}
