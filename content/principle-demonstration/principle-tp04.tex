@@ -65,3 +65,13 @@ Zudem werden wie geplant lediglich Facebook ID und Name eines Benutzers in der A
 
 
 \subsection*{Diskussion}
+
+Lange Zeit hielten sich hartnäckige Vorbehalte gegenüber der Verwendung von Facebook o.Ä. Konten für die Anmeldung bei Diensten Dritter. Immer mehr lässt sich jedoch eine gewisse Akzeptanz bei den Benutzern im Internet feststellen. Verbesserte und klarer deklarierte Möglichkeiten zur Anpassung der Zugriffseinstellungen auf hinterlegte Informationen \cite{facebook-authdialog} haben hier definitiv ihren Teil beigetragen.
+
+Für den Dienstanbieter bringt die Verwendung eines externen \emph{Identity Providers} grosse Vorteile mit sich: Er kann sich auf seine Kernkompetenzen konzentrieren, insbesondere wenn zur Integration umfangreiche Frameworks wie eben \emph{Passport} verwendet werden können.
+
+So ist es, eine entsprechende Architektur vorausgesetzt, möglich, ohne grössere Zusatzaufwände weitere \emph{Provider} anzubinden. Im Falle der vorliegenden Beispielapplikation ist die Integration von \emph{Twitter}, um nur einen \emph{Identity Provider} zu nennen, genau so einfach umsetzbar, wie die Implementation einer komplett eigenständigen Lösung.
+
+Welche Möglichkeiten zur Anmeldung bei einem Dienst angeboten werden sollen ist wie so oft abhängig von vielen Faktoren. Für kritische Applikationen wie eBanking-Suiten mag es Heute lächerlich klingen, sich via Facebook-Konto anzumelden. Die grosse Verbreitung von PayPal \cite{paypal} als zentralen Anbieter von Geldtransaktionsdiensten zeigt aber, dass selbst hier mit entsprechenden Sicherheitsmassnahmen viel Skepsis wett gemacht werden kann.
+
+Wird eine weniger kritische Applikation konzipiert und ist mit Akzeptanz in der potentiellen Nutzergruppe zu rechnen, empfiehlt das Projektteam uneingeschränkt die von \emph{TP4 Separate user identity, sign-up and self-care from product dependencies} vorgeschlagene Teilung von Applikations- und Identitätsinformationen resp. Authentifizierungsmechanismen.
