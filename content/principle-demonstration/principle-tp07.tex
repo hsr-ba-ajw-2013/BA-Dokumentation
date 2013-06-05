@@ -23,7 +23,7 @@ In der Beispielapplikation sollen gezielt HTML 5 Features verwendet werden:
 
 Das entstehende, semantisch korrekte HTML Markup soll mit CSS 3 gestaltet werden. Neue Möglichkeiten zur grafischen Darstellung sollen ausgenutzt werden. Die Verwendung von \emph{Media Queries} \cite{css-mediaquery} soll die  Darstellung auf verschiedenen Bildschirmen (Desktops, Tablets, Smartphones usw.) optimieren und vereinfachen.
 
-Bei der Entwicklung der Front- als auch Backend-Komponente muss zwingend darauf geachtet werden, dass die Verwendung der Browser-Funktionen \emph{Vorwärts}, \emph{Zurück} und \emph{Aktualisieren} zu keinem ungewünschten resp. unerwarteten Verhalten führen (siehe hierzu auch Abschnitt \ref{sec:principle-rp10-browser-controls} ``\nameref{sec:principle-rp10-browser-controls}'').
+Bei der Entwicklung der Front- als auch Backend-Komponente muss zwingend darauf geachtet werden, dass die Verwendung der Browser-Funktionen \emph{Vorwärts}, \emph{Zurück} und \emph{Aktualisieren} zu keinem ungewünschten resp. unerwarteten Verhalten führen.
 
 
 \subsection*{Konkrete Umsetzung}
@@ -79,7 +79,9 @@ Verschiedene Internetbrowser interpretieren CSS Formatierungsbefehle teilweise i
 	margin-top: 1px;
 \end{lstlisting}
 
-Im Bereich \emph{Responsive Design} wurde ebenfalls keine Lösung von Grund auf selber entwickelt. Unter Zuhilfenahme der \emph{Foundation} SASS Bibliothek \cite{Foundation} wurde auf einfache Art und Weise ein flexibles User Interface Layout entworfen, welches dynamisch auf die verschiedenen Bildschirmgrössen reagieren kann.
+Im Bereich \emph{Responsive Design} wurde ebenfalls keine Lösung von Grund auf selber entwickelt. Unter Zuhilfenahme der \emph{Foundation} SASS Biblio \cite{FirefoxOSWebApp}.
+
+Leiderthek \cite{Foundation} wurde auf einfache Art und Weise ein flexibles User Interface Layout entworfen, welches dynamisch auf die verschiedenen Bildschirmgrössen reagieren kann.
 
 \begin{figure}[H]
 	\centering
@@ -87,6 +89,13 @@ Im Bereich \emph{Responsive Design} wurde ebenfalls keine Lösung von Grund auf 
 	\caption{Media Queries ermöglichen dynamische Anpassung des Layouts entsprechend der verfügbaren Bildschirmgrösse}
 	\label{fig:responsive-screenshots}
 \end{figure}
+
+
+\subsubsection*{Navigation mittels Browserfunktionen}
+
+Wie geplant konnte ein einheitliches Navigationsverhalten implementiert werden. Der Benutzer kann sowohl Browsersteuerelemente als auch applikationsinterne Links zur Navigation verwenden, ohne ein unerwartetes Verhalten zu provozieren.
+
+Ausführlichere Informationen zu dieser Thematik sind Abschnitt \ref{sec:principle-rp10-browser-controls} ``\nameref{sec:principle-rp10-browser-controls}'' enthalten.
 
 
 \subsubsection*{iOS Webapp Kompatibilität}
@@ -103,4 +112,12 @@ Zusätzlich zu den geplanten Features wurde die von Apple definierte Spezifikati
 
 \subsection*{Diskussion}
 
+Mächtigere Browser ermöglichen die Ausführung immer ausgefeilterer Internetapplikationen. Umfangreiche Browser API's ersparen die Implementierung eigener Überprüfungsmechanismen für Benutzereingaben oder erleichtern die Gestaltung ansprechender User Interfaces.
 
+In Zukunft wird es zudem vermehrt Möglichkeiten geben, wie vermeintlich schwerfällige Webapplikationen in die Betriebssystemumgebung von Smartphones integriert werden können. Diesbezüglich darf man sehr auf Firefox OS gespannt sein, welches den Ansatz von Apples Webapps auf die Spitze treiben wird \cite{FirefoxOSWebApp}.
+
+Leider scheitern die neuen Standards, welche de facto offiziell noch keine sind, momentan oft an den herstellerspezifischen Implementierungen. So erscheint auf dem iPhone ein benutzerfreundlicher Helfer für die Auswahl eines Datums, in \emph{Google Chrome} oder \emph{Mozilla Firefox} \cite{CanIUseDateInput} wird das Datumseingabefeld weiterhin als einfaches Textfeld angezeigt. Für eine Webapplikation hat dies zur Folge, dass weiterhin Logik für die Überprüfung von Benutzereingaben implementiert werden muss. Unter dem Aspekt von Sicherheitsmassnahmen mag die grundsätzlich logisch erscheinen, bedeutet dies aber trotzdem eine erhöhten Aufwand im Entwicklungsprozess.
+
+Viele der neuen Browserfeatures können bereits heute angewendet werden. Durch die mangelnde Standardisierung unter den verschiedenen Browserherstellern ergibt sich für das Projektteam jedoch ein eher durchzogener Eindruck der Situation auf diesem Gebiet der Webstandards.
+
+Aus diesem Grund ermutigt das Projektteam zwar zur Verwendung neuester Funktionalitäten, ermahnt jedoch immer eine Fallbacklösung bereitzuhalten, sollte ein Feature auf einem Browser nicht verfügbar sein.
