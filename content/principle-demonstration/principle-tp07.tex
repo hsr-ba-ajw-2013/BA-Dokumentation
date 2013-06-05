@@ -21,12 +21,14 @@ In der Beispielapplikation sollen gezielt HTML 5 Features verwendet werden:
 	\item Formularvalidierung \cite{HTML5Forms}
 \end{itemize}
 
-Das entstehende, semantisch korrekte HTML Markup soll mit CSS 3 gestaltet werden. Neue Möglichkeiten zur grafischen Darstellung sollen ausgenutzt werden.
+Das entstehende, semantisch korrekte HTML Markup soll mit CSS 3 gestaltet werden. Neue Möglichkeiten zur grafischen Darstellung sollen ausgenutzt werden. Die Verwendung von \emph{Media Queries} \cite{css-mediaquery} soll die  Darstellung auf verschiedenen Bildschirmen (Desktops, Tablets, Smartphones usw.) optimieren und vereinfachen.
 
 Bei der Entwicklung der Front- als auch Backend-Komponente muss zwingend darauf geachtet werden, dass die Verwendung der Browser-Funktionen \emph{Vorwärts}, \emph{Zurück} und \emph{Aktualisieren} zu keinem ungewünschten resp. unerwarteten Verhalten führen (siehe hierzu auch Abschnitt \ref{sec:principle-rp10-browser-controls} ``\nameref{sec:principle-rp10-browser-controls}'').
 
 
 \subsection*{Konkrete Umsetzung}
+
+\subsubsection*{HTML Markup}
 
 Das gerenderte HTML Markup verwendet wie geplant vom HTML 5 Standard eingeführte Funktionen. Quellcode \ref{lst:roomiesMenuHtml} zeigt die Verwendung des \emph{<header>} sowie \emph{<nav>} Tags zur Beschreibung des Applikationsmenüs der Beispielapplikation.
 
@@ -62,6 +64,20 @@ Weiter wurde für das \emph{Fällig bis}-Feld auf der Ansicht \emph{Aufgabe bear
 	\caption{Datumsauswahl für ein Textfeld vom Typ \emph{date} in \emph{Safari für iPhone}}
 	\label{fig:iossafari-datepicker}
 \end{figure}
+
+
+\subsubsection*{CSS}
+
+Der erstellte CSS Quellcode macht ausführlichen Gebrauch der neusten CSS 3 Features. So wird für die Darstellung von visuellen Effekten oft auf \emph{box-shadow} oder halbtransparente Farben zurückgegriffen.
+
+Verschiedene Internetbrowser interpretieren CSS Formatierungsbefehle teilweise immer noch sehr unterschiedlich. Um diesem Problem beizukommen wurde die SASS Funktionsbibliothek \emph{Bourbon} \cite{bourbon} eingesetzt. Verschiedene Mixins ermöglichen mit der Verwendung des SASS Präprozessors \cite{sass} das Generieren von crossbrowser-kompatiblem CSS Quelltext.
+
+\begin{lstlisting}[language=CSS, firstnumber=4, caption={Einbindung des \emph{@border-radius} Mixins von \emph{Bourbon} \cite{RoomiesSassBorderRadiusMixin}}, label={lst:roomiesSassBorderRadiusMixin}]
+.button {
+	@include button($button-color-bg);
+	@include border-radius(8px);
+	margin-top: 1px;
+\end{lstlisting}
 
 
 
