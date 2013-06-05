@@ -35,40 +35,16 @@ Auch für Applikationen für Node.JS ist üblich (\cite{TJH_ComponentStructure},
 Ein gutes Beispiel hierfür sind die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekappselt werden.
 
 Die Beispielapplikation ``Roomies'' verwendet selber auch mehrere Komponenten aus NPM \cite{NPM} und ist selber auch in
-Komponenten unterteilt. Dies veranschaulicht die Code-Struktur \ref{verb:roomiesCodeStruktur}.
+Komponenten unterteilt. Dies veranschaulicht die Ordnerstruktur in Abbildung \ref{fig:roomiesFolderStructure}.
 
 \newpage
-\subsubsection*{Code-Struktur}
+\subsubsection*{Ordnerstruktur}
 
-Listing \ref{verb:roomiesCodeStruktur} zeigt die Struktur der Beispielapplikation auf.
-
-\begin{figure}[ht!]
-	\begin{verbatim}
-src
-├── server
-│   ├── api
-│   │   ├── community
-│   │   └── ...
-│   ├── middleware
-│   │   └── ...
-│   ├── public
-│   │   └── ...
-│   └── sass
-│   └── barefootFactory.js
-└── shared
-    ├── collections
-    ├── locales
-    ├── models
-    ├── templates
-    │   ├── community
-    │   └── ...
-    └── views
-        ├── community
-        └── ...
-└── app.js
-	\end{verbatim}
-	\caption{Code-Struktur Beispielapplikation}
-	\label{verb:roomiesCodeStruktur}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=8cm]{content/sad/images/folder-structure.png}
+	\caption{Ordnerstruktur des \emph{src}-Unterordners der Beispielapplikation \emph{Roomies}}
+	\label{fig:roomiesFolderStructure}
 \end{figure}
 
 Jede Komponente mit JavaScript-Code kann mittels einem ``require()''-Befehl eingebunden werden. Zu diesem Zweck wird jeweils nur der Ordnername angegeben. Der Befehl wird dann automatisch die ``index.js''-Datei laden.
