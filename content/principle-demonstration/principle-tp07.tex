@@ -23,10 +23,46 @@ In der Beispielapplikation sollen gezielt HTML 5 Features verwendet werden:
 
 Das entstehende, semantisch korrekte HTML Markup soll mit CSS 3 gestaltet werden. Neue Möglichkeiten zur grafischen Darstellung sollen ausgenutzt werden.
 
-Bei der Entwicklung der Front- als auch Backend-Komponente muss zwingend darauf geachtet werden, dass die Browser-Funktionen \emph{Vorwärts}, \emph{Zurück} und \emph{Aktualisieren} zu keinem ungewünschten resp. unerwarteten Verhalten führen (siehe hierzu auch Abschnitt \ref{sec:principle-rp10-browser-controls} ``\nameref{sec:principle-rp10-browser-controls}'').
+Bei der Entwicklung der Front- als auch Backend-Komponente muss zwingend darauf geachtet werden, dass die Verwendung der Browser-Funktionen \emph{Vorwärts}, \emph{Zurück} und \emph{Aktualisieren} zu keinem ungewünschten resp. unerwarteten Verhalten führen (siehe hierzu auch Abschnitt \ref{sec:principle-rp10-browser-controls} ``\nameref{sec:principle-rp10-browser-controls}'').
 
 
 \subsection*{Konkrete Umsetzung}
+
+Das gerenderte HTML Markup verwendet wie geplant vom HTML 5 Standard eingeführte Funktionen. Quellcode \ref{lst:roomiesMenuHtml} zeigt die Verwendung des \emph{<header>} sowie \emph{<nav>} Tags zur Beschreibung des Applikationsmenüs der Beispielapplikation.
+
+\begin{lstlisting}[language=HTML, caption={Ausschnitt des gerenderten HTML Markups der Menüleiste \emph{roomies}}, label={lst:roomiesMenuHtml}]
+<header id="menu">
+	<div class="fixed-navigation">
+		<nav class="navigation" role="navigation">
+			<div class="title-area">
+				<a href="/" class="banner" title="Roomies"><h1>Roomies</h1></a>
+			</div>
+			<section class="nav-section">
+				<ul class="left">
+						<li>
+							<a href="/community/ba-team/tasks" title="Aufgaben">
+								<i class="icon-tasks icon-large"></i>
+								<span class="item-label"> Aufgaben</span>
+							</a>
+						</li>
+						<!-- ... more items -->
+				</ul>
+				<!-- ... displaying the facebook profile picture -->
+			</section>
+		</nav>
+	</div>
+</header>
+\end{lstlisting}
+
+Weiter wurde für das \emph{Fällig bis}-Feld auf der Ansicht \emph{Aufgabe bearbeiten} ein Textfeld vom Typ \emph{date} verwendet. Gerade auf einem Mobile Browser wie \emph{Safari für iPhone} kommt diese Implementation voll zum tragen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=6cm]{content/principle-demonstration/images/iossafari-datepicker.png}
+	\caption{Datumsauswahl für ein Textfeld vom Typ \emph{date} in \emph{Safari für iPhone}
+	\label{fig:iossafari-datepicker}
+\end{figure}
+
 
 
 
