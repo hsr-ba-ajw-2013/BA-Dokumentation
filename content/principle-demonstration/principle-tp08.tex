@@ -1,14 +1,14 @@
 \section{TP8 Automate everything or you will be hurt}
 \label{sec:principle-tp8-automate-everything}
 
-TP8 greift einen allgemein gültigen Vorsatz aus dem Software Engineering auf: Mit ``\emph{Don't repeat yourself}'' wird zum einen sich wiederholender Quellcode minimiert, als auch wiederkehrende Aufgaben automatisiert.
+\emph{TP8} greift einen allgemein gültigen Vorsatz aus dem Software Engineering auf: Mit ``\emph{Don't repeat yourself}'' wird zum einen sich wiederholender Quellcode minimiert, als auch wiederkehrende Routineaufgaben automatisiert.
 
 Entwickelt man den \emph{DRY}-Ansatz weiter, so landet man unweigerlich bei der Verwendung von automatisierten Tests und Deployments mittels Continuous Integration Systemen.
 
 \subsection*{Geplante Umsetzung}
-In der Tabelle \ref{fig:how-to-show-principles-matrix} war geplant, die Richtlinie TP8 mittels der Entwicklungsumgebungstools zu demonstrieren.
+Gemäss der Tabelle \ref{fig:how-to-show-principles-matrix} ``\nameref{fig:how-to-show-principles-matrix}'' im Kapitel ``\nameref{sec:analyse-der-aufgabenstellung}'' soll \emph{TP8} durch die Verwendung verschiedenere unterstützender Tools umgesetzt und demonstriert werden.
 
-Folgende Aufgaben konnten im Zuge dieser Planung automatisiert werden:
+Die Tabelle \ref{fig:automated-tasks-planned} zeigt eine Auflistung der zu automatisierenden Aufgaben:
 
 \begin{table}[H]
 \tablestyle
@@ -24,43 +24,62 @@ Folgende Aufgaben konnten im Zuge dieser Planung automatisiert werden:
 	\textit{TP8.3} & Qualitative Überprüfung des Quellcodes (Code Style Guidelines)\tabularnewline
 	\textit{TP8.4} & Umwandlung von SASS zu CSS Stylesheets\tabularnewline
 	\textit{TP8.5} & Erstellung von Quellcode Dokumentation\tabularnewline
-	\textit{TP8.6} & Veröffentlichung von Dokumentation (dieses Dokument, aber auch Quellcode Dokumentation), Testergebnisse und Test Code Coverage Berichten\tabularnewline
-	\textit{TP8.7} & Umwandlung des LaTeX Quellcodes zur finalen PDF Dokumentation\tabularnewline
 \tableend
 \end{tabularx}
-\caption{Automatisierte Aufgaben}
+\caption{Automatisierte Aufgaben (geplant)}
+\label{fig:automated-tasks-planned}
 \end{table}
 
 
 \subsection*{Konkrete Umsetzung}
-Als Kernkomponente für die Automatisierung der definierten Aufgaben wird ein \emph{Makefile} (\cite{RoomiesMakefile} und \cite{ThesisMakefile}) verwendet. Dieses wird von \emph{GNU Make} \cite{make} interpretiert und ermöglicht so das Ausführen von verschiedensten Operationen.
+Neben den oben erwähten Aufgaben wurde in der konkreten Implementation des Projektes weitere Tasks erfolreich automatisiert:
 
-Das Listing \ref{lst:makefileTesting} zeigt exemplarisch die Befehlsdefinition für das Ausführen der Unit sowie funktionalen Tests.
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X l}
+\tableheadcolor
+	\tablehead ID &
+	\tablehead Aufgabe &
+	\tablehead \gls{CLI} Befehl
+	\tabularnewline
+\tablebody
+	\textit{TP8.1} & Starten der Beispielapplikation & \emph{npm start}\tabularnewline
+	\textit{TP8.2} & Ausführung der Unit Tests & \emph{make test}\tabularnewline
+	\textit{TP8.3} & Qualitative Überprüfung des Quellcodes (Code Style Guidelines) & \emph{make lint}\tabularnewline
+	\textit{TP8.4} & Umwandlung von SASS zu CSS Stylesheets & \emph{make precompile-sass}\tabularnewline
+	\textit{TP8.5} & Erstellung von Quellcode Dokumentation & \emph{make docs}\tabularnewline
+	\textit{TP8.6} & Vorbereitung von View Templates & \emph{make precompile-templates}\tabularnewline
+	\textit{TP8.7} & Veröffentlichung von Dokumentation (dieses Dokument, aber auch Quellcode Dokumentation), Testergebnisse und Test Code Coverage Berichten & Travis CI\tabularnewline
+	\textit{TP8.8} & Umwandlung des LaTeX Quellcodes zur finalen PDF Dokumentation (Dokumentations Repository) & \emph{make}\tabularnewline
+	\textit{TP8.9} & Erstellen und veröffentlichen von Test Coverage Reports & \emph{make test-coveralls}\tabularnewline
+	\textit{TP8.10} & Installation der Beispielapplikation & \emph{./install.sh}\tabularnewline
+\tableend
+\end{tabularx}
+\caption{Automatisierte Aufgaben (umgesetzt)}
+\label{fig:automated-tasks-concrete}
+\end{table}
 
-\begin{lstlisting}[language=Bash, caption=Ausschnitt Makefile: Testing \cite{RoomiesMakefile}, label=lst:makefileTesting]
-REPORTER = spec
-TEST_CMD = NODE_ENV=test ./node_modules/.bin/mocha --require test/runner.js --globals config
+Als Kernkomponente für die Automatisierung der Aufgaben in Tabelle \ref{fig:automated-tasks-concrete} wird ein \emph{Makefile} (\cite{RoomiesMakefile} und \cite{ThesisMakefile}) verwendet. Dieses wird von \emph{GNU Make} \cite{make} interpretiert und ermöglicht so das Ausführen von verschiedensten Operationen.
 
-test: test-unit test-functional
+Der Quelltext \ref{lst:makefileDocs} zeigt exemplarisch die Befehlsdefinition für das Ausführen der Unit Tests.
 
-test-unit:
-	@echo "Running Unit Tests:"
-	@$(TEST_CMD) --reporter $(REPORTER) src/lib/*/test.js
-
-test-functional:
-	@echo "Running Functional Tests:"
-	@$(TEST_CMD) --reporter $(REPORTER) test/*-test.js
+\begin{lstlisting}[language=Bash, firstnumber=99, caption={Ausschnitt Makefile: Code Dokumentation erstellen} \cite{RoomiesMakefile}, label=lst:makefileDocs]
+docs:
+	-mkdir ./docs
+	@NaturalDocs -i ./src -o HTML ./docs -p ./.naturaldocs -xi ./src/server/public -s Default style
 \end{lstlisting}
 
-Soll nun der Task \emph{test} aufgerufen werden, geschieht dies durch den einfachen Befehl \emph{make test} auf der Kommandozeile.
+Durch den einfache Kommandozeilenbefehl \emph{make docs} wird der in \ref{lst:makefileDocs} definierte Befehl ausgeführt.
 
 
 \subsection*{Continuous Integration}
-Die Vorgestellten Aufgaben können sowohl lokal auf dem Entwicklerrechner als auch auf dem Continuous Integration System ausgeführt werden.
 
-Wie im Kaptiel \ref{sec:qualitymanagement} ``\nameref{sec:qualitymanagement}'' definiert, wird hierzu die Open Source Plattform Travis CI \cite{TravisCI} verwendet. Der folgende Quelltext zeigt die \emph{.travis.yml} Datei \cite{RoomiesTravisYML}. Sie steuert die Ausführung eines Builds auf Travis:
+Die in Tabelle \ref{fig:automated-tasks-concrete} vorgestellten Aufgaben \emph{TP8.2} bis \emph{8.9} werden sowohl lokal auf dem Entwicklerrechner als auch auf dem Continuous Integration System ausgeführt.
 
-\begin{lstlisting}[language=XML, caption=.travis.yml \cite{RoomiesTravisYML}, label=lst:roomiesTravisYML]
+Entsprechend der Definition im Kaptiel \ref{sec:qualitymanagement} ``\nameref{sec:qualitymanagement}'' wird hierzu die Open Source Plattform Travis CI \cite{TravisCI} verwendet. Der Quelltext \ref{lst:roomiesTravisYML} zeigt einen Ausschnitt der Datei \emph{.travis.yml} \cite{RoomiesTravisYML}. Diese steuert den Build auf Travis CI.
+
+\begin{lstlisting}[language=XML, firstnumber=5, caption={Ausschnit aus .travis.yml \cite{RoomiesTravisYML}}, label=lst:roomiesTravisYML]
 before_install:
     - ./travis/before_install.sh
 
@@ -71,28 +90,14 @@ language: node_js
 node_js:
   - 0.8
 
-script: "make docs test-coverage lint"
-
-env:
-    global:
-        - secure: "eWkg0QTrYfWbPpitHRZWvtnTD2gTZsHEfZI1/cVA3mUs1Vycx/bNHzAt4fNm\nWR7EsTkaNLkc6p3JA797kwIyCugt+0D2tTdn7ra532Gye9u/KGjJB38HuJ0A\nQxibB+ahyAOJL+NjRNAQsME2lFmNv950/4sRbXYybijxJD6fqcw="
-
-        - GH_USER_NAME: hsr-ba-ajw-2013
-        - GH_PROJECT_NAME: BA
-        - GIT_AUTHOR_NAME: "TravisCI"
-        - GIT_AUTHOR_EMAIL: ""
-
-        - CI_HOME=`pwd`/$TRAVIS_REPO_SLUG
-        - RESULT_UNIT_COVERAGE_PATH=$CI_HOME/unit-coverage.html
-        - RESULT_FUNCTIIONAL_COVERAGE_PATH=$CI_HOME/functional-coverage.html
-        - RESULT_DOCS=$CI_HOME/docs
+script: "make docs test-coveralls lint"
 \end{lstlisting}
 
 \subsection*{Diskussion}
-Grundsätzlich rechtfertigt jede Aktion, welche mehr als einmal durchgeführt wird das Automatisieren dieser. Dies trifft umso mehr zu, wenn mehrere Entwickler am Entwicklungsprozess beteiligt sind.
+Muss eine Aufgabe zweimal ausgeführt, sollte dies bereits als Rechtfertigung zur Automatisierung dieser bereits genügen. Dies trifft umso mehr zu, wenn mehrere Entwickler am Entwicklungsprozess beteiligt sind.
 
-Im Normalfall hat nicht jeder einzelne Projektmitarbeiter Zeit, sich bspw. um das Aufsetzen seiner eigenen Testumgebung zu kümmern. Dabei steigert sich die Effektivität eines Teams ungemein, wenn mittels einem einfachen Befehl die Ausführung der Unit oder gar Integration Tests angestossen werden kann.
+Die Praxis zeigt dass die Unterstützung von Projektmitarbeitern durch Automatisierung von Routineaufgaben eine hohe Zeitersparnis und Effektivitätssteigerung mit sich bringt. Wird die Ausführung der Unit Tests erleichtert, lässt sich zudem die Akzeptanz eines Test Driven Development Prozesses erhöhen.
 
-Das Credo ``Don't repeat yourself'' ist somit ganz klar Trumpf.
+Das Projektteam war positiv davon überrascht, was sich mit frei zugänglichen Continuous Integration Lösungen wie Travis CI \cite{TravisCI} umsetzen lässt. Von der Generierung von Dokumentationen bis hin zur regelmässigen Ausführung von Unit Tests lassen sich ohne grossen Aufwand unbeliebte Aufgaben problemlos Automatisieren und Auslagern.
 
-Das Projektteam war zudem positiv davon überrascht, was sich mit frei zugänglichen Continuous Integration Lösungen wie Travis CI \cite{TravisCI} umsetzen lässt. Von der Generierung von Dokumentationen bis hin zur regelmässigen Ausführung von Unit Tests lassen sich ohne grossen Aufwand unbeliebte Aufgaben problemlos Automatisieren und Auslagern.
+Das Credo ``Don't repeat yourself'' ist somit ganz klar Trumpf und so wird auch die Richtlinie \emph{TP8 Automate everything or you will be hurt} vom Projektteam unterstützt.
