@@ -17,7 +17,7 @@ Dieses Framework ermöglicht Client und Server den gleichen Code für Controller
 Backbone.js \cite{Backbonejs} für die Code-Strukturierung auf.
 
 Als Beispiel sei hier der Router genannt:
-\begin{lstlisting}[language=JavaScript, caption=Router der Beispielapplikation, label=lst:roomiesRouter]
+\begin{lstlisting}[language=JavaScript, caption=Router der Beispielapplikation \cite{roomiesRouter}, label=lst:roomiesRouter, firstnumber=25]
 module.exports = Router.extend({
 	routes: {
 		'': 'home'
@@ -52,15 +52,17 @@ module.exports = Router.extend({
 			this.render(this.createView(CreateCommunityView));
 		}
 	}
+	//...
+});
 \end{lstlisting}
 
-Das Code-Beispiel \ref{lst:roomiesRouter} zeigt ein Auszug des Routers aus der Beispielapplikation.
+Quelltext \ref{lst:roomiesRouter} zeigt ein Auszug des Routers aus der Beispielapplikation.
 Dieser Router wird sowohl vom Client wie auch vom Server direkt verwendet und registriert die gezeigten URLs mit den Funktionen.
 
 Wie man sieht, wird für die ``home''-Route, falls der Besucher nicht eingeloggt ist,
 die ``HomeView'' dargestellt. Diese ist im Quellcode \ref{lst:roomiesHomeView}, ``\nameref{lst:roomiesHomeView}'' zu sehen.
 
-\begin{lstlisting}[language=JavaScript, caption=Router der Beispielapplikation, label=lst:roomiesHomeView]
+\begin{lstlisting}[language=JavaScript, caption=HomeView der Beispielapplikation \cite{roomiesHomeView}, label=lst:roomiesHomeView, firstnumber=7]
 module.exports = View.extend({
 	el: '#main'
 	, template: templates.login
@@ -81,6 +83,7 @@ module.exports = View.extend({
 		this.setDocumentTitle(this.translate('Welcome'));
 		_super(resolve);
 	}
+	//...
 });
 \end{lstlisting}
 
@@ -97,7 +100,7 @@ Der Quellcode \ref{lst:roomiesControllerExample} zeigt ein Beispiel für einen s
 Callback, während Quelltext \ref{lst:roomiesComponentExample} ein Beispiel für
 eine definierte API-Route aufzeigt.
 
-\begin{lstlisting}[language=JavaScript, caption=API-Controller Beispiel, label=lst:roomiesControllerExample]
+\begin{lstlisting}[language=JavaScript, caption=API-Controller Beispiel \cite{roomiesCommunityApiExample}, label=lst:roomiesControllerExample, firstnumber=294]
 /** Function: getCommunityWithId
  * Looks up a community with a specific ID.
  *
@@ -138,7 +141,7 @@ function getCommunityWithId(success, error, id) {
 }
 \end{lstlisting}
 
-\begin{lstlisting}[language=JavaScript, caption=API-Route Beispiel, label=lst:roomiesComponentExample]
+\begin{lstlisting}[language=JavaScript, caption=API-Route Beispiel \cite{communityApiDefinition}, label=lst:roomiesComponentExample, firstnumber=31]
 var prefix = apiPrefix + modulePrefix;
 
 // GET /api/community/:id
@@ -148,12 +151,10 @@ api.get(prefix + '/:id(\\d+)', [
 	, controller.getCommunityWithId]);
 \end{lstlisting}
 
-Die Beispielapplikation ist somit nach einem adaptierten MVC-Pattern aufgebaut, welches man als ``MVCCT'' beschreiben kann. \\
+Die Beispielapplikation ist somit nach einem MVC-Pattern aufgebaut. \\
 Die einzelnen Komponenten haben folgende Aufgabe:
 \begin{itemize}
 	\item{\textbf{M}odel ist das traditionelle Model welches zwischen Server \& Client geshared wird}
 	\item{\textbf{V}iew ist eine ``Barefoot.View'' \cite{BarefootView} und rendert Templates}
-	\item{\textbf{C}ontroller ist ein ``Route''-Controller, welcher aufgrund von URLs die richtige View aufruft}
-	\item{\textbf{C}ontroller ist ein API-Controller, welcher die REST-API-Logik \cite{REST} kapselt}
-	\item{\textbf{T}emplate ist ein ``Handlebars''-Template \cite{Handlebars}}
+	\item{\textbf{C}ontroller ist einerseits ein ``Route''-Controller, welcher aufgrund von URLs die richtige View aufruft und andererseits ein API-Controller, welcher die REST-API-Logik kapselt}
 \end{itemize}
