@@ -3,13 +3,13 @@
 
 \gls{REST} beschreibt einen API-Stil welcher grundlegende Auswirkungen auf die Architektur einer komplexen Client-Server Software hat und durch mehrere Randbedingungen gegeben ist:
 \begin{itemize}
-	\item Kommunikation zw. Client und Server ist zustandslos
+	\item Kommunikation zwischen Client und Server ist zustandslos
 	\item HTTP wird als Grundlage verwendet
 	\item \glspl{URI} sind Identifikatoren für Ressourcen auf dem Server
 	\item Daten-Serialisierung (XML, JSON, etc.) ist nicht vorgegeben
 \end{itemize}
 
-Durch die Bedingung der Zustandlosigkeit wird es durch Einsatz dieser Architektur ermöglicht, skalierbare Schnittstellen zur Verfügung zu stellen.
+Durch die Bedingung der Zustandlosigkeit wird durch Einsatz dieser Architektur ermöglicht, skalierbare Schnittstellen zur Verfügung zu stellen.
 
 Eine weitere Implementationstechnik von REST-APIs ist die Versionierung. Diese ermöglicht es Client und Server unabhängig voneinander weiter zu entwickeln.
 Sobald die API eine neue Version erstellt und Rückwärtskompatibilität mit den alten Versionen garantiert, kann die Client-Software weiterentwickelt werden.
@@ -17,26 +17,26 @@ Sobald die API eine neue Version erstellt und Rückwärtskompatibilität mit den
 REST liegt HTTP zugrunde. Es werden explizit die sogenannten HTTP-Verben (GET, POST, PUT, DELETE etc.) verwendet um Ressourcen abzufragen oder zu manipulieren.
 Durch den Einsatz des HTTP-Standards wird Caching auch direkt ermöglicht. Voraussetzung dafür ist, dass die Software die entsprechenden Caching-Headers in den Antworten sendet.
 
-Damit diese Ressourcen eindeutig identifizierbar sind, sind korrekte \glspl{URI} Pflicht. Jeder Objekt-Typ und jedes Objekt sollte eindeutig identifizierbar sein.
+Damit spezifische Instanzen einer Ressourcen ansprechbar sind, ist die Verwendung korrekter und eindeutiger \glspl{URI} Pflicht. Jeder Objekt-Typ und jedes Objekt sollte eindeutig identifizierbar sein.
 
-Der Datentyp mit welchem Objekte und Collections übertragen werden ist hingegen nicht definiert. Den Software-Entwickler ist die Serialisierung der Daten somit selber überlassen.
+Der Datentyp mit welchem Objekte und Collections übertragen werden ist hingegen nicht definiert. Dem Software Entwickler ist die Serialisierung der Daten somit selber überlassen.
 Vielfach wird heute jedoch \gls{JSON} eingesetzt, da es eine kompakte und doch gut lesbare Serialisierungsform ist.
 
 
 \subsection*{Geplante Umsetzung}
-Die Beispielapplikation ``Roomies'' soll ebenfalls REST mit JSON als Datentyp für seine API verwenden
+Die Beispielapplikation \emph{Roomies} soll REST mit JSON als Datentyp für seine API verwenden
 
-Jede Ressource welche über die Website angefragt wird, soll auch über die REST-API abgefragt werden können. Um den Sourcecode möglichst schlank halten zu können, soll auch intern die API verwendet werden.
+Jede Ressource welche über die Website angefragt werden kann, soll auch über die REST-API verfügbar sein. Um den Sourcecode möglichst schlank halten zu können, soll auch intern die API verwendet werden.
 Somit ist die API zwingend entkoppelt vom sonstigen Quelltext.
 
-Eine Versionierung und das Caching der API-Zugriffe sind jedoch nicht geplant. Dies wurde vorallem aus Zeitgründen so entschieden.
+Eine Versionierung und das Caching der API-Zugriffe ist nicht geplant. Dies wurde vorallem aus Zeitgründen so entschieden.
 Eine Versionierung wäre jedoch durch ein zusätzliches Präfix für die API-Route ohne Probleme lösbar.
 Das selbe gilt für das Caching. Jedes Objekt in der Datenbank hat eine Spalte mit der Information, wann dieser Datensatz zuletzt modifiziert wurde. Durch diese Information kann generisch an einem Punkt ein Caching implementiert werden.
 
 \subsection*{Konkrete Umsetzung}
-Die API der Beispielapplikation ist als separater Service-Layer implementiert worden und sowohl Client- als auch Serverside wird transparent darauf zugegriffen.
+Die API der Beispielapplikation ist als separater Service-Layer implementiert worden. Auf diese wurd client- als auch serverseitig transparent zugegriffen.
 
-Das Beispiel im Listing \ref{lst:restApiRoomies} zeigt zwei Definitionen einer solchen Route in der API.
+Das Beispiel im Quelltext \ref{lst:restApiRoomies} zeigt zwei Definitionen einer solchen Route in der API.
 
 \begin{lstlisting}[language=JavaScript, caption=Community API Definition \cite{communityApiDefinition}, label=lst:restApiRoomies, firstnumber=23, escapeinside={@}{@}]
 var controller = require('./controller')
@@ -77,12 +77,12 @@ Zeile \autoref{lst:restApiRoomies_post} definiert eine ``POST'' Route um eine ne
 
 \subsection*{Diskussion}
 
-REST ist eine immer wichtigere Architekturform und wird in dieser Form überall eingesetzt. Es definiert die wichtigsten Grundbedürfnisse und überlässt Applikationsspezifische Entscheidungen dem Software-Entwickler.
+REST ist eine immer wichtigere Architekturform und wird in dieser Form überall eingesetzt. Es definiert die wichtigsten Grundbedürfnisse und überlässt applikationsspezifische Entscheidungen dem Software Entwickler.
 
-Seit einiger Zeit ist es immer wie wichtiger eine solche generische Schnittstelle auch für kleinere Websiten zu erstellen. Vielfach wird seit dem aufkommen von Smartphones nicht nur eine Website erstellt, sondern auch entsprechende Apps für Mobiltelefone.
+Seit einiger Zeit ist es immer wichtiger eine generische Schnittstelle auch für kleinere Websiten zu erstellen. Vielfach wird seit dem aufkommen von Smartphones nicht nur eine Website erstellt, sondern auch entsprechende Apps für Mobiltelefone.
 
 Dadurch dass REST auch keine Serialisierungsform benutzt, ist es dem Entwickler der API möglich, verschiedene Datenformate zu unterstützen (siehe auch \ref{sec:principle-rp6-should-formats} ``\nameref{sec:principle-rp6-should-formats}''). Dies ermöglicht beispielsweise die Nutzung eines kompakten Datenformats für Mobiltelefone, damit die Datenrechnung nicht strapaziert wird.
 
 Durch die relativ flexible REST-Definition mit einigen wenigen Randbedingungen tut sich aber auch ein wichtiger Diskussionspunkt auf: Mit welchem HTTP-Verb (POST oder PUT) werden Updates gehandhabt? Es gibt hier verschiedene Ansichten und die Diskussion ist bei weitem nicht abgeschlossen. Eine gute Hilfestellung hierfür bietet ``Stack Overflow - HTTP PUT vs POST in REST'' \cite{StackoverflowPUTvsPOST}.
 
-Abschliessend gibt das Projektteam folgenden Rat: Wenn es nötig ist eine flexible und generische API zu erstellen, ist REST eine sehr gute Lösung. Es erlaubt Entwicklern bestehendes Know-How über das Web weiterzuverwenden und ist skalierbar.
+Abschliessend gibt das Projektteam folgenden Rat: Wenn es nötig ist eine flexible und generische API zu erstellen, ist REST eine sehr gute Lösung. Es erlaubt Entwicklern bestehendes Know-How über das Web wiederzuverwenden und ist skalierbar.
