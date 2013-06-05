@@ -3,20 +3,22 @@
 
 Eine Applikation mit einer verteilten, entkoppelten Architektur kommt unweigerlich zu einem Punkt, an welchem die einzelnen Komponenten Schnittstellen definieren müssen.
 
-Die durch diesen Prozess entstehenden API's sind klassischerweise auf spezifische Anwendungsfälle zugeschnitten da diese schnellstmöglich die applikationseigenen Anforderungen umsetzen sollen.
+Die durch diesen Prozess entstehenden API's sind klassischerweise auf spezifische Anwendungsfälle zugeschnitten da diese schnellstmöglich die applikationseigenen Anforderungen umsetzen können.
 
-Als weitere Konsequenz werden ``unschöne'' Interfacemethoden gerne auch gar nicht erst an externe Anwendungen resp. Konsumenten veröffentlicht.
+Als weitere Konsequenz werden ``unschöne'' Interfacemethoden gerne gar nicht erst für externe Konsumenten verfügbar gemacht.
 
-Auf lange Dauer gesehen entsteht so ein Flickwerk mit API Methoden für jeden einzelnen Anwendungsfall.
+Auf die lange Dauer gesehen besteht die Gefahr, dass ein Flickwerk aus anwendungsfallspezifischen Interfaces resp. Interfacemethoden entstehen.
 
-Mit \emph{Eat your own API dog food} forciert Tilkov gezielt die Konzipierung und Umsetzung guter und generischer Schnittstellen für Applikationskomponenten. Dazu gehört, dass keine privaten Methoden existieren sollen, frei nach dem Credo ``\emph{Wir haben nichts zu verstecken}''.
+Mit \emph{Eat your own API dog food} forciert Tilkov von Beginn an die Konzipierung und Umsetzung guter und generischer Schnittstellen für Applikationskomponenten. Als Motivationsfaktor gehört darum auch der Grundsatz, dass keine privaten Methoden existieren sollen, zu seiner Forderung.
 
 
 \subsection*{Geplante Umsetzung}
 
 Für die Beispielapplikation \emph{Roomies} soll ein Servicelayer auf Basis einer HTTP \gls{REST} Architektur entwickelt werden. Als Datenformat soll \gls{JSON} verwendet werden.
 
-Entsprechend der \gls{REST} Richtlinien (siehe \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}'') soll jedes Objekt aus der Problemdomäne gezielt abgefragt und manipuliert werden können.
+Jegliche Interaktion mit den Objekten aus der Problemdomäne soll innerhalb dieses Layers gekapselt werden.
+
+Entsprechend der \gls{REST} Richtlinien (siehe \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}'') soll jedes dieser Objekte gezielt abgefragt und manipuliert werden können.
 
 Es sind keine privaten Methoden geplant. Soll ein Objekt vor Zugriffen unbefugter Konsumenten geschützt werden, sind entsprechende Sicherheitsmechanismen umzusetzen.
 
@@ -29,3 +31,11 @@ Es wurde komplett auf private Methoden verzichtet. Zum Schutz sensibler Daten wu
 
 
 \subsection*{Diskussion}
+
+Klar strukturiertes und wohldefiniertes Schnittstellendesign ist bereits bei einer kleineren Applikation hilfreich, ab einem Umfang von mehreren Komponenten sogar ein absolutes Muss.
+
+Gerade in einer grösseren Service-Landschaft, wie diese oftmals in grossen Konzernen wie Banken anzutreffen ist (Beispiel \emph{BIAN Service Landscape 2.0} \cite{BIANServiceLandscape}), ist es jedoch üblich, auch private Interfacemethoden zu unterhalten.
+
+Bis zu einem gewissen Punkt mag es also durchaus berechtigt sein, die eigene Motivation für korrektes Interfacedesign aus der Zurschaustellung nach Aussen zu beziehen. Je nach Anforderungen kann es aber durchaus Sinn machen, von diesem Grundsatz abzusehen.
+
+Für eine Non-Enterprise-Applikation kann das Projektteam \emph{TP3} anstandslos befürworten. Die ausführliche Auseinandersetzung mit der eigenen API resultiert in einer Schnittstelle, welche ohne Weiteres von einer Smartphone App oder einer beliebigen anderen Applikation konsumiert werden kann.
