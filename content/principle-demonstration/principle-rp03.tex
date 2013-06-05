@@ -1,10 +1,36 @@
 \section{RP3 HTTP}
 \label{sec:principle-rp3-http}
 
+Das HTTP Prinzip von ROCA geht in die gleiche Richtung wie Kapitel \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}''.
+Der Client soll laut diesem Prinzip mit dem Server mittels REST kommunizieren.
+
 \subsection*{Geplante Umsetzung}
+Wie bereits in Kapitel \ref{sec:principle-rp1-rest} erwähnt, soll der Webclient mit dem Server über REST kommunizieren.
+Dies geschieht über Backbone Models welche eine eindeutige \gls{URL} zugewiesen bekommen und dann mittels den beiden Methoden ``save()'' und ``sync()'' bzw. ``fetch()'' (siehe \cite{BackboneSync}) mit dem Server kommunizieren.
 
 
 \subsection*{Konkrete Umsetzung}
+Die geplante Umsetzung ist so implementiert worden. Als Beispiel zeigt Quelltext \ref{lst:roomiesCommunityModel} ein \emph{Backbone.Model}, welches eine URL definiert hat und damit synchronisiert werden kann.
 
+\begin{lstlisting}[language=JavaScript, caption=Community Model \cite{roomiesCommunityModel}, label=lst:roomiesCommunityModel]
+/** Class: Models.Community
+ * Community model as a subclass of <Barefoot.Model at
+ * http://swissmanu.github.io/barefoot/docs/files/lib/model-js.html>
+ */
+var Barefoot = require('node-barefoot')()
+	, Model = Barefoot.Model
+	, CommunityModel = Model.extend({
+		urlRoot: '/api/community'
+		, idAttribute: 'id'
+		, toString: function toString() {
+			return 'CommunityModel';
+		}
+	});
+
+module.exports = CommunityModel;
+\end{lstlisting}
 
 \subsection*{Diskussion}
+Dieses ROCA-Prinzip überschneidet sich wie erwähnt sehr stark mit \nameref{sec:principle-rp1-rest}.
+
+Aus diesem Grund wird hier auf die Diskussion im Kapitel \ref{sec:principle-rp1-rest} verwiesen. Wenn der Server eine REST-API zur Verfügung stellt, sollte diese vom Client auch konsumiert werden.
