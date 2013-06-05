@@ -1,10 +1,45 @@
 \section{RP5 Non Browser}
 \label{sec:principle-rp5-non-browser}
 
-\subsection*{Geplante Umsetzung}
+Das ``Non Browser''-Prinzip beschreibt, dass die Applikationslogik auch ohne die üblichen Browser verfügbar sein muss. Dies ist normalerweise der Fall, wenn man die bereits vorangegangenen Prinzipien einhaltet, insbesondere Kapitel \ref{sec:principle-rp1-rest}, ``\nameref{sec:principle-rp1-rest}''.
 
+\subsection*{Geplante Umsetzung}
+Eine REST-API wird laut Kapitel \ref{sec:principle-rp1-rest} umgesetzt und somit ist es möglich, diese Ressourcen mit z.B. ``cURL'' \cite{curl} oder ``wget'' \cite{wget} abzurufen.
+Durch die Verwendung von Facebook Login wird es aber eher schwierig, eine authentifizierte Session zu erhalten. Ein weiterer Login-Mechanismus ist aber nicht geplant.
 
 \subsection*{Konkrete Umsetzung}
+Eine REST-API wurde umgesetzt. Durch die Anbindung an den Identity Provider ``Facebook'' (siehe Kapitel \ref{sec:principle-tp4-seperate-user-identity}) ist es jedoch unumgänglich, vorher ein valides Login-Cookie anzufordern.
 
+Um dies per ``cURL'' auf der Kommandozeile zu erreichen, kann wie folgt vorgegangen werden:
+\begin{enumerate}
+	\item Ein ``cURL'' Cookie-Jar erstellen lassen
+	\item Mit einem anderen Browser auf ``Roomies'' einloggen
+	\item Der Wert des Cookies ``connect.sid'' kopieren
+	\item Im Cookie-Jar den Wert einsetzen
+	\item Einen Request auf eine geschützte API-Ressource machen
+\end{enumerate}
+
+Dies wird im Quelltext \ref{lst:curlRoomiesAPI} veranschaulicht.
+
+\begin{lstlisting}[language=Bash, caption=cURL Request auf Roomies, label=curlRoomiesAPI]
+# Schritt 1: Erstellung eines cURL Cookie-Jars in cookies.txt
+~ $> curl -X 'GET' 'http://localhost:9001' --cookie-jar cookies.txt --verbose --location
+
+# ---------------------------------------- #
+# Jetzt müssten Schritt 2-4 gemacht werden #
+# ---------------------------------------- #
+
+# Schritt 5: Request auf eine geschützte API Ressource
+~ $> curl -X GET 'http://localhost:9001/api/community/ba/tasks' --cookie cookies.txt  --verbose --location
+\end{lstlisting}
+
+Es ist auch möglich, ohne den Dritt-Browser ein valides Cookie zu bekommen. Auf diese Variante wird hier aber nicht eingegangen.
+
+Wie geplant wurde kein weiterer Login-Mechanismus implementiert.
 
 \subsection*{Diskussion}
+Durch den Einsatz einer generalisierten API-Schnittstelle mittels REST kann eine Software auch ohne HTML-Parser die entsprechenden Daten auslesen.
+
+Falls dabei Facebook Login eingesetzt wird, ist eine valide Session auf Facebook unumgänglich. Um solche Bedingungen für eine interne Kommunikation zwischen Komponenten nicht zu haben, kann zum Beispiel OAuth \cite{oauth} eingesetzt werden.
+
+Wie auch bei Kapitel \ref{sec:principle-rp1-rest} empfiehlt das Projektteam den Einsatz einer REST Schnittstelle. Es muss für die Authentifizierung aber beachtet werden, dass z.B. auch interne Komponenten auf die API zugreifen müssen. Deswegen empfiehlt sich auf jeden fall einen zusätzlichen Authentisierung-Provider zu implementieren.

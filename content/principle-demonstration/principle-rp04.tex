@@ -1,20 +1,18 @@
 \section{RP4 Link}
 \label{sec:principle-rp4-link}
 
+Das ``Link''-Prinzip ist eng verbunden mit Kapitel \ref{sec:principle-rp10-browser-controls}, ``\nameref{sec:principle-rp10-browser-controls}'' und stellt die Anforderung, dass jede Seite eindeutig per Link identifizierbar sein muss.
+
+Wenn Web-Applikationen diesem Prinzip nicht folgen (bspw. Digitec \cite{Digitec}), dann können Seiten nicht per Link mit Freunden geteilt werden.
+Dies ist für einen Nutzer häufig nicht nachvollziehbar und die User Expierence leidet damit.
+
+Bevor Browser die History API \cite{HistoryAPI} implementiert haben, konnte das für JavaScript-lastige Webseiten nur schwer eingehalten werden.
+
 \subsection*{Geplante Umsetzung}
-Jede Seite innerhalb einer Web-Applikation muss mit einer eindeutigen URL adressierbar
-sein.
-
-Dies ist eines der ersten Paradigmas des Webs und auch eines der wichtigsten. In der Vergangenheit
-ist es öfters vorgekommen, dass neuere Applikationen auf diesen ``Komfort'' verzichtet haben.
-Heutzutage ist es aber u.a. dank der History API \cite{HistoryAPI} einiges
-einfacher geworden, eindeutige URLs auch in JavaScript-lastigen Applikationen zu
-verwenden.
-
+Die Beispielapplikation soll eindeutige URLs für Ressourcen aufweisen. Dies soll sowohl für die REST-API gelten, wie auch für die Webseite selber.
 
 \subsection*{Konkrete Umsetzung}
-Weil die Beispielapplikation so oder so den REST \cite{REST} Prinzipien entspricht,
-ist diese Richtlinie ein muss.
+Weil die Beispielapplikation so oder so den REST \cite{REST} Prinzipien entspricht, ist diese Richtlinie ein Muss.
 
 Jede URL entspricht einer eindeutigen Ressource und kann angesprochen werden.
 Mithilfe der History API \cite{HistoryAPI} wird auch auf dem Browser die URL
@@ -22,7 +20,7 @@ geändert, obwohl u.U. nur ein AJAX-Request gemacht wird.
 
 \subsection*{Diskussion}
 Schon Tim Berners-Lee hat vor Jahren geschrieben: ``Cool URIs don't change'' \cite{CoolURIsTBL}.
-Damit eine URL ``cool'' ist, muss sie zuerst mal vorhanden sein.
+Damit eine URL ``cool'' ist, muss sie zuerst mal vorhanden und funktional sein.
 
 Auch aus einem weiteren Grund sind URLs nur dann ``cool'', wenn sie vorhanden sind
 und niemals ändern: Mit den heuten Möglichkeiten des ``Sharing'' auf diversen Sozialen

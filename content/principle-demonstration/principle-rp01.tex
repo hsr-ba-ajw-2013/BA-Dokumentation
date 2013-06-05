@@ -26,7 +26,7 @@ Vielfach wird heute jedoch \gls{JSON} eingesetzt, da es eine kompakte und doch g
 \subsection*{Geplante Umsetzung}
 Die Beispielapplikation \emph{Roomies} soll REST mit JSON als Datentyp für seine API verwenden.
 
-Jede Ressource welche über die Website angefragt werden kann, soll auch über die REST-API verfügbar sein. Um den Sourcecode möglichst schlank halten zu können, soll auch intern die API verwendet werden.
+Jede Ressource welche über die Web-Applikation angefragt werden kann, soll auch über die REST-API verfügbar sein. Um den Sourcecode möglichst schlank halten zu können, soll auch intern die API verwendet werden.
 Somit ist die API zwingend entkoppelt vom sonstigen Quelltext.
 
 Eine Versionierung der API und das Caching der API-Zugriffe ist geplant.
@@ -85,7 +85,7 @@ Das selbe gilt für das Caching. Jedes Objekt in der Datenbank hat eine Spalte m
 
 REST ist ein immer wichtigerer Architekturstil und wird in dieser Form überall eingesetzt (siehe Twitter \cite{TwitterAPI}, Stripe \cite{StripeAPI}, etc.). Es definiert die wichtigsten Grundbedürfnisse und überlässt applikationsspezifische Entscheidungen dem Software Entwickler.
 
-Seit einiger Zeit ist es immer wichtiger eine generische Schnittstelle auch für kleinere Websiten zu erstellen. Vielfach wird seit dem aufkommen von Smartphones nicht nur eine Website erstellt, sondern auch entsprechende Apps für Mobiltelefone.
+Seit einiger Zeit ist es immer wichtiger eine generische Schnittstelle auch für kleinere Applikationen zu erstellen. Vielfach wird seit dem aufkommen von Smartphones nicht nur eine Webseite erstellt, sondern auch entsprechende Apps für Mobiltelefone.
 
 Dadurch dass REST auch keine Serialisierungsform festlegt, ist es dem Entwickler der API möglich, verschiedene Datenformate zu unterstützen (siehe auch \ref{sec:principle-rp6-should-formats} ``\nameref{sec:principle-rp6-should-formats}''). Dies ermöglicht beispielsweise die Nutzung eines kompakten Datenformats für Mobiltelefone, damit die Datenrechnung nicht strapaziert wird.
 
