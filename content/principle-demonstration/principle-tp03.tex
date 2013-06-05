@@ -1,10 +1,31 @@
 \section{TP3 Eat your own API dog food}
 \label{sec:principle-tp3-eat-your-own-api}
 
+Eine Applikation mit einer verteilten, entkoppelten Architektur kommt unweigerlich zu einem Punkt, an welchem die einzelnen Komponenten Schnittstellen definieren müssen.
+
+Die durch diesen Prozess entstehenden API's sind klassischerweise auf spezifische Anwendungsfälle zugeschnitten da diese schnellstmöglich die applikationseigenen Anforderungen umsetzen sollen.
+
+Als weitere Konsequenz werden ``unschöne'' Interfacemethoden gerne auch gar nicht erst an externe Anwendungen resp. Konsumenten veröffentlicht.
+
+Auf lange Dauer gesehen entsteht so ein Flickwerk mit API Methoden für jeden einzelnen Anwendungsfall.
+
+Mit \emph{Eat your own API dog food} forciert Tilkov gezielt die Konzipierung und Umsetzung guter und generischer Schnittstellen für Applikationskomponenten. Dazu gehört, dass keine privaten Methoden existieren sollen, frei nach dem Credo ``\emph{Wir haben nichts zu verstecken}''.
+
+
 \subsection*{Geplante Umsetzung}
+
+Für die Beispielapplikation \emph{Roomies} soll ein Servicelayer auf Basis einer HTTP \gls{REST} Architektur entwickelt werden. Als Datenformat soll \gls{JSON} verwendet werden.
+
+Entsprechend der \gls{REST} Richtlinien (siehe \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}'') soll jedes Objekt aus der Problemdomäne gezielt abgefragt und manipuliert werden können.
+
+Es sind keine privaten Methoden geplant. Soll ein Objekt vor Zugriffen unbefugter Konsumenten geschützt werden, sind entsprechende Sicherheitsmechanismen umzusetzen.
 
 
 \subsection*{Konkrete Umsetzung}
+
+Wie bereits im Abschnitt \ref{sec:principle-rp1-rest-concrete-solution} des Kapitels ``\nameref{sec:principle-demonstration}'' erläutert, konnte die generische Serviceschnittstelle für alle Objekte aus der \emph{Roomies} Problemdomäne (siehe \ref{sec:sad-domain-model} ``\nameref{sec:sad-domain-model}'') umgesetzt werden.
+
+Es wurde komplett auf private Methoden verzichtet. Zum Schutz sensibler Daten wurde wie in den Abschnitten \ref{sec:principle-rp7-auth}, \ref{sec:principle-rp8-cookies} sowie \ref{sec:principle-rp9-session} beschrieben ein Session-basierter Authentifizierungsmechanismus via Facebook (siehe \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') implementiert.
 
 
 \subsection*{Diskussion}
