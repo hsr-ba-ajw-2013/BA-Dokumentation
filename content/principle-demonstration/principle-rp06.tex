@@ -9,25 +9,6 @@ Die ``öfftlichen'' Daten sollen über eine API als JSON verfügbar sein. Diese 
 \subsection*{Konkrete Umsetzung}
 Der Server bietet eine API für jegliche Ressource, welche in einer View benötigt wird. Diese API entspricht einer RESTful-Architektur. Die Daten können über das bekannte GET HTTP-Request-Methode abgefragt werden, mit POST können neue Datensätze hinzugefügt werden, mit PUT verändert und natürlich mit DELETE gelöscht werden.
 
-\begin{lstlisting}[language=JavaScript, firstnumber=39, caption=Definition der API \cite{RoomiesExampleApi}, label=lst:apiRoomies]
-	// GET /api/community/:slug
-	api.get(prefix + '/:slug', [
-		basicAuthentication
-		, authorizedForCommunity
-		, controller.getCommunityWithSlug]);
-
-	// POST /api/community
-	api.post(prefix, [
-		basicAuthentication
-		, communityValidators.createCommunity
-		, controller.createCommunity
-	]);
-
-	// DELETE /api/community/:slug
-	api.del(prefix, [
-		basicAuthentication
-		, controller.deleteCommunity]);
-\end{lstlisting}
 
 
 \subsection*{Diskussion}
