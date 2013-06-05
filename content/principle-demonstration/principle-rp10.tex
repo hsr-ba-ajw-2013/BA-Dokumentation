@@ -7,8 +7,24 @@ Das ROCA-Prinzip ``Browser-Controls'' will genau dieses unangenehme Erleben verh
 
 \subsection*{Geplante Umsetzung}
 
+``Browser-Controls'' ist sehr eng mit dem Prinzip ``\nameref{sec:principle-rp4-link}'' verbunden. Indem jede Seite sein eigenes Link hat und dieser in die ``History'' des Browsers hinzugefügt wird, können die Standardbedienelementen (Zurück, Vorwärts und Aktualisieren) eines Browsers erwartungsgemäss funktionieren.
+
+Dies soll auch in der Beispielanwendung ``Roomies'' der Fall sein. Jedes Seitenwechsel soll über die Browserhistory nachvollziehbar sein und somit die Browserbedienelementen unterstützen.
 
 \subsection*{Konkrete Umsetzung}
 
+Backbone bietet mit der Function ``Backbone.history.start()'' \cite{BackbonejsHistory} genau diese erwünschte Funktionalität und wurde in Barefoot direkt umgesetzt.
+
+\begin{lstlisting}[language=JavaScript, caption=Activierung der History in Barefoot\cite{BarefootStartClient}, label=lst:barefootStartClientHistory, firstnumber=29, escapeinside={@}{@}]
+// from modernizr, MIT | BSD
+// http://modernizr.com/
+var useHistory = !!(window.history && history.pushState);
+
+Backbone.history.start({
+	pushState: useHistory
+	, hashChange: useHistory
+	, silent: true
+});
+\end{lstlisting}
 
 \subsection*{Diskussion}
