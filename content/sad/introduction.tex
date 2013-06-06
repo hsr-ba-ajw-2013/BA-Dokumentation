@@ -7,7 +7,7 @@ Die Architektur besteht aus den folgenden zwei Haupt-Komponenten:
 \end{itemize}
 
 \begin{figure}[ht]
-	\includegraphics[width=\textwidth]{content/images/architecture.png}
+	\includegraphics[width=\textwidth]{content/images/grob-layers-sad.png}
 	\caption{Architektur}
 \end{figure}
 
@@ -158,3 +158,12 @@ Die einzelnen Komponenten haben folgende Aufgabe:
 	\item{\textbf{V}iew ist eine ``Barefoot.View'' \cite{BarefootView} und rendert Templates}
 	\item{\textbf{C}ontroller ist einerseits ein ``Route''-Controller, welcher aufgrund von URLs die richtige View aufruft und andererseits ein API-Controller, welcher die REST-API-Logik kapselt}
 \end{itemize}
+
+Diagramm \ref{fig:mvcComponentDiagramm} zeigt eine grobe Übersicht über das Zusammenspiel der verschiedenen Komponenten.
+
+\begin{figure}[ht!]
+	\includegraphics[width=\textwidth]{content/images/mvc-components.png}
+
+	\caption{MVC-Komponenten im Zusammenspiel}
+	\label{fig:mvcComponentDiagramm}
+\end{figure}
