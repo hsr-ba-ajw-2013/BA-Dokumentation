@@ -1,19 +1,18 @@
 \section{RP10 Browser-Controls}
 \label{sec:principle-rp10-browser-controls}
-Man befindet sich auf einem Online-Shop und sucht mit Hilfe der eingebauten Suche, Zubehör für seine neu ergatterte Fotokamera. Das Suchresultat ist aber noch zu grob. Deshalb klick man auf dem Zurückknopf des Browsers um auf die Suche zurück zu gelangen. Aber was uns hier erwartet, ist nicht etwa das Suchformular, welches man erwartet hätte, sondern die Startseite.
-Dies ist nicht etwa ein fiktives Beispiel, sondern ein reeller Szenario aus dem Online-Shop des Elektronikgrosshändlers Digitec \cite{Digitec}.
+Man befindet sich auf einem Online-Shop und sucht mit Hilfe der eingebauten Suche, Zubehör für seine neu ergatterte Fotokamera. Das Suchresultat ist aber noch zu grob. Deshalb klickt man auf dem Zurückknopf des Browsers um auf die Suche zurück zu gelangen. Aber was uns hier erwartet, ist nicht etwa das Suchformular, welches man erwartet hätte, sondern die Startseite.
+Dies ist nicht etwa ein fiktives Beispiel, sondern ein reales Szenario aus dem Online-Shop des Elektronikgrosshändlers Digitec \cite{Digitec}.
 
 Das ROCA-Prinzip ``Browser-Controls'' will genau dieses unangenehme Erleben verhindern.
 
 \subsection*{Geplante Umsetzung}
 
-``Browser-Controls'' ist sehr eng mit dem Prinzip ``\nameref{sec:principle-rp4-link}'' verbunden. Indem jede Seite sein eigenes Link hat und dieser in die ``History'' des Browsers hinzugefügt wird, können die Standardbedienelementen (Zurück, Vorwärts und Aktualisieren) eines Browsers erwartungsgemäss funktionieren.
+``Browser-Controls'' ist sehr eng mit dem Prinzip ``\nameref{sec:principle-rp4-link}'' verbunden. Indem jede Seite ihre eigene \gls{URI} hat und diese beim navigieren in die ``History'' des Browsers eingefügt wird, funktionieren die Standardbedienelemente (Zurück, Vorwärts und Aktualisieren) eines Browsers erwartungsgemäss.
 
-Dies soll auch in der Beispielanwendung ``Roomies'' der Fall sein. Jedes Seitenwechsel soll über die Browserhistory nachvollziehbar sein und somit die Browserbedienelementen unterstützen.
+Dies soll auch in der Beispielanwendung ``Roomies'' der Fall sein. Jeder Seitenwechsel soll über die Browserhistory nachvollziehbar sein und somit dem Benutzer erlauben, die eingebauten Funktionen des Browsers zu benutzen.
 
 \subsection*{Konkrete Umsetzung}
-
-Backbone bietet mit der Function ``Backbone.history.start()'' \cite{BackbonejsHistory} genau diese erwünschte Funktionalität und wurde in Barefoot direkt umgesetzt.
+Mit der Funktion ``Backbone.history.start()'' \cite{BackbonejsHistory} bietet Backbone.js eine Anbindung an die History API \cite{HistoryAPI} an und ermöglicht damit JavaScript Applikationen das dynamische navigieren inklusive Aktualisierung der URL bei Seitenwechseln.
 
 \begin{lstlisting}[language=JavaScript, caption=Activierung der History in Barefoot \cite{BarefootStartClient}, label=lst:barefootStartClientHistory, firstnumber=29]
 // from modernizr, MIT | BSD

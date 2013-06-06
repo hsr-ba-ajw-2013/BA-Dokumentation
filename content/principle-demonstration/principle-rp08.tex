@@ -1,17 +1,16 @@
 \section{RP8 Cookies}
 \label{sec:principle-rp8-cookies}
+Die ROCA Richtlinie RP8 legt fest, dass Cookies lediglich zur Authentifizierung oder zur statistischen Analyse (Tracking) eines Benutzers verwendet werden soll.
 
 \subsection*{Geplante Umsetzung}
-Die ROCA Richtlinie RP8 legt fest, dass Cookies lediglich zur Authentifizierung oder zur Verfolgung eines Benutzers verwendet werden soll.
-
-Entsprechend will die Beispielapplikation lediglich im Bereich der Anmeldung des Benutzers auf Cookies zurückgreifen. Wie geplant konnte dies erfolgreich umgesetzt werden.
+Die Beispielapplikation soll lediglich im Bereich der Anmeldung des Benutzers auf Cookies zurückgreifen. Wie geplant konnte dies erfolgreich umgesetzt werden.
 
 \subsection*{Konkrete Umsetzung}
 Um einen User während einer Session authentifizieren zu können verwendet Express.js \cite{Expressjs} die \gls{Middleware} ``\emph{connect-session}'' \cite{ConnectSession}.
 
 Konnte ein Benutzer erfolgreich authentifiziert werden, sendet der Server dem Client ein Cookie mit einer eindeutigen Session-ID. Diese ID sollte anschliessend mit allen künftigen Requests mitgeschickt werden.
 
-In der Beispielapplikation wird die Session-Middleware wie folgend eingesetzt:
+In der Beispielapplikation wird die Session-Middleware wie folgt eingesetzt:
 
 \begin{lstlisting}[language=JavaScript, caption=Connect Session Middleware \cite{RoomiesMiddlewareHttp}, label=lst:connect-session-middleware]
 app.use(express.cookieParser());
