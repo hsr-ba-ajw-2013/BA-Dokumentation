@@ -1,10 +1,40 @@
 \section{RP18 History API}
 \label{sec:principle-rp18-history-api}
 
-\subsection*{Geplante Umsetzung}
+Mit dem aufkommen der JavaScript History API \cite{HistoryAPI} ist es endlich ohne Workarounds möglich, dynamische Seitenwechsel im Browser von JavaScript aus veranzulassen.
 
+\subsection*{Geplante Umsetzung}
+Mithilfe von ``Backbone.History'' \cite{BackbonejsHistory} soll jegliche URL-Änderung in modernen Browsern mit JavaScript gemacht werden.
+
+Falls JavaScript oder die History API nicht unterstützt wird, soll es trotzdem möglich sein, die Webseite zu benutzen. Die UX soll dadurch nicht eingeschränkt werden. Eventuell soll dabei der \gls{Hashbang} (siehe ``Diskussion'') als Fallback verwendet werden.
 
 \subsection*{Konkrete Umsetzung}
+Das Geplante konnte wie gewünscht umgesetzt werden. Wie später in Abschnitt \ref{sec:principle-rp10-browser-controls} ``\nameref{sec:principle-rp10-browser-controls}'' beschrieben, wurde dafür ``Backbone.History'' verwendet.
 
+In ``Backbone.History'' ist es möglich den Hashbang als Fallback zu verwenden. Da es aber im Internet Explorer mehr Probleme verursacht als löst, wurde für ``barefoot'' entschieden, diese Funktion zu deaktivieren. Dies sieht man im Quelltext \ref{lst:rp18barefootStartClientHistory} auf den Zeilen \ref{lst:rp18barefootStartClientHistory_useHistory} und \ref{lst:rp18barefootStartClientHistory_hashChange}.
+
+\begin{lstlisting}[language=JavaScript, caption=Activierung der History in Barefoot \cite{BarefootStartClient}, label=lst:rp18barefootStartClientHistory, firstnumber=29, escapeinside={@}{@}]
+// from modernizr, MIT | BSD
+// http://modernizr.com/
+@\label{lst:rp18barefootStartClientHistory_useHistory}@var useHistory = !!(window.history && history.pushState);
+
+Backbone.history.start({
+	pushState: useHistory
+	@\label{lst:rp18barefootStartClientHistory_hashChange}@, hashChange: useHistory
+	, silent: true
+});
+\end{lstlisting}
 
 \subsection*{Diskussion}
+Vor einigen Jahren war die History API noch nicht verfügbar und mehrere Unternehmen verwendeten als Workaround das sogenannte \gls{Hashbang}. Diese Technik verwendet das setzen von sogenannten ``Anchors'' in der URL um von JavaScript aus die \gls{URL} gemäss aktueller Seite anzupassen. Das grosse Problem dieser Technik ist jedoch, dass der Browser dieses \gls{URL}-Fragment nicht dem Server mitschickt (siehe \gls{Hashbang} im Glossar).
+Als Folge dessen mussten die Webapplikationen folgenden Workaround verwenden, wenn jemand eine URL mit dem Hashbang eintippte:
+\begin{enumerate}
+	\item Homepage ausliefern
+	\item Mittels JavaScript auslesen, welche Seite eigentlich gefragt war
+	\item Die eigentlich gewünschte Seite ausliefern
+\end{enumerate}
+
+Da es noch wenige Browser gibt, welche die History API nicht unterstützen (z.B. Internet Explorer 8), gibt es immer noch einige Seiten welche dies als Fallback einsetzen. Da dieser Fallback jedoch umständlich und nicht förderlich für die User Experience ist, wird immer wie mehr darauf verzichtet (siehe z.B. den Blogpost von Twitter über die Abschaffung des Hashbangs \cite{twitterAbandonsHashbangs}).
+
+Da die History API heutzutage sonst in allen modernen Browsern unterstützt wird, gibt es um diese API kein herumkommen. Das Projektteam
+empfiehlt zudem, Hashbangs nicht zu verwenden.

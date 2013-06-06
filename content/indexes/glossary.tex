@@ -194,3 +194,16 @@
 	name={GPU},
 	description={Graphical Processing Unit, Prozessor auf einer Grafikkarte}
 }
+
+\newglossaryentry{Hashbang}{
+	name={Hashbang},
+	description={In einer URL gibt es den sogenannten ``Fragment-Identifier'', ausgedrückt durch ein ``\#'' (English: ``Hash'') am Schluss der URL.
+		Nach diesem Fragment-Identifier können beliebige eindeutige Bezeichnungen verwendet werden, um z.B. auf einen Anker einer Überschrift
+		zu verlinken.
+		Der Nachteil an Fragment-Identifiers ist aber, dass es nur von JavaScript aus genutzt werden kann. Es wird nicht an den Server gesendet.
+		Dieser Umstand verleitete nun viele Webseiten dazu, den sogenannten Hashbang ``\#\!'' anstatt von richtigen URLs zu verwenden. Damit dies richtig funktioniert,
+		muss das JavaScript entsprechend umleiten, wenn eine solche URL direkt im Browser eingegeben bzw. reinkopiert wird.
+		Google hat aufgrunddessen eine Möglichkeit gefunden, um Hashbang-URLs zu crawlen (siehe \cite{hashbangGoogleAjax}).
+		Nach der Entwicklung der History API haben viele Webseiten dies aber wieder komplett abgeschafft (u.a. Twitter \cite{twitterAbandonsHashbangs}).
+	}
+}
