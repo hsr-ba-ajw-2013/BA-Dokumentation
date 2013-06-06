@@ -46,8 +46,8 @@ Ein grundlegender Punkt wurde jedoch aus \emph{RP16 Know Structure} adaptiert: \
 
 \subsection*{Diskussion}
 
+\emph{Separation of concerns} \cite{SeparationOfConcerns} gehört nicht umsonst zu einem der grundlegendsten Prinzipien im Software Engineering. Darauf bezogen hat die eigentliche Intension von \emph{RP16 Know Structure} durchaus seine Daseinsberechtigung: Eine klare Auftrennung von UI Rendering und eigentlicher Geschäftslogik ist erstrebenswert.
 
+Möchte man die Architekturrichtlinie \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} zwecks bestmöglicher Kompatibilität in die Entwicklung einer Applikation mit einfliessen lassen, kommt es unweigerlich zum Konflikt mit \emph{RP16}. Damit die Applikation auch ohne das User Interface Rendering direkt auf dem Client funktionieren kann, muss die Backendkomponente zwingend über Renderingfunktionalität und damit Wissen über die Struktur des resultierenden HTML Markups verfügen. Damit bricht dieses Vorgehen klar mit den Anforderungen \emph{Know Structures}.
 
-
-
-
+Kann auf \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} verzichtet werden, mag \emph{RP16 Know Structure} seine Stärken ausspielen können. Ist jedoch das clientunabhängige Rendering des User Interfaces eine Anforderung an die zu erstellende Lösung, empfiehlt das Projektteam von \emph{RP16} abzusehen.
