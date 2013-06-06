@@ -54,22 +54,50 @@ Es ist bereits zu erahnen, dass diese Art von Webapplikation ohne JavaScript-Unt
 \end{figure}
 
 Die Richtlinie \emph{RP14 Unobtrusive JavaScript} aus dem ROCA Manifest verlangt, dass eine Webapplikation auch bei deaktiviertem JavaScript weiter funktionstüchtig bleibt. Konkret wünscht \emph{RP14} also eine Mischform aus den vorgestellten Applikationstypen.
+\newline\newline
+Bezieht man \emph{Unobtrusive Javascript} neben dem ``Wie und Wo'' User Interfaces gerendert werden auf die Thematik \emph{Codequalität}, gehört ein weiterer Aspekt zu diesem Bereich: Die Vermischung von HTML Markup und JavaScript Code soll unterbunden werden. Hierzu zeigt der Quelltext \ref{lst:badHtmlMarkupWithJavaScript} ein Beispiel, wie es unter keinen Umständen umgesetzt werden sollte.
+
+\begin{lstlisting}[language=HTML, caption={Beispiel Vermischung von HTML Markup und JavaScript}, label={lst:badHtmlMarkupWithJavaScript}]
+<a href="adresses.html" onClick="$('#progressIndicator').removeClass('hidden');showAddresses();return false;">
+	Display Addresses
+</a>
+\end{lstlisting}
+
+In den Quelltexten \ref{lst:goodHtmlMarkupWithoutJS} und \ref{lst:goodJSOutsideHtmlMarkup} ist ersichtlich, wie eine Separierung von JavaScript Logik und HTML Markup optimal implementiert wird.
+
+\begin{lstlisting}[language=HTML, caption={Beispiel sauberes HTML Markup ohne JavaScript}, label={lst:goodHtmlMarkupWithoutJS}]
+<a href="adresses.html" id="showAddresses">Display Addresses</a>
+\end{lstlisting}
+
+\begin{lstlisting}[language=JavaScript, caption={Beispiel Event-Handler in ausgelagerter JavaScript Datei}, label={lst:goodJSOutsideHtmlMarkup}]
+$(function() {
+	$('#showAddresses', showAddresses);
+
+	function showAddresses(evt) {
+		$('#progressIndicator').removeClass('hidden');
+		// ... show addresses
+		return false;
+	}
+});
+\end{lstlisting}
 
 
 \subsection*{Geplante Umsetzung}
 
-Als Herausforderung hat das Projektteam geplant, die Beispielapplikation \emph{Roomies} als Mischform der im einleitenden Abschnitt vorgestellten Applikationstypen umzusetzen.
+Als Herausforderung hat das Projektteam geplant, die Beispielapplikation \emph{Roomies} als Mischung der vorgestellten Applikationstypen umzusetzen.
 
 Grundsätzlich sollen Inhalte statisch auf der Backendkomponente gerendert werden. Hat der Benutzer in seinem Browser JavaScript aktiviert, ermöglicht entsprechender Programmcode die Umsetzung der im einleitenden Abschnitt vorgestellten Funktionalitäten eines vollwertigen \emph{JavaScript Clients}.
 
 Zugriffe auf persistente Applikationsdaten sollen wie in \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}'' vorgeschlagen in ein entkoppeltes Serviceinterface gekapselt werden.
+
+Um die Wartbarkeit der Codebasis zu optimieren, soll die Separierung von HTML Markup und JavaScript wie beschrieben strikt eingehalten werden.
 
 
 \subsection*{Konkrete Umsetzung}
 
 Während der Implementation der geplanten Lösung wurde sehr schnell klar, das die entstehende Applikation zwar wie erwartet die gewünschte hybride Form aufweisen wird, aber keinesfalls mit der ROCA Richtlinie \emph{\nameref{sec:principle-rp15-no-duplication}} vereinbar sein wird.
 
-Zwar hätten viele Codefragmente wie die View-Templates (Beispiel siehe Quelltext \ref{lst:reusableHandlebarsViewTemplate}) dank der durchgängigen Verwendung von JavaScript auch im Frontend wiederverwendet werden können. Andere, logikintensivere Komponenten wie die Controller zur Steuerung der eigentlichen User Interface Funktionalitäten (Event-Handling, Datenzugriffe etc.) hätten doppelt implementiert werden müssen.
+Es hätten viele Codefragmente wie die View-Templates (Beispiel siehe Quelltext \ref{lst:reusableHandlebarsViewTemplate}) dank der durchgängigen Verwendung von JavaScript auch im Frontend wiederverwendet werden können. Andere, logikintensivere Komponenten wie die Controller zur Steuerung der eigentlichen User Interface Funktionalitäten (Event-Handling, Datenzugriffe etc.) hätten doppelt implementiert werden müssen.
 
 \begin{lstlisting}[language=JavaScript, firstnumber=31, caption={Ausschnitt aus dem \emph{Handlebars} \cite{Handlebars} Template zur Darstellung von Benutzerinformation in der Menüleiste von \emph{Roomies} \cite{roomiesMenuTemplate}}, label={lst:reusableHandlebarsViewTemplate}]
 {{#if user}}
@@ -91,11 +119,20 @@ Um diesem Umstand gegensteuern zu können teilte sich das Projektteam nach der e
 	\item Ein Mitglied fokussierte sich auf die Entwicklung einer Möglichkeit, identischen Applikationscode sowohl in der Backend-Komponente für statisches Rendering als auch direkt im Browser als JavaScript Client verwenden zu können.
 \end{itemize}
 
-Aus diesem Prozess entstand das eigenständige Framework \emph{barefoot} \cite{Barefoot}. Es setzt auf der verbreiteten Bibliothek \emph{Backbone.js} \cite{Backbonejs} auf und ermöglicht die Verwendung einer einzigen, einheitlichen Codebasis für JavaScript-basierte Webapplikationen.
+Aus diesem Prozess entstand das eigenständige Framework \emph{barefoot} \cite{Barefoot}. Es setzt auf der verbreiteten Bibliothek \emph{Backbone.js} \cite{Backbonejs} auf und ermöglicht die Verwendung einer einzigen, einheitlichen Codebasis für JavaScript-basierte Webapplikationen (siehe dazu auch Kapitel ``\nameref{sec:sad}'' Abschnitt \ref{sec:sad-implementation}).
 
 Mit der Integration des neuartigen Frameworks kann erstmals komplett auf doppelte Codefragmente verzichtet werden. Gleichzeitig profitiert der Endbenutzer von kurzen Lade- und Reaktionszeiten im User Interface. Sollte auf einem Client kein JavaScript verfügbar sein, greift automatisch das klassische servergestützte Rendering und alle Funktionalitäten bleiben zugänglich.
 
 
 \subsection*{Diskussion}
 
+Ähnlich den zwei Typen von Webapplikationen sind zwei kontroverse Strömungen in der Entwicklergemeinschaft erkennbar \cite{StackOverflowUnobtrusiveJavascriptOutdated}: Die eine Gruppe drängt zur alleinigen Nutzung der neusten Features und tendiert daher eher zu Lösungen mit reinen \emph{JavaScript Clients}. Andere Gruppierungen geben sich vergleichsweise konservativ. Sie argumentieren damit, dass:
 
+\begin{itemize}
+	\item zum Einen die Kompatibilität zu weniger leistungsstarken Browsern resp. JavaScript Engines (Smartphones, alte Browserversionen etc.) gewährleistet sein muss
+	\item zum anderen die Umsetzung einer eben solchen \emph{unobtrusive} Lösung entsprechend aufwändig sei.
+\end{itemize}
+
+Beiden Lagern kann das Projektteam mit der umgesetzten Beispielapplikation entgegentreten: Mit \emph{barefoot} sind Webapplikationen möglich, welche mit einer einzigen, durchgängigen Codebasis sowohl das statische als auch clientseitige Rendering von User Interfaces resp. deren Ausführung ermöglicht. Daraus resultiert eine im Vergleich zur doppelten Implementierung höhere Effektivität im Entwicklungsprozess. Gleichzeitig kann das Erlebnis für den Endbenutzer optimiert werden.
+
+Ob sich die Investition in die Entwicklung einer Webapplikation, welche \emph{RP14 Unobtrusive JavaScript} genügt, lohnt, kann das Projektteam nicht pauschal beantworten. Je nach Anforderungen kann die Erfüllung dieser Richtlinie aber zu einer höheren Akzeptanz bei den Benutzern führen. Frameworks wie \emph{barefoot} können zudem künftig dazu beitragen, die Hemmschwelle für einen \emph{Opt-In} der Software Entwicklern zu reduzieren.
