@@ -1,8 +1,8 @@
 \section{RP13 Progressive Enhancement}
 \label{sec:principle-rp13-progressive-enhancement}
 
-Die Client-Technologien HTML und CSS haben sich über die Jahre weiterentwickelt. Immer aber mit dem Hintergedanke ``Progressive Enhancement''. Das bedeutet, dass die Entwicklung immer versucht hat, Rücksicht auf die älteren Browserversionen zu nehmen.
-Deutlich sieht man es bei dem neuen HTML5 Standard. Neue Formulartypen wurden eingeführt wie ``tel'', ``email'', ``color'', ``date'', etc. Browser die HTML5 nicht unterstützen, weichen bei einem für sie unbekannten Typ auf einen Default zurück. Im Falle vom Formulartyp, würde es als ``text'' interpretiert werden.
+Die Client-Technologien HTML und CSS haben sich über die Jahre weiterentwickelt. Dies aber immer mit dem Hintergedanken ``Progressive Enhancement''. Das bedeutet, dass die Entwicklung immer versucht hat, Rücksicht auf die älteren Browserversionen zu nehmen.
+Deutlich sieht man es bei dem neuen HTML5 Standard. Neue Formulartypen wurden eingeführt wie ``tel'', ``email'', ``color'', ``date'', etc. Browser die HTML5 nicht unterstützen, weichen bei einem für sie unbekannten Typ auf einen Default zurück. Im Falle vom Formulartyp wird es als ``text'' interpretiert.
 
 \begin{lstlisting}[language=HTML, caption={Inputfeld in HTML5, welches eine Telefonnummer erwartet}, label={lst:html5TelInput}]
 <input type="tel" name="telefon">
@@ -16,7 +16,7 @@ Die Beispielanwendung soll, wie bereits in \ref{sec:requirments-engineering-nonf
 Auch Browser auf Smartphones sollten nicht vernachlässigt werden. Hierfür sollen Safari 6 und höher und Android Browser 4.0 und höher unterstützt werden.
 
 \subsection*{Konkrete Umsetzung}
-Da alle geplanten zu unterstützenden Browser nicht HTML5 interpretieren können, musste einen kleinen Trick angewendet werden, um so die Rückwärtskompatibilität zu erhöhen. Dieser trick heisst ``modernizr'' \cite{modernizr}. Modernizr ist eine JavaScript-Bibliothek, welche gezielt den verwendeten Browser auf seine Funktions- und Unterstützungsumfang von HTML5 und CSS3 überprüft. Das Resultat wird dann in einem JavaScript-Objekt gespeichert und zur Verfügung gestellt.  Zusätzlich läuft modernizr in eine kleine Schleife, um die neuen Tag (head, section, article, nav, u.w.) zu aktivieren. Das bedeutet, dass diese Tags nicht mit ``div'' ersetzt werden müssen.
+Da alle geplanten zu unterstützenden Browser nicht HTML5 interpretieren können, musste ein kleiner Trick angewendet werden, um so die Rückwärtskompatibilität zu erhöhen. Dieser Trick heisst ``modernizr'' \cite{modernizr}. Modernizr ist eine JavaScript-Bibliothek, welche gezielt den verwendeten Browser auf seinen Funktions- und Unterstützungsumfang von HTML5 und CSS3 überprüft. Das Resultat wird dann in einem JavaScript-Objekt gespeichert und zur Verfügung gestellt.  Zusätzlich läuft modernizr in eine kleine Schleife, um die neuen Tags (head, section, article, nav, u.w.) zu aktivieren. Das bedeutet, dass diese Tags nicht mit ``div'' ersetzt werden müssen, wie es sonst der Fall wäre.
 
 Um diese Library einzubinden, hat man nichts weiteres zu tun als das Script im Header nach dem Stylesheet hinzuzufügen.
 
