@@ -1,10 +1,28 @@
 \section{RP11 POSH}
 \label{sec:principle-rp11-posh}
 
-\subsection*{Geplante Umsetzung}
+``Posh'', ausgeschrieben ``Plain Old Semantic HTML'', bezeichnet grundsätzlich das Erstellen von HTML-Seiten mithilfe von semantische Elementen. \cite{SemanticHTML}
 
+Semantisches HTML bietet den Vorteil, dass ``\glspl{SearchEngineSpider}'' die Seite besser verstehen, interpretieren und kategorisieren können. Wird eine Seite gut kategorisiert erscheint sie eher bei einer Suche in einer Suchmaschine wie Google oder Bing.
+
+\subsection*{Geplante Umsetzung}
+Die HTML-Seiten der Testanwendung sollen eine klare und logische Struktur beinhalten.
+Alle Seiten haben einen Titel, eine Überschrift und ein Inhalt.
+Für Überschriften werden die Tags \emph{h1}, für die grösste und wichtigste Übeschrift, bis \emph{h6}, für die schwächste.
+Tabellen sollen für tabellarische Daten verwendet werden und nicht etwa um die Seite zu strukturieren, wie es in der Vergangenheit oft angewendet wurde.
 
 \subsection*{Konkrete Umsetzung}
+Um die möglichen semantischen Unkorrektheiten zu reduzieren, wurde es mit Templates gearbeitet. So können beispielsweise Menüs oder Footers definiert und wiederverwendet werden, ohne dass man es bei jeder Benutzung neu schreiben muss. Dies geht sehr stark nach dem DRY (Don't repeat yourself) Prinzip. So werden Fehler verhindert, indem man sie gar nicht zu schreiben hat.
 
+Im folgenden Beispiel-HTML sieht man einen kleinen Ausschnitt aus dem Haupttemplate von ``Roomies''. Man kann klar die Aufteilung der Seite erkennen. Oben den Header mit dem Menü, gefolgt von einem Platzhalter für allfälligen Fehler-, Warnungs- oder Informationsmeldungen. Die Hauptsektion mit der ID ``main''. Darin Befindet sich die ganzen Inhalte. Und zum Schluss der Footer, in welches sich das Abmelden-Knopf befinden wird.
+
+\begin{lstlisting}[language=HTML, caption=Layout Definition \cite{roomiesHtmlSkeleton}, label=lst:layoutDefinition, firstnumber=27]
+<body>
+	<header id="menu"></header>
+	<div id="flash-messages" class="row flash-messages"></div>
+	<section id="main"></section>
+	<footer id="footer"></footer>
+</body>
+\end{lstlisting}
 
 \subsection*{Diskussion}
