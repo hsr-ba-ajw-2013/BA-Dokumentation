@@ -37,6 +37,17 @@ Unter Berücksichtigung des Prinzips \emph{\nameref{sec:principle-rp14-unobtrusi
 
 \subsection*{Konkrete Umsetzung}
 
+Wie in \ref{sec:principle-rp14-unobtrusive-javascript} dokumentiert, wurde dem ROCA Prinzip \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} eine grössere Gewichtung zugestanden als \emph{Know Structure}. Aus diesem Grund wurde wie geplant darauf verzichtet User Interface Logik nur in der Frontendkomponente zu verwenden.
+
+Die aus \ref{sec:principle-rp15-no-duplication} und \ref{sec:principle-rp14-unobtrusive-javascript} bekannte geteilte Codebasis zwischen Front- und Backendkomponente zielt sogar absichtlich darauf ab, dass auch im Backend die komplette Struktur des User Interfaces bekannt ist.
+
+Ein grundlegender Punkt wurde jedoch aus \emph{RP16 Know Structure} adaptiert: \emph{Roomies} verwendet wie vorgeschlagen ein HTML Grundgerüst \cite{roomiesHtmlSkeleton}, in welches sowohl im Front- als auch Backend die UI Elemente gerendert werden.
 
 
 \subsection*{Diskussion}
+
+
+
+
+
+
