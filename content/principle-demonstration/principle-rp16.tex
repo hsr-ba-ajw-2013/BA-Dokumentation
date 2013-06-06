@@ -1,10 +1,42 @@
 \section{RP16 Know Structure}
 \label{sec:principle-rp16-know-structure}
 
+Gehen wir exemplarisch von einer modernen, entkoppelten Applikationsarchitektur aus, welche eine klare Trennung zwischen Front- und Backend vorsieht, so übernimmt der Frontendteil komplett die Erzeugung des User Interfaces auf dem Clientrechner (Beispiele u.A. bei \emph{TodoMVC} \cite{TodoMVC}).
+
+Das Backend liefert beim initialen Request ein HTML Grundgerüst, auf welchem die JavaScript Logik des Frontends das finale UI aufbauen wird.
+
+\begin{lstlisting}[language=HTML, caption={Beispiel eines HTML Gerüsts zum Rendering eines User Interfaces}, label=lst:htmlSkeleton, escapeinside={@}{@}]
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HTML 5 Example App - Client Side UI Logic</title>
+	<link href="/stylesheets/app.css" rel="stylesheet">
+</head>
+<body>
+	@\label{lst:htmlSkeleton_maindiv}@<div id="main"></div>
+	@\label{lst:htmlSkeleton_appjs}@<script src="/javascripts/app.js"></script>
+</body>
+</html>
+\end{lstlisting}
+
+Die Zeile \autoref{lst:htmlSkeleton_appjs} im Quelltext \ref{lst:htmlSkeleton} zeigt beispielhaft die Einbindung der JavaScript-Datei aus Quelltext \ref{lst:htmlSkeletonJavascriptFile}. Nach Beendigung des Ladevorgangs wird unter Verwendung des \gls{DOM}-Manipulators \emph{jQuery} \cite{jQuery} dynamisch ein Titel-Element in das \emph{<div>}-Element mit der ID \emph{main} eingefügt.
+
+\begin{lstlisting}[language=JavaScript, caption={JavaScript-Datei \emph{app.js} zu Quelltext \ref{lst:htmlSkeleton}}, label=lst:htmlSkeletonJavascriptFile]
+$(function() {
+	$('div#main').html('<h1>Hello World</h1>');
+});
+\end{lstlisting}
+
+Das ROCA Prinzip 17 \emph{Know Structure} beschreibt den oben aufgezeigten Aufbau und erachtet es als wichtig, dass die Backendkomponente keine Kenntnis über die vom Frontendteil gerenderten User Interface hat. Das Backend soll lediglich die initiale Struktur des Grundgerüsts aus Quelltext \ref{lst:htmlSkeleton} kennen und später nur noch als Datenlieferant via einer API dienen.
+
+
 \subsection*{Geplante Umsetzung}
+
+Unter Berücksichtigung des Prinzips \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}}, näher beschrieben im Abschnitt \ref{sec:principle-rp14-unobtrusive-javascript}, wird nicht geplant, \emph{RP16 Know Structure} in seiner essentiellen Form innerhalb der Beispielapplikation \emph{Roomies} zur Anwendung zu bringen.
 
 
 \subsection*{Konkrete Umsetzung}
+
 
 
 \subsection*{Diskussion}
