@@ -2,12 +2,12 @@
 \label{sec:principle-rp3-http}
 
 Das HTTP Prinzip von ROCA geht in die gleiche Richtung wie Kapitel \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}''.
-Der Client soll laut diesem Prinzip mit dem Server mittels REST kommunizieren.
+Eine Applikation mit einer \gls{REST}-API ist die Grundvoraussetzung dafür, dass die Clientseite der Webapplikation mit dem Server \gls{RESTful} kommunizieren kann.
 
 \subsection*{Geplante Umsetzung}
-Wie bereits in Kapitel \ref{sec:principle-rp1-rest} erwähnt, soll der Webclient mit dem Server über REST kommunizieren.
-Dies geschieht über Backbone Models welche eine eindeutige \gls{URL} zugewiesen bekommen und dann mittels den beiden Methoden ``save()'' und ``sync()'' bzw. ``fetch()'' (siehe \cite{BackboneSync}) mit dem Server kommunizieren.
+Die Kommunikation des Clients mit dem Server über \gls{REST} geschieht unter anderem über Backbone Models welche mittels den beiden Methoden ``save()'' und ``sync()'' bzw. ``fetch()'' (siehe \cite{BackboneSync}) mit dem Server kommunizieren.
 
+Um auch normale HTML-Formulare \gls{RESTful} zu machen, soll ein Weg gefunden werden, mit dem nebst ``POST'' auch ``PUT'' und ``DELETE'' Abfragen ermöglicht werden.
 
 \subsection*{Konkrete Umsetzung}
 Die geplante Umsetzung ist so implementiert worden. Als Beispiel zeigt Quelltext \ref{lst:roomiesCommunityModel} ein \emph{Backbone.Model}, welches eine URL definiert hat und damit synchronisiert werden kann.
@@ -30,7 +30,105 @@ var Barefoot = require('node-barefoot')()
 module.exports = CommunityModel;
 \end{lstlisting}
 
-\subsection*{Diskussion}
-Dieses ROCA-Prinzip überschneidet sich wie erwähnt sehr stark mit \nameref{sec:principle-rp1-rest}.
+Um dieses Model mit Daten abzufüllen, kann wie in Quelltext \ref{lst:roomiesCommunitySync} gezeigt, eine Instanz vom ``DataStore'' geholt werden (Zeile \ref{lst:roomiesCommunitySync_dataStore}) und die ``fetch()''-Methode aufgerufen werden (Zeile \ref{lst:roomiesCommunitySync_fetch}).
 
-Aus diesem Grund wird hier auf die Diskussion im Kapitel \ref{sec:principle-rp1-rest} verwiesen. Wenn der Server eine REST-API zur Verfügung stellt, sollte diese vom Client auch konsumiert werden.
+\begin{lstlisting}[language=JavaScript, caption=Community Model Synchronisation \cite{roomiesCommunityJoinView}, label=lst:roomiesCommunitySync, firstnumber=10, escapeinside={@}{@}]
+/** Function: initialize
+ * Initializes the view
+ */
+, initialize: function initialize() {
+	@\label{lst:roomiesCommunitySync_dataStore}@var community = this.options.dataStore.get('community');
+	this.community = community;
+}
+
+/** Function: beforeRender
+ * Before rendering it will fetch the community if not done yet.
+ *
+ * Parameters:
+ *   (Promise.resolve) resolve - After successfully doing work, resolve
+ *                               the promise.
+ */
+, beforeRender: function beforeRender(resolve) {
+	/* jshint camelcase:false */
+	var _super = this.constructor.__super__.beforeRender.bind(this)
+		, resolver = function resolver() {
+			_super(resolve);
+		};
+
+	if(!this.community.has('name')) {
+		@\label{lst:roomiesCommunitySync_fetch}@this.community.fetch({
+			success: resolver
+			, error: resolver
+		});
+	} else {
+		resolver();
+	}
+}
+\end{lstlisting}
+
+\subsubsection*{\gls{RESTful} Forms}
+HTML-Formulare unterstützen nur zwei Arten von HTTP-Methoden, ``POST'' und ``GET'' \cite{FormMethodMDN}. Um eine Applikation \gls{RESTful} zu machen, sollten aber zumindest zumindest zusätzlich ``PUT'' und ``DELETE'' unterstützt werden.
+
+Die Unterstützung dieser zusätzlichen Methoden erfordert einen Hilfskonstruktion:
+\begin{itemize}
+	\item Jedes Formular das nicht ``POST'' oder ``GET'' verwendet, erhält ein zusätzliches verstecktes Feld namens \emph{\_method} und dem Wert der gewünschten Methode
+	\item Sobald der Benutzer das Formular abschickt, wird  vom Server dieses Feld gelesen
+	\item Der Server ruft danach den entsprechenden Controller mit der entsprechenden Methode auf.
+\end{itemize}
+
+Quelltext \ref{lst:expressMethodOverride} zeigt die Anbindung der entsprechenden ``MethodOverride'' Middleware \cite{methodOverrideMiddleware} an eine Express-Applikation auf Zeile \ref{lst:expressMethodOverride_Override}.
+
+\begin{lstlisting}[language=JavaScript, caption=HTTP Middleware \cite{roomiesHTTPMiddleware}, label=lst:expressMethodOverride, firstnumber=18, escapeinside={@}{@}]
+/** Function: setupHttp
+ * Adds described middlewares to the passed Express.JS application
+ *
+ * Parameters:
+ *   (Object) app - Express.JS application
+ *   (Object) config - Configuration
+ */
+function setupHttp(app, config) {
+	var db = app.get('db');
+
+	app.use(express.bodyParser());
+	app.use(express.cookieParser());
+
+	app.use(express.session({
+		store: new SequelizeStore({
+			db: db
+		})
+		, secret: config.sessionSecret
+	}));
+
+	@\label{lst:expressMethodOverride_Override}@app.use(express.methodOverride());
+}
+
+module.exports = setupHttp;
+\end{lstlisting}
+
+Als Beispiel zeigt Quelltext \ref{lst:taskCheckForm} das Formular für das markieren einer Aufgabe als erledigt. Auf Zeile \ref{lst:taskCheckForm_MethodField} wird das entsprechende Feld definiert.
+
+\begin{lstlisting}[language=JavaScript, caption=Formular mit verstecktem \emph{\_method} Feld \cite{taskCheckForm}, label=lst:taskCheckForm, firstnumber=6, escapeinside={@}{@}]
+<form class="reset-style" action="/community/{{community.slug}}/tasks/{{id}}" data-task-id="{{id}}" method="post">
+	@\label{lst:taskCheckForm_MethodField}@<input type="hidden" name="_method" value="put"/>
+
+	<input type="hidden" name="name" value="{{name}}"/>
+	<input type="hidden" name="reward" value="{{reward}}"/>
+	<input type="hidden" name="dueDate" value="{{formatDate dueDate}}"/>
+	<input type="hidden" name="fulfillorId" value="{{resident.id}}"/>
+	<input type="hidden" name="fulfilledAt" value="{{formatDate now}}"/>
+
+	<button type="submit" class="reset-style">
+		<i class="icon-check-empty"></i>
+	</button>
+</form>
+\end{lstlisting}
+
+Dieser Workaround kann nicht als wirklich schön bezeichnet werden, jedoch funktioniert er ohne Probleme und in allen Browsern.
+
+\subsection*{Diskussion}
+
+``RP3 - HTTP'' ist eine Richtlinie, welche nach Auffassung des Projektteams nur hinsichtlich der Formulare bereichernd für den Konzeptkatalog ist. Die restliche \gls{REST} Thematik ist schon mit \nameref{sec:principle-rp1-rest} abgedeckt und sollte somit hinlänglich Thematisiert worden sein.
+
+Die Verwendung von ``PUT'', ``DELETE'' etc. für Formulare hat sowohl gute wie auch schlechte Seiten: Einerseits können die gleichen API-Routen (und somit der gleiche Code) wie für normale API-Aufrufe verwendet werden. Dafür ist allerdings ein relativ unschöner (aber doch relativ eleganter) Workaround zu verwenden.
+
+Falls die eigene Applikation komplett mittels einer \gls{REST}-API aufgebaut wurde ist diese Hilfskonstruktion sicher ein gehbarer Weg, ohne zu viel Aufwand zu bringen.

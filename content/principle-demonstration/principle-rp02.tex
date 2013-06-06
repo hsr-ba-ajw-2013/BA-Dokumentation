@@ -3,15 +3,23 @@
 
 Die ``Application Logic'' ROCA-Richtlinie legt fest, dass jegliche Applikationslogik auf dem Server implementiert sein muss.
 
+Falls der Server bereits \gls{REST} einsetzt (siehe vorheriger Abschnitt \ref{sec:principle-rp1-rest}, ``\nameref{sec:principle-rp1-rest}''), ist dieses Prinzip bereits vorgegeben. Die Trennung von Applikations- und Präsentationslogik wird dadurch erfüllt.
+
 \subsection*{Geplante Umsetzung}
 
 Die Beispielapplikation ``Roomies'' soll eine generalisierte REST-API zur Verfügung stellen, welche sowohl vom Client- wie auch vom Server-Code verwendet werden soll.
 
 Diese API implementiert jegliche Businesslogik zum authentifizieren, authorisieren der Benutzer, sowie die Validierung und Speicherung der Daten.
 
+Die Präsentationslogik wird als separates Layer implementiert. Dabei wird insbesondere dieser Quelltext mittels ``barefoot'' geteilt.
+
 \subsection*{Konkrete Umsetzung}
-Die geplante API wurde umgesetzt. Client und Serverside Code verwendet die gleichen API-Definitionen, um Daten zu manipulieren. Dabei wird immer sichergestellt, dass nicht authentifizierte oder authorisierte Benutzer keinen Zugriff haben.
+Die geplante API wurde umgesetzt. Client und Serverside Code verwendet die gleichen API-Definitionen um Daten zu manipulieren. Dabei wird immer sichergestellt, dass nicht authentifizierte oder authorisierte Benutzer keinen Zugriff haben.
 Weiter wird bei Datenmodifikationen sichergestellt, dass die Daten valid sind.
+
+Durch die Trennung von API und Präsentation ist erfolgreich eine Trennung der Aufgaben (Separation of Concerns \cite{SeparationOfConcerns}) umgesetzt worden. Dies erlaubt es zum Beispiel in Zukunft, die API auf separaten Servern laufen zu lassen.
+
+Weitere Informationen zur Softwarearchitektur können im Kapitel \ref{sec:sad} \nameref{sec:sad} nachgelesen werden.
 
 \subsection*{Diskussion}
 Um zu garantieren dass alle Daten korrekt sind und von den richtigen Benutzern ausgeführt werden, muss die Businesslogik auf dem Server liegen.
@@ -20,4 +28,5 @@ Falls jedoch insgesamt die User Expierence verbessert werden soll, können \emph
 In der Beispielapplikation wird keine Validierung auf Clientseite vorgenommen. Durch den Einsatz von Validatoren, welche auch auf dem Client ausführbar sind (siehe \cite{nodevalidator}) und der Unterstützung von Backbone.Models für Validation (siehe \cite{BackboneModelValidation}) könnte das zusätzlich jedoch auch noch auf dem Client gemacht werden.
 
 Im Projektteam ist man sich einig: Die Applikationslogik muss grösstenteils auf dem Server liegen. Einzelne Validierungen o.ä. kann auch auf dem Client ausgeführt werden, jedoch nur \emph{zusätzlich} zur bereits bestehenden Validierung auf dem Server.
-Diese Richtlinie ist für Client-Server Applikationen ein Muss. Ist das Programm allerdings keine klassische Client-Server Software (zum Beispiel Peer-to-Peer), kann das nicht so angewendet werden. Lösungen für dieses Problem ist jedoch nicht Bestandteil dieser Arbeit und muss in entsprechender Literatur nachgeschaut werden.
+Diese Richtlinie ist für Client-Server Applikationen ein Muss. Ist das Programm allerdings keine klassische Client-Server Software (zum Beispiel Peer-to-Peer), kann das nicht so angewendet werden.
+Mit der Verwendung der \gls{WebRTC} APIs wird somit dieses Prinzip für Teile der Applikation nicht wirklich einsetzbar. Dementsprechend müssen dafür neue Ideen gefunden werden, beziehungsweise bereits etablierte Peer-to-Peer Software- und Netzwerktechniken auf den Browser adaptiert werden.

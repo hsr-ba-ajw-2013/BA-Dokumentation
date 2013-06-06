@@ -11,7 +11,7 @@
 
 Durch die Bedingung der Zustandlosigkeit wird durch Einsatz dieses Stils ermöglicht, skalierbare Schnittstellen zur Verfügung zu stellen.
 
-Eine weitere Implementationstechnik von REST-APIs ist die Versionierung. Diese ermöglicht es Client und Server unabhängig voneinander weiter zu entwickeln.
+Dadurch dass REST-APIs meistens versioniert sind, können Client und Server mehrheitlich unabhängig voneinander entwickelt werden.
 Sobald die API eine neue Version erstellt und Rückwärtskompatibilität mit den alten Versionen garantiert, kann die Client-Software weiterentwickelt werden.
 
 REST liegt HTTP zugrunde. Es werden explizit die sogenannten HTTP-Verben (GET, POST, PUT, DELETE etc.) verwendet um Ressourcen abzufragen oder zu manipulieren.
@@ -21,7 +21,6 @@ Damit spezifische Instanzen einer Ressourcen ansprechbar sind, ist die Verwendun
 
 Der Datentyp mit welchem Objekte und Collections übertragen werden ist hingegen nicht definiert. Dem Software Entwickler ist die Serialisierung der Daten somit selber überlassen.
 Vielfach wird heute jedoch \gls{JSON} eingesetzt, da es eine kompakte und doch gut lesbare Serialisierungsform ist.
-
 
 \subsection*{Geplante Umsetzung}
 Die Beispielapplikation \emph{Roomies} soll REST mit JSON als Datentyp für seine API verwenden.
@@ -73,7 +72,6 @@ module.exports = function initCommunityApi(api, apiPrefix) {
 Bei Zeile \autoref{lst:restApiRoomies_get} wird eine ``GET'' API für das Abfragen einer WG mit der \emph{ID} definiert. Wie man im definierten Array sieht, werden dabei mehrere Callbacks definiert, welche der Reihe nach aufgerufen werden und sicherstellen, dass jede Anfrage authentifiziert und authorisiert ist.
 
 Zeile \autoref{lst:restApiRoomies_post} definiert eine ``POST'' Route um eine neue Community zu erstellen. Auch hier wird überprüft ob der Benutzer authentifiziert ist. Zudem wird auch ein Daten-Validator definiert, damit sichergestellt werden kann dass die Daten korrekt und ohne unerwünschte Zeichen sind.
-
 
 Aus Zeitgründen wurde kein Caching und keine Versionierung implementiert.
 
