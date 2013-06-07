@@ -3,12 +3,43 @@
 Wie es bereits im Name ROCA (Resource-oriented Client Architecture) steht, die Anwendung soll Ressourcen-orientiert sein. Damit diese Ressourcen auch in anderen Anwendungen als in einem Browser verwendet werden können, muss das erzeugte HTML entweder maschinenlesbar sein oder es müssen alternative Formate (wie z.B. JSON und/oder XML) verfügbar gemacht werden.
 
 \subsection*{Geplante Umsetzung}
-Die ``öffentlichen'' Daten sollen über eine API als JSON verfügbar sein. Diese können über eine einheitliche URL abgerufen werden.
-
+Im Kapitel \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} wird bereits darauf hingewiesen, dass eine RESTful API mit JSON als Datentyp verwendet werden soll.
+Als zusätzliches Format soll HTML gelten. Da es semantisch korrekt geschrieben werden soll, wie \nameref{sec:principle-rp11-posh} definiert, wirds es für eine Maschine lesbar.
 
 \subsection*{Konkrete Umsetzung}
-Der Server bietet eine API für jegliche Ressource, welche in einer View benötigt wird. Diese API entspricht einer RESTful-Architektur. Die Daten können über die bekannte GET HTTP-Request-Methode abgefragt werden, mit POST können neue Datensätze hinzugefügt werden, mit PUT verändert und natürlich mit DELETE gelöscht werden.
+Das Kapitel \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} zeigt, dass eine API umgesetz werden konnte.
+Als Ausgabeformat wird von der Schnittstelle ein JSON zurück geliefert. Dies wird garantiert, indem ein Objekt an das ExpressJS Response \cite{ExpressjsResSend} zurückgeliefert wird.
 
+\begin{lstlisting}[language=JavaScript, caption=Community API getCommunityWithSlug \cite{roomiesCommunityApiExample}, label=lst:restApiCommunitySlug, firstnumber=333, escapeinside={@}{@}]
+/** Function: getCommunityWithSlug
+ * Looks up a community with a specific slug.
+ *
+ * Parameters:
+ *   (Function) success - Callback on success. Will pass the community data as
+ *                        first argument.
+ *   (Function) error - Callback in case of an error
+ *   (String) slug - The slug of the community to look for.
+ */
+function getCommunityWithSlug(success, error, slug) {
+	debug('get community with slug');
 
+	var communityDao = getCommunityDao.call(this);
+
+	communityDao.find({ where: { slug: slug, enabled: true }})
+		.success(function findResult(community) {
+			if(!_.isNull(community)) {
+				success(community.dataValues);
+			} else {
+				error(new errors.NotFoundError('Community with slug ' + slug +
+					'does not exist.'));
+			}
+		})
+		.error(function daoError(err) {
+			error(err);
+		});
+}
+\end{lstlisting}
+
+Der Quellcode \nameref{lst:restApiCommunitySlug} zeigt, wie das Community Object an weitergegeben wird. Dieses Object ist das Resultat, welches als JSON beim Client erscheinen wird.
 
 \subsection*{Diskussion}
