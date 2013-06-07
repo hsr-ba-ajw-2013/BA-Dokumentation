@@ -1,20 +1,20 @@
 \section{RP11 POSH}
 \label{sec:principle-rp11-posh}
 
-``Posh'', ausgeschrieben ``Plain Old Semantic HTML'', bezeichnet grundsätzlich das Erstellen von HTML-Seiten mithilfe von semantische Elementen. \cite{SemanticHTML}
+``Posh'', ausgeschrieben ``Plain Old Semantic HTML'', bezeichnet grundsätzlich das Erstellen von HTML-Seiten mithilfe von semantischen Elementen. \cite{SemanticHTML}
 
 Semantisches HTML bietet den Vorteil, dass ``\glspl{SearchEngineSpider}'' die Seite besser verstehen, interpretieren und kategorisieren können. Wird eine Seite gut kategorisiert erscheint sie eher bei einer Suche in einer Suchmaschine wie Google oder Bing.
 
 \subsection*{Geplante Umsetzung}
 Die HTML-Seiten der Testanwendung sollen eine klare und logische Struktur beinhalten.
 Alle Seiten haben einen Titel, eine Überschrift und ein Inhalt.
-Für Überschriften werden die Tags \emph{h1}, für die grösste und wichtigste Übeschrift, bis \emph{h6}, für die schwächste.
+Für Überschriften werden die Tags \emph{h1}, für die grösste und wichtigste Überschrift, bis \emph{h6}, für die schwächste.
 Tabellen sollen für tabellarische Daten verwendet werden und nicht etwa um die Seite zu strukturieren, wie es in der Vergangenheit oft angewendet wurde.
 
 \subsection*{Konkrete Umsetzung}
-Um die möglichen semantischen Unkorrektheiten zu reduzieren, wurde es mit Templates gearbeitet. So können beispielsweise Menüs oder Footers definiert und wiederverwendet werden, ohne dass man es bei jeder Benutzung neu schreiben muss. Dies geht sehr stark nach dem DRY (Don't repeat yourself) Prinzip. So werden Fehler verhindert, indem man sie gar nicht zu schreiben hat.
+Um die möglichen semantischen Inkorrektheiten zu reduzieren, wurde mit Templates gearbeitet. So können beispielsweise Menüs oder Fusszeilen definiert und wiederverwendet werden, ohne dass man diese bei jeder Benutzung neu schreiben muss. Dies geht sehr stark nach dem \gls{DRY} Prinzip. So werden Fehler verhindert, indem man sie gar nicht zu schreiben hat.
 
-Im folgenden Beispiel-HTML sieht man einen kleinen Ausschnitt aus dem Haupttemplate von ``Roomies''. Man kann klar die Aufteilung der Seite erkennen. Oben den Header mit dem Menü, gefolgt von einem Platzhalter für allfälligen Fehler-, Warnungs- oder Informationsmeldungen. Die Hauptsektion mit der ID ``main''. Darin Befindet sich die ganzen Inhalte. Und zum Schluss der Footer, in welches sich das Abmelden-Knopf befinden wird.
+Im folgenden Beispiel-HTML sieht man einen kleinen Ausschnitt aus dem Haupttemplate von ``Roomies''. Man kann klar die Aufteilung der Seite erkennen. Oben beginnter der Header mit dem Menü, gefolgt von einem Platzhalter für allfälligen Fehler-, Warnungs- oder Informationsmeldungen. Die Hauptsektion mit der ID ``main''. Darin Befindet sich die ganzen Inhalte. Und zum Schluss die Fusszeile, in welcher sich der Abmelden-Link befindet.
 
 \begin{lstlisting}[language=HTML, caption=Layout Definition \cite{roomiesHtmlSkeleton}, label=lst:layoutDefinition, firstnumber=27]
 <body>

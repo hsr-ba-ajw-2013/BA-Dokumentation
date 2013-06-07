@@ -12,10 +12,16 @@ Konnte ein Benutzer erfolgreich authentifiziert werden, sendet der Server dem Cl
 
 In der Beispielapplikation wird die Session-Middleware wie folgt eingesetzt:
 
-\begin{lstlisting}[language=JavaScript, caption=Connect Session Middleware \cite{RoomiesMiddlewareHttp}, label=lst:connect-session-middleware]
-app.use(express.cookieParser());
-app.use(express.session({ secret: config.sessionSecret }));
+\begin{lstlisting}[language=JavaScript, caption=Connect Session Middleware \cite{RoomiesMiddlewareHttp}, label=lst:connect-session-middleware, firstnumber=31]
+app.use(express.session({
+	store: new SequelizeStore({
+		db: db
+	})
+	, secret: config.sessionSecret
+}));
 \end{lstlisting}
+
+Der sogenannte ``SequelizeStore'' \cite{SequelizeStore} bewirkt die Speicherung der Session-Daten innerhalb der Datenbank.
 
 \subsection*{Diskussion}
 Das Einbinden von mehr Informationen in Cookies hat mehrere Nachteile:

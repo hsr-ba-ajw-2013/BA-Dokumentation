@@ -1,7 +1,7 @@
 \section{RP10 Browser-Controls}
 \label{sec:principle-rp10-browser-controls}
 \begin{quotation}
-Man befindet sich auf einem Online-Shop und sucht mit Hilfe der eingebauten Suche, Zubehör für seine neu ergatterte Fotokamera. Das Suchresultat ist aber noch zu grob. Deshalb klick man auf dem Zurückknopf des Browsers um auf die Suche zurück zu gelangen. Aber was uns hier erwartet, ist nicht etwa das Suchformular, welches man erwartet hätte, sondern die Startseite.
+Man befindet sich auf einem Online-Shop und sucht mit Hilfe der eingebauten Suche, Zubehör für seine neu ergatterte Fotokamera. Das Suchresultat ist aber noch zu grob. Deshalb klickt man auf dem Zurück-Knopf des Browsers um auf die Suche zurück zu gelangen. Aber was uns hier erwartet, ist nicht etwa das Suchformular, welches man erwartet hätte, sondern die Startseite.
 \end{quotation}
 Dies ist nicht etwa ein fiktives Beispiel, sondern ein reeller Szenario aus dem Online-Shop des Elektronikgrosshändlers Digitec \cite{Digitec}.
 
@@ -11,7 +11,7 @@ Das ROCA-Prinzip ``Browser-Controls'' will genau dieses unangenehme Erleben verh
 
 ``Browser-Controls'' ist sehr eng mit dem Prinzip ``\nameref{sec:principle-rp4-link}'' verbunden. Indem jede Seite ihre eigene \gls{URI} hat und diese beim navigieren in die ``History'' des Browsers eingefügt wird, funktionieren die Standardbedienelemente (Zurück, Vorwärts und Aktualisieren) eines Browsers erwartungsgemäss.
 
-Dies soll auch in der Beispielanwendung ``Roomies'' der Fall sein. Jeder Seitenwechsel soll über die Browserhistory nachvollziehbar sein und somit dem Benutzer erlauben, die eingebauten Funktionen des Browsers zu benutzen.
+Dies soll auch in der Beispielanwendung ``Roomies'' der Fall sein. Jeder Seitenwechsel soll über den Webseitenverlauf im Browser nachvollziehbar sein und somit dem Benutzer erlauben, die eingebauten Funktionen des Browsers zu benutzen.
 
 \subsection*{Konkrete Umsetzung}
 Mit der Funktion ``Backbone.history.start()'' \cite{BackbonejsHistory} bietet Backbone.js eine Anbindung an die History API \cite{HistoryAPI} an und ermöglicht damit JavaScript Applikationen das dynamische navigieren inklusive Aktualisierung der URL bei Seitenwechseln.
