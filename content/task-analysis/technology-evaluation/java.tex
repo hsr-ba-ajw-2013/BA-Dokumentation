@@ -2,7 +2,7 @@
 
 Schon vor dieser Bachelorarbeit kann das Projektteam Erfahrungen mit Java vorweisen. Zum Einen aus privaten und beruflichen Projekten, zum Anderen auch ganz themenspezifisch aus der Studienarbeit, welche ein Semester früher durchgeführt wurde.
 
-Als Teil einer grösseren Applikation wurde dort ein Webservice mit REST-Schnittstelle umgesetzt. Zum Einsatz kamen diverse Referenzimplementierungen von Java Standard API's. Die sehr positiven Erfahrungen mit der dort orchestrierten Zusammenstellung von Bibliotheken legen den Schluss nahe, diese auch für eine potentielle Verwendung innerhalb dieser Bachelorarbeit wiederzuverwenden.
+Als Teil einer grösseren Applikation wurde dort ein Servicelayer mit REST-Schnittstelle umgesetzt. Zum Einsatz kamen diverse Referenzimplementierungen von Java Standard API's. Die sehr positiven Erfahrungen mit der dort orchestrierten Zusammenstellung von Bibliotheken legen den Schluss nahe, diese auch für eine potentielle Verwendung innerhalb dieser Bachelorarbeit wiederzuverwenden.
 
 Der Studienarbeit-erprobten Kombination sollen jedoch auch andere Alternativen gegenübergestellt werden. Insgesamt ergeben sich so folgende Analysekandidaten im Bereich der Technologie \emph{Java}:
 
@@ -17,21 +17,34 @@ Der Studienarbeit-erprobten Kombination sollen jedoch auch andere Alternativen g
 \textit{Studienarbeit-Zusammenstellung} &
 	Die Zusammenstellung von \emph{Google Guice}, \emph{Jersey}, \emph{Codehaus Jackson} sowie \emph{EclipseLink} hat sehr gut harmoniert. Die Verwendung von einem Java-fremden Framework für die Implementierung des Frontends wäre jedoch erneut abzuklären.
 	\tabularnewline
-\textit{Spring} &
+\textit{Spring} \cite{Spring} &
 	Spring hat sich in den letzten Jahren in der Industrie etablieren können. Es bietet eine Vielzahl von Subkomponenten (MVC, Beanmapping etc.).
 	\tabularnewline
-\textit{Plain JEE} &
+\tableend
+\end{tabularx}
+\caption{Shortlist Analysekandidaten Java (1/2)}
+\end{table}
+
+\begin{table}[H]
+\tablestyle
+\tablealtcolored
+\begin{tabularx}{\textwidth}{l X l}
+\tableheadcolor
+	\tablehead Framework &
+	\tablehead Erläuterung \tabularnewline
+\tablebody
+\textit{Plain JEE} \cite{JEE} &
 	Java Enterprise bietet von sich aus viele Features, welche die Frameworks von Dritten unter anderen Ansätzen umsetzen. Es gilt jedoch abzuwägen, wie gross der Aufwand ist, um beispielsweise eine REST-Serviceschnittstelle zu implementieren.
 	\tabularnewline
-\textit{Vaadin} &
-	Vaadin baut auf Googles GWT und erlaubt die serverzentrierte Entwicklung von Webapplikationen.
+\textit{Vaadin} \cite{Vaadin} &
+	Vaadin baut auf Googles GWT \cite{GWT} und erlaubt die serverzentrierte Entwicklung von Webapplikationen.
 	\tabularnewline
-\textit{Play! Framework} &
+\textit{Play! Framework} \cite{PlayFramework} &
 	Seit dem Release der Version 2.0 im Frühjar 2012 erfreut sich das Play! Frameworks grosser Beliebtheit. Insbesondere die integrierten Scaffolding-Funktionalitäten und MVC-Ansätze werden gelobt.
 	\tabularnewline
 \tableend
 \end{tabularx}
-\caption{Shortlist Analysekandidaten Java}
+\caption{Shortlist Analysekandidaten Java (2/2)}
 \end{table}
 
 
