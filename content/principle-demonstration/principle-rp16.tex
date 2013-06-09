@@ -1,9 +1,9 @@
 \section{RP16 Know Structure}
 \label{sec:principle-rp16-know-structure}
 
-Gehen wir exemplarisch von einer modernen, entkoppelten Applikationsarchitektur aus, welche eine klare Trennung zwischen Front- und Backend vorsieht, so übernimmt der Frontendteil komplett die Erzeugung des User Interfaces auf dem Clientrechner (Beispiele u.A. bei \emph{TodoMVC} \cite{TodoMVC}).
+Gehen wir exemplarisch von einer modernen, entkoppelten Applikationsarchitektur aus, welche eine klare Trennung zwischen Front- und Backend vorsieht, so übernimmt der Frontendteil die Erzeugung des User Interfaces auf dem Clientrechner (Beispiele u.A. bei \emph{TodoMVC} \cite{TodoMVC}).
 
-Das Backend liefert beim initialen Request ein HTML Grundgerüst, auf welchem die JavaScript Logik des Frontends das finale UI aufbauen wird.
+Das Backend liefert beim initialen Request ein HTML Grundgerüst, auf welchem die JavaScript Logik des Frontends das finale UI aufbaut.
 
 \begin{lstlisting}[language=HTML, caption={Beispiel eines HTML Gerüsts zum Rendering eines User Interfaces}, label=lst:htmlSkeleton, escapeinside={@}{@}]
 <html>
@@ -27,7 +27,7 @@ $(function() {
 });
 \end{lstlisting}
 
-Das ROCA Prinzip 17 \emph{Know Structure} beschreibt den oben aufgezeigten Aufbau und erachtet es als wichtig, dass die Backendkomponente keine Kenntnis über die vom Frontendteil gerenderten User Interface hat. Das Backend soll lediglich die initiale Struktur des Grundgerüsts aus Quelltext \ref{lst:htmlSkeleton} kennen und später nur noch als Datenlieferant via einer API dienen.
+Das ROCA Prinzip 17 \emph{Know Structure} beschreibt den oben aufgezeigten Aufbau und erachtet es als wichtig, dass die Backendkomponente keine Kenntnis über das vom Frontendteil gerenderten User Interface hat. Das Backend soll lediglich die initiale Struktur des Grundgerüsts aus Quelltext \ref{lst:htmlSkeleton} kennen und später nur noch als Datenlieferant via einer API dienen.
 
 
 \subsection*{Geplante Umsetzung}
