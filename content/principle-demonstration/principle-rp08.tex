@@ -3,14 +3,15 @@
 Die ROCA Richtlinie RP8 legt fest, dass Cookies lediglich zur Authentifizierung oder zur statistischen Analyse (Tracking) eines Benutzers verwendet werden soll.
 
 \subsection*{Geplante Umsetzung}
-Die Beispielapplikation soll lediglich im Bereich der Anmeldung des Benutzers auf Cookies zurückgreifen. Wie geplant konnte dies erfolgreich umgesetzt werden.
+Die Beispielapplikation soll lediglich im Bereich der Anmeldung des Benutzers auf Cookies zurückgreifen.
 
 \subsection*{Konkrete Umsetzung}
-Um einen User während einer Session authentifizieren zu können verwendet Express.js \cite{Expressjs} die \gls{Middleware} ``\emph{connect-session}'' \cite{ConnectSession}.
+Das Geplante konnte mit Erfolg umgesetzt werden.
+Um einem User eine Session zuzuweisen zu können verwendet Express.js \cite{Expressjs} die \gls{Middleware} ``\emph{connect-session}'' \cite{ConnectSession}.
 
-Konnte ein Benutzer erfolgreich authentifiziert werden, sendet der Server dem Client ein Cookie mit einer eindeutigen Session-ID. Diese ID sollte anschliessend mit allen künftigen Requests mitgeschickt werden.
+Konnte ein Benutzer erfolgreich authentifiziert werden, sendet der Server dem Client ein Cookie mit einer eindeutigen Session-ID. Diese ID muss mit allen künftigen Requests mitgeschickt werden.
 
-In der Beispielapplikation wird die Session-Middleware wie folgt eingesetzt:
+In der Beispielapplikation wird die Session-Middleware wie in Quelltext \ref{lst:connect-session-middleware} initialisiert:
 
 \begin{lstlisting}[language=JavaScript, caption=Connect Session Middleware \cite{RoomiesMiddlewareHttp}, label=lst:connect-session-middleware, firstnumber=31]
 app.use(express.session({
@@ -21,16 +22,16 @@ app.use(express.session({
 }));
 \end{lstlisting}
 
-Der sogenannte ``SequelizeStore'' \cite{SequelizeStore} bewirkt die Speicherung der Session-Daten innerhalb der Datenbank.
+Der ``SequelizeStore'' \cite{SequelizeStore} übernimmt die Speicherung der Session-Daten innerhalb der Datenbank.
 
 \subsection*{Diskussion}
 Das Einbinden von mehr Informationen in Cookies hat mehrere Nachteile:
 \begin{itemize}
 	\item Sicherheit \\
-		Wenn z.B. Username und Passwort in ein Cookie gespeichert werden, kann dies ohne Probleme von Drittpersonen mitgelesen werden. Falls HTTPS eingesetzt wird, zwar nur direkt im Browser, trotzdem ist dies ein nicht-gangbares Risiko. \\
+		Wenn Benutzername und Passwort in ein Cookie gespeichert werden, kann dies ohne Probleme von Drittpersonen mitgelesen werden. Falls HTTPS eingesetzt wird, zwar nur direkt im Browser, trotzdem ist dies ein nicht akzeptierbares Risiko. \\
 		Ausserdem ist es einem User möglich, Cookies abzuändern. Ohne Validierung und/oder dem Einsetzen eines \glspl{MAC} ist dies auf dem Server nicht erkennbar.
 	\item Datenmenge \\
-		Cookies werden mit jeder Anfrage und jeder Antwort des Servers mitgeschickt. Zwar ist die Grösse eines Cookies beschränkt, trotzdem wird die Datenmenge unnötig höher.
+		Cookies werden mit jeder Anfrage und jeder Antwort zwischen Client und Server mitgeschickt. Zwar ist die Grösse eines Cookies beschränkt, trotzdem wird die Datenmenge unnötig grösser.
 \end{itemize}
 
 Aus diesen Gründen sollte unbedingt darauf Verzichtet werden, Cookies für andere Zwecke als für die Wiederkehrende Authentifizierung über eine Session-ID oder für Tracking zu verwenden.
