@@ -7,7 +7,7 @@ Durch die Verwendung von \emph{barefoot} \cite{Barefoot} kann die komplette Beis
 Grundlegende Unterschiede gibt es hierbei lediglich beim Zugriff auf den \emph{APIAdapter}. Auf dem Server werden diese direkt lokal behandelt, im Client-Browser wird die entsprechende API-Abfrage über einen HTTP REST Request übertragen.
 
 \subsubsection*{Server}
-Beim initialen Aufruf der Beispielapplikation werden die kompletten Inhalte des User Interfaces auf dem Server gem. dem Diagramm \ref{dig:serverrendering} gerendert. Sollte der Client-Browser zudem JavaScript deaktiviert haben oder nicht unterstützen, so werden auch nachfolgende Requests nach dem gleichen Schema verarbeitet und gerendert.
+Beim initialen Aufruf der Beispielapplikation werden die kompletten Inhalte des User Interfaces auf dem Server gem. Diagramm \ref{dig:serverrendering} gerendert. Sollte der Client-Browser zudem JavaScript deaktiviert haben oder nicht unterstützen, so werden auch nachfolgende Requests nach dem gleichen Schema verarbeitet und gerendert.
 
 \input{content/sad/diagrams/sequence-serverrendering}
 
@@ -24,18 +24,17 @@ Wie bereits erwähnt kann der \emph{APIAdapter} auf dem Server sowohl mit server
 
 Das Diagramm \ref{dig:apiAdapter} verdeutlicht die Abläufe im innern des Adapters für den jeweiligen Anfragemodus.
 
-Hinter dem Element \emph{Controllers} stehen neben dem eigentlichen Controller zusätzlich diverse Sicherheitspolicies und Validatoren, welche eingehende Requests prüfen und ggf. abweisen können, bevor sie zur eigentlichen Geschäftslogik gelangen.
+Hinter dem Element \emph{Controllers} stehen neben dem eigentlichen API-Controller zusätzlich diverse Sicherheitspolicies und Validatoren, welche eingehende Requests prüfen und ggf. abweisen können, bevor sie zur eigentlichen Geschäftslogik gelangen.
 
 \input{content/sad/diagrams/sequence-apiadapter}
 
 
 \subsection{Quellcode Organisation}
-Auch für Applikationen für Node.JS ist üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich in mehr oder weniger komplett eigenständige Komponenten zu unterteilen.
+\gls{nodejs} Applikationen werden üblicherweise soweit wie möglich in eigenständige und wiederverwendbare Komponenten (siehe \cite{TJH_ComponentStructure} und \cite{IZS_ComponentStructure}) aufgeteilt.
 
-Ein gutes Beispiel hierfür sind die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekappselt werden.
+Ein gutes Beispiel hierfür ist die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekappselt werden.
 
-Die Beispielapplikation ``Roomies'' verwendet selber auch mehrere Komponenten aus NPM \cite{NPM} und ist selber auch in
-Komponenten unterteilt. Dies veranschaulicht die Ordnerstruktur in Abbildung \ref{fig:roomiesFolderStructure}.
+Die Beispielapplikation ``Roomies'' verwendet selber mehrere Komponenten aus NPM \cite{NPM} und ist selber in Komponenten unterteilt. Dies veranschaulicht die Ordnerstruktur in Abbildung \ref{fig:roomiesFolderStructure}.
 
 \newpage
 \subsubsection*{Ordnerstruktur}
@@ -47,7 +46,7 @@ Komponenten unterteilt. Dies veranschaulicht die Ordnerstruktur in Abbildung \re
 	\label{fig:roomiesFolderStructure}
 \end{figure}
 
-Jede Komponente mit JavaScript-Code kann mittels einem ``require()''-Befehl eingebunden werden. Zu diesem Zweck wird jeweils nur der Ordnername angegeben. Der Befehl wird dann automatisch die ``index.js''-Datei laden.
+Jede Komponente mit JavaScript-Code kann mittels einem ``require()''-Befehl eingebunden werden. Zu diesem Zweck wird jeweils nur der Ordnername angegeben. Damit wird automatisch die enthaltene index.js-Datei geladen.
 
 
 \begin{lstlisting}[language=JavaScript, caption=Einbindung der Community-Komponente, float=ht!]
@@ -56,21 +55,23 @@ Jede Komponente mit JavaScript-Code kann mittels einem ``require()''-Befehl eing
 var setupCommunityApi = require('./community');
 \end{lstlisting}
 
-Im folgenden werden die beiden wichtigsten Startpunkte der Applikation erklärt.
+Im folgenden werden die beiden wichtigsten Dateien für das Starten der Applikation erklärt.
 
 \subsubsection*{barefootFactory.js}
 Die ``barefoot''-Factory \cite{barefootFactoryjs} ist verantwortlich für das Setup der Server-Seite der Applikation.
-Unter anderem werden folgende wichtige Konfigurationen vorgenommen:
+Unter anderem werden folgende wichtige Aufgaben ausgeführt:
 \begin{itemize}
-	\item{JavaScript Dateien, die am Client geschickt werden sollen}
-	\item{API-Adapter eingerichtet}
-	\item{Express.js \cite{Expressjs} Middleware geladen}
-	\item{Express.js \cite{Expressjs} HTTP Server gestartet}
-	\item{Server Request Context (u.a. das Model für den eingeloggten Benutzer) eingerichtet}
+	\item{Definition der JavaScript Dateien, die am Client geschickt werden sollen}
+	\item{Einrichtung der API-Adapter}
+	\item{Laden der Express.js \cite{Expressjs} Middleware}
+	\item{Starten des Express.js \cite{Expressjs} HTTP Servers}
+	\item{Einrichten des Server Request Contexts (u.a. das Model für den eingeloggten Benutzer).}
 \end{itemize}
 
 Diese Informationen werden ``barefoot'' \cite{Barefoot} mitgegeben, damit das Framework weiss, was zu starten ist.
 
 \subsubsection*{app.js}
 Die Datei ``app.js'' \cite{appjs} ist der Startpunkt der Applikation.
-Darin wird u.a. die ``barefootFactory'' instanziert und der ``DataStore'' initialisiert. Der ``DataStore'' ist verantwortlich, dass sowohl Client und Server die gleichen Models zur Verfügung haben und darüber kommunizieren können.
+Darin wird u.a. die ``barefootFactory'' instanziert und der ``DataStore'' initialisiert.
+
+Der ``DataStore'' ist ein ``barefoot'' Konzept (siehe \cite{barefootDatastore}). Es wird verwendet um Models und Collections vom Server zum Client zu senden.

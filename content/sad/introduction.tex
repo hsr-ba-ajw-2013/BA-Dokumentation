@@ -13,11 +13,11 @@ Die Architektur besteht aus den folgenden zwei Haupt-Komponenten:
 
 \subsection{Shared Codebase mit barefoot}
 Barefoot \cite{Barefoot} ist ein Framework welches während der Bachelorarbeit entwickelt wurde.
-Dieses Framework ermöglicht Client und Server den gleichen Code für Controller und Templates zu benutzen und setzt auf
-Backbone.js \cite{Backbonejs} für die Code-Strukturierung auf.
+Dieses Framework ermöglicht Client und Server den gleichen Code für die MVC-Komponenten zu benutzen und setzt auf
+Backbone.js \cite{Backbonejs}auf.
 
-Als Beispiel sei hier der Router genannt:
-\begin{lstlisting}[language=JavaScript, caption=Router der Beispielapplikation \cite{roomiesRouter}, label=lst:roomiesRouter, firstnumber=25]
+Der Router dient hier als Beispiel:
+\begin{lstlisting}[language=JavaScript, caption=Auszug aus Router der Beispielapplikation \cite{roomiesRouter}, label=lst:roomiesRouter, firstnumber=25]
 module.exports = Router.extend({
 	routes: {
 		'': 'home'
@@ -56,13 +56,11 @@ module.exports = Router.extend({
 });
 \end{lstlisting}
 
-Quelltext \ref{lst:roomiesRouter} zeigt ein Auszug des Routers aus der Beispielapplikation.
-Dieser Router wird sowohl vom Client wie auch vom Server direkt verwendet und registriert die gezeigten URLs mit den Funktionen.
+Der Router aus Quelltext \ref{lst:roomiesRouter} wird sowohl vom Client als auch vom Server verwendet und registriert URLs mit den entsprechenden Funktionen.
 
-Wie man sieht, wird für die ``home''-Route, falls der Besucher nicht eingeloggt ist,
-die ``HomeView'' dargestellt. Diese ist im Quellcode \ref{lst:roomiesHomeView}, ``\nameref{lst:roomiesHomeView}'' zu sehen.
+Die ``HomeView'' ist in Quelltext \ref{lst:roomiesHomeView}, ``\nameref{lst:roomiesHomeView}'' zu sehen.
 
-\begin{lstlisting}[language=JavaScript, caption=HomeView der Beispielapplikation \cite{roomiesHomeView}, label=lst:roomiesHomeView, firstnumber=7]
+\begin{lstlisting}[language=JavaScript, caption=Ausschnitt aus HomeView der Beispielapplikation \cite{roomiesHomeView}, label=lst:roomiesHomeView, firstnumber=7]
 module.exports = View.extend({
 	el: '#main'
 	, template: templates.login
@@ -88,17 +86,16 @@ module.exports = View.extend({
 \end{lstlisting}
 
 \subsection{API-Komponente}
-Damit sichergestellt werden kann, dass alle Daten valid sind, ist auf Server-Seite
-eine REST-API \cite{REST} erstellt worden. Die Shared Codebase greift auf diese zu, um
-Daten zu speichern oder zu laden.
-Dabei unterscheidet ``barefoot'' intelligent zwischen API-Aufrufen vom Server oder vom Client.
-Wird vom Client aus aufgerufen, wird ein normaler AJAX-Aufruf gemacht. Wird die API
+Auf Server-Seite ist eine REST-API \cite{REST} erstellt worden. Die Shared Codebase greift auf diese zu, um Daten zu speichern oder zu laden.
+
+Dabei unterscheidet ``barefoot'' intelligent zwischen API-Aufrufen des Servers oder des Clients.
+Ruft der Client eine API auf, wird ein AJAX-Aufruf gemacht. Wird die API
 hingegen vom Server aus aufgerufen, werden direkt die entsprechend definierten
-Callbacks für die gewünschte Route aufgerufen.
+Callbacks für die gewünschte Route lokal aufgerufen.
 
 Der Quellcode \ref{lst:roomiesControllerExample} zeigt ein Beispiel für einen solchen
 Callback, während Quelltext \ref{lst:roomiesComponentExample} ein Beispiel für
-eine definierte API-Route aufzeigt.
+eine API-Route aufzeigt.
 
 \begin{lstlisting}[language=JavaScript, caption=API-Controller Beispiel \cite{roomiesCommunityApiExample}, label=lst:roomiesControllerExample, firstnumber=294]
 /** Function: getCommunityWithId
@@ -154,7 +151,7 @@ api.get(prefix + '/:id(\\d+)', [
 Die Beispielapplikation ist somit nach einem MVC-Pattern aufgebaut. \\
 Die einzelnen Komponenten haben folgende Aufgabe:
 \begin{itemize}
-	\item{\textbf{M}odel ist das traditionelle Model welches zwischen Server \& Client geshared wird}
+	\item{\textbf{M}odel ist ein traditionelles Model welches zwischen Server \& Client geteilt wird}
 	\item{\textbf{V}iew ist eine ``Barefoot.View'' \cite{BarefootView} und rendert Templates}
 	\item{\textbf{C}ontroller ist einerseits ein ``Route''-Controller, welcher aufgrund von URLs die richtige View aufruft und andererseits ein API-Controller, welcher die REST-API-Logik kapselt}
 \end{itemize}

@@ -9,23 +9,25 @@ Falls der Server bereits \gls{REST} einsetzt (siehe vorheriger Abschnitt \ref{se
 
 Die Beispielapplikation ``Roomies'' soll eine generalisierte REST-API zur Verfügung stellen, welche sowohl vom Client- wie auch vom Server-Code verwendet werden soll.
 
-Diese API implementiert jegliche Businesslogik zum authentifizieren, authorisieren der Benutzer, sowie die Validierung und Speicherung der Daten.
+Diese API implementiert jegliche Businesslogik zum authentifizieren und authorisieren der Benutzer, sowie die Validierung und Speicherung der Daten.
 
-Die Präsentationslogik wird als separates Layer implementiert. Dabei wird insbesondere dieser Quelltext mittels ``barefoot'' geteilt.
+Die Präsentationslogik wird als separater Layer implementiert.
 
 \subsection*{Konkrete Umsetzung}
-Die geplante API wurde umgesetzt. Client und Serverside Code verwendet die gleichen API-Definitionen um Daten zu manipulieren. Dabei wird immer sichergestellt, dass nicht authentifizierte oder authorisierte Benutzer keinen Zugriff haben.
-Weiter wird bei Datenmodifikationen sichergestellt, dass die Daten valid sind.
+Die geplante API wurde umgesetzt. Client und Serverside Code verwenden die gleichen API-Definitionen um Daten zu manipulieren. Dabei wird immer sichergestellt, dass nicht authentifizierte oder authorisierte Benutzer keinen Zugriff haben.
+Weiter wird bei Datenmodifikationen sichergestellt, dass die Daten korrekt sind.
 
-Durch die Trennung von API und Präsentation ist erfolgreich eine Trennung der Aufgaben (Separation of Concerns \cite{SeparationOfConcerns}) umgesetzt worden. Dies erlaubt es zum Beispiel in Zukunft, die API auf separaten Servern laufen zu lassen.
+Durch die Trennung von API und Präsentation ist erfolgreich eine Aufteilung der Aufgaben (Separation of Concerns \cite{SeparationOfConcerns}) umgesetzt worden. Dies erlaubt es in Zukunft, die API auf separaten Servern laufen zu lassen.
+
+Als zusätzliches Plus wird der Quelltext mithilfe von ``barefoot'' zwischen Client und Server geteilt.
 
 Weitere Informationen zur Softwarearchitektur können im Kapitel \ref{sec:sad} \nameref{sec:sad} nachgelesen werden.
 
 \subsection*{Diskussion}
-Um zu garantieren dass alle Daten korrekt sind und von den richtigen Benutzern ausgeführt werden, muss die Businesslogik auf dem Server liegen.
-Falls jedoch insgesamt die User Expierence verbessert werden soll, können \emph{zusätzlich} einzelne Teile der Validierung von Daten auf dem Client ausgeführt werden.
+Um zu garantieren dass alle Daten korrekt sind und von authentifizierten Benutzern abgefragt und modifiziert werden, muss die Businesslogik auf dem Server liegen.
+Falls jedoch insgesamt die User Expierence verbessert werden soll, können \emph{zusätzlich} einzelne Teile wie die Validierung von Daten auf dem Client ausgeführt werden.
 
-In der Beispielapplikation wird keine Validierung auf Clientseite vorgenommen. Durch den Einsatz von Validatoren, welche auch auf dem Client ausführbar sind (siehe \cite{nodevalidator}) und der Unterstützung von Backbone.Models für Validation (siehe \cite{BackboneModelValidation}) könnte das zusätzlich jedoch auch noch auf dem Client gemacht werden.
+In der Beispielapplikation wird keine Validierung auf Clientseite vorgenommen. Durch den Einsatz von Validatoren, welche auch auf dem Client ausführbar sind (siehe \cite{nodevalidator}) und der Unterstützung von Backbone.Models für Validation (siehe \cite{BackboneModelValidation}) könnte das zusätzlich auf dem Client gemacht werden.
 
 Im Projektteam ist man sich einig: Die Applikationslogik muss grösstenteils auf dem Server liegen. Einzelne Validierungen o.ä. kann auch auf dem Client ausgeführt werden, jedoch nur \emph{zusätzlich} zur bereits bestehenden Validierung auf dem Server.
 Diese Richtlinie ist für Client-Server Applikationen ein Muss. Ist das Programm allerdings keine klassische Client-Server Software (zum Beispiel Peer-to-Peer), kann das nicht so angewendet werden.
