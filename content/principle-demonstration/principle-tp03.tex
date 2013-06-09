@@ -1,13 +1,13 @@
 \section{TP3 Eat your own API dog food}
 \label{sec:principle-tp3-eat-your-own-api}
 
-Eine Applikation mit einer verteilten, entkoppelten Architektur kommt unweigerlich zu einem Punkt, an welchem die einzelnen Komponenten Schnittstellen definieren müssen.
+Eine Applikation mit einer verteilten, entkoppelten Architektur kommt unweigerlich zu einem Punkt, an welchem die einzelnen Komponenten Schnittstellen zur gegenseitigen Interaktion definieren müssen.
 
-Die durch diesen Prozess entstehenden API's sind klassischerweise auf spezifische Anwendungsfälle zugeschnitten da diese schnellstmöglich die applikationseigenen Anforderungen umsetzen können.
+Die durch diesen Prozess entstehenden API's sind klassischerweise auf spezifische Anwendungsfälle zugeschnitten da so schnellstmöglich die applikationseigenen Anforderungen umsetzen können.
 
 Als weitere Konsequenz werden ``unschöne'' Interfacemethoden gerne gar nicht erst für externe Konsumenten verfügbar gemacht.
 
-Auf die lange Dauer gesehen besteht die Gefahr, dass ein Flickwerk aus anwendungsfallspezifischen Interfaces resp. Interfacemethoden entstehen.
+Auf Dauer gesehen besteht die Gefahr, dass ein Flickwerk aus anwendungsfallspezifischen Interfaces resp. Interfacemethoden entsteht.
 
 Mit \emph{Eat your own API dog food} forciert Tilkov von Beginn an die Konzipierung und Umsetzung guter und generischer Schnittstellen für Applikationskomponenten. Als Motivationsfaktor gehört darum auch der Grundsatz, dass keine privaten Methoden existieren sollen, zu seiner Forderung.
 
