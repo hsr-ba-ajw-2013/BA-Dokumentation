@@ -1,18 +1,26 @@
 \section{RP17 Static Assets}
 \label{sec:principle-rp17-static-assets}
 
-Die ``Static Assets'' ROCA Richtlinie will dass jeglicher JavaScript Code und jegliche CSS Stylesheets für den Client von statischer Natur ist. Dies bedeutet, dass der Server keine dynamische Generierung von eben diesem Code vornimmt.
+Die Verwendung von JavaScript macht die Ausführung von dynamisch generiertem Quellcode einfach:
+
+\begin{lstlisting}[language=JavaScript, caption={Ausführung von dynamischem Quelltext mittels \emph{eval}}, label={lst:evalIsEvil}]
+eval('for(var i = 0; i < 1000; i++) alert(\'eval is evil\')');
+\end{lstlisting}
+
+Der Quelltext \ref{lst:evalIsEvil} ist nicht nur schwer wartbar, die Verwendung von \emph{eval} \cite{mdnEval} stellt zusätzlich ein nicht abschätzbares Sicherheitsrisiko dar: Das übergebene String-Argument, welches den auszuführenden Quellcode enthält, kann von Angreifern problemlos angepasst werden. Auf diese Weise ist es ohne grossen Aufwand möglich, Schadcode in eine Applikation einzuschleusen.
+
+Die \emph{Static Assets} ROCA Richtlinie will, dass jeglicher JavaScript Code in statischer Form vorliegt. Diese Anforderung erweitert sie zusätzlich auf alle CSS Formatierungsinformationen aus.
 
 \subsection*{Geplante Umsetzung}
 \subsubsection*{CSS Stylesheets}
 Die verwendeten CSS Stylesheets sollen mit dem SASS Präprozessor \cite{SASS} erstellt werden. Zwar muss der eigentliche Stylesheet Code vorneweg einmalig übersetzt werden, die dadurch entstehenden Vorteile beim Entwickeln der Formatierungsinformationen sind jedoch bei Weitem grösser.
 
-Da zudem statische SASS-Quelldateien übersetzt werden, kann der Anspruch keine dynamischen CSS Formatierungen zu generieren befriedigt werden.
+Da zudem statische SASS-Quelldateien übersetzt werden, kann der Anspruch, keine dynamischen CSS Formatierungen zu generieren, befriedigt werden.
 
 \subsubsection*{Clientside JavaScript}
-Die JavaScript Applikation für den Client soll auf verschiedene Dateien aufgeteilt werden. Für den späteren produktiven Betrieb ist das Übertragen vieler kleinen Quellcode-Dateien jedoch nicht effektiv.
+Der JavaScript-Quelltext für den Client soll auf verschiedene Dateien aufgeteilt werden. Die Codefragmente in dieser Form an den Browser auszuliefern ist jedoch aus Gründen wie Verbindungsoverhead und der damit verbundenen schlechteren User Experience nicht optimal.
 
-Aus diesem Grund sollen auf dem Backend alle Client-Quellcode-Dateien zusammengefasst werden können und mit gängigen Methoden zur schnellstmöglichen Übertragung über das Internet optimiert werden.
+Aus diesem Grund sollen auf dem Backend alle Client-Quellcode-Dateien zusammengefasst und mit gängigen Methoden zur schnellstmöglichen Übertragung über das Internet optimiert werden.
 
 Ähnlich wie beim SASS-Präprozessor soll auch hier kein dynamischer Code entstehen. Es wird lediglich eine Optimierung der zu übertragenden Informationen vorgenommen.
 
@@ -26,13 +34,13 @@ Zur Entwicklungszeit werden die SASS-Quellcodes bei jedem Start der Beispielappl
 Die daraus entstehende Datei kann anschliessend ohne weitere Veränderungen vom Webserver an den Browser des Benutzers übertragen werden.
 
 \subsubsection*{Clientside JavaScript}
-Mit \emph{barefoot} \cite{Barefoot} kann zwar der Server-Quellcode auch für die Client-Applikation verwendet werden. Jedoch stellt sich auch hier die Herausforderung, über verschiedenen Dateien verteilte Programmlogik in eine einzige, grössenoptimierte JavaScript-Date zusammenzufassen.
+Mit \emph{barefoot} \cite{Barefoot} gibt es zwar eine geteilte Codebasis für Client und Server. Jedoch stellt sich auch hier die Herausforderung, über verschiedenen Dateien verteilte Programmlogik in eine einzige, grössenoptimierte JavaScript-Datei zusammenzufassen.
 
-Zu diesem Zweck verwendet \emph{barefoot} fix die \emph{browserify-middleware} für Express.JS \cite{browserifymiddleware}. Diese Komponente ermittelt anhand vorhandener \emph{require}-Statements im Quelltext, welche CommonJS Module \cite{commonjsmodules} zusammengefasst und bereitgestellt werden müssen.
+Zu diesem Zweck verwendet \emph{barefoot} die \emph{browserify-middleware} für Express.JS \cite{browserifymiddleware}. Diese Komponente ermittelt anhand vorhandener \emph{require}-Statements im Quelltext, welche CommonJS Module \cite{commonjsmodules} zusammengefasst und bereitgestellt werden müssen.
 
-Zusammen mit einigen Zeilen \gls{Boilerplate}-Code entsteht so eine eigenständige JavaScript-Datei welche als Ganzes an den Client ausgeliefert werden kann. Falls konfiguriert, wird diese zudem von Kommentaren und unnötigen Füllzeichen befreit und mittels Gzip \cite{gzip} komprimiert. Dies bringt insbesondere im produktiven Betrieb imense Vorteile.
+Zusammen mit einigen Zeilen \gls{Boilerplate}-Code wird eine eigenständige JavaScript-Datei erzeugt, welche als Ganzes an den Client ausgeliefert werden kann. Besonders für den produktiven Betrieb wichti kann diese zudem von Kommentaren und unnötigen Füllzeichen befreit und mittels Gzip \cite{gzip} komprimiert.
 
-\begin{lstlisting}[language=JavaScript, firstnumber=95, caption=Konfiguration der browserify Middleware \cite{RoomiesExampleConfig}, label=lst:configBrowserifyMiddleware]
+\begin{lstlisting}[language=JavaScript, firstnumber=95, caption={Konfiguration der browserify Middleware \cite{RoomiesExampleConfig}}, label=lst:configBrowserifyMiddleware]
 /* Browserify: */
 // Roomies uses browserify to package all neceessary CommonJS modules into
 // one big JavaScript file when delivering them to the client.
@@ -48,10 +56,26 @@ Zusammen mit einigen Zeilen \gls{Boilerplate}-Code entsteht so eine eigenständi
 \end{lstlisting}
 
 
+\subsubsection*{Pseudo-dynamischer Quellcode mittels Funktionen}
+
+Rendert \emph{barefoot} ein User Interface auf der Serverkomponente, verwendet es einen \emph{DataStore} \cite{barefootDatastore} um den Zustand aller beteiligten Models zum Client zu übertragen.
+
+Der \emph{DataStore} serialisiert seine Informationen dabei in ein \gls{JSON}-Objekt welches wie in Quelltext \ref{lst:dataStoreSerialization} gezeigt in eine Funktion verpackt wird.
+
+\begin{lstlisting}[language=HTML, caption={Ausschnitt eines von \emph{barefoot} serialisierten \emph{DataStores} im HTML Markup von \emph{Roomies}}, label={lst:dataStoreSerialization}]
+<script>function deserializeDataStore(){return {"currentUser":{"dataStoreModelIdentifier":"ResidentModel","data":/* ... */[{"name":"BA abgeben","description":"","reward":5,"fulfilledAt":null,"dueDate":"2013-06-14T00:00:00.000Z","id":1,"createdAt":"2013-06-03T20:28:58.000Z","updatedAt":"2013-06-03T20:28:58.000Z","CommunityId":1,"creatorId":1,"fulfillorId":null}]}};}</script>
+\end{lstlisting}
+
+Wird \emph{barefoot} resp. die implementierende Applikation auf dem Client gestartet, wird diese Funktion aufgerufen und damit der Zustand des \emph{DataStores} rekonstruiert.
+
+Zwar kann man hier tendenziell von dynamischen Code sprechen, in dieser Form wird aber kein dynamisch erzeugter String ausgewertet.
+
+
+
 \subsection*{Diskussion}
 Das Projektteam ist davon überzeugt, dass die umgesetzten und aufgezeigten Methoden und Mechanismen für moderne Webapplikationen ein extrem hilfreiches Werkzeug sind.
 
-Im Bereich der clientseitigen JavaScript Entwicklung ermöglichen das erwähnte \emph{browserify-middleware} oder andere Bibliotheken wie RequireJS \cite{requirejs} erst das effiziente verteilen von Quellcode auf verschiedene Dateien.
+Im Bereich der clientseitigen JavaScript Entwicklung ermöglicht die erwähnte \emph{browserify-middleware} oder andere Bibliotheken wie RequireJS \cite{requirejs} erst das effiziente verteilen von Quellcode auf mehrere Dateien.
 
 In die gleiche Richtung strebt SASS: Es ergänzt CSS um viele nützliche Features wie Variablen und Mixins. Daneben ermöglicht es aber, entsprechende Bibliotheken vorausgesetzt, eine extreme Vereinfachung der Entwicklung von CSS-Stylesheets, welche mit verschiedenen Browsern kompatibel ist.
 
