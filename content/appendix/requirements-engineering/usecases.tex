@@ -2,10 +2,9 @@
 
 \section{Use Cases}
 
-Das Diagramm \ref{fig:usecasediagram} zeigt eine Übersicht der zu implementierenden
-Use Cases und deren Akteure.
+Das Diagramm \ref{fig:usecasediagram} zeigt eine Übersicht der zu implementierenden Use Cases und deren Akteure.
 
-Darauffolgend werden die Use Cases einzeln beschrieben.
+Darauffolgend wird jeder die Use Case genauer beschrieben.
 
 \begin{figure}[h!]
 	\centering{
@@ -55,7 +54,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 				\umlassoc{Facebook}{usecase-1}
 
 				\umlnote[x=13, y=0]{usecase-1}{Die erste Anmeldung wird als eine Registrierung interpretiert}
-				\umlnote[x=13, y=-3]{usecase-3}{Eine WG kann nur über eine Einladung (Link) beigetreten werden}
+				\umlnote[x=13, y=-3]{usecase-3}{Einer WG kann nur über eine Einladung (Link) beigetreten werden}
 			\end{tikzpicture}
 		}
 	}
@@ -74,14 +73,14 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 		\tablehead Beschreibung \tabularnewline
 		\tablebody
 			Bewohner &
-			Als Bewohner wird ein Anwender der Roomies Anwendung bezeichnet, der zu einer WG gehört. \newline
-			Dieser besitzt die Rechte Aufgaben seiner WG zu verwalten.
+			Als \emph{Bewohner} wird ein Anwender der \emph{Roomies} Anwendung bezeichnet, der zu einer \emph{WG} gehört. \newline
+			Dieser besitzt die Rechte \emph{Aufgaben} seiner \emph{WG} zu verwalten.
 			\tabularnewline
 			WG-Administrator &
-			Der WG-Administrator ist eine Erweiterung des Akteurs Bewohner. Der Ersteller einer WG wird automatisch zu deren Administrator. Diese Rolle kann an Bewohner weitergegeben werden (siehe \nameref{subsec:uc4} und \nameref{subsec:uc10}).
+			Der \emph{WG-Administrator} ist eine Erweiterung des Akteurs \emph{Bewohner}. Der Ersteller einer \emph{WG} wird automatisch zu deren \emph{Administrator}. Diese Rolle kann an \emph{Bewohner} weitergegeben werden (siehe \nameref{subsec:uc4} und \nameref{subsec:uc10}).
 			\tabularnewline
 			Facebook &
-			Facebook ist die Schnittstelle zur Social Media Plattform. Dies ermöglicht ein vereinfachtes Login sowie das Teilen von Daten und Links.
+			\emph{Facebook} ist die Schnittstelle zur Social Media Plattform. Sie ermöglicht das Anmelden bei \emph{Roomies} sowie das Teilen von Daten und Links.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -95,9 +94,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			-
 			\tabularnewline
@@ -108,7 +104,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Facebook
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner startet Roomies. Das System zeigt das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die WG-Startseite weitergeleitet.
+			Der \emph{Bewohner} startet \emph{Roomies}. Das System zeigt das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die WG-Startseite weitergeleitet.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -123,9 +119,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F1
 			\tabularnewline
@@ -133,7 +126,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch keiner angehört. Hierfür wählt der Bewohner die Option ``WG erstellen''. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet den Bewohner auf die Aufgabenseite der WG weiter. Die Rolle WG-Administrator wird dem Bewohner automatisch zugeteilt.
+			Ein \emph{Bewohner} hat die Möglichkeit eine \emph{WG} zu erstellen, falls er noch keiner angehört. Hierfür wählt der \emph{Bewohner} die Option ``WG erstellen''. Das System leitet ihn auf das entsprechende Formular und fordert den \emph{Bewohner} die WG-Daten einzugeben. Nachdem der \emph{Bewohner} diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet den \emph{Bewohner} auf die Aufgabenseite der \emph{WG} weiter. Die Rolle \emph{WG-Administrator} wird dem \emph{Bewohner} automatisch zugeteilt.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -148,9 +141,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F2
 			\tabularnewline
@@ -158,7 +148,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Um einer WG beizutreten, muss der Link zur Einladung dem ``zukünftigen'' Bewohner bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung ist dem WG-Administrator überlassen und ist nicht Teil der Anwendung. Hat ein Bewohner den Link geöffnet, wird er vom System aufgefordert das Beitreten zu bestätigen. Bestätigt der Bewohner diese, wird er als Bewohner der WG ``registriert'' und zur Aufgabenliste weitergeleitet.\newline Infolge dieses Use Cases kann ``\nameref{subsec:uc11}'' angewendet werden.
+			Um einer \emph{WG} beizutreten, muss der Link zur Einladung dem ``zukünftigen'' \emph{Bewohner} bekannt sein. Ein solcher Link wird vom System erzeugt. Die Verbreitung ist dem \emph{WG-Administrator} überlassen und ist nicht Teil der Anwendung. Hat ein \emph{Bewohner} den Link geöffnet, wird er vom System aufgefordert das Beitreten zu bestätigen. Bestätigt der \emph{Bewohner} diese, wird er als \emph{Bewohner} der \emph{WG} ``registriert'' und zur Aufgabenliste weitergeleitet.\newline Infolge dieses Use Cases kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -173,9 +163,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F5
 			\tabularnewline
@@ -183,8 +170,8 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System aufgefordert dies zu Bestätigen. Nach der Bestätigung setzt das System den Bewohner auf inaktiv und leitet den ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
-			Hat der Bewohner als einziger die Rolle ``WG-Administrator'', so muss er vor dem inaktiv Setzen seine Rolle an einen anderen Bewohner übetragen.
+			Wählt ein \emph{Bewohner} die Option ``WG verlassen'', wird er vom System aufgefordert dies zu Bestätigen. Nach der Bestätigung setzt das System den \emph{Bewohner} auf inaktiv und leitet den ``Ex''-\emph{Bewohner} auf eine ``Aufwiedersehen-Seite'' weiter. \newline
+			Hat der \emph{Bewohner} als einziger die Rolle \emph{WG-Administrator}, so muss er vor dem inaktiv Setzen seine Rolle an einen anderen \emph{Bewohner} übetragen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -199,9 +186,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F3
 			\tabularnewline
@@ -209,7 +193,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Ein Bewohner wählt die Option ``Aufgabe erstellen''. Das System zeigt das zugehörige Formular. Nachdem der Bewohner es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet den Bewohner zurück auf die Aufgabenseite.
+			Ein \emph{Bewohner} wählt die Option ``Aufgabe erstellen''. Das System zeigt das zugehörige Formular. Nachdem der \emph{Bewohner} es ausgefüllt hat, überprüft das System die Daten, speichert es und leitet den \emph{Bewohner} zurück auf die Aufgabenseite.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -224,9 +208,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F6
 			\tabularnewline
@@ -234,7 +215,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner wählt die Aufgabe welche bearbeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' wird ein Formular mit den bereits vorhandenen Daten der Aufgabe dargestellt. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann den Bewohner auf die Aufgabenliste weiter.
+			Der \emph{Bewohner} wählt die Aufgabe welche bearbeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' wird ein Formular mit den bereits vorhandenen Daten der Aufgabe dargestellt. Der \emph{Bewohner} ändert die Daten. Das System überprüft diese und leitet dann den \emph{Bewohner} auf die Aufgabenliste weiter.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -249,9 +230,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F4
 			\tabularnewline
@@ -259,7 +237,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt markieren.
+			In der Aufgabenliste kann ein \emph{Bewohner} eine Aufgabe als erledigt markieren.
 			\newline Als Folge davon kann ``\nameref{subsec:uc11}'' ausgeführt werden.
 			\tabularnewline
 		\tableend
@@ -275,9 +253,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F7
 			\tabularnewline
@@ -285,7 +260,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner wählt die Option ``Rangliste anzeigen''. Das System zeigt eine Rangliste aller Bewohner der WG.
+			Der \emph{Bewohner} wählt die Option ``Rangliste anzeigen''. Das System zeigt eine Rangliste aller \emph{Bewohner} der \emph{WG}.
 			\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
 			\tabularnewline
 		\tableend
@@ -301,9 +276,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F9
 			\tabularnewline
@@ -311,7 +283,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Der WG-Administrator hat die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt, dies zu bestätigen. Danach setzt das System alle Bewohner der WG sowie die WG selbst als inaktiv. Der WG-Administrator wird auf die WG-Erstellen Seite weitergeleitet.
+			Der \emph{WG-Administrator} hat die Möglichkeit eine \emph{WG} aufzulösen. Wird diese Option gewählt, so wird vom \emph{WG-Administrator} verlangt, dies zu bestätigen. Danach setzt das System alle \emph{Bewohner} der \emph{WG} sowie die \emph{WG} selbst auf inaktiv. Der \emph{WG-Administrator} wird auf die WG-Erstellen Seite weitergeleitet.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -326,9 +298,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F10
 			\tabularnewline
@@ -336,7 +305,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Der WG-Administrator besitzt das Recht die Bewohner der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall Eins besteht darin, einem Bewohner WG-Administratorrechte zu vergeben. Fall Zwei ist die Möglichkeit einen Bewohner aus der WG auszuschliessen.
+			Der \emph{WG-Administrator} besitzt das Recht die \emph{Bewohner} der \emph{WG} zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall Eins besteht darin, einem \emph{Bewohner} WG-Administratorrechte zu vergeben. Fall Zwei ist die Möglichkeit einen \emph{Bewohner} aus der \emph{WG} auszuschliessen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -351,9 +320,6 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	\tablealtcolored
 	\begin{tabularx}{\textwidth}{lX}
 		\tablebody
-			% \textit{Scope} &
-			% Roomies
-			% \tabularnewline
 			\textit{Mapped Requirement} &
 			F11
 			\tabularnewline
@@ -361,7 +327,7 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Gewisse Interaktionen, wie \nameref{subsec:uc3}, \nameref{subsec:uc7} oder \nameref{subsec:uc8}, sollen über die Social Media Plattform Facebook geteilt werden können. Möchte dies der Bewohner tun, so wird ein entsprechender Text erzeugt und die Möglichkeit geboten, diesen auf Facebook zu teilen.
+			Gewisse Interaktionen, wie \nameref{subsec:uc3}, \nameref{subsec:uc7} oder \nameref{subsec:uc8}, sollen über die Social Media Plattform Facebook geteilt werden können. Möchte dies der \emph{Bewohner} tun, so wird ein entsprechender Text erzeugt und die Möglichkeit geboten, diesen auf Facebook zu teilen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
