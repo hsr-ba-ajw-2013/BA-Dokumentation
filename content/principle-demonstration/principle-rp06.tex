@@ -1,13 +1,12 @@
 \section{RP6 Should-Formats}
 \label{sec:principle-rp6-should-formats}
-Wie es bereits im Name ROCA (Resource-oriented Client Architecture) steht, sollen Anwendungen Ressourcen-orientiert sein. Damit diese Ressourcen auch in anderen Anwendungen als in einem Browser verwendet werden können, muss das erzeugte HTML entweder maschinenlesbar sein oder es müssen alternative Formate (wie z.B. JSON und/oder XML) verfügbar gemacht werden.
+Wie es bereits im Name ROCA steht, sollen Anwendungen Ressourcen-orientiert sein. Damit diese Ressourcen auch in anderen Anwendungen als in einem Browser verwendet werden können, muss das erzeugte HTML entweder maschinenlesbar sein oder es müssen alternative Formate (wie z.B. JSON, XML usw.) verfügbar gemacht werden.
 
 \subsection*{Geplante Umsetzung}
-Im Kapitel \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} wird bereits darauf hingewiesen, dass eine RESTful API mit JSON als Datentyp verwendet werden soll.
-Als zusätzliches Format soll HTML gelten. Da es semantisch korrekt geschrieben werden soll, wie \nameref{sec:principle-rp11-posh} definiert, wirds es für eine Maschine lesbar.
+Im Abschnitt \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} wird darauf hingewiesen, dass eine REST API mit JSON als Datenformat verwendet werden soll.
 
 \subsection*{Konkrete Umsetzung}
-Das Kapitel \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} zeigt, dass eine API umgesetzt werden konnte.
+Das Abschnitt \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} zeigt, dass eine API umgesetzt werden konnte.
 Als Ausgabeformat wird JSON von der Schnittstelle geliefert. Dies wird garantiert, indem ein Objekt an die Express.js Response \cite{ExpressjsResSend} zurückgeliefert wird und Express.js automatisch JavaScript Objekte in JSON umwandelt.
 
 \begin{lstlisting}[language=JavaScript, caption=Community API getCommunityWithSlug \cite{roomiesCommunityApiExample}, label=lst:restApiCommunitySlug, firstnumber=333, escapeinside={@}{@}]
@@ -40,6 +39,6 @@ function getCommunityWithSlug(success, error, slug) {
 }
 \end{lstlisting}
 
-Der Quellcode \nameref{lst:restApiCommunitySlug} zeigt, wie das Community Objekt an den Success-Handler weitergegeben wird. Der Success-Handler ist von ``barefoot'' definiert und reicht den übergebenen Parameter an Express.js weiter, welcher daraus dann einen JSON String generiert.
+Der Quellcode \ref{lst:restApiCommunitySlug} zeigt, wie das Community Objekt an den Success-Handler weitergegeben wird. Der Success-Handler ist von ``barefoot'' definiert und reicht den übergebenen Parameter an Express.js weiter, welcher daraus dann einen JSON String generiert.
 
 \subsection*{Diskussion}
