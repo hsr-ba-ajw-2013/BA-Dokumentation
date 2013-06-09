@@ -1,15 +1,15 @@
-\chapter{Qualitätsmanagement}
+\section{Qualitätsmanagement}
 \label{sec:qualitymanagement}
 
-\section{Baselining}
+\subsection{Baselining}
 Beim erreichen der \nameref{sec:milestones} wird auf dem Quelltext- als auch Dokumentations-Git-Repository ein Tag mit dem entsprechenden Meilenstein-ID erstellt. Auf diese Weise bleibt der Projektverlauf klar verfolgbar und die abzugebenden Artefakte können dem Review des Betreuers resp. Gegenlesers unterzogen werden.
 
 Nach dem Erstellen einer Baseline informiert das Projektteam alle Beteiligten via E-Mail.
 
-\section{Testing}
+\subsection{Testing}
 Die Beispielapplikation wird nach der \gls{TDD}-Methodik entwickelt.
 
-\subsection{Unit Testing}
+\subsubsection*{Unit Testing}
 Mocha \cite{Mocha} wird als Framework für das Erstellen von Unit Tests verwendet. Es ermöglicht das einfache Entwickeln von asynchronen Unit Tests und bietet eine vielzahl verschiedener Testreports.
 
 Um die Unit Tests mit einer möglichst angenehmen Syntax verfassen zu können wird Chai.JS \cite{ChaiJS} eingesetzt. Chai bittet drei verschiedene Assert-Varianten an. Innerhalb dieses Projekts wird wenn möglich die ``Should''-Formulierung verwendet:
@@ -36,11 +36,11 @@ var chai = require('chai')
 	});
 \end{lstlisting}
 
-\subsection{Test Coverage Analysis}
+\subsubsection*{Test Coverage Analysis}
 Zur Überprüfung der Test Coverage wird JSCover \cite{JSCover} verwendet. Es ist komplett in den \gls{CI} Prozess integriert und ermöglicht das einfache Überprüfen der aktuellsten Metriken.
 
 
-\section{Continuous Integration}
+\subsection{Continuous Integration}
 \label{sec:continuousintegration}
 
 Mit Travis CI \cite{TravisCI} werden fortlaufende Builds der Beispielapplikation erstellt. Diese stellen deren Funktionalität entsprechend der vorhandenen Unit Tests sicher und führen die Test Coverage Analyse durch.
@@ -48,13 +48,13 @@ Weiter wird jeweils eine aktuelle Version der Quellcode-Dokumentation mittels Na
 
 Als Besonderheit wird auch diese Dokumentation fortlaufend mit Travis CI generiert. Dazu wird LaTeX Quelltext mittels TexLive in ein PDF umgewandelt und auf dem Internet zur Verfügung gestellt.
 
-\section{Coding Style Guideline}
+\subsection{Coding Style Guideline}
 Die Coding Style Guideline ist im Anhang \ref{sec:coding-guidelines} ``\nameref{sec:coding-guidelines}'' einsehbar.
 
 Zur Unterstützung während des Entwicklungsprozesses wird JSHint \cite{JSHint} zur statischen Überprüfung des Quellcodes verwendet. JSHint ist in den Continuous Integration Prozess integriert.
 
 
-\section{Code Reviews}
+\subsection{Code Reviews}
 Code Reviews sind während der Projektplanungsphase bereits fix in die fünf verschiedenen Construction-Iterationen eingeplant.
 
 Es werden jeweils gezielt Artefakte ausgewählt und überprüft. Dabei soll sowohl ein funktioneller Review stattfinden, als auch die Einhalteung der aufgestellten Code Guideline sichergestellt werden.
