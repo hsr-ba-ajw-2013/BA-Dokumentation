@@ -40,11 +40,11 @@ Beim puren \emph{JavaScript Client} liegt der Programmcode für das Rendern des 
 
 Sollen dynamische Informationen angezeigt werden, müssen diese über eine Serviceschnittstelle beim entsprechenden Anbieter angefragt werden (siehe bspw. Abschnitt \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}'').
 
-Die Verlagerung des User Interface Quelltexts direkt in den Browser hat den Vorteil, dass UI Element effizienter verändert und aktualisiert werden können. Möchten wir bspw. Informationen aus einem Webservice in einer Tabelle anzeigen lassen, können wir diese einmalig laden. Zur effektiven Anzeige muss keine weitere Anfrage an die Backendkomponente getätigt werden, um die bezogenen Informationen in HTML Markup umwandeln zu lassen. Der bereits im Browser verfügbare JavaScript Code übernimmt diese Aufgabe.
+Die Verlagerung des User Interface Quelltexts direkt in den Browser hat den Vorteil, dass UI Elemente effizienter verändert und aktualisiert werden können. Soll bspw. nur ein kleiner Teil der Benutzeroberfläche aktualisiert werden, kann die gezielt und ohne Umweg über einen erneuten Request an den Server geschehen.
 
 Durch diese Vereinfachung entfallen unnötige Wartezeiten zwischen Benutzereingabe und Systemreaktion. Dies resultiert wiederum in einer verbesserten User Experience.
 
-Es ist bereits zu erahnen, dass diese Art von Webapplikation ohne JavaScript-Unterstützung im Browser des Endbenutzers nicht ausgeführt werden kann. Ein Beispiel hierfür liefert der \emph{Google Drive} \cite{GoogleDrive} Webclient. Wie in Abbildung \ref{fig:googleDriveNoJs} ersichtlich verweigert dieser ohne aktiviertes JavaScript die Funktion und zeigt ein leeres Standardlayout mit einer entsprechenden Meldung an.
+Es ist bereits zu erahnen, dass diese Art von Webapplikation ohne JavaScript-Unterstützung im Browser nicht ausgeführt werden kann. Ein Beispiel hierfür liefert der \emph{Google Drive} \cite{GoogleDrive} Webclient. Wie in Abbildung \ref{fig:googleDriveNoJs} ersichtlich verweigert dieser ohne aktiviertes JavaScript die Funktion und zeigt ein leeres Standardlayout mit einer entsprechenden Meldung an.
 
 \begin{figure}[H]
 	\centering
@@ -53,11 +53,11 @@ Es ist bereits zu erahnen, dass diese Art von Webapplikation ohne JavaScript-Unt
 	\label{fig:googleDriveNoJs}
 \end{figure}
 
-Die Richtlinie \emph{RP14 Unobtrusive JavaScript} aus dem ROCA Manifest verlangt, dass eine Webapplikation auch bei deaktiviertem JavaScript weiter funktionstüchtig bleibt. Konkret wünscht \emph{RP14} also eine Mischform aus den vorgestellten Applikationstypen.
+Die Richtlinie \emph{RP14 Unobtrusive JavaScript} aus dem ROCA Manifest verlangt, dass eine Webapplikation auch bei deaktiviertem JavaScript weiter funktionstüchtig bleibt. Soll JavaScript für ein modernes User Interface verwendet werden, muss gem. \emph{RP14} also eine Mischform aus den vorgestellten Applikationstypen verwendet werden.
 \newline\newline
 Bezieht man \emph{Unobtrusive Javascript} neben dem ``Wie und Wo'' User Interfaces gerendert werden auf die Thematik \emph{Codequalität}, gehört ein weiterer Aspekt zu diesem Bereich: Die Vermischung von HTML Markup und JavaScript Code soll unterbunden werden. Hierzu zeigt der Quelltext \ref{lst:badHtmlMarkupWithJavaScript} ein Beispiel, wie es unter keinen Umständen umgesetzt werden sollte.
 
-\begin{lstlisting}[language=HTML, caption={Beispiel Vermischung von HTML Markup und JavaScript}, label={lst:badHtmlMarkupWithJavaScript}]
+\begin{lstlisting}[language=HTML, caption={Beispiel einer Vermischung von HTML Markup und JavaScript}, label={lst:badHtmlMarkupWithJavaScript}]
 <a href="adresses.html" onClick="$('#progressIndicator').removeClass('hidden');showAddresses();return false;">
 	Display Addresses
 </a>
@@ -65,7 +65,7 @@ Bezieht man \emph{Unobtrusive Javascript} neben dem ``Wie und Wo'' User Interfac
 
 In den Quelltexten \ref{lst:goodHtmlMarkupWithoutJS} und \ref{lst:goodJSOutsideHtmlMarkup} ist ersichtlich, wie eine Separierung von JavaScript Logik und HTML Markup optimal implementiert wird.
 
-\begin{lstlisting}[language=HTML, caption={Beispiel sauberes HTML Markup ohne JavaScript}, label={lst:goodHtmlMarkupWithoutJS}]
+\begin{lstlisting}[language=HTML, caption={Beispiel eines sauberen HTML Markups ohne JavaScript}, label={lst:goodHtmlMarkupWithoutJS}]
 <a href="adresses.html" id="showAddresses">Display Addresses</a>
 \end{lstlisting}
 
@@ -121,7 +121,7 @@ Um diesem Umstand gegensteuern zu können teilte sich das Projektteam nach der e
 
 Aus diesem Prozess entstand das eigenständige Framework \emph{barefoot} \cite{Barefoot}. Es setzt auf der verbreiteten Bibliothek \emph{Backbone.js} \cite{Backbonejs} auf und ermöglicht die Verwendung einer einzigen, einheitlichen Codebasis für JavaScript-basierte Webapplikationen (siehe dazu auch Kapitel ``\nameref{sec:sad}'' Abschnitt \ref{sec:sad-implementation}).
 
-Mit der Integration des neuartigen Frameworks kann erstmals komplett auf doppelte Codefragmente verzichtet werden. Gleichzeitig profitiert der Endbenutzer von kurzen Lade- und Reaktionszeiten im User Interface. Sollte auf einem Client kein JavaScript verfügbar sein, greift automatisch das klassische servergestützte Rendering und alle Funktionalitäten bleiben zugänglich.
+Mit der Integration des neuartigen Frameworks kann erstmals komplett auf doppelte Codefragmente verzichtet werden. Gleichzeitig profitiert der Endbenutzer von kurzen Lade- und Reaktionszeiten im User Interface. Sollte auf dem Client kein JavaScript verfügbar sein, greift automatisch das klassische servergestützte Rendering und alle Funktionalitäten bleiben zugänglich.
 
 
 \subsection*{Diskussion}
