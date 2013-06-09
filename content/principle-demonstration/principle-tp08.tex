@@ -21,7 +21,7 @@ Die Tabelle \ref{fig:automated-tasks-planned} zeigt eine Auflistung der zu autom
 \tablebody
 	\textit{TP8.1} & Starten der Beispielapplikation\tabularnewline
 	\textit{TP8.2} & Ausführung der Unit Tests\tabularnewline
-	\textit{TP8.3} & Qualitative Überprüfung des Quellcodes (Code Style Guidelines)\tabularnewline
+	\textit{TP8.3} & Formale Überprüfung des Quellcodes\tabularnewline
 	\textit{TP8.4} & Umwandlung von SASS zu CSS Stylesheets\tabularnewline
 	\textit{TP8.5} & Erstellung von Quellcode Dokumentation\tabularnewline
 \tableend
@@ -32,7 +32,7 @@ Die Tabelle \ref{fig:automated-tasks-planned} zeigt eine Auflistung der zu autom
 
 
 \subsection*{Konkrete Umsetzung}
-Neben den oben erwähten Aufgaben wurde in der konkreten Implementation des Projektes weitere Tasks erfolreich automatisiert:
+Neben den oben erwähten Aufgaben wurden in der konkreten Implementation des Projektes weitere Tasks erfolreich automatisiert:
 
 \begin{table}[H]
 \tablestyle
@@ -50,10 +50,9 @@ Neben den oben erwähten Aufgaben wurde in der konkreten Implementation des Proj
 	\textit{TP8.4} & Umwandlung von SASS zu CSS Stylesheets & \emph{make precompile-sass}\tabularnewline
 	\textit{TP8.5} & Erstellung von Quellcode Dokumentation & \emph{make docs}\tabularnewline
 	\textit{TP8.6} & Vorbereitung von View Templates & \emph{make precompile-templates}\tabularnewline
-	\textit{TP8.7} & Veröffentlichung von Dokumentation (dieses Dokument, aber auch Quellcode Dokumentation), Testergebnisse und Test Code Coverage Berichten & Travis CI\tabularnewline
+	\textit{TP8.7} & Veröffentlichung von Dokumentation (dieses Dokument, aber auch Quellcode Dokumentation), Testergebnissen und Test Code Coverage Reports & Travis CI\tabularnewline
 	\textit{TP8.8} & Umwandlung des LaTeX Quellcodes zur finalen PDF Dokumentation (Dokumentations Repository) & \emph{make}\tabularnewline
-	\textit{TP8.9} & Erstellen und veröffentlichen von Test Coverage Reports & \emph{make test-coveralls}\tabularnewline
-	\textit{TP8.10} & Installation der Beispielapplikation & \emph{./install.sh}\tabularnewline
+	\textit{TP8.9} & Installation der Beispielapplikation & \emph{./install.sh}\tabularnewline
 \tableend
 \end{tabularx}
 \caption{Automatisierte Aufgaben (umgesetzt)}
@@ -62,7 +61,7 @@ Neben den oben erwähten Aufgaben wurde in der konkreten Implementation des Proj
 
 Als Kernkomponente für die Automatisierung der Aufgaben in Tabelle \ref{fig:automated-tasks-concrete} wird ein \emph{Makefile} (\cite{RoomiesMakefile} und \cite{ThesisMakefile}) verwendet. Dieses wird von \emph{GNU Make} \cite{make} interpretiert und ermöglicht so das Ausführen von verschiedensten Operationen.
 
-Der Quelltext \ref{lst:makefileDocs} zeigt exemplarisch die Befehlsdefinition für das Ausführen der Unit Tests.
+Der Quelltext \ref{lst:makefileDocs} zeigt exemplarisch die Befehlsdefinition für die Erstellung der Quellcode Dokumentation mittels \emph{Natural Docs} \cite{NaturalDocs}.
 
 \begin{lstlisting}[language=Bash, firstnumber=99, caption={Ausschnitt Makefile: Code Dokumentation erstellen} \cite{RoomiesMakefile}, label=lst:makefileDocs]
 docs:
@@ -75,7 +74,7 @@ Durch den einfache Kommandozeilenbefehl \emph{make docs} wird der in \ref{lst:ma
 
 \subsection*{Continuous Integration}
 
-Die in Tabelle \ref{fig:automated-tasks-concrete} vorgestellten Aufgaben \emph{TP8.2} bis \emph{8.9} werden sowohl lokal auf dem Entwicklerrechner als auch auf dem Continuous Integration System ausgeführt.
+Die in Tabelle \ref{fig:automated-tasks-concrete} vorgestellten Aufgaben \emph{TP8.2} bis \emph{8.8} werden sowohl lokal auf dem Entwicklerrechner als auch auf dem Continuous Integration System ausgeführt.
 
 Entsprechend der Definition im Kaptiel \ref{sec:qualitymanagement} ``\nameref{sec:qualitymanagement}'' wird hierzu die Open Source Plattform Travis CI \cite{TravisCI} verwendet. Der Quelltext \ref{lst:roomiesTravisYML} zeigt einen Ausschnitt der Datei \emph{.travis.yml} \cite{RoomiesTravisYML}. Diese steuert den Build auf Travis CI.
 
@@ -94,7 +93,7 @@ script: "make docs test-coveralls lint"
 \end{lstlisting}
 
 \subsection*{Diskussion}
-Muss eine Aufgabe zweimal ausgeführt, sollte dies bereits als Rechtfertigung zur Automatisierung dieser bereits genügen. Dies trifft umso mehr zu, wenn mehrere Entwickler am Entwicklungsprozess beteiligt sind.
+Muss eine Aufgabe zweimal ausgeführt, sollte dies als Rechtfertigung zur Automatisierung dieser bereits genügen. Dies trifft umso mehr zu, wenn mehrere Entwickler am Entwicklungsprozess beteiligt sind.
 
 Die Praxis zeigt dass die Unterstützung von Projektmitarbeitern durch Automatisierung von Routineaufgaben eine hohe Zeitersparnis und Effektivitätssteigerung mit sich bringt. Wird die Ausführung der Unit Tests erleichtert, lässt sich zudem die Akzeptanz eines Test Driven Development Prozesses erhöhen.
 
