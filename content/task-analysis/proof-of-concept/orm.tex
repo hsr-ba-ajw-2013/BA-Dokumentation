@@ -1,6 +1,5 @@
 \subsubsection{\gls{ORM}}
-Im Gegensatz zu den anderen evaluierten Frameworks ist bei Express.js kein ORM enthalten. Deswegen musste auch bzgl. des ORMs eine kurze Evaluation gemacht werden.
-Tabelle \ref{tab:bewertungskriterienORM} zeigt die Kriterien und Gewichtung für die Evaluation des ORMs.
+Im Gegensatz zu den anderen evaluierten Frameworks ist in Express.js kein ORM enthalten. Aus diesem Grund wurde in einer weiteren Evaluation drei ORMs anhand der Kriterien in Tabelle \ref{tab:bewertungskriterienORM} bewertet.
 
 \begin{table}[H]
 \tablestyle
@@ -13,24 +12,24 @@ Tabelle \ref{tab:bewertungskriterienORM} zeigt die Kriterien und Gewichtung für
 	\tablehead Gewichtung \tabularnewline
 \tablebody
 \textit{OK1} &
-	Unterstützung DBs &
-	Wieviele unterschiedliche Datenbanken unterstützt das ORM? Werden auch \gls{NoSQL}-Datenbanken unterstützt? \emph{Hohe Bewertung = Grosse Anzahl an Datenbanken}&
+	Unterstützte DBs &
+	Wieviele unterschiedliche Datenbanken unterstützt das ORM? Werden auch \gls{NoSQL}-Datenbanken unterstützt? \newline \emph{Hohe Bewertung = Grosse Anzahl an Datenbanken}&
 	\faStar \tabularnewline
 \textit{OK2} &
 	Relationen &
-	Sind Relationen definierbar zwischen Tabellen? Verwenden diese die Datenbank-spezifischen Foreign Keys dafür (falls möglich)? \emph{Hohe Bewertung = Relationen möglich und verwendet Datenbank-spezifische Datentypen}&
+	Sind Relationen zwischen Tabellen definierbar? Verwenden diese die datenbankspezifischen Foreign Keys dafür (falls möglich)? \newline \emph{Hohe Bewertung = Relationen möglich und verwendet Datenbank-spezifische Datentypen}&
 	\faStar\faStar\faStar \tabularnewline
 \textit{OK3} &
 	Produktreife &
-	Wie gut hat sich das ORM bis jetzt in der Realität beweisen können? Wie lange existiert es schon? Gibt es eine aktive Community und wird es aktiv weiterentwickelt? \emph{Hohe Bewertung = Hohe Produktreife}&
+	Wie gut hat sich das ORM bis jetzt in der Realität beweisen können? Wie lange existiert es schon? Gibt es eine aktive Community und wird es aktiv weiterentwickelt? \newline \emph{Hohe Bewertung = Hohe Produktreife}&
 	\faStar\faStar\faStar\tabularnewline
 \textit{OK4} &
 	``Ease of use'' &
-	Wie angenehm ist das initiale Erstellen, die Konfiguration und die Unterhaltung von Models? Führt das ORM irgendwelchen ``syntactic sugar'' \cite{syntacticsugar} ein um die Arbeit zu erleichtern? \emph{Hohe Bewertung = Hoher ``Ease of use''-Faktor} &
+	Wie angenehm ist das initiale Erstellen, die Konfiguration und die Unterhaltung von Models? Führt das ORM irgendwelchen ``syntactic sugar'' \cite{syntacticsugar} ein um die Arbeit zu erleichtern? \newline \emph{Hohe Bewertung = Hoher ``Ease of use''-Faktor} &
 	\faStar \tabularnewline
 \textit{OK5} &
 	Testbarkeit &
-	Wie gut können die mit dem Framework oder der Technologie erstellte Komponenten durch Unit Tests getestet werden? \emph{Hohe Bewertung = Hohe Testbarkeit} &
+	Wie gut können die mit dem Framework oder der Technologie erstellte Komponenten durch Unit Tests getestet werden? \newline \emph{Hohe Bewertung = Hohe Testbarkeit} &
 	\faStar\faStar \tabularnewline
 \tableend
 \end{tabularx}
@@ -112,4 +111,4 @@ Tabelle \ref{tab:bewertungskriterienORM} zeigt die Kriterien und Gewichtung für
 
 Alle verglichenen ORMs haben eine ähnliche Gesamtbewertung. Bei ``Sequelize'' stechen jedoch die Produktreife und die Unterstützung für Relationen heraus.
 
-Diese zwei Gründe zusammen mit der Roadmap \cite{RoadmapSequelize} von Sequelize haben schliesslich zur Überzeugung geführt, dass Sequelize die richtige Wahl ist.
+Diese zwei Gründe zusammen mit der aktuellen Roadmap \cite{RoadmapSequelize} haben schliesslich zur Überzeugung geführt, dass Sequelize die richtige Wahl ist.

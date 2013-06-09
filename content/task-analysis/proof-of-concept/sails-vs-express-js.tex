@@ -1,11 +1,11 @@
 \subsection{Prototyp mit Sails.js}
 Um sich ein Bild von Sails.js zu machen wurde ein einfacher Prototyp \cite{SailsPrototyp} erstellt.
 
-Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstellen, andererseits auch um verschiedene Komponenten wie Model oder Controller zu erstellen. Wie im \nameref{sec:erdiagramm} beschrieben, werden u.a. ein Task und ein Resident Model (sowie entsprechende Tabelle) benötigt.
+Sails.js verwendet \gls{Scaffolding} um einerseits ein neues Projekt zu erstellen, andererseits  um verschiedene Komponenten wie Models oder Controllers zu erstellen. Wie im \nameref{sec:erdiagramm} (siehe Kapitel \ref{sec:sad}, Abschnitt \ref{sec:erdiagramm}) beschrieben, werden u.a. ein Task und ein Resident Model (sowie entsprechende Tabellen) benötigt.
 
-Um das \gls{ORM} ``Waterline'' \cite{Waterline} zu testen, wurden diese beiden Models implementiert. Das Task-Model mittels Sails.js definiert sieht so aus:
+Um das \gls{ORM} ``Waterline'' \cite{Waterline} zu testen, wurden diese beiden Models implementiert. Das Task-Model sieht so aus wie im Quelltext \ref{lst:sailsTaskModel} gezeigt.
 
-\begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js]
+\begin{lstlisting}[language=JavaScript, caption=Task Model in Sails.js, label=lst:sailsTaskModel]
 var Task = {
 	attributes: {
 		name: "string"
@@ -18,19 +18,19 @@ var Task = {
 module.exports = Task;
 \end{lstlisting}
 
-Mit einer Definition eines Models wird automatisch eine \gls{REST}-API für dieses erstellt.
+Mit der Definition eines Models wird automatisch eine \gls{REST}-API für dieses erstellt.
 
-Damit lassen sich einerseits CRUD-Operationen direkt über HTTP ausführen, andererseits existiert auch die Möglichkeit Socket.IO \cite{SocketIO} zu aktivieren, um Models direkt von einem offenen \gls{Websocket} zu verwenden.
+Damit lassen sich einerseits CRUD-Operationen direkt über HTTP ausführen, andererseits existiert auch die Möglichkeit, Models direkt über einen offenen \gls{Websocket} zu verwenden.
 
 Dieses Feature macht Sails.js sehr nützlich für \gls{Realtime}-Applikationen.
 
 Um eine effektive HTML-Seite darstellen zu können wird ein Controller sowie eine View benötigt. Dies wurde im Prototyp für Aufgaben (Tasks) implementiert.
 
 \newpage
-\begin{lstlisting}[language=JavaScript, caption=Task Controller in Sails.js, label=lst:sailsjstaskcontroller]
+\begin{lstlisting}[language=JavaScript, caption=Task Controller in Sails.js, label=lst:sailsjstaskcontroller, escapeinside={@}{@}]
 function findTaskAndUser(id, next) {
 	Task.find(id).done(function(err, task) {
-		User.find(task.userId).done(function(err, user) {
+		@\label{lst:sailsjstaskcontroller_userfind}@User.find(task.userId).done(function(err, user) {
 			next(task, user);
 		});
 	});
@@ -49,7 +49,7 @@ function renderResponse(req, res, response) {
 
 var TaskController = {
 	get: function(req, res) {
-		var id = req.param('id');
+		@\label{lst:sailsjstaskcontroller_idparam}@var id = req.param('id');
 		findTaskAndUser(id, function(task, user) {
 			var response = {
 				'task': task,
@@ -63,11 +63,11 @@ var TaskController = {
 module.exports = TaskController;
 \end{lstlisting}
 
-In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Linie 52) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. Statt dass man auf dem ``task''-Objekt direkt ``.user'' aufrufen könnte, muss man den Umweg über ``User.find()'' gehen.
+In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Linie \ref{lst:sailsjstaskcontroller_idparam}) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. In anderem ORMs könnte man auf dem ``task''-Objekt direkt ``.user'' aufrufen. Dies geht bei Waterline nicht und man muss den Umweg über ``User.find()'' (Zeile \ref{lst:sailsjstaskcontroller_userfind}) gehen.
 
 Bei einem ausgereiften ORM würden solche Methoden wegen der Definition von Relationen direkt zur Verfügung stehen.
 
-Der Controller verwendet das folgende Template, um das HTML zu rendern:
+Der Controller verwendet das folgende Template, um HTML-Markup zu rendern:
 
 \begin{lstlisting}[language=HTML, caption=Task Template]
 <div id="task-display">
@@ -95,12 +95,12 @@ Der Controller verwendet das folgende Template, um das HTML zu rendern:
 </script>
 \end{lstlisting}
 
-Mit dem einfachen Script am Schluss des Task Templates wird aufgezeigt, wie man ohne Neuladen der Seite direkt HTML ersetzen kann. Dies ist grundsätzlich Framework-unabhängig und es wurde dabei auch nicht auf ``RP14'' (Unobtrusive JavaScript) Wert gelegt.
+Mit dem einfachen Skript am Ende des Task Templates wird aufgezeigt, wie man ohne Neuladen der Seite direkt das DOM ersetzen kann. Dies ist aber Framework-unabhängig.
 
 \subsubsection*{Schlussfolgerung}
 
-Wie bereits vorher angemerkt, ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models \cite{SailsjsModelAssociations} noch das setzen von Indizes ist möglich.
+Wie bereits angemerkt, ist das ORM von Sails.js nicht ausgereift. Weder Assoziationen zwischen Models \cite{SailsjsModelAssociations} noch das setzen von Indizes ist möglich.
 
-Für das Resident-Model ist es u.a. auch nötig, Facebook IDs zu speichern. Diese sind 64 Bit gross und wegen mangelhafter Unterstützung des ORMs wäre das gar nicht möglich.
+Für das Resident-Model ist es u.A. auch nötig, Facebook IDs zu speichern. Diese sind 64 Bit gross und wegen mangelhafter Unterstützung des ORMs wäre das gar nicht möglich.
 
-Nebst dem ORM ist auch das Framework und die zugehörige Dokumentation wenig umfangreich. Auch die Community war zum Zeitpunkt der Evaluation (siehe Anhang \ref{sec:appendix-technology-evaluation} zur \nameref{sec:appendix-technology-evaluation}) sehr klein. Die Fakten deuten sehr darauf hin, Sails.js nicht für die konkrete Beispielapplokation zu verwenden. Aus diesem Grund soll ein zweiter Prototyp unter Verwendung von Express.js erstellt werden.
+Nebst dem ORM ist auch das Framework und die zugehörige Dokumentation wenig umfangreich. Die Community war zum Zeitpunkt der Evaluation (siehe Anhang \ref{sec:appendix-technology-evaluation} zur \nameref{sec:appendix-technology-evaluation}) sehr klein. Die Fakten deuten darauf hin, Sails.js nicht für die konkrete Beispielapplokation zu verwenden. Aus diesem Grund wurde entschieden, ein zweiter Prototyp unter Verwendung von Express.js zu erstellen.

@@ -2,7 +2,7 @@
 
 \section{Use Cases}
 
-Das folgende Use Case Diagramm zeigt eine Übersicht der zu implementierenden
+Das Diagramm \ref{fig:usecasediagram} zeigt eine Übersicht der zu implementierenden
 Use Cases und deren Akteure.
 
 Darauffolgend werden die Use Cases einzeln beschrieben.
@@ -61,9 +61,8 @@ Darauffolgend werden die Use Cases einzeln beschrieben.
 	}
 
 	\caption{Use Case Diagramm}
+	\label{fig:usecasediagram}
 \end{figure}
-
-Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits durch einen automatischen, sich wiederholenden Auftrag (\gls{Cronjob}) ausgeführt, andererseits durch ein Ereignisbasiertes vorgehen. Aus diesem Grund ist jener Anforderung keinem Use-Case zugeordnet.
 
 \subsection{Akteure}
 \begin{table}[H]
@@ -79,14 +78,14 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			Dieser besitzt die Rechte Aufgaben seiner WG zu verwalten.
 			\tabularnewline
 			WG-Administrator &
-			Der WG-Administrator ist eine Erweiterung des Aktors Bewohner. Der Ersteller einer WG wird automatisch zu deren Administrator. Diese Rolle kann an Bewohner weitergegeben werden (siehe \nameref{subsec:uc4} und \nameref{subsec:uc10}).
+			Der WG-Administrator ist eine Erweiterung des Akteurs Bewohner. Der Ersteller einer WG wird automatisch zu deren Administrator. Diese Rolle kann an Bewohner weitergegeben werden (siehe \nameref{subsec:uc4} und \nameref{subsec:uc10}).
 			\tabularnewline
 			Facebook &
-			Facebook ist die Schnittstelle zur Social Media Plattform. Diese ermöglicht dem System auf die Daten des Bewohners, die auf Facebook verfügbar sind, zuzugreifen. So einen einfachen Login anzubieten und Daten zu teilen.
+			Facebook ist die Schnittstelle zur Social Media Plattform. Dies ermöglicht ein vereinfachtes Login sowie das Teilen von Daten und Links.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
-	\caption{Aktoren}
+	\caption{Akteure}
 \end{table}
 
 % Use Case 1
@@ -109,7 +108,7 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			Facebook
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner startet Roomies. Hier zeigt ihm das System das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die WG-Startseite weitergeleitet.
+			Der Bewohner startet Roomies. Das System zeigt das Anmeldeformular. Der Benutzer meldet sich mittels seines Facebook-Logins an. Das System überprüft die Daten. Sind sie gültig wird der Benutzer auf die WG-Startseite weitergeleitet.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -134,7 +133,7 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch zu Keiner angehört. Hierfür wählt der Bewohner die Option ``WG erstellen''. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet den Bewohner auf die Aufgabenseite der WG weiter. Die Rolle WG-Administrator wird dem Bewohner automatisch zugeteilt.
+			Ein Bewohner hat die Möglichkeit eine WG zu erstellen, falls er noch keiner angehört. Hierfür wählt der Bewohner die Option ``WG erstellen''. Das System leitet ihn auf das entsprechende Formular und fordert den Bewohner die WG-Daten einzugeben. Nachdem der Bewohner diese eingegeben hat, überprüft das System die Gültigkeit der Daten und leitet den Bewohner auf die Aufgabenseite der WG weiter. Die Rolle WG-Administrator wird dem Bewohner automatisch zugeteilt.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -184,7 +183,7 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System aufgefordert dies zu Bestätigen. Nach der Bestätigung setzt das System den Bewohner als inaktiv und leitet den ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
+			Wählt ein Bewohner die Option ``WG verlassen'', wird er vom System aufgefordert dies zu Bestätigen. Nach der Bestätigung setzt das System den Bewohner auf inaktiv und leitet den ``Ex''-Bewohner auf eine ``Aufwiedersehen-Seite'' weiter. \newline
 			Hat der Bewohner als einziger die Rolle ``WG-Administrator'', so muss er vor dem inaktiv Setzen seine Rolle an einen anderen Bewohner übetragen.
 			\tabularnewline
 		\tableend
@@ -235,7 +234,7 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			Der Bewohner wählt die Aufgabe welche bearbeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' erstellen wird ein Formular mit den bereits vorhandenen Daten der Aufgabe dargestellt. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann den Bewohner auf die Aufgabenliste weiter.
+			Der Bewohner wählt die Aufgabe welche bearbeitet werden soll. Parallel zum ``\nameref{subsec:uc5}'' wird ein Formular mit den bereits vorhandenen Daten der Aufgabe dargestellt. Der Bewohner ändert die Daten. Das System überprüft diese und leitet dann den Bewohner auf die Aufgabenliste weiter.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -260,8 +259,8 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			Bewohner
 			\tabularnewline
 			\textit{Story} &
-			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt setzen. Hierfür wählt er für die entsprechende Aufgabe die Option ``erledigt''. Das System setzt für den Bewohner die Eigenschaft ``Erledigt durch''.
-			\newline Infolge dieses Use Case kann ``\nameref{subsec:uc11}'' angewendet werden.
+			In der Aufgabenliste kann ein Bewohner eine Aufgabe als erledigt markieren.
+			\newline Als Folge davon kann ``\nameref{subsec:uc11}'' ausgeführt werden.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -312,7 +311,7 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Der WG-Administrator hat die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt, dies zu bestätigen. Danach setzt das System alle Bewohner der WG inaktiv und die WG selbst als inaktiv. Der WG-Administrator wird auf die WG-Erstellen Seite weitergeleitet.
+			Der WG-Administrator hat die Möglichkeit eine WG aufzulösen. Wird diese Option gewählt, so wird vom WG-Administrator verlangt, dies zu bestätigen. Danach setzt das System alle Bewohner der WG sowie die WG selbst als inaktiv. Der WG-Administrator wird auf die WG-Erstellen Seite weitergeleitet.
 			\tabularnewline
 		\tableend
 	\end{tabularx}
@@ -337,7 +336,7 @@ Die Anforderung F8 (siehe \ref{sec:funktionale-anforderungen}) wird einerseits d
 			WG-Administrator
 			\tabularnewline
 			\textit{Story} &
-			Der WG-Administrator besitzt das Recht die Bewohner der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall eins besteht darin, einem Bewohner WG-Administratorrechte zu vergeben. Fall zwei ist die Möglichkeit einen Bewohner aus der WG auszuschliessen.
+			Der WG-Administrator besitzt das Recht die Bewohner der WG zu verwalten. Unter Verwalten sind zwei verschiedene Fälle zu unterscheiden. Fall Eins besteht darin, einem Bewohner WG-Administratorrechte zu vergeben. Fall Zwei ist die Möglichkeit einen Bewohner aus der WG auszuschliessen.
 			\tabularnewline
 		\tableend
 	\end{tabularx}

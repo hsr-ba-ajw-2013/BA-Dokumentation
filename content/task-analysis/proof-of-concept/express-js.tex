@@ -1,10 +1,12 @@
 \subsection{Prototyp mit Express.js}
 
-Express.js \cite{Expressjs} ist ein leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect}, leicht erweitert werden kann.
+Express.js \cite{Expressjs} ist ein leichtgewichtiges Framework, welches mittels Connect-Middlewares \cite{connect} erweitert werden kann.
 
-Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein Prototyp \cite{ExpressjsPrototyp} erstellt.  Dieser Prototyp wurde dann später für die eigentliche Applikation weiterverwendet.
+Damit die Eignung von Express.js überprüft werden kann, wurde ebenfalls ein Prototyp \cite{ExpressjsPrototyp} erstellt.
 
-Der initiale Startpunkt einer Express.js Applikation ist die Datei ``app.js'' \cite{ExpressjsPrototypAppjs}. Dort werden alle benutzten Middlewares registriert, die Datenbank aufgesetzt und Controller registriert.
+Der initiale Startpunkt des Express.js Prototyps ist die Datei ``app.js'' \cite{ExpressjsPrototypAppjs}. Dort werden alle benutzten Middlewares registriert, die Datenbank aufgesetzt und Controller registriert.
+
+Ein Beispielhafter Controller ist im Quelltext \ref{lst:controllerInExpressjs} zu sehen.
 
 \begin{lstlisting}[language=JavaScript, caption=Beispiel eines Controllers in Express.js, label=lst:controllerInExpressjs]
 exports.index = function(req, res){
@@ -31,6 +33,6 @@ Ein zugehöriges Template kann folgendermassen aussehen:
 </html>
 \end{lstlisting}
 
-In den vorangegangenen zwei Quellcode-Listings \ref{lst:controllerInExpressjs} und \ref{lst:templateInExpressjs} ist ersichtlich, dass der Applikations-Entwickler sehr grosse Kontrolle über Express.js hat.
+In den vorangegangenen zwei Quellcode-Listings \ref{lst:controllerInExpressjs} und \ref{lst:templateInExpressjs} ist ersichtlich, dass der Applikationsentwickler sehr grosse Kontrolle über Express.js hat.
 
-Automatisch passiert in Express.js eigentlich nichts. Dies ist ein grosser Vorteil im Bezug auf die Veranschaulichung der \nameref{sec:architekturrichtlinien}.
+Die Flexiblilität von Express.js bietet sowohl Vor- als auch Nachteile für die erstellung von Webapplikationen. Im Bezug auf die Veranschaulichung der \nameref{sec:architekturrichtlinien} ist es jedoch ein grosser Vorteil, da wenig Logik fix in Express.js eingebaut ist.
