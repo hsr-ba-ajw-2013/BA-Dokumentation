@@ -4,18 +4,19 @@
 			\begin{tikzpicture}
 				\begin{umlseqdiag}
 					\umlactor[class=Browser]{client}
+					\umlobject[class=View]{current}
 					\umlobject[class=Router]{router}
-					\umlobject[class=View]{view}
+					\umlobject[class=View]{next}
 					\umlobject[class=Model]{model}
 					\umlobject[class=Backbone]{backbone}
 					\umlobject[class=ApiAdapter]{apiAdapter}
 
-					\begin{umlcall}[op=Click Menu Item, with return]{client}{view}
-						\begin{umlcall}[op=navigate(), with return]{view}{router}
+					\begin{umlcall}[op=Click Menu Item, with return]{client}{current}
+						\begin{umlcall}[op=navigate(), with return]{current}{router}
 							\begin{umlcallself}[op=render()]{router}
 								\begin{umlcallself}[op=renderView()]{router}
-									\begin{umlcall}[op=beforeRender(), with return]{router}{view}
-										\begin{umlcall}[op={fetch()}, return=success()]{view}{model}
+									\begin{umlcall}[op=beforeRender(), with return]{router}{next}
+										\begin{umlcall}[op={fetch()}, return=success()]{next}{model}
 											\begin{umlcall}[op={sync()}, return=success()]{model}{backbone}
 												\begin{umlcall}[op={HTTP REST Request}, return=HTTP Response]{backbone}{apiAdapter}
 												\end{umlcall}
@@ -23,10 +24,10 @@
 										\end{umlcall}
 									\end{umlcall}
 
-									\begin{umlcall}[op=renderView(), return=HTML]{router}{view}
+									\begin{umlcall}[op=renderView(), return=HTML]{router}{next}
 									\end{umlcall}
 
-									\begin{umlcall}[op=afterRender(), with return]{router}{view}
+									\begin{umlcall}[op=afterRender(), with return]{router}{next}
 									\end{umlcall}
 								\end{umlcallself}
 
