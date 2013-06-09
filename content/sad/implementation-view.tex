@@ -30,14 +30,21 @@ Hinter dem Element \emph{Controllers} stehen neben dem eigentlichen API-Controll
 
 
 \subsection{Quellcode Organisation}
-\gls{nodejs} Applikationen werden üblicherweise soweit wie möglich in eigenständige und wiederverwendbare Komponenten (siehe \cite{TJH_ComponentStructure} und \cite{IZS_ComponentStructure}) aufgeteilt.
+Für Applikationen mit Node.JS ist üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich eigenständige Komponenten zu unterteilen.
 
 Ein gutes Beispiel hierfür ist die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekappselt werden.
 
-Die Beispielapplikation ``Roomies'' verwendet selber mehrere Komponenten aus NPM \cite{NPM} und ist selber in Komponenten unterteilt. Dies veranschaulicht die Ordnerstruktur in Abbildung \ref{fig:roomiesFolderStructure}.
+Die Beispielapplikation \emph{Roomies} verwendet mehrere Komponenten aus NPM (siehe Quelltext \ref{lst:roomiesPackageJson}) und ist dabei selbst in Komponenten unterteilt. Die Ordnerstruktur in Abbildung \ref{fig:roomiesFolderStructure} veranschaulicht dieses Prinzip.
 
-\newpage
-\subsubsection*{Ordnerstruktur}
+\begin{lstlisting}[language=JavaScript, firstnumber=9, caption={Auszug der verwendeten NPM Komponenten \cite{RoomiesPackageJson}}, label={lst:roomiesPackageJson}, float=ht!]
+, "dependencies": {
+	"debug": "~0.7.2"
+	, "express": "~3.1.0"
+	, "sqlite3": "~2.1.7"
+	, "pg": "~0.15.1"
+	, "sequelize": "git://github.com/mweibel/sequelize.git#mekanics-mweibel-fix"
+	, "node-barefoot": "~0.0.11"
+\end{lstlisting}
 
 \begin{figure}[H]
 	\centering
@@ -46,7 +53,7 @@ Die Beispielapplikation ``Roomies'' verwendet selber mehrere Komponenten aus NPM
 	\label{fig:roomiesFolderStructure}
 \end{figure}
 
-Jede Komponente mit JavaScript-Code kann mittels einem ``require()''-Befehl eingebunden werden. Zu diesem Zweck wird jeweils nur der Ordnername angegeben. Damit wird automatisch die enthaltene index.js-Datei geladen.
+Jede Komponente mit JavaScript-Code kann mittels einem \emph{require()}-Befehl eingebunden werden womit automatisch die enthaltene \emph{index.js}-Datei geladen wird.
 
 
 \begin{lstlisting}[language=JavaScript, caption=Einbindung der Community-Komponente, float=ht!]
@@ -61,11 +68,11 @@ Im folgenden werden die beiden wichtigsten Dateien für das Starten der Applikat
 Die ``barefoot''-Factory \cite{barefootFactoryjs} ist verantwortlich für das Setup der Server-Seite der Applikation.
 Unter anderem werden folgende wichtige Aufgaben ausgeführt:
 \begin{itemize}
-	\item{Definition der JavaScript Dateien, die am Client geschickt werden sollen}
-	\item{Einrichtung der API-Adapter}
-	\item{Laden der Express.js \cite{Expressjs} Middleware}
-	\item{Starten des Express.js \cite{Expressjs} HTTP Servers}
-	\item{Einrichten des Server Request Contexts (u.a. das Model für den eingeloggten Benutzer).}
+	\item Definieren der JavaScript Dateien, welche zum Client übertragen werden sollen
+	\item Einrichten des API-Adapters
+	\item Express.js \cite{Expressjs} Middlewares laden und initialisieren
+	\item Express.js \cite{Expressjs} HTTP Server starten
+	\item Einrichten des Server Request Contexts (u.a. das Model für den eingeloggten Benutzer)
 \end{itemize}
 
 Diese Informationen werden ``barefoot'' \cite{Barefoot} mitgegeben, damit das Framework weiss, was zu starten ist.
@@ -74,4 +81,4 @@ Diese Informationen werden ``barefoot'' \cite{Barefoot} mitgegeben, damit das Fr
 Die Datei ``app.js'' \cite{appjs} ist der Startpunkt der Applikation.
 Darin wird u.a. die ``barefootFactory'' instanziert und der ``DataStore'' initialisiert.
 
-Der ``DataStore'' ist ein ``barefoot'' Konzept (siehe \cite{barefootDatastore}). Es wird verwendet um Models und Collections vom Server zum Client zu senden.
+Der ``DataStore'' ist ein Konzept von ``barefoot'' \cite{barefootDatastore}. Es wird verwendet um Models und Collections vom Server zum Client zu senden.
