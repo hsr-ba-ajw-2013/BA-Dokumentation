@@ -1,10 +1,43 @@
 \section{RP9 Session}
 \label{sec:principle-rp9-session}
 
-\subsection*{Geplante Umsetzung}
+Die Session sollte ausschliesslich für simple Authentifizierungsinformationen gebraucht werden. Simple ist z.B. eine eindeutige Session-ID. Damit kann der angemeldete User eindeutig erkennt werden und reicht für die Authentifizierung vollkommen aus.
 
+\subsection*{Geplante Umsetzung}
+Die Session ist kein Datenspeicher, aus diesen Grund sollen keine Datensätzen oder Seitenvariablen darin gespeichert werden.
+
+Es werden nur benötigte Logindaten mittels Session übermittelt.
 
 \subsection*{Konkrete Umsetzung}
+Passport, die verwendete Bibliothek für die Authentifikation der User (siehe Abschnitt \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') speichert beim Anmelden die Benutzerdaten serialisiert in die Session. Ab diesen Punkt hat man jederzeit, solange der User angemeldet ist, zugriff auf seine Informationen.
 
+Die Anwendung der Session wurde nicht nur für Authentifikationsdaten gebraucht. Temporäre Daten, die vom Server benötigt werden, wurden in die Session gespeichert. Hauptsächlich ging es darum die Benutzerfreundlichtkeit zu erhöhen. Konkret wurde es in ``Roomies'' benutzt, um den Benutzer nach einem Login an die gewünschte Seite zu weiterleiten.
+
+\begin{quotation}
+Ein Benutzer von ``Roomies'' liebt es, sich mit den anderen Mitbewohner zu vergleichen. Deswegen besucht er oft das Ranking. Auch einen Favorit hat er auf die Seite gesetzt, damit er direkt auf die Rangliste landet.
+
+Ist der Benutzer noch nicht angemeldet und möchte die Rankingseite besuchen, wird er vom System aufgefordert sich anzumelden. Nach dem Anmeldevorgang wird ihm, wie gewünscht, die Rangliste gezeigt.
+\end{quotation}
+
+Das Weiterleiten auf die Rangliste ist nur möglich, weil der Server die Seite vor dem Login in die Session speichert. Siehe unter stehenden Quellcode \ref{lst:router-set-redirecturl}.
+
+\begin{lstlisting}[language=JavaScript, caption=Router - Autorisationskontrolle \cite{roomiesRouter}, label=lst:router-set-redirecturl, firstnumber=225]
+
+/** Function: redirectIfNotAuthorized
+ * If the client is not authorized it will redirect. Otherwise it returns
+ * false to indicate that the calling method can continue work.
+ */
+, redirectIfNotAuthorized: function redirectIfNotAuthorized() {
+	if(!this.isAuthorized()) {
+		var req = this.apiAdapter.req;
+		req.session.redirectUrl = req.originalUrl;
+		this.navigate('', {trigger: true});
+		return true;
+	}
+	return false;
+}
+\end{lstlisting}
+
+Nur so ist es möglich der Benutzer nach dem Anmelden an die, ursprünglich, aufgerufene Seite weiterzuleiten. Wäre diese Url nicht zwischengespeichert, würde das System dem Benutzer an eine fix definierte Seite weiterleiten, was der Benutzerfreundlichkeit schaden würde.
 
 \subsection*{Diskussion}
