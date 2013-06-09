@@ -26,8 +26,16 @@ Tilkovs \emph{TP4} schlägt nun die generelle Separierung von Benutzerinformatio
 Der Vorreiter OpenID \cite{OpenID} und insbesondere die omnipräsenten sozialen Netzwerke erleichtern resp. forcieren eben diese Auftrennung Heute mehr den je.
 \newline\newline
 Ein Konto bei Facebook oder Twitter ermöglicht so den Zugriff auf Dienste Dritter: Möchte ein Benutzer personalisierte News bei \emph{20 Minuten} lesen, kann er sich mit seinem Facebook Konto anmelden \cite{20min} ohne genauere Informationen zu seiner Person wiederholt angeben zu müssen. Dabei kann er zudem gezielt steuern, welche Informationen an den Dienstbetreiber durch Facebook weitergegeben werden oder nicht.
-\newline\newline
-Abbildung \ref{fig:applicationdata-vs-identityprovider} visualisiert das Konzept der getrennten Datenhaltung im Bezug auf applikations- und identitätsspezifsche Informationen.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=10cm]{content/principle-demonstration/images/facebook-auth-dialog.png}
+	\caption{Bestätigungsdialog von Facebook, ob \emph{Roomies} auf die persönlichen Daten des Benutzers zugreifen darf.}
+	\label{fig:facebook-auth-dialog}
+\end{figure}
+
+
+Visualisiert sieht das Konzept der getrennten Datenhaltung im Bezug auf applikations- und identitätsspezifsche Informationen wie in Abbildung \ref{fig:applicationdata-vs-identityprovider} aus.
 
 \begin{figure}[H]
 	\centering
@@ -36,14 +44,14 @@ Abbildung \ref{fig:applicationdata-vs-identityprovider} visualisiert das Konzept
 	\label{fig:applicationdata-vs-identityprovider}
 \end{figure}
 
-In der Abbildung \ref{fig:applicationdata-vs-identityprovider} ist zudem ersichtlich dass ein \emph{Identity Provider} meist auch den Mechanismus zur effektiven Authentisierung des Benutzers bereitstellt. Viele Anbieter setzen hier auf den de facto Standard \emph{OAuth} \cite{oauth} oder verwenden eigene Implementationen.
+Zudem ist in der Abbildung \ref{fig:applicationdata-vs-identityprovider} ersichtlich, dass ein \emph{Identity Provider} meist auch den Mechanismus zur effektiven Authentisierung des Benutzers bereitstellt. Viele Anbieter setzen hier auf den de facto Standard \emph{OAuth} \cite{oauth} oder verwenden eigene Implementationen.
 
 
 \subsection*{Geplante Umsetzung}
 
 Für die Beispielapplikation \emph{Roomies} hat das Projektteam geplant, Facebook als hauptsächlichen und einzigen \emph{Identity Provider} zu einzusetzen. Dabei soll das offizielle \emph{Facebook Login for Web} \cite{facebooklogin} \gls{SDK} eingesetzt werden.
 
-Innerhalb der Beispielapplikation soll lediglich die Facebook ID sowie der Name des Benutzers persistent gespeichert werden. Alle anderen Informationen sollen bei Facebook verbleiben resp. gar nicht erst auf diese zugegriffen werden.
+Innerhalb der Beispielapplikation soll lediglich die Facebook ID sowie der Name des Benutzers persistent gespeichert werden. Alle anderen Informationen sollen bei Facebook verbleiben.
 
 
 \subsection*{Konkrete Umsetzung}
