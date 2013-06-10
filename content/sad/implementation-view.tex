@@ -82,3 +82,24 @@ Die Datei ``app.js'' \cite{appjs} ist der Startpunkt der Applikation.
 Darin wird u.a. die ``barefootFactory'' instanziert und der ``DataStore'' initialisiert.
 
 Der ``DataStore'' ist ein ``barefoot''-Konzept \cite{barefootDatastore}. Es wird verwendet um Models und Collections vom Server zum Client zu senden.
+
+
+
+\subsection{Barefoot}
+
+\emph{Barefoot} \cite{Barefoot} ermöglicht die Verwendung desselben \emph{Backbone.js} Quelltexts sowohl auf dem Server als auch auf dem Client. Dies wird u.A. durch gezieltes Einsetzen von Codefragmenten mittels \gls{Mixin}s erreicht.
+
+Beim initialisieren des Frameworks wird einmalig festgestellt, in welcher Umgebung (siehe Quelltext \ref{lst:BarefootDetermineRuntimeEnvironment} der Code ausgeführt werden soll.
+
+\begin{lstlisting}[language=JavaScript, firstnumber=68, caption={Ermittlung der Runtime-Umgebung sowie laden der abhängigen Mixins \cite{BarefootDetermineRuntimeEnvironment}}, label={lst:BarefootDetermineRuntimeEnvironment}]
+function boot(options) {
+var Backbone = require('backbone')
+	, util = require('./util')
+	, environment = options.environment
+	, mixins = util.loadMixins(environment)
+	, Router = require('./router')(mixins.RouterMixin)
+	, View = require('./view')(mixins.ViewMixin)
+\end{lstlisting}
+
+
+
