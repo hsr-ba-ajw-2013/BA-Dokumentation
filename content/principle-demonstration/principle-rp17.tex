@@ -38,7 +38,7 @@ Mit \emph{barefoot} \cite{Barefoot} gibt es zwar eine geteilte Codebasis für Cl
 
 Zu diesem Zweck verwendet \emph{barefoot} die \emph{browserify-middleware} für Express.JS \cite{browserifymiddleware}. Diese Komponente ermittelt anhand vorhandener \emph{require}-Statements im Quelltext, welche CommonJS Module \cite{commonjsmodules} zusammengefasst und bereitgestellt werden müssen.
 
-Zusammen mit einigen Zeilen \gls{Boilerplate}-Code wird eine eigenständige JavaScript-Datei erzeugt, welche als Ganzes an den Client ausgeliefert werden kann. Besonders für den produktiven Betrieb wichti kann diese zudem von Kommentaren und unnötigen Füllzeichen befreit und mittels Gzip \cite{gzip} komprimiert.
+Zusammen mit einigen Zeilen \gls{Boilerplate}-Code wird eine eigenständige JavaScript-Datei erzeugt, welche als Ganzes an den Client ausgeliefert wird. Besonders für den produktiven Betrieb wichtig, kann diese zudem von Kommentaren und unnötigen Füllzeichen befreit und mittels Gzip \cite{gzip} komprimiert werden.
 
 \begin{lstlisting}[language=JavaScript, firstnumber=95, caption={Konfiguration der browserify Middleware \cite{RoomiesExampleConfig}}, label=lst:configBrowserifyMiddleware]
 /* Browserify: */
