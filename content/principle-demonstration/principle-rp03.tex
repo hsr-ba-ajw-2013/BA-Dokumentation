@@ -10,7 +10,7 @@ Die Kommunikation des Clients mit dem Server über \gls{REST} soll unter anderem
 Um normale HTML-Formulare \gls{RESTful} zu machen, soll ein Weg gefunden werden, mit dem nebst ``POST'' auch ``PUT'' und ``DELETE'' Abfragen ermöglicht werden.
 
 \subsection*{Konkrete Umsetzung}
-Die geplante Umsetzung ist so implementiert worden. Als Beispiel zeigt Quelltext \ref{lst:roomiesCommunityModel} ein \emph{Backbone.Model}, welches eine URL zur API definiert und über diese synchronisiert werden kann.
+Die geplante Umsetzung ist so implementiert worden. Als Beispiel zeigt Quelltext \ref{lst:roomiesCommunityModel} ein \emph{Barefoot.Model} \cite{barefootModel}, welches eine URL zur API definiert und über diese synchronisiert werden kann.
 
 \begin{lstlisting}[language=JavaScript, caption=Community Model \cite{roomiesCommunityModel}, label=lst:roomiesCommunityModel]
 /** Class: Models.Community

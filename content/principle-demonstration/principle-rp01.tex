@@ -32,7 +32,7 @@ Eine Versionierung der API und das Caching der API-Zugriffe ist geplant.
 
 \subsection*{Konkrete Umsetzung}
 \label{sec:principle-rp1-rest-concrete-solution}
-Die API der Beispielapplikation ist als separater Service-Layer implementiert worden. Auf diese wurd Client- und Serverseitig transparent zugegriffen.
+Die API der Beispielapplikation wurde als separater Service-Layer implementiert. Auf diese wird Client- und Serverseitig transparent zugegriffen.
 
 Das Beispiel im Quelltext \ref{lst:restApiRoomies} zeigt zwei Definitionen einer API-Route.
 
@@ -81,12 +81,12 @@ Das Selbe gilt für das Caching. Jedes Objekt in der Datenbank hat eine Spalte m
 
 \subsection*{Diskussion}
 
-REST ist ein immer wichtigerer Architekturstil und wird in dieser Form überall eingesetzt (siehe Twitter \cite{TwitterAPI}, Stripe \cite{StripeAPI}, etc.). Es definiert die wichtigsten Grundbedürfnisse und überlässt applikationsspezifische Entscheidungen dem Software Entwickler.
+\gls{REST} ist ein immer wichtigerer Architekturstil und wird in dieser Form überall eingesetzt (siehe Twitter \cite{TwitterAPI}, Stripe \cite{StripeAPI}, etc.). Es definiert die wichtigsten Grundbedürfnisse und überlässt applikationsspezifische Entscheidungen dem Software Entwickler.
 
 Seit einiger Zeit ist es immer wichtiger eine generische Schnittstelle auch für kleinere Applikationen zu erstellen. Vielfach wird seit dem aufkommen von Smartphones nicht nur eine Webseite erstellt, sondern auch entsprechende Apps.
 
-Dadurch dass REST auch keine Serialisierungsform festlegt, ist es dem Entwickler der API möglich, verschiedene Datenformate zu unterstützen (siehe auch \ref{sec:principle-rp6-should-formats} ``\nameref{sec:principle-rp6-should-formats}''). Dies ermöglicht beispielsweise die Nutzung eines kompakten Datenformats, damit insgesamt weniger grosse Daten übertragen werden müssen.
+Dadurch dass \gls{REST} keine Serialisierungsform festlegt, ist es dem Entwickler der API möglich, verschiedene Datenformate zu unterstützen (siehe auch \ref{sec:principle-rp6-should-formats} ``\nameref{sec:principle-rp6-should-formats}''). Dies ermöglicht beispielsweise die Nutzung eines kompakten Datenformats, damit insgesamt weniger grosse Daten übertragen werden müssen.
 
 Durch die relativ flexible REST-Definition mit einigen wenigen Randbedingungen tut sich aber auch ein wichtiger Diskussionspunkt auf: Mit welchem HTTP-Verb (POST oder PUT) werden Updates gehandhabt? Es gibt hier verschiedene Ansichten und die Diskussion ist bei Weitem nicht abgeschlossen. Eine gute Hilfestellung hierfür bietet ``Stack Overflow - HTTP PUT vs POST in REST'' \cite{StackoverflowPUTvsPOST}.
 
-Abschliessend gibt das Projektteam folgenden Rat: Ist eine flexible und generische API nötig, ist REST eine sehr gute Lösung. Es erlaubt Entwicklern bestehendes Know-How über die Web-Entwicklung wiederzuverwenden. Zudem wird die API wird durch die Zustandslosigkeit skalierbar.
+Abschliessend gibt das Projektteam folgenden Rat: Ist eine flexible und generische API nötig, ist \gls{REST} eine sehr gute Lösung. Es erlaubt Entwicklern bestehendes Know-How über die Web-Entwicklung wiederzuverwenden. Zudem wird die API wird durch die Zustandslosigkeit skalierbar.

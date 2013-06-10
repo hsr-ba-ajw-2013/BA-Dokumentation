@@ -4,7 +4,7 @@
 Das ``Non Browser''-Prinzip beschreibt, dass die Applikationslogik auch ohne die üblichen Browser verfügbar sein muss. Dies ist normalerweise der Fall, wenn man die bereits vorangegangenen Prinzipien einhaltet, insbesondere Abschnitt \ref{sec:principle-rp1-rest}, ``\nameref{sec:principle-rp1-rest}''.
 
 \subsection*{Geplante Umsetzung}
-Eine REST-API wird laut Abschnitt \ref{sec:principle-rp1-rest} umgesetzt und somit ist es möglich, Ressourcen mit z.B. ``cURL'' \cite{curl} oder ``wget'' \cite{wget} abzurufen.
+Eine \gls{REST}-API wird laut Abschnitt \ref{sec:principle-rp1-rest} umgesetzt und somit ist es möglich, Ressourcen mit z.B. ``cURL'' \cite{curl} oder ``wget'' \cite{wget} abzurufen.
 Durch die Verwendung von Facebook Login wird es aber eher schwierig, eine authentifizierte Session zu erhalten. Ein weiterer Login-Mechanismus wird trotzdem nicht geplant.
 
 \subsection*{Konkrete Umsetzung}
@@ -31,13 +31,13 @@ Um dies per ``cURL'' auf der Kommandozeile zu erreichen, kann wie folgt vorgegan
 ~ $> curl -X GET 'http://localhost:9001/api/community/ba/tasks' --cookie cookies.txt  --verbose --location
 \end{lstlisting}
 
-Es ist auch möglich, ohne den Dritt-Browser ein valides Cookie zu bekommen. Auf diese Variante wird hier aber nicht eingegangen.
+Es ist auch möglich, ohne den Dritt-Browser ein valides Cookie zu bekommen \cite{facebookLoginGist}. Auf diese Variante wird hier aber nicht eingegangen.
 
-Wie geplant wurde kein weiterer Login-Mechanismus implementiert.
+Wie geplant wurde aus Zeitgründen kein weiterer Login-Mechanismus implementiert.
 
 \subsection*{Diskussion}
-Durch den Einsatz einer generalisierten API-Schnittstelle mittels REST kann eine Software auch ohne HTML-Parser die entsprechenden Daten auslesen.
+Durch den Einsatz einer generalisierten API-Schnittstelle mittels \gls{REST} kann eine Software auch ohne HTML-Parser die entsprechenden Daten auslesen.
 
 Falls dabei Facebook Login eingesetzt wird, ist eine valide Session auf Facebook unumgänglich. Um solche Bedingungen für eine interne Kommunikation zwischen Komponenten nicht zu haben, kann zum Beispiel OAuth \cite{oauth} eingesetzt werden.
 
-Wie auch bei Abschnitt \ref{sec:principle-rp1-rest} empfiehlt das Projektteam den Einsatz einer REST Schnittstelle. Es muss für die Authentifizierung aber beachtet werden, dass z.B. auch interne Komponenten auf die API zugreifen müssen. Deswegen empfiehlt es weiter, einen zusätzlichen Authentisierung-Provider (z.B. OAuth \cite{oauth}) zu implementieren.
+Wie auch bei Abschnitt \ref{sec:principle-rp1-rest} empfiehlt das Projektteam den Einsatz einer REST Schnittstelle. Es muss für die Authentifizierung aber beachtet werden, dass z.B. auch interne Komponenten auf die API zugreifen müssen. Deswegen empfiehlt es weiter, einen zusätzlichen Authentisierung-Provider (z.B. OAuth \cite{oauth}) zu implementieren, falls andere Komponenten auf die API zugreifen sollen.

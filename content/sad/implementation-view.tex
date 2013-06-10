@@ -4,7 +4,7 @@
 \subsection{Rendering des User Interfaces und Event-Behandlung}
 Durch die Verwendung von \emph{barefoot} \cite{Barefoot} kann die komplette Beispielapplikation sowohl eigenständig auf dem Server gerendert werden, als auch als moderne JavaScript Applikation im Browser des Endbenutzers ausgeführt werden. Aus diesem Grund zeigen die folgenden zwei Abschnitte jeweils ein separates Sequenzdiagramm: Eines für das Event-Handling auf dem Client und eines für den Rendering-Vorgang auf dem Server.
 
-Grundlegende Unterschiede gibt es hierbei lediglich beim Zugriff auf den \emph{APIAdapter}. Auf dem Server werden diese direkt lokal behandelt, im Client-Browser wird die entsprechende API-Abfrage über einen HTTP REST Request übertragen.
+Grundlegende Unterschiede gibt es hierbei lediglich beim Zugriff auf den \emph{APIAdapter}. Auf dem Server werden diese direkt lokal behandelt, im Client-Browser wird die entsprechende API-Abfrage über einen HTTP \gls{REST} Request übertragen.
 
 \subsubsection*{Server}
 Beim initialen Aufruf der Beispielapplikation werden die kompletten Inhalte des User Interfaces auf dem Server gem. Diagramm \ref{dig:serverrendering} gerendert. Sollte der Client-Browser zudem JavaScript deaktiviert haben oder nicht unterstützen, so werden auch nachfolgende Requests nach dem gleichen Schema verarbeitet und gerendert.
