@@ -23,10 +23,10 @@
 
 						\umlfpart[HTTP REST]
 
-						\begin{umlcall}[op={HTTP Request}, return={JSON Response}]{caller}{expressJs}
-							\begin{umlcallself}[op={Dispatch}]{expressJs}
+						\begin{umlcall}[op={HTTP Request}, return={JSON Response}]{caller}{app}
+							\begin{umlcallself}[op={Dispatch}]{app}
 							\end{umlcallself}
-							\begin{umlcall}[op={handler()}, return={JSON Object}]{expressJs}{apiAdapter}
+							\begin{umlcall}[op={handler()}, return={JSON Object}]{app}{apiAdapter}
 								\begin{umlcallself}[op={processCallbacks}]{apiAdapter}
 								\end{umlcallself}
 								\begin{umlcall}[op={handler()}, return={success()}]{apiAdapter}{controller}

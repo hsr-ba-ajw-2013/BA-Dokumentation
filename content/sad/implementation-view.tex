@@ -87,19 +87,18 @@ Der ``DataStore'' ist ein ``barefoot''-Konzept \cite{barefootDatastore}. Es wird
 
 \subsection{Barefoot}
 
-\emph{Barefoot} \cite{Barefoot} ermöglicht die Verwendung desselben \emph{Backbone.js} Quelltexts sowohl auf dem Server als auch auf dem Client. Dies wird u.A. durch gezieltes Einsetzen von Codefragmenten mittels \gls{Mixin}s erreicht.
+\emph{Barefoot} \cite{Barefoot} ermöglicht die Verwendung desselben \emph{Backbone.js} Quelltexts sowohl auf dem Server als auch auf dem Client. Dies wird durch gezieltes Einsetzen von Codefragmenten mittels \gls{Mixin}s erreicht.
 
-Beim initialisieren des Frameworks wird einmalig festgestellt, in welcher Umgebung (siehe Quelltext \ref{lst:BarefootDetermineRuntimeEnvironment} der Code ausgeführt werden soll.
+Dazu werden neutrale Versionen jeder \emph{barefoot}-Komponente während der Initialisierung des Frameworks (siehe Quelltext \ref{lst:BarefootDetermineRuntimeEnvironment}) mit umgebungsspezifischen Mixins ergänzt.
 
-\begin{lstlisting}[language=JavaScript, firstnumber=68, caption={Ermittlung der Runtime-Umgebung sowie laden der abhängigen Mixins \cite{BarefootDetermineRuntimeEnvironment}}, label={lst:BarefootDetermineRuntimeEnvironment}]
+\begin{lstlisting}[language=JavaScript, firstnumber=68, caption={Ermittlung der Runtime-Umgebung sowie anschliessendes applizieren der spezifischen \gls{Mixin}s \cite{BarefootDetermineRuntimeEnvironment}}, label={lst:BarefootDetermineRuntimeEnvironment}, escapeinside={@}{@}]
 function boot(options) {
-var Backbone = require('backbone')
-	, util = require('./util')
-	, environment = options.environment
-	, mixins = util.loadMixins(environment)
-	, Router = require('./router')(mixins.RouterMixin)
-	, View = require('./view')(mixins.ViewMixin)
+	var Backbone = require('backbone')
+		, util = require('./util')
+		, environment = options.environment
+		@\label{lst:BarefootDetermineRuntimeEnvironment_load}@, mixins = util.loadMixins(environment)
+		@\label{lst:BarefootDetermineRuntimeEnvironment_applyMixins}@, Router = require('./router')(mixins.RouterMixin)
+		, View = require('./view')(mixins.ViewMixin)
 \end{lstlisting}
 
-
-
+Sobald die spezifischen \gls{Mixin}s (Zeile \ref{lst:BarefootDetermineRuntimeEnvironment_load}) geladen wurden, werden diese anschliessend ab Zeile \ref{lst:BarefootDetermineRuntimeEnvironment_applyMixins} auf die neutralen Vorlagen appliziert.

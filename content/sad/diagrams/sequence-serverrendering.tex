@@ -11,8 +11,8 @@
 					\umlobject[class=ApiAdapter]{apiAdapter}
 					\umlobject[class=DataStore]{dataStore}
 
-					\begin{umlcall}[op={Click Menu Item, triggers GET Request}, return=HTML]{client}{expressJs}
-						\begin{umlcall}[op=route(), with return]{expressJs}{router}
+					\begin{umlcall}[op={Click Menu Item, triggers GET Request}, return=HTML]{client}{app}
+						\begin{umlcall}[op=route(), with return]{app}{router}
 							\begin{umlcallself}[op=render()]{router}
 								\begin{umlcallself}[op=initDOM()]{router}
 								\end{umlcallself}
