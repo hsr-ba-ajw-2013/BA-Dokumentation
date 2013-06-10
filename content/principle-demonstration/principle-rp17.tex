@@ -4,7 +4,9 @@
 Die Verwendung von JavaScript macht die Ausführung von dynamisch generiertem Quellcode einfach:
 
 \begin{lstlisting}[language=JavaScript, caption={Ausführung von dynamischem Quelltext mittels \emph{eval}}, label={lst:evalIsEvil}]
-eval('for(var i = 0; i < 1000; i++) alert(\'eval is evil\')');
+function evilFunction(message) {
+	eval('alert(' + message + ')');
+}
 \end{lstlisting}
 
 Der Quelltext \ref{lst:evalIsEvil} ist nicht nur schwer wartbar, die Verwendung von \emph{eval} \cite{mdnEval} stellt zusätzlich ein nicht abschätzbares Sicherheitsrisiko dar: Das übergebene String-Argument, welches den auszuführenden Quellcode enthält, kann von Angreifern problemlos angepasst werden. Auf diese Weise ist es ohne grossen Aufwand möglich, Schadcode in eine Applikation einzuschleusen.
