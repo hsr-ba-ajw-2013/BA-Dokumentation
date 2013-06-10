@@ -27,7 +27,7 @@ Backbone.history.start({
 
 \subsection*{Diskussion}
 Vor einigen Jahren war die History API noch nicht verfügbar und mehrere Unternehmen verwendeten als Workaround das sogenannte \gls{Hashbang}. Diese Technik verwendet das setzen von sogenannten ``Anchors'' in der URL um von JavaScript aus die \gls{URL} gemäss aktueller Seite anzupassen. Das grosse Problem dieser Technik ist jedoch, dass der Browser dieses \gls{URL}-Fragment nicht dem Server mitschickt.
-Als Folge dessen mussten die Webapplikationen folgenden Workaround verwenden, wenn jemand eine URL mit dem Hashbang eintippte:
+Infolgedessen mussten die Webapplikationen folgenden Workaround verwenden, wenn jemand eine URL mit dem Hashbang eintippte:
 
 \begin{enumerate}
 	\item Startseite ausliefern
@@ -38,4 +38,4 @@ Als Folge dessen mussten die Webapplikationen folgenden Workaround verwenden, we
 Da es nur noch wenige Browser gibt, welche die History API nicht unterstützen (z.B. Internet Explorer 8), gibt es immer noch einige Seiten welche dies als Fallback einsetzen. Da dieser Fallback jedoch umständlich und nicht förderlich für die User Experience ist, wird immer wie mehr darauf verzichtet (siehe z.B. den Blogpost von Twitter über die Abschaffung des Hashbangs \cite{twitterAbandonsHashbangs}).
 
 Die History API wird heutzutage von allen modernen Browsern unterstützt. Dementsprechend gibt es kein Herumkommen um diese API. Das Projektteam
-empfiehlt zudem, Hashbangs nicht zu verwenden.
+empfiehlt zudem, Hashbangs ohne zwingenden Grund nicht zu verwenden.
