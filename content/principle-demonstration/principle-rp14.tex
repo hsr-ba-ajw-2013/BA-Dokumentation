@@ -121,7 +121,42 @@ Um diesem Umstand gegensteuern zu können teilte sich das Projektteam nach der e
 
 Aus diesem Prozess entstand das eigenständige Framework \emph{barefoot} \cite{Barefoot}. Es setzt auf der verbreiteten Bibliothek \emph{Backbone.js} \cite{Backbonejs} auf und ermöglicht die Verwendung einer einzigen, einheitlichen Codebasis für JavaScript-basierte Webapplikationen (siehe dazu auch Kapitel ``\nameref{sec:sad}'' Abschnitt \ref{sec:sad-implementation}).
 
-Mit der Integration des neuartigen Frameworks kann, ähnlich wie bei \emph{rendr} \cite{rendr}, jedoch ohne \emph{CoffeeScript}, komplett auf doppelte Codefragmente verzichtet werden. Gleichzeitig profitiert der Endbenutzer von kurzen Lade- und Reaktionszeiten im User Interface. Sollte auf dem Client kein JavaScript verfügbar sein, greift automatisch das klassische servergestützte Rendering und alle Funktionalitäten bleiben zugänglich.
+Mit der Integration des neuartigen Frameworks kann komplett auf doppelte Codefragmente verzichtet werden. Gleichzeitig profitiert der Endbenutzer von kurzen Lade- und Reaktionszeiten im User Interface. Sollte auf dem Client kein JavaScript verfügbar sein, greift automatisch das klassische servergestützte Rendering und alle Funktionalitäten bleiben zugänglich.
+
+Zwar gibt es mit \emph{Rendr} von \emph{Airbnb} \cite{Rendr} eine Konkurrenzbibliothek auf diesem Gebiet. Aufgrund einiger, insbesondere designbedingter Nachteile, entschied das Projektteam jedoch, mit \emph{barefoot} eine eigene Implementation umzusetzen:
+
+\begin{figure}[H]
+	\begin{table}[H]
+		\tablestyle
+		\tablealtcolored
+		\begin{tabularx}{\textwidth}{X X}
+			\tableheadcolor
+				\tablehead Problem von Rendr &
+				\tablehead Lösung durch barefoot
+				\tabularnewline
+			\tablebody
+				Unterstützt nur \emph{Handlebars} \cite{Handlebars} für View-Templates &
+				Keine Vorgabe resp. ohne Template-Engine verwendbar
+				\tabularnewline
+
+				Quelltext für Client kann nicht automatisch zusammengefasst und zur Übertragung optimiert werden &
+				\emph{Barefoot} verwendet hierfür die \emph{browserify-middleware} (siehe auch \ref{sec:principle-rp17-static-assets} ``\nameref{sec:principle-rp17-static-assets}'')
+				\tabularnewline
+
+				\emph{Rendr} ist mittels \emph{CoffeeScript} \cite{CoffeeScript} implementiert &
+				\emph{Barefoot} setzt auf pures JavaScript unter Verwendung von \emph{Underscore} \cite{Underscore}
+				\tabularnewline
+
+				Wiederholte Überprüfung der aktuellen Runtime-Umgebung (Client oder Server) mittels entsprechender \emph{if}-Statements &
+				Einmalige Überprüfung, anschliessende Verwendung umgebungsspezifischer \gls{Mixin}s
+				\tabularnewline
+			\tableend
+		\end{tabularx}
+	\end{table}
+	\caption{\emph{Rendr} vs. \emph{barefoot}}
+	\label{tab:rendr-vs-barefoot}
+\end{figure}
+
 
 \subsection*{Diskussion}
 
