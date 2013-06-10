@@ -2,7 +2,7 @@
 \label{sec:qualitymanagement}
 
 \subsection{Baselining}
-Beim erreichen der \nameref{sec:milestones} wird auf dem Quelltext- als auch Dokumentations-Git-Repository ein Tag mit dem entsprechenden Meilenstein-ID erstellt. Auf diese Weise bleibt der Projektverlauf klar verfolgbar und die abzugebenden Artefakte können dem Review des Betreuers resp. Gegenlesers unterzogen werden.
+Beim Erreichen der \nameref{sec:milestones} wird auf dem Quelltext- als auch Dokumentations-Git-Repository ein Tag mit der entsprechenden Meilenstein-ID erstellt. Auf diese Weise bleibt der Projektverlauf klar verfolgbar und die abzugebenden Artefakte können dem Review des Betreuers resp. Gegenlesers unterzogen werden.
 
 Nach dem Erstellen einer Baseline informiert das Projektteam alle Beteiligten via E-Mail.
 
@@ -36,9 +36,8 @@ var chai = require('chai')
 	});
 \end{lstlisting}
 
-\subsubsection*{Test Coverage Analysis}
-Zur Überprüfung der Test Coverage wird JSCover \cite{JSCover} verwendet. Es ist komplett in den \gls{CI} Prozess integriert und ermöglicht das einfache Überprüfen der aktuellsten Metriken.
-
+\subsubsection*{Test Coverage Analyse}
+Die Test Coverage Analyse wird innerhalb des CI Prozesses erstellt. Dabei übernimmt ``Coveralls'' \cite{Coveralls} die Auswertung der Coverage-Rohdaten und stellt entsprechende Reports zur Verfügung.
 
 \subsection{Continuous Integration}
 \label{sec:continuousintegration}
@@ -52,7 +51,6 @@ Als Besonderheit wird auch diese Dokumentation fortlaufend mit Travis CI generie
 Die Coding Style Guideline ist im Anhang \ref{sec:coding-guidelines} ``\nameref{sec:coding-guidelines}'' einsehbar.
 
 Zur Unterstützung während des Entwicklungsprozesses wird JSHint \cite{JSHint} zur statischen Überprüfung des Quellcodes verwendet. JSHint ist in den Continuous Integration Prozess integriert.
-
 
 \subsection{Code Reviews}
 Code Reviews sind während der Projektplanungsphase bereits fix in die fünf verschiedenen Construction-Iterationen eingeplant.
