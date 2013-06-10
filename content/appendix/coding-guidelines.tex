@@ -1,7 +1,52 @@
 \chapter{Coding Style Guideline}
 \label{sec:coding-guidelines}
-Dieses Kapitel enthält die JavaScript Coding Style Guideline, welche zur Erstellung von entsprechendem Quellcode im Rahmen dieser Bachelorarbeit benutzt wird.
+Basierend auf die übersetzten Guidelines von Timo Furrer \cite{JSGLDe} (ürsprünglich von Airbnb \cite{JSGLOrigin} veröffentlicht) wurde eine, gemäss eigenen Präferenzen des Projektteams, erweiterte und optimierte Version publiziert \cite{JSGL}.
 
-Die Guideline basiert auf einem von Airbnb \cite{Airbnb} veröffentlichten Dokument. Sie wurde zusätzlich gemäss eigenen Präferenzen \cite{JSGL} des Projektteams erweitert und optimiert.
+Diese wurde für die Erstellung entsprechendem Quellcode im Rahmen dieser Bachelorarbeit benutzt.
 
-\includepdf[pages=-,pagecommand={},scale=0.75]{content/appendix/javascript-style-guide.pdf}
+\subsection*{Führende Kommas}
+\begin{lstlisting}[language=JavaScript, caption=Führende Kommas - Coding Guidelines \cite{JSGL}, label=lst:leadingCommas]
+// schlecht
+var once,
+    upon,
+    aTime;
+
+// gut
+var once
+    , upon
+    , aTime;
+
+// schlecht
+var hero = {
+  firstName: 'Bob',
+  lastName: 'Parr',
+  heroName: 'Mr. Incredible',
+  superPower: 'strength'
+};
+
+// gut
+var hero = {
+    firstName: 'Bob'
+    , lastName: 'Parr'
+    , heroName: 'Mr. Incredible'
+    , superPower: 'strength'
+};
+\end{lstlisting}
+
+\subsection*{Tabulator anstatt Leerzeichen}
+\begin{lstlisting}[language=JavaScript, caption=Tabulatoren - Coding Guidelines \cite{JSGL}, label=lst:tabGuideline,escapeinside={@}{@}]
+// schlecht
+function() {
+@\cdot\cdot\cdot\cdot@var name;
+}
+
+// schlecht
+function() {
+@\cdot@var name;
+}
+
+// gut
+function() {
+@\rightarrow@var name;
+}
+\end{lstlisting}
