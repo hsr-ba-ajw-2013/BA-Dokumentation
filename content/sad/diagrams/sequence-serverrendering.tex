@@ -4,15 +4,15 @@
 			\begin{tikzpicture}
 				\begin{umlseqdiag}
 					\umlactor[class=Browser]{client}
-					\umlobject[class=Barefoot]{barefoot}
+					\umlboundary[class=ExpressJS]{expressJs}
 					\umlobject[class=Router]{router}
 					\umlobject[class=View]{view}
 					\umlobject[class=Model]{model}
 					\umlobject[class=ApiAdapter]{apiAdapter}
 					\umlobject[class=DataStore]{dataStore}
 
-					\begin{umlcall}[op=GET Request, return=HTML]{client}{barefoot}
-						\begin{umlcall}[op=route(), with return]{barefoot}{router}
+					\begin{umlcall}[op={Click Menu Item, triggers GET Request}, return=HTML]{client}{expressJs}
+						\begin{umlcall}[op=route(), with return]{expressJs}{router}
 							\begin{umlcallself}[op=render()]{router}
 								\begin{umlcallself}[op=initDOM()]{router}
 								\end{umlcallself}
