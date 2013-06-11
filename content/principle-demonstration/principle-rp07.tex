@@ -2,11 +2,30 @@
 \label{sec:principle-rp7-auth}
 
 
+Mit \emph{Basic Access Authentication} \cite{HTTPBasicAuth} steht seit Version 1.0 von \emph{HTTP} eine einfache Möglichkeit zur Verfügung, Ressourcen vom Zugriff Unbefugter zu schützen. Dank der frühen Integration in den HTTP Standard bedingten hohen Verbreitung, bringt der Verzicht auf Cookies, Session ID's oder Anmeldeseiten Eleganz durch Verwendung grundlegender Protokollfeatures.
+
+Der Server kann durch Senden eines \emph{WWW-Authentication} Headers die Authentifizierung des Clients verlangen. Dieser wiederum sendet über den \emph{Authorization}-Header in seiner Antwort Benutzername und Passwort, welche mittels Base64 \cite{Base64} codiert sind.
+
+Wird \emph{HTTP Basic Auth} in dieser Form verwendet, werden Benutzername und Passwort in Klartext über das Internet übertragen. Abhilfe schafft \emph{Digest Access Authentication}, wenn auch nur unbefriedigend. Hierbei werden die Identifizierungsmerkmale vor dem Übertragen mit einem Hashing-Algorithmus, bspw. MD5 maskiert. Der Server vergleicht dann den übertragenen Wert mit dem selbst berechneten Hash.
+
+Insbesondere die Verwendung des MD5-Hashes gilt als unsicher \cite{MD5Broken}. Die Einfachheit von \emph{Basic Access Authentication} kann unter Verwendung des \emph{Secure Socket Layer} Protokolls \cite{SSL} problemlos beibehalten werden. Dabei wird die Kommunikation zwischen Client und Server in einen verschlüsselten \emph{\gls{SSL}}-Tunnel verpackt. Alle übertragenen Informationen sind so nicht mehr ohne weiteres von Dritten lesbar.
+
+Um eine effiziente Sicherung von Ressourcen zu gewährleisten, schlägt \emph{RP7 Auth} die Verwendung des vorgestellten \emph{HTTP Basic Access Authentication over SSL} vor.
+
 
 \subsection*{Geplante Umsetzung}
 
+Die Umsetzung von \emph{HTTP Basic Authentication over SSL} ist nicht geplant. Im Bereich \emph{Security} und \emph{Authentication} soll der Fokus auf \nameref{sec:principle-tp4-seperate-user-identity} gelegt werden.
 
 \subsection*{Konkrete Umsetzung}
 
+Den Erwartungen entsprechend wurde das von \emph{RP7} vorgeschlagene \emph{HTTP Basic Authentication over SSL} nicht in der Beispielapplikation \emph{Roomies} implementiert.
+
 
 \subsection*{Diskussion}
+
+Die ROCA Richtlinie \emph{Auth} ergänzt die Forderungen von ``\nameref{sec:principle-rp5-non-browser}'': Die Kombination ermöglicht den browserfreien Zugriff auf geschützte REST-API-Ressourcen.
+
+Für die Beispielapplikation \emph{Roomies} wurde aufgrund der umzusetzenden Anforderungen auf die Demonstration von \emph{RP7 Auth} verzichtet. Zwar bietet auch die in \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'' vorgestellte Lösung eine sichere Variante, einen Benutzer für den Zugang zur Applikation zu authentisieren. Wie der Abschnitt \ref{sec:principle-rp5-non-browser} jedoch ausführlich beschreibt, kann dies nur mit einem Browser praktikabel funktionieren.
+
+Nach Umsetzung der Beispielapplikation empfiehlt das Projektteam darum, sollte es mit den Aufwänden vereinbar sein, \emph{RP7 Auth} umzusetzen und die API via \emph{HTTP Basic Auth over SSL} zugänglich zu machen.
