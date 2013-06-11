@@ -5,11 +5,11 @@ Eine Applikation mit einer verteilten, entkoppelten Architektur kommt unweigerli
 
 Die durch diesen Prozess entstehenden API's sind klassischerweise auf spezifische Anwendungsfälle zugeschnitten da so schnellstmöglich die applikationseigenen Anforderungen umsetzen können.
 
-Als weitere Konsequenz werden ``unschöne'' Interfacemethoden gerne gar nicht erst für externe Konsumenten verfügbar gemacht.
+Als weitere Konsequenz werden ``unschöne'' Interfacemethoden meist gar nicht erst für externe Konsumenten verfügbar gemacht.
 
-Auf Dauer gesehen besteht die Gefahr, dass ein Flickwerk aus anwendungsfallspezifischen Interfaces resp. Interfacemethoden entsteht.
+Langfristig besteht die Gefahr, dass ein Flickwerk aus anwendungsfallspezifischen Interfaces resp. Interfacemethoden entsteht.
 
-Mit \emph{Eat your own API dog food} forciert Tilkov von Beginn an die Konzipierung und Umsetzung guter und generischer Schnittstellen für Applikationskomponenten. Als Motivationsfaktor gehört darum auch der Grundsatz, dass keine privaten Methoden existieren sollen, zu seiner Forderung.
+Mit ``\emph{Eat your own API dog food}'' forciert Tilkov von Beginn an die Konzipierung und Umsetzung guter und generischer Schnittstellen für Applikationskomponenten. Als Motivationsfaktor gehört deshalb auch der Grundsatz zu seiner Forderung, dass keine privaten Methoden existieren sollen.
 
 
 \subsection*{Geplante Umsetzung}
@@ -25,7 +25,7 @@ Es sind keine privaten Methoden geplant. Soll ein Objekt vor Zugriffen unbefugte
 
 \subsection*{Konkrete Umsetzung}
 
-Wie bereits im Abschnitt \ref{sec:principle-rp1-rest-concrete-solution} des Kapitels ``\nameref{sec:principle-demonstration}'' erläutert, konnte die generische Serviceschnittstelle für alle Objekte aus der \emph{Roomies} Problemdomäne (siehe \ref{sec:sad-domain-model} ``\nameref{sec:sad-domain-model}'') umgesetzt werden.
+Wie bereits in Abschnitt \ref{sec:principle-rp1-rest-concrete-solution} des Kapitels ``\nameref{sec:principle-demonstration}'' erläutert, konnte die generische Serviceschnittstelle für alle Objekte aus der \emph{Roomies} Problemdomäne (siehe \ref{sec:sad-domain-model} ``\nameref{sec:sad-domain-model}'') umgesetzt werden.
 
 Es wurde komplett auf private Methoden verzichtet. Zum Schutz sensibler Daten wurde wie in den Abschnitten \ref{sec:principle-rp7-auth}, \ref{sec:principle-rp8-cookies} sowie \ref{sec:principle-rp9-session} beschrieben ein Session-basierter Authentifizierungsmechanismus via Facebook (siehe \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') implementiert.
 
@@ -36,6 +36,6 @@ Klar strukturiertes und wohldefiniertes Schnittstellendesign ist bereits bei ein
 
 Gerade in einer grösseren Service-Landschaft, wie diese oftmals in grossen Konzernen wie Banken anzutreffen ist (Beispiel \emph{BIAN Service Landscape 2.0} \cite{BIANServiceLandscape}), ist es jedoch üblich, auch private Interfacemethoden zu unterhalten.
 
-Bis zu einem gewissen Punkt mag es also durchaus berechtigt sein, die eigene Motivation für korrektes Interfacedesign aus der Zurschaustellung nach Aussen zu beziehen. Je nach Anforderungen kann es aber durchaus Sinn machen, von diesem Grundsatz abzusehen.
+Bis zu einem gewissen Punkt mag es also durchaus berechtigt sein, die eigene Motivation für korrektes Interfacedesign aus der Zurschaustellung nach Aussen zu beziehen. Je nach Anforderungen kann es aber durchaus Sinn machen, von diesem Grundsatz abzuweichen.
 
 Für eine Non-Enterprise-Applikation kann das Projektteam \emph{TP3} anstandslos befürworten. Die ausführliche Auseinandersetzung mit der eigenen API resultiert in einer Schnittstelle, welche ohne Weiteres von einer Smartphone App oder einer beliebigen anderen Applikation konsumiert werden kann.
