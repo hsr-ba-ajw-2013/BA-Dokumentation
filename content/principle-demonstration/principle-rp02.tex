@@ -1,8 +1,6 @@
 \section{RP2 Application Logic}
 \label{sec:principle-rp2-application-logic}
 
-% Die ``Application Logic'' ROCA-Richtlinie legt fest, dass jegliche Applikationslogik auf dem Server implementiert sein muss.
-
 Die Logik einer Applikation kann in zwei Kategorien unterteilt werden:
 \begin{enumerate}
 	\item Businesslogik
@@ -15,7 +13,12 @@ Die Businesslogik beinhaltet das eigentliche Herz der Applikation. Sie legt fest
 Zur Businesslogik gehört laut den ``ROCA''-Autoren auch die \emph{logikbasierte Validierung}. Diese beinhaltet \cite{ObjektspektrumROCA} Funktionalität zur Überprüfung der Korrektheit der übertragenen Daten im Sinne der Businesslogik.
 
 \subsection*{Präsentationslogik}
-Bei jeder Aktion eines Benutzers müssen zwei Aktionen durchgeführt werden: API-Aufrufe (lokal und remote) und Darstellung der nächsten Ansicht. Welche API-Aufrufe gemacht werden und was die nächste Ansicht beinhaltet, bzw. welche Ansicht die nächste ist, kann als Präsentationslogik bezeichnet werden.
+Bei jeder Aktion eines Benutzers müssen zwei Aktionen durchgeführt werden:
+\begin{itemize}
+	\item API-Aufrufe (lokal und remote)
+	\item Darstellung der nächsten Ansicht
+\end{itemize}
+Welche API-Aufrufe gemacht werden und was die nächste Ansicht beinhaltet, bzw. welche Ansicht die nächste ist, kann als Präsentationslogik bezeichnet werden.
 
 Zur Präsentationslogik gehört laut den ``ROCA''-Autoren die sogenannte \emph{datenbasierte Validierung} \cite{ObjektspektrumROCA}. Diese überprüft die Korrektheit der Daten aufgrund ihres gewünschten Datentyps (z.B. Telefonnummern auf formale korrektheit etc.) und auch die Vollständigkeit der übertragenen Daten.
 \\ \\
@@ -31,7 +34,7 @@ Die Beispielapplikation soll trotz Code-Sharing ``RP2''-konform implementiert we
 \end{itemize}
 
 \subsection*{Konkrete Umsetzung}
-Wie in \ref{sec:sad} ``\nameref{sec:sad}'' gezeigt, wurde sowohl ein API- als auch ein Shared-Layer implementiert.
+Wie in Kapitel \ref{sec:sad} ``\nameref{sec:sad}'' gezeigt, wurde sowohl ein API- als auch ein Shared-Layer implementiert.
 
 Die geplante Umsetzung konnte erfolgreich durchgeführt werden. Die API beinhaltet alle Businesslogik sowie die logikbasierte Validierung, während die ``Shared Codebase'' Präsentationslogik beinhaltet.
 
@@ -41,6 +44,6 @@ Die datenbasierte Validierung wurde aus Zeitgründen nur auf der API-Schicht imp
 Ein Grundprinzip für Software Entwickler lautet \emph{``Never trust the client''} \cite{DefensiveProgramming}. Die Richtlinie \emph{RP2} lässt sich direkt auf dieses Prinzip anwenden.
 Um sicherstellen zu können, dass jegliche übermittelte Daten eines Benutzers korrekt sind, müssen diese zwingend auf dem Server überprüft werden.
 
-Diese Richtlinie ist für Client-Server Anwendungen wichtig. Was passiert aber, wenn Peer-to-Peer Anwendungen ohne zentralen Server implementiert werden sollen? Mit \mbox{\gls{WebRTC}} \cite{WebRTC} rückt dieses Thema vermehrt auch für Webapplikationen ins Zentrum der Aufmerksamkeit. Vermutlich kann dieses Prinzip also nicht ohne weiteres auch auf solche Applikationen appliziert werden und bedarf darum der Anwendung von etablierten Peer-to-Peer Patterns.
+Diese Richtlinie ist für Client-Server Anwendungen wichtig. Was passiert aber, wenn Peer-to-Peer Anwendungen ohne zentralen Server implementiert werden sollen? Mit \mbox{\gls{WebRTC}} \cite{WebRTC} rückt dieses Thema vermehrt auch für Webapplikationen ins Zentrum der Aufmerksamkeit. Vermutlich kann dieses Prinzip nicht ohne weiteres auf solche Applikationen appliziert werden und bedarf darum weiterer Analysen von spezifischen Peer-to-Peer Patterns.
 \\ \\
 Im Projektteam ist man sich einig, dass diese Richtlinie für Client-Server Anwendungen umgesetzt werden muss. Falls man gewisse Codeteile sowohl auf dem Client und auf dem Server verwendet werden, kann es aber durchaus Sinn machen, schon auf dem Client diese Validierung zu machen. Dies dient aber vor allem der User Experience und darf niemals die Überprüfung auf dem Server ersetzen.
