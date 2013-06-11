@@ -1,34 +1,46 @@
 \section{RP2 Application Logic}
 \label{sec:principle-rp2-application-logic}
 
-Die ``Application Logic'' ROCA-Richtlinie legt fest, dass jegliche Applikationslogik auf dem Server implementiert sein muss.
+% Die ``Application Logic'' ROCA-Richtlinie legt fest, dass jegliche Applikationslogik auf dem Server implementiert sein muss.
 
-Falls der Server bereits \gls{REST} einsetzt (siehe vorheriger Abschnitt \ref{sec:principle-rp1-rest}, ``\nameref{sec:principle-rp1-rest}''), ist dieses Prinzip bereits vorgegeben. Die Trennung von Applikations- und Präsentationslogik wird dadurch erfüllt.
+Die Logik einer Applikation kann in zwei Kategorien unterteilt werden:
+\begin{enumerate}
+	\item Businesslogik
+	\item Präsentationslogik
+\end{enumerate}
+
+\subsection*{Businesslogik}
+Die Businesslogik beinhaltet das eigentliche Herz der Applikation. Sie legt fest, welche Zustandsübergänge von Ressourcen möglich sind, welche Daten erlaubt sind und was bei API-Aufrufen ausgeführt wird.
+
+Zur Businesslogik gehört laut den ``ROCA''-Authoren auch die sogenannte \emph{logikbasierte Validierung}. Diese beinhaltet \cite{ObjektspektrumROCA} Funktionalität zur Überprüfung der Korrektheit der übertragenen Daten im Sinne der Businesslogik.
+
+\subsection*{Präsentationslogik}
+Bei jeder Aktion eines Benutzers müssen zwei Aktionen durchgeführt werden: API-Aufrufe (lokal und remote) und Darstellung der nächsten Ansicht. Welche API-Aufrufe gemacht werden und was die nächste Ansicht beinhaltet, bzw. welche Ansicht die nächste ist, kann als Präsentationslogik bezeichnet werden.
+
+Zur Präsentationslogik gehört laut den ``ROCA''-Authoren die sogenannte \emph{datenbasierte Validierung} \cite{ObjektspektrumROCA}. Diese überprüft die Korrektheit der Daten aufgrund ihres gewünschten Datentyps (z.B. dass Telefon-Felder nur Telefonnummern beinhalten dürfen) und auch die Vollständigkeit der eingegebenen Daten (ob ein notwendiges Feld ausgefüllt wurde).
+\\ \\
+Damit eine Applikation ``RP2''-konform ist, muss jegliche vorangehend als Businesslogik beschriebene Logik nur auf dem Server implementiert werden. Die Duplizierung dieser Logik auf dem Client würde dem \emph{``\gls{DRY}''}-Prinzip widersprechen und somit fundamentale Prinzipien der Software Entwicklung verletzen.
 
 \subsection*{Geplante Umsetzung}
-
-Die Beispielapplikation ``Roomies'' soll eine generalisierte REST-API zur Verfügung stellen, welche sowohl vom Client- wie auch vom Server-Code verwendet werden soll.
-
-Diese API implementiert jegliche Businesslogik zum authentifizieren und authorisieren der Benutzer, sowie die Validierung und Speicherung der Daten.
-
-Die Präsentationslogik wird als separater Layer implementiert.
+Die Beispielapplikation soll trotz Code-Sharing ``RP2''-konform implementiert werden. Dies bedeutet, dass folgende Bedingungen beachtet werden sollen:
+\begin{itemize}
+	\item Businesslogik soll in der API implementiert sein
+	\item Logikbasierte Validierung gehört zur Businesslogik und soll somit ebenfalls in der API umgesetzt werden
+	\item Die Präsentationslogik wird einmal implementiert und sowohl auf dem Client als auch auf dem Server laufen gelassen
+	\item Die Datenbasierte Validierung wird auf der API implementiert und falls möglich auch mit dem Client geteilt.
+\end{itemize}
 
 \subsection*{Konkrete Umsetzung}
-Die geplante API wurde umgesetzt. Client und Serverside Code verwenden die gleichen API-Definitionen um Daten zu manipulieren. Dabei wird immer sichergestellt, dass nicht authentifizierte oder authorisierte Benutzer keinen Zugriff haben.
-Weiter wird bei Datenmodifikationen sichergestellt, dass die Daten korrekt sind.
+Wie in \ref{sec:sad} ``\nameref{sec:sad}'' gezeigt, wurde sowohl eine API-Schicht als auch eine Shared-Schicht implementiert.
 
-Durch die Trennung von API und Präsentation ist erfolgreich eine Aufteilung der Aufgaben (Separation of Concerns \cite{SeparationOfConcerns}) umgesetzt worden. Dies erlaubt es in Zukunft, die API auf separaten Servern laufen zu lassen.
+Die geplante Umsetzung konnte erfolgreich umgesetzt werden. Die API beinhaltet jegliche Businesslogik und die logikbasierte Validierung, während die ``Shared Codebase'' Präsentationslogik beinhaltet.
 
-Als zusätzliches Plus wird der Quelltext mithilfe von ``barefoot'' zwischen Client und Server geteilt.
-
-Weitere Informationen zur Softwarearchitektur können im Kapitel \ref{sec:sad} \nameref{sec:sad} nachgelesen werden.
+Die Datenbasierte Validierung wurde aus Zeitgründen nur auf der API-Schicht implementiert und nicht mit dem Client geteilt. Das wäre eine mögliche Weiterentwicklung.
 
 \subsection*{Diskussion}
-Um zu garantieren dass alle Daten korrekt sind und von authentifizierten Benutzern abgefragt und modifiziert werden, muss die Businesslogik auf dem Server liegen.
-Falls jedoch insgesamt die User Experience verbessert werden soll, können \emph{zusätzlich} einzelne Teile wie die Validierung von Daten auf dem Client ausgeführt werden.
+Ein Grundprinzip für Software Entwickler lautet \emph{``Never trust the client''} \cite{DefensiveProgramming}. Die Richtlinie lässt sich direkt auf dieses Prinzip anwenden.
+Um sicherstellen zu können, dass jegliche übermittelte Daten eines Benutzers korrekt sind, müssen sie zumindest \emph{zusätzlich} auf dem Server überprüft werden.
 
-In der Beispielapplikation wird keine Validierung auf Clientseite vorgenommen. Durch den Einsatz von Validatoren, welche auch auf dem Client ausführbar sind (siehe \cite{nodevalidator}) und der Unterstützung von Backbone.Models für Validation (siehe \cite{BackboneModelValidation}) könnte das zusätzlich auf dem Client gemacht werden.
-
-Im Projektteam ist man sich einig: Die Applikationslogik muss grösstenteils auf dem Server liegen. Einzelne Validierungen o.Ä. kann auf dem Client ausgeführt werden, jedoch nur \emph{zusätzlich} zur bereits bestehenden Validierung auf dem Server.
-Diese Richtlinie ist für Client-Server Applikationen ein Muss. Ist das Programm allerdings keine klassische Client-Server Software (zum Beispiel Peer-to-Peer), kann das nicht so angewendet werden.
-Mit der Verwendung der \gls{WebRTC} APIs \cite{WebRTC} wird somit dieses Prinzip für Teile der Applikation nicht wirklich einsetzbar. Dementsprechend müssen dafür neue Ideen gefunden werden, beziehungsweise bereits etablierte Peer-to-Peer Software- und Netzwerktechniken auf den Browser adaptiert werden.
+Diese Richtlinie ist für Client-Server Anwendungen sehr wichtig. Was passiert aber, wenn Peer-to-Peer Anwendungen ohne Server implementiert werden sollen? Mit \mbox{\gls{WebRTC}} \cite{WebRTC} muss dieses Thema vermehrt für Webapplikationen angesprochen werden. Vermutlich kann dieses Prinzip also nicht ohne weiteres auf solche Applikationen appliziert werden und bedarf der Anwendung von etablierten Peer-to-Peer Patterns.
+\\ \\
+Im Projektteam ist man sich einig, dass diese Richtlinie für Client-Server Anwendungen umgesetzt werden muss. Falls man gewisse Codeteile sowohl auf dem Client und auf dem Server laufen lässt, kann es aber durchaus Sinn machen, schon auf dem Client diese Validierung zu machen. Dies dient aber vorallem der User Experience und darf nicht die Überprüfung auf dem Server ersetzen.
