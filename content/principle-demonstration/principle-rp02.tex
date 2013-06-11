@@ -10,37 +10,37 @@ Die Logik einer Applikation kann in zwei Kategorien unterteilt werden:
 \end{enumerate}
 
 \subsection*{Businesslogik}
-Die Businesslogik beinhaltet das eigentliche Herz der Applikation. Sie legt fest, welche Zustandsübergänge von Ressourcen möglich sind, welche Daten erlaubt sind und was bei API-Aufrufen ausgeführt wird.
+Die Businesslogik beinhaltet das eigentliche Herz der Applikation. Sie legt fest, welche Zustandsübergänge für Ressourcen möglich sind, welche Daten erlaubt sind und was bei API-Aufrufen ausgeführt wird.
 
-Zur Businesslogik gehört laut den ``ROCA''-Authoren auch die sogenannte \emph{logikbasierte Validierung}. Diese beinhaltet \cite{ObjektspektrumROCA} Funktionalität zur Überprüfung der Korrektheit der übertragenen Daten im Sinne der Businesslogik.
+Zur Businesslogik gehört laut den ``ROCA''-Autoren auch die \emph{logikbasierte Validierung}. Diese beinhaltet \cite{ObjektspektrumROCA} Funktionalität zur Überprüfung der Korrektheit der übertragenen Daten im Sinne der Businesslogik.
 
 \subsection*{Präsentationslogik}
 Bei jeder Aktion eines Benutzers müssen zwei Aktionen durchgeführt werden: API-Aufrufe (lokal und remote) und Darstellung der nächsten Ansicht. Welche API-Aufrufe gemacht werden und was die nächste Ansicht beinhaltet, bzw. welche Ansicht die nächste ist, kann als Präsentationslogik bezeichnet werden.
 
-Zur Präsentationslogik gehört laut den ``ROCA''-Authoren die sogenannte \emph{datenbasierte Validierung} \cite{ObjektspektrumROCA}. Diese überprüft die Korrektheit der Daten aufgrund ihres gewünschten Datentyps (z.B. dass Telefon-Felder nur Telefonnummern beinhalten dürfen) und auch die Vollständigkeit der eingegebenen Daten (ob ein notwendiges Feld ausgefüllt wurde).
+Zur Präsentationslogik gehört laut den ``ROCA''-Autoren die sogenannte \emph{datenbasierte Validierung} \cite{ObjektspektrumROCA}. Diese überprüft die Korrektheit der Daten aufgrund ihres gewünschten Datentyps (z.B. Telefonnummern auf formale korrektheit etc.) und auch die Vollständigkeit der übertragenen Daten.
 \\ \\
-Damit eine Applikation ``RP2''-konform ist, muss jegliche vorangehend als Businesslogik beschriebene Logik nur auf dem Server implementiert werden. Die Duplizierung dieser Logik auf dem Client würde dem \emph{``\gls{DRY}''}-Prinzip widersprechen und somit fundamentale Prinzipien der Software Entwicklung verletzen.
+Damit eine Applikation ``RP2''-konform ist, darf jegliche vorangehend als Businesslogik beschriebene Logik nur auf dem Server implementiert werden. Die Duplizierung auf den Client würde dem \emph{``\gls{DRY}''}-Prinzip widersprechen und somit fundamentale Prinzipien des Software Engineerings verletzen.
 
 \subsection*{Geplante Umsetzung}
 Die Beispielapplikation soll trotz Code-Sharing ``RP2''-konform implementiert werden. Dies bedeutet, dass folgende Bedingungen beachtet werden sollen:
 \begin{itemize}
 	\item Businesslogik soll in der API implementiert sein
 	\item Logikbasierte Validierung gehört zur Businesslogik und soll somit ebenfalls in der API umgesetzt werden
-	\item Die Präsentationslogik wird einmal implementiert und sowohl auf dem Client als auch auf dem Server laufen gelassen
-	\item Die Datenbasierte Validierung wird auf der API implementiert und falls möglich auch mit dem Client geteilt.
+	\item Die Präsentationslogik wird einmal implementiert und sowohl auf dem Client als auch auf dem Server verwendet
+	\item Die datenbasierte Validierung wird auf der API implementiert und falls möglich auch mit dem Client geteilt.
 \end{itemize}
 
 \subsection*{Konkrete Umsetzung}
-Wie in \ref{sec:sad} ``\nameref{sec:sad}'' gezeigt, wurde sowohl eine API-Schicht als auch eine Shared-Schicht implementiert.
+Wie in \ref{sec:sad} ``\nameref{sec:sad}'' gezeigt, wurde sowohl ein API- als auch ein Shared-Layer implementiert.
 
-Die geplante Umsetzung konnte erfolgreich umgesetzt werden. Die API beinhaltet jegliche Businesslogik und die logikbasierte Validierung, während die ``Shared Codebase'' Präsentationslogik beinhaltet.
+Die geplante Umsetzung konnte erfolgreich durchgeführt werden. Die API beinhaltet alle Businesslogik sowie die logikbasierte Validierung, während die ``Shared Codebase'' Präsentationslogik beinhaltet.
 
-Die Datenbasierte Validierung wurde aus Zeitgründen nur auf der API-Schicht implementiert und nicht mit dem Client geteilt. Das wäre eine mögliche Weiterentwicklung.
+Die datenbasierte Validierung wurde aus Zeitgründen nur auf der API-Schicht implementiert und nicht mit dem Client geteilt. Dies wäre eine mögliche Weiterentwicklung.
 
 \subsection*{Diskussion}
-Ein Grundprinzip für Software Entwickler lautet \emph{``Never trust the client''} \cite{DefensiveProgramming}. Die Richtlinie lässt sich direkt auf dieses Prinzip anwenden.
-Um sicherstellen zu können, dass jegliche übermittelte Daten eines Benutzers korrekt sind, müssen sie zumindest \emph{zusätzlich} auf dem Server überprüft werden.
+Ein Grundprinzip für Software Entwickler lautet \emph{``Never trust the client''} \cite{DefensiveProgramming}. Die Richtlinie \emph{RP2} lässt sich direkt auf dieses Prinzip anwenden.
+Um sicherstellen zu können, dass jegliche übermittelte Daten eines Benutzers korrekt sind, müssen diese zwingend auf dem Server überprüft werden.
 
-Diese Richtlinie ist für Client-Server Anwendungen sehr wichtig. Was passiert aber, wenn Peer-to-Peer Anwendungen ohne Server implementiert werden sollen? Mit \mbox{\gls{WebRTC}} \cite{WebRTC} muss dieses Thema vermehrt für Webapplikationen angesprochen werden. Vermutlich kann dieses Prinzip also nicht ohne weiteres auf solche Applikationen appliziert werden und bedarf der Anwendung von etablierten Peer-to-Peer Patterns.
+Diese Richtlinie ist für Client-Server Anwendungen wichtig. Was passiert aber, wenn Peer-to-Peer Anwendungen ohne zentralen Server implementiert werden sollen? Mit \mbox{\gls{WebRTC}} \cite{WebRTC} rückt dieses Thema vermehrt auch für Webapplikationen ins Zentrum der Aufmerksamkeit. Vermutlich kann dieses Prinzip also nicht ohne weiteres auch auf solche Applikationen appliziert werden und bedarf darum der Anwendung von etablierten Peer-to-Peer Patterns.
 \\ \\
-Im Projektteam ist man sich einig, dass diese Richtlinie für Client-Server Anwendungen umgesetzt werden muss. Falls man gewisse Codeteile sowohl auf dem Client und auf dem Server laufen lässt, kann es aber durchaus Sinn machen, schon auf dem Client diese Validierung zu machen. Dies dient aber vorallem der User Experience und darf nicht die Überprüfung auf dem Server ersetzen.
+Im Projektteam ist man sich einig, dass diese Richtlinie für Client-Server Anwendungen umgesetzt werden muss. Falls man gewisse Codeteile sowohl auf dem Client und auf dem Server verwendet werden, kann es aber durchaus Sinn machen, schon auf dem Client diese Validierung zu machen. Dies dient aber vor allem der User Experience und darf niemals die Überprüfung auf dem Server ersetzen.
