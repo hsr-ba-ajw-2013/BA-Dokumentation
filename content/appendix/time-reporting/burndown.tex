@@ -1,8 +1,9 @@
-\chapter{BurnDown Chart}
+\section{Burndown}
 \label{sec:burndown-chart}
+
 \begin{tikzpicture}
 	\begin{axis}[
-		width=16cm,
+		width=\textwidth,
 		xlabel=$Kalenderwochen$,
 		ylabel=$Stunden (h)$,
 		grid=major,
@@ -105,7 +106,7 @@
 		};
 	\addlegendentry{Alexandre Joly}
 
-	\addplot[smooth,color=black]
+	\addplot[smooth,thick,color=black]
 		plot coordinates {
 			(6,360)
 			(7,360)
