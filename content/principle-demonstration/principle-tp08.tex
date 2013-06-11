@@ -1,14 +1,14 @@
 \section{TP8 Automate everything or you will be hurt}
 \label{sec:principle-tp8-automate-everything}
 
-\emph{TP8} greift einen allgemein gültigen Vorsatz aus dem Software Engineering auf: Mit ``\emph{Don't repeat yourself}'' wird zum einen sich wiederholender Quellcode minimiert, als auch wiederkehrende Routineaufgaben automatisiert.
+\emph{TP8} greift einen allgemein gültigen Vorsatz aus dem Software Engineering auf: Mit ``\emph{\gls{DRY}}'' wird zum einen sich wiederholender Quellcode minimiert, zum anderen werden auch wiederkehrende Routineaufgaben automatisiert.
 
-Entwickelt man den \emph{DRY}-Ansatz weiter, so landet man unweigerlich bei der Verwendung von automatisierten Tests und Deployments mittels Continuous Integration Systemen.
+Entwickelt man den ``\emph{\gls{DRY}}''-Ansatz weiter, so landet man unweigerlich bei der Verwendung von automatisierten Tests und Deployments mittels Continuous Integration Systemen.
 
 \subsection*{Geplante Umsetzung}
-Gemäss der Tabelle \ref{fig:how-to-show-principles-matrix} ``\nameref{fig:how-to-show-principles-matrix}'' im Kapitel ``\nameref{sec:analyse-der-aufgabenstellung}'' soll \emph{TP8} durch die Verwendung verschiedener unterstützender Tools umgesetzt und demonstriert werden.
+Gemäss Tabelle \ref{fig:how-to-show-principles-matrix} ``\nameref{fig:how-to-show-principles-matrix}'' im Kapitel ``\nameref{sec:analyse-der-aufgabenstellung}'' soll \emph{TP8} durch die Verwendung verschiedener unterstützender Tools umgesetzt und demonstriert werden.
 
-Die Tabelle \ref{fig:automated-tasks-planned} zeigt eine Auflistung der zu automatisierenden Aufgaben:
+Tabelle \ref{fig:automated-tasks-planned} zeigt eine Auflistung der zu automatisierenden Aufgaben:
 
 \begin{table}[H]
 \tablestyle
@@ -59,7 +59,7 @@ Neben den oben erwähten Aufgaben wurden in der konkreten Implementation des Pro
 \label{fig:automated-tasks-concrete}
 \end{table}
 
-Als Kernkomponente für die Automatisierung der Aufgaben in Tabelle \ref{fig:automated-tasks-concrete} wird ein \emph{Makefile} (\cite{RoomiesMakefile} und \cite{ThesisMakefile}) verwendet. Dieses wird von \emph{GNU Make} \cite{make} interpretiert und ermöglicht so das Ausführen von verschiedensten Operationen.
+Als Kernkomponente für die Automatisierung der Aufgaben in Tabelle \ref{fig:automated-tasks-concrete} wird ein \emph{Makefile} (\cite{RoomiesMakefile} und \cite{ThesisMakefile}) verwendet. Dieses wird von \emph{GNU Make} \cite{make} interpretiert und ermöglicht so das Ausführen verschiedenster Operationen.
 
 Der Quelltext \ref{lst:makefileDocs} zeigt exemplarisch die Befehlsdefinition für die Erstellung der Quellcode Dokumentation mittels \emph{Natural Docs} \cite{NaturalDocs}.
 
@@ -76,7 +76,7 @@ Durch den einfache Kommandozeilenbefehl \emph{make docs} wird der in \ref{lst:ma
 
 Die in Tabelle \ref{fig:automated-tasks-concrete} vorgestellten Aufgaben \emph{TP8.2} bis \emph{8.8} werden sowohl lokal auf dem Entwicklerrechner als auch auf dem Continuous Integration System ausgeführt.
 
-Entsprechend der Definition im Kaptiel \ref{sec:qualitymanagement} ``\nameref{sec:qualitymanagement}'' wird hierzu die Open Source Plattform Travis CI \cite{TravisCI} verwendet. Der Quelltext \ref{lst:roomiesTravisYML} zeigt einen Ausschnitt der Datei \emph{.travis.yml} \cite{RoomiesTravisYML}. Diese steuert den Build auf Travis CI.
+Entsprechend der Definition in Kaptiel \ref{sec:qualitymanagement} ``\nameref{sec:qualitymanagement}'' wird hierzu die Open Source Plattform Travis CI \cite{TravisCI} verwendet. Der Quelltext \ref{lst:roomiesTravisYML} zeigt einen Ausschnitt der Datei \emph{.travis.yml} \cite{RoomiesTravisYML}. Diese steuert den Build auf Travis CI.
 
 \begin{lstlisting}[language=XML, firstnumber=5, caption={Ausschnit aus .travis.yml \cite{RoomiesTravisYML}}, label=lst:roomiesTravisYML]
 before_install:
@@ -93,10 +93,10 @@ script: "make docs test-coveralls lint"
 \end{lstlisting}
 
 \subsection*{Diskussion}
-Muss eine Aufgabe zweimal ausgeführt, sollte dies als Rechtfertigung zur Automatisierung dieser bereits genügen. Dies trifft umso mehr zu, wenn mehrere Entwickler am Entwicklungsprozess beteiligt sind.
+Muss eine Aufgabe zweimal ausgeführt werden, sollte dies als Rechtfertigung zur Automatisierung einer solchen Arbeit bereits genügen. Dies trifft umso mehr zu, wenn mehrere Entwickler am Entwicklungsprozess beteiligt sind.
 
-Die Praxis zeigt dass die Unterstützung von Projektmitarbeitern durch Automatisierung von Routineaufgaben eine hohe Zeitersparnis und Effektivitätssteigerung mit sich bringt. Wird die Ausführung der Unit Tests erleichtert, lässt sich zudem die Akzeptanz eines Test Driven Development Prozesses erhöhen.
+Die Praxis zeigt, dass Zeitersparnis und Effektivitätssteigerung die positiven Folgen der Automatisierung von Routineaufgaben sind. Wird die Ausführung der Unit Tests erleichtert, lässt sich zudem die Akzeptanz eines Test Driven Development Prozesses erhöhen.
 
-Das Projektteam war positiv davon überrascht, was sich mit frei zugänglichen Continuous Integration Lösungen wie Travis CI \cite{TravisCI} umsetzen lässt. Von der Generierung von Dokumentationen bis hin zur regelmässigen Ausführung von Unit Tests lassen sich ohne grossen Aufwand unbeliebte Aufgaben problemlos Automatisieren und Auslagern.
+Das Projektteam war positiv davon überrascht, was sich mit frei zugänglichen Continuous Integration Lösungen wie Travis CI \cite{TravisCI} umsetzen lässt. Von der Generierung von Dokumentationen bis hin zur regelmässigen Ausführung von Unit Tests lassen sich ohne grossen Aufwand unbeliebte Aufgaben problemlos automatisieren und auslagern.
 
 Das Credo ``Don't repeat yourself'' ist somit ganz klar Trumpf und so wird auch die Richtlinie \emph{TP8 Automate everything or you will be hurt} vom Projektteam unterstützt.
