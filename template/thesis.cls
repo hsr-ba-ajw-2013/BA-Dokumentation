@@ -31,6 +31,7 @@
 \usepackage{multicol}
 \usepackage{geometry}
 \usepackage{tocstyle}
+\usepackage{pgfplots}
 \usepackage{tikz-uml}
 \usepackage{datetime}
 \usepackage{pgfgantt}
