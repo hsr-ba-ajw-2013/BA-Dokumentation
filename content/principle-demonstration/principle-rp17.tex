@@ -15,9 +15,9 @@ Die \emph{Static Assets} ROCA Richtlinie will, dass jeglicher JavaScript Code in
 
 \subsection*{Geplante Umsetzung}
 \subsubsection*{CSS Stylesheets}
-Die verwendeten CSS Stylesheets sollen mit dem SASS Präprozessor \cite{SASS} erstellt werden. Zwar muss der eigentliche Stylesheet Code vorneweg einmalig übersetzt werden, die dadurch entstehenden Vorteile beim Entwickeln der Formatierungsinformationen sind jedoch bei Weitem grösser.
+Die verwendeten CSS Stylesheets sollen mit dem SASS Präprozessor \cite{SASS} erstellt werden. Zwar muss der eigentliche Stylesheet Code im Voraus einmalig übersetzt werden, die dadurch entstehenden Vorteile beim Entwickeln der Formatierungsinformationen sind jedoch bei Weitem grösser.
 
-Da zudem statische SASS-Quelldateien übersetzt werden, kann der Anspruch, keine dynamischen CSS Formatierungen zu generieren, befriedigt werden.
+Da zudem statische SASS-Quelldateien übersetzt werden, kann der Anspruch, ``keine dynamischen CSS Formatierungen'' zu generieren, befriedigt werden.
 
 \subsubsection*{Clientside JavaScript}
 Der JavaScript-Quelltext für den Client soll auf verschiedene Dateien aufgeteilt werden. Die Codefragmente in dieser Form an den Browser auszuliefern ist jedoch aus Gründen wie Verbindungsoverhead und der damit verbundenen schlechteren User Experience nicht optimal.
@@ -31,12 +31,12 @@ Aus diesem Grund sollen auf dem Backend alle Client-Quellcode-Dateien zusammenge
 Beide geplanten Umsetzungen konnten erfolgreich implementiert werden.
 
 \subsubsection*{CSS Stylesheets}
-Zur Entwicklungszeit werden die SASS-Quellcodes bei jedem Start der Beispielapplikation neu umgewandelt. Möchte man die Applikation produktiv verwenden, kann die initial beim Ausführen des \emph{install.sh} Skripts durchgeführt werden, oder gezielt über den Kommandozeilenbefehl \emph{make precompile-sass}.
+Zur Entwicklungszeit werden die SASS-Quellcodes bei jedem Start der Beispielapplikation neu umgewandelt. Möchte man die Applikation produktiv verwenden, kann dies initial beim Ausführen des \emph{install.sh} Skripts durchgeführt werden, oder gezielt über den Kommandozeilenbefehl \emph{make precompile-sass}.
 
 Die daraus entstehende Datei kann anschliessend ohne weitere Veränderungen vom Webserver an den Browser des Benutzers übertragen werden.
 
 \subsubsection*{Clientside JavaScript}
-Mit \emph{barefoot} \cite{Barefoot} gibt es zwar eine geteilte Codebasis für Client und Server. Jedoch stellt sich auch hier die Herausforderung, über verschiedenen Dateien verteilte Programmlogik in eine einzige, grössenoptimierte JavaScript-Datei zusammenzufassen.
+Mit \emph{barefoot} \cite{Barefoot} gibt es zwar eine geteilte Codebasis für Client und Server. Jedoch stellt sich auch hier die Herausforderung, über verschiedene Dateien verteilte Programmlogik in eine einzige, grössenoptimierte JavaScript-Datei zusammenzufassen.
 
 Zu diesem Zweck verwendet \emph{barefoot} die \emph{browserify-middleware} für Express.JS \cite{browserifymiddleware}. Diese Komponente ermittelt anhand vorhandener \emph{require}-Statements im Quelltext, welche CommonJS Module \cite{commonjsmodules} zusammengefasst und bereitgestellt werden müssen.
 
@@ -75,11 +75,11 @@ Zwar kann man hier tendenziell von dynamischen Code sprechen, in dieser Form wir
 
 
 \subsection*{Diskussion}
-Das Projektteam ist davon überzeugt, dass die umgesetzten und aufgezeigten Methoden und Mechanismen für moderne Webapplikationen ein extrem hilfreiches Werkzeug sind.
+Das Projektteam ist davon überzeugt, dass die umgesetzten und aufgezeigten Methoden und Mechanismen für moderne Webapplikationen ein äusserst hilfreiches Werkzeug sind.
 
 Im Bereich der clientseitigen JavaScript Entwicklung ermöglicht die erwähnte \emph{browserify-middleware} oder andere Bibliotheken wie RequireJS \cite{requirejs} erst das effiziente Verteilen von Quellcode auf mehrere Dateien.
 
-In die gleiche Richtung strebt SASS: Es ergänzt CSS um viele nützliche Features wie Variablen und Mixins. Daneben ermöglicht es aber, entsprechende Bibliotheken vorausgesetzt, eine extreme Vereinfachung der Entwicklung von CSS-Stylesheets, welche mit verschiedenen Browsern kompatibel ist.
+In die gleiche Richtung strebt SASS: Es ergänzt CSS um viele nützliche Features wie Variablen und Mixins. Daneben ermöglicht es aber, entsprechende Bibliotheken vorausgesetzt, eine immense Vereinfachung der Entwicklung von CSS-Stylesheets, welche mit verschiedenen Browsern kompatibel sind.
 
 Sollten die vorgestellten Techniken für jede Webapplikation verwendet werden?
 

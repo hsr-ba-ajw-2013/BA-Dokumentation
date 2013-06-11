@@ -1,7 +1,7 @@
 \section{RP18 History API}
 \label{sec:principle-rp18-history-api}
 
-Mit dem Aufkommen der JavaScript History API \cite{HistoryAPI} ist es ohne Workarounds möglich, dynamische Seitenwechsel im Browser von JavaScript aus veranzulassen.
+Mit dem Aufkommen der JavaScript History API \cite{HistoryAPI} ist es ohne Workarounds möglich, von JavaScript aus dynamische Seitenwechsel im Browser veranzulassen.
 
 \subsection*{Geplante Umsetzung}
 Mithilfe von ``Backbone.History'' \cite{BackbonejsHistory} soll jegliche URL-Änderung in modernen Browsern mit JavaScript gemacht werden.
@@ -26,8 +26,8 @@ Backbone.history.start({
 \end{lstlisting}
 
 \subsection*{Diskussion}
-Vor einigen Jahren war die History API noch nicht verfügbar und mehrere Unternehmen verwendeten als Workaround das sogenannte \gls{Hashbang}. Diese Technik verwendet das setzen von sogenannten ``Anchors'' in der URL um von JavaScript aus die \gls{URL} gemäss aktueller Seite anzupassen. Das grosse Problem dieser Technik ist jedoch, dass der Browser dieses \gls{URL}-Fragment nicht dem Server mitschickt.
-Infolgedessen mussten die Webapplikationen folgenden Workaround verwenden, wenn jemand eine URL mit dem Hashbang eintippte:
+Vor einigen Jahren war die History API noch nicht verfügbar und mehrere Unternehmen verwendeten als Workaround das sogenannte \gls{Hashbang}. Diese Technik verwendet das Setzen von sogenannten ``Anchors'' in der URL um von JavaScript aus die \gls{URL} gemäss aktueller Seite anzupassen. Das grosse Problem dieser Technik ist jedoch, dass der Browser dieses \gls{URL}-Fragment nicht dem Server mitschickt.
+Wenn jemand eine \gls{URL} mit dem \gls{Hashbang} eintippte, mussten die Webapplikationen deshalb folgenden Workaround verwenden:
 
 \begin{enumerate}
 	\item Startseite ausliefern
@@ -35,7 +35,7 @@ Infolgedessen mussten die Webapplikationen folgenden Workaround verwenden, wenn 
 	\item Die eigentlich gewünschte Seite ausliefern
 \end{enumerate}
 
-Da es nur noch wenige Browser gibt, welche die History API nicht unterstützen (z.B. Internet Explorer 8), gibt es immer noch einige Seiten welche dies als Fallback einsetzen. Da dieser Fallback jedoch umständlich und nicht förderlich für die User Experience ist, wird immer wie mehr darauf verzichtet (siehe z.B. den Blogpost von Twitter über die Abschaffung des Hashbangs \cite{twitterAbandonsHashbangs}).
+Da es nur noch wenige Browser gibt, welche die History API nicht unterstützen (z.B. Internet Explorer 8), gibt es immer noch einige Seiten welche dies als Fallback einsetzen. Da dieser Fallback jedoch umständlich und nicht förderlich für die User Experience ist, wird je länger je mehr darauf verzichtet (siehe z.B. den Blogpost von Twitter über die Abschaffung des Hashbangs \cite{twitterAbandonsHashbangs}).
 
-Die History API wird heutzutage von allen modernen Browsern unterstützt. Dementsprechend gibt es kein Herumkommen um diese API. Das Projektteam
+Die History API wird heute von allen modernen Browsern unterstützt. Man kommt also nicht mehr um diese API herum. Das Projektteam
 empfiehlt zudem, Hashbangs ohne zwingenden Grund nicht zu verwenden.

@@ -10,7 +10,7 @@ Die Kommunikation des Clients mit dem Server über \gls{REST} soll unter anderem
 Um normale HTML-Formulare \gls{RESTful} zu machen, soll ein Weg gefunden werden, mit dem nebst ``POST'' auch ``PUT'' und ``DELETE'' Abfragen ermöglicht werden.
 
 \subsection*{Konkrete Umsetzung}
-Die geplante Umsetzung ist so implementiert worden. Als Beispiel zeigt Quelltext \ref{lst:roomiesCommunityModel} ein \emph{Barefoot.Model} \cite{barefootModel}, welches eine URL zur API definiert und über diese synchronisiert werden kann.
+Die Umsetzung ist wie geplant ausgeführt worden. Als Beispiel zeigt Quelltext \ref{lst:roomiesCommunityModel} ein \emph{Barefoot.Model} \cite{barefootModel}, welches eine URL zur API definiert und über diese synchronisiert werden kann.
 
 \begin{lstlisting}[language=JavaScript, caption=Community Model \cite{roomiesCommunityModel}, label=lst:roomiesCommunityModel]
 /** Class: Models.Community
@@ -67,7 +67,7 @@ Um dieses Model mit Daten abzufüllen, kann wie in Quelltext \ref{lst:roomiesCom
 \end{lstlisting}
 
 \subsubsection*{\gls{RESTful} Forms}
-HTML-Formulare unterstützen nur zwei Arten von HTTP-Methoden, ``POST'' und ``GET'' \cite{FormMethodMDN}. Um eine Applikation \gls{RESTful} zu machen, sollten aber zumindest zumindest zusätzlich ``PUT'' und ``DELETE'' unterstützt werden.
+HTML-Formulare unterstützen nur zwei Arten von HTTP-Methoden, ``POST'' und ``GET'' \cite{FormMethodMDN}. Um eine Applikation \gls{RESTful} zu machen, sollten aber zumindest zusätzlich ``PUT'' und ``DELETE'' unterstützt werden.
 
 Die Unterstützung dieser zusätzlichen Methoden erfordert eine Hilfskonstruktion:
 \begin{itemize}
@@ -125,7 +125,7 @@ Als Beispiel zeigt Quelltext \ref{lst:taskCheckForm} das Formular für das absch
 
 \subsection*{Diskussion}
 
-``\nameref{sec:principle-rp3-http}'' ist eine Richtlinie, welche nach Auffassung des Projektteams nur hinsichtlich der Formulare bereichernd für den Konzeptkatalog ist. Die restliche \gls{REST} Thematik ist schon mit \nameref{sec:principle-rp1-rest} abgedeckt und sollte somit hinlänglich Thematisiert worden sein.
+``\nameref{sec:principle-rp3-http}'' ist eine Richtlinie, welche nach Auffassung des Projektteams nur hinsichtlich der Formulare bereichernd für den Konzeptkatalog ist. Die restliche \gls{REST} Thematik ist schon mit \nameref{sec:principle-rp1-rest} abgedeckt und sollte somit hinlänglich thematisiert worden sein.
 
 Die Verwendung von ``PUT'', ``DELETE'' etc. für Formulare hat sowohl gute wie auch schlechte Seiten: Einerseits können die gleichen API-Routen (und somit der gleiche Code) wie für normale API-Aufrufe verwendet werden. Dafür ist allerdings ein relativ unschöner (aber doch relativ eleganter) Workaround zu verwenden.
 

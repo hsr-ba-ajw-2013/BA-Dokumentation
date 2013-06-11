@@ -14,7 +14,7 @@ Tabellen sollen für tabellarische Daten verwendet werden und nicht etwa um die 
 \subsection*{Konkrete Umsetzung}
 Um die möglichen semantischen Inkorrektheiten zu reduzieren, wurde mit Templates gearbeitet. So können beispielsweise Menüs oder Fusszeilen definiert und wiederverwendet werden, ohne dass man diese bei jeder Benutzung neu schreiben muss. Dies geht sehr stark nach dem ``\gls{DRY}'' Prinzip. So werden Fehler verhindert, indem man sie gar nicht zu schreiben hat.
 
-Im folgenden Beispiel-HTML sieht man einen kleinen Ausschnitt aus dem Haupttemplate von ``Roomies''. Man kann klar die Aufteilung der Seite erkennen. Oben beginnter der Header mit dem Menü, gefolgt von einem Platzhalter für allfälligen Fehler-, Warnungs- oder Informationsmeldungen. Die Hauptsektion mit der ID ``main''. Darin Befindet sich die ganzen Inhalte. Und zum Schluss die Fusszeile, in welcher sich der Abmelden-Link befindet.
+Im folgenden Beispiel-HTML sieht man einen kleinen Ausschnitt aus dem Haupttemplate von ``Roomies''. Man kann klar die Aufteilung der Seite erkennen. Oben beginnt der Header mit dem Menü, gefolgt von einem Platzhalter für allfällige Fehler-, Warnungs- oder Informationsmeldungen und die Hauptsektion mit der ID ``main''. Darin befinden sich die ganzen Inhalte. Und zum Schluss die Fusszeile, in welcher sich der Abmelde-Link befindet.
 
 \begin{lstlisting}[language=HTML, caption=Layout Definition \cite{roomiesHtmlSkeleton}, label=lst:layoutDefinition, firstnumber=27]
 <body>

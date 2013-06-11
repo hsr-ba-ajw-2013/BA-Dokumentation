@@ -19,7 +19,7 @@ Das Backend liefert beim initialen Request ein HTML Grundgerüst, auf welchem di
 </html>
 \end{lstlisting}
 
-Die Zeile \autoref{lst:htmlSkeleton_appjs} im Quelltext \ref{lst:htmlSkeleton} zeigt beispielhaft die Einbindung der JavaScript-Datei aus Quelltext \ref{lst:htmlSkeletonJavascriptFile}. Nach Beendigung des Ladevorgangs wird unter Verwendung des \gls{DOM}-Manipulators \emph{jQuery} \cite{jQuery} dynamisch ein Titel-Element in das \emph{<div>}-Element mit der ID \emph{main} eingefügt.
+Zeile \autoref{lst:htmlSkeleton_appjs} im Quelltext \ref{lst:htmlSkeleton} zeigt beispielhaft die Einbindung der JavaScript-Datei aus Quelltext \ref{lst:htmlSkeletonJavascriptFile}. Nach Beendigung des Ladevorgangs wird unter Verwendung des \gls{DOM}-Manipulators \emph{jQuery} \cite{jQuery} dynamisch ein Titel-Element in das \emph{<div>}-Element mit der ID \emph{main} eingefügt.
 
 \begin{lstlisting}[language=JavaScript, caption={JavaScript-Datei \emph{app.js} zu Quelltext \ref{lst:htmlSkeleton}}, label=lst:htmlSkeletonJavascriptFile]
 $(function() {
@@ -37,9 +37,9 @@ Unter Berücksichtigung des Prinzips \emph{\nameref{sec:principle-rp14-unobtrusi
 
 \subsection*{Konkrete Umsetzung}
 
-Wie in \ref{sec:principle-rp14-unobtrusive-javascript} dokumentiert, wurde dem ROCA Prinzip \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} eine grössere Gewichtung zugestanden als \emph{Know Structure}. Aus diesem Grund wurde wie geplant darauf verzichtet User Interface Logik nur in der Frontendkomponente zu verwenden.
+Wie in Abschnitt \ref{sec:principle-rp14-unobtrusive-javascript} dokumentiert, wurde dem ROCA Prinzip \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} eine grössere Gewichtung zugestanden als \emph{Know Structure}. Aus diesem Grund wurde wie geplant darauf verzichtet User Interface Logik nur in der Frontendkomponente zu verwenden.
 
-Die aus \ref{sec:principle-rp15-no-duplication} und \ref{sec:principle-rp14-unobtrusive-javascript} bekannte geteilte Codebasis zwischen Front- und Backendkomponente zielt sogar absichtlich darauf ab, dass auch im Backend die komplette Struktur des User Interfaces bekannt ist.
+Die aus den Abschnitten \ref{sec:principle-rp15-no-duplication} und \ref{sec:principle-rp14-unobtrusive-javascript} bekannte geteilte Codebasis zwischen Front- und Backendkomponente zielt sogar absichtlich darauf ab, dass auch im Backend die komplette Struktur des User Interfaces bekannt ist.
 
 Ein grundlegender Punkt wurde jedoch aus \emph{RP16 Know Structure} adaptiert: \emph{Roomies} verwendet wie vorgeschlagen ein HTML Grundgerüst \cite{roomiesHtmlSkeleton}, in welches sowohl im Front- als auch Backend die UI Elemente gerendert werden.
 
@@ -48,6 +48,6 @@ Ein grundlegender Punkt wurde jedoch aus \emph{RP16 Know Structure} adaptiert: \
 
 \emph{Separation of concerns} \cite{SeparationOfConcerns} gehört nicht umsonst zu einem der grundlegendsten Prinzipien im Software Engineering. Darauf bezogen hat die eigentliche Intension von \emph{RP16 Know Structure} durchaus seine Daseinsberechtigung: Eine klare Auftrennung von UI Rendering und eigentlicher Geschäftslogik ist erstrebenswert.
 
-Möchte man die Architekturrichtlinie \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} zwecks bestmöglicher Kompatibilität in die Entwicklung einer Applikation mit einfliessen lassen, kommt es unweigerlich zum Konflikt mit \emph{RP16}. Damit die Applikation auch ohne das User Interface Rendering direkt auf dem Client funktionieren kann, muss die Backendkomponente zwingend über Renderingfunktionalität und damit Wissen über die Struktur des resultierenden HTML Markups verfügen. Damit bricht dieses Vorgehen klar mit den Anforderungen \emph{Know Structures}.
+Möchte man die Architekturrichtlinie \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} zwecks bestmöglicher Kompatibilität in die Entwicklung einer Applikation mit einfliessen lassen, kommt es unweigerlich zum Konflikt mit \emph{RP16}. Damit die Applikation auch ohne das User Interface Rendering direkt auf dem Client funktionieren kann, muss die Backendkomponente zwingend über Renderingfunktionalität und damit Wissen über die Struktur des resultierenden HTML Markups verfügen. Damit bricht dieses Vorgehen klar mit den Anforderungen von \emph{Know Structure}.
 
 Kann auf \emph{\nameref{sec:principle-rp14-unobtrusive-javascript}} verzichtet werden, mag \emph{RP16 Know Structure} seine Stärken ausspielen können. Ist jedoch das clientunabhängige Rendering des User Interfaces eine Anforderung an die zu erstellende Lösung, empfiehlt das Projektteam von \emph{RP16} abzusehen.

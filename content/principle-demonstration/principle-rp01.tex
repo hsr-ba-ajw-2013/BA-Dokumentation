@@ -15,7 +15,7 @@ Dadurch dass REST-APIs meistens versioniert sind, können Client und Server mehr
 Sobald die API eine neue Version erstellt und Rückwärtskompatibilität mit den alten Versionen garantiert, kann die Client-Software weiterentwickelt werden.
 
 REST baut auf HTTP auf. Es werden explizit die sogenannten HTTP-Verben (GET, POST, PUT, DELETE etc.) verwendet um Ressourcen abzufragen oder zu manipulieren.
-Durch den Einsatz des HTTP-Standards wird Caching auch direkt ermöglicht. Voraussetzung dafür ist, dass die Software die entsprechenden Caching-Headers in den Antworten sendet.
+Durch den Einsatz des HTTP-Standards wird Caching direkt ermöglicht. Voraussetzung dafür ist, dass die Software die entsprechenden Caching-Headers in den Antworten sendet.
 
 Damit spezifische Instanzen einer Ressource ansprechbar sind, ist die Verwendung korrekter und eindeutiger \glspl{URI} Pflicht. Jeder Objekt-Typ und jedes Objekt sollten eindeutig identifizierbar sein.
 
@@ -75,7 +75,7 @@ Zeile \autoref{lst:restApiRoomies_post} definiert eine ``POST'' API-Route um ein
 
 Aus Zeitgründen wurde kein Caching und keine Versionierung implementiert.
 
-Eine Versionierung wäre durch ein zusätzliches Präfix für die API-Routes ohne Probleme lösbar.
+Eine Versionierung wäre durch ein zusätzliches Präfix für die API-Routes problemlos möglich.
 
 Dasselbe gilt für das Caching. Jedes Objekt in der Datenbank hat eine Spalte mit der Information, wann es zuletzt modifiziert wurde. Durch diese Information kann ein generisches Caching implementiert werden.
 
