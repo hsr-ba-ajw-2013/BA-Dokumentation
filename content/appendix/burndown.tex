@@ -3,25 +3,34 @@
 \begin{tikzpicture}
 	\begin{axis}[
 		width=16cm,
-		xlabel=$Kalenderwoche$,
+		xlabel=$Kalenderwochen$,
 		ylabel=$Stunden (h)$,
 		grid=major,
 		xticklabels={
-					$2013-2$,
-					$2013-4$,
-					$2013-6$,
-					$2013-8$,
-					$2013-10$,
-					$2013-12$,
-					$2013-14$,
-					$2013-16$,
-					$2013-18$,
-					$2013-20$,
-					$2013-22$,
-					$2013-24$},
+			$2013-2$,
+			$2013-4$,
+			$2013-6$,
+			$2013-8$,
+			$2013-10$,
+			$2013-12$,
+			$2013-14$,
+			$2013-16$,
+			$2013-18$,
+			$2013-20$,
+			$2013-22$,
+			$2013-24$
+		},
+		legend style={
+			at={(0.5,-0.2)},
+        	anchor=north,
+        	legend columns=-1
+        },
 		every x tick label/.append style={
-			xshift=-5pt,
-			rotate=60
+			xshift=-10pt,
+			rotate=45
+		},
+		every axis x label/.append style={
+			yshift=-30pt
 		}
 	]
 	\addplot[smooth,blue]
