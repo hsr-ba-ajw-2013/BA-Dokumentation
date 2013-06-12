@@ -19,7 +19,9 @@ Am Ende dieses Kapitels wird bewertet, wie gut die jeweiligen Richtlinien an der
 
 Die Tabelle \ref{tab:overview-principle-demonstration} bietet eine Übersicht über die Analyse aller in Abschnitt \ref{sec:how-to-show-principles} ``\nameref{sec:how-to-show-principles}'' definierten Richtlinien.
 
-Die Spalte ``Resultat'' kann dabei die Ausprägungen ``Positiv'', ``Neutral'' oder ``Negativ'' haben.
+
+Die Spalte ``Nutzen'' zeigt die Meinung des Projektteams bezüglich der nützlichkeit der Richtlinie und kann dabei die Ausprägungen ``Positiv'', ``Neutral'' oder ``Negativ'' haben.
+Die Spalten ``Demonstriert'' und ``Bemerkung'' zeigen für die Beispielapplikation ``Roomies'', ob dies implementiert werden konnte und allfällige Bemerkungen dazu.
 
 \begin{figure}[H]
 	\begin{table}[H]
@@ -28,29 +30,29 @@ Die Spalte ``Resultat'' kann dabei die Ausprägungen ``Positiv'', ``Neutral'' od
 		\begin{tabularx}{\textwidth}{l c c X}
 			\tableheadcolor
 				\tablehead Richtlinie &
+				\tablehead\rotatebox{90}{Nutzen} &
 				\tablehead\rotatebox{90}{Demonstriert\hspace{3mm}} &
-				\tablehead\rotatebox{90}{Resultat} &
 				\tablehead Bemerkung
 				\tabularnewline
 			\tablebody
-				\nameref{sec:principle-rp1-rest} & \faOk & \faMeh & Versionierung und Caching fehlt \tabularnewline
-				\nameref{sec:principle-rp2-application-logic} & \faOk & \faSmile & \tabularnewline
-				\nameref{sec:principle-rp3-http} & \faOk & \faSmile & \tabularnewline
-				\nameref{sec:principle-rp4-link} & \faOk & \faSmile & \tabularnewline
-				\nameref{sec:principle-rp5-non-browser} & \faOk & \faMeh & Aufgrund Facebook Login ist die Verwendung ohne Browser schwierig. \tabularnewline
-				\nameref{sec:principle-rp6-should-formats} & \faOk & \faSmile & \tabularnewline
-				\nameref{sec:principle-rp7-auth} & \faExclamation & \faSmile & \emph{HTTP Basic Authentication over SSL} nicht umgesetzt\tabularnewline
-				\nameref{sec:principle-rp8-cookies} & & & \tabularnewline
-				\nameref{sec:principle-rp9-session} & & & \tabularnewline
-				\nameref{sec:principle-rp10-browser-controls} & \faOk & \faSmile & \tabularnewline
-				\nameref{sec:principle-rp11-posh} & & & \tabularnewline
-				\nameref{sec:principle-rp12-accessibility} & & & \tabularnewline
-				\nameref{sec:principle-rp13-progressive-enhancement} & & & \tabularnewline
-				\nameref{sec:principle-rp14-unobtrusive-javascript} & \faOk & \faSmile & Funktionalität bleibt ohne JavaScript erhalten\tabularnewline
-				\nameref{sec:principle-rp15-no-duplication} & \faOk & \faSmile & Gemeinsame Codebasis für Client \& Server\tabularnewline
-				\nameref{sec:principle-rp16-know-structure} & \faExclamation & \faFrown & Keine Anwendung unter Berücksichtigung des Prinzips RP14 \tabularnewline
-				\nameref{sec:principle-rp17-static-assets} & \faOk & \faSmile & CSS \& View Template Preprocessing\tabularnewline
-				\nameref{sec:principle-rp18-history-api} & \faOk & \faSmile & \tabularnewline
+				\nameref{sec:principle-rp1-rest} & \faMeh & \faOk & Versionierung und Caching fehlt \tabularnewline
+				\nameref{sec:principle-rp2-application-logic} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp3-http} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp4-link} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp5-non-browser} & \faSmile & \faOk & Aufgrund Facebook Login ist die Verwendung ohne Browser schwierig. \tabularnewline
+				\nameref{sec:principle-rp6-should-formats} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp7-auth} & \faSmile & \faExclamation & \emph{HTTP Basic Authentication over SSL} nicht umgesetzt\tabularnewline
+				\nameref{sec:principle-rp8-cookies} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp9-session} & \faMeh & \faOk & \tabularnewline
+				\nameref{sec:principle-rp10-browser-controls} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp11-posh} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp12-accessibility} & \faMeh & \faOk & \tabularnewline
+				\nameref{sec:principle-rp13-progressive-enhancement} & \faSmile & \faOk & \tabularnewline
+				\nameref{sec:principle-rp14-unobtrusive-javascript} & \faSmile & \faOk & Funktionalität bleibt ohne JavaScript erhalten\tabularnewline
+				\nameref{sec:principle-rp15-no-duplication} & \faSmile & \faOk & Gemeinsame Codebasis für Client \& Server\tabularnewline
+				\nameref{sec:principle-rp16-know-structure} & \faFrown & \faExclamation & Keine Anwendung unter Berücksichtigung des Prinzips RP14 \tabularnewline
+				\nameref{sec:principle-rp17-static-assets} & \faSmile & \faOk & CSS \& View Template Preprocessing\tabularnewline
+				\nameref{sec:principle-rp18-history-api} & \faSmile & \faOk & \tabularnewline
 			\tableend
 		\end{tabularx}
 	\end{table}
@@ -65,15 +67,15 @@ Die Spalte ``Resultat'' kann dabei die Ausprägungen ``Positiv'', ``Neutral'' od
 		\begin{tabularx}{\textwidth}{l c c X}
 			\tableheadcolor
 				\tablehead Richtlinie &
+				\tablehead\rotatebox{90}{Nutzen} &
 				\tablehead\rotatebox{90}{Demonstriert\hspace{3mm}} &
-				\tablehead\rotatebox{90}{Resultat} &
 				\tablehead Bemerkung
 				\tabularnewline
 			\tablebody
-				\nameref{sec:principle-tp3-eat-your-own-api} & \faOk & \faSmile & Wiederverwendbare API umgesetzt\tabularnewline
-				TP4 Separate user identity, sign-up (...) & \faOk & \faSmile & Facebook als Identity-Provider\tabularnewline
-				\nameref{sec:principle-tp7-apply-the-web} & \faOk & \faMeh & Aufgrund fehlender Standardisierung nicht zufriedenstellend\tabularnewline
-				\nameref{sec:principle-tp8-automate-everything} & \faOk & \faSmile & \gls{CI}, Make\tabularnewline
+				\nameref{sec:principle-tp3-eat-your-own-api} & \faSmile & \faOk & Wiederverwendbare API umgesetzt\tabularnewline
+				TP4 Separate user identity, sign-up (...) & \faSmile & \faOk & Facebook als Identity-Provider\tabularnewline
+				\nameref{sec:principle-tp7-apply-the-web} & \faMeh & \faOk & \tabularnewline
+				\nameref{sec:principle-tp8-automate-everything} & \faSmile & \faOk & \gls{CI}, Make\tabularnewline
 			\tableend
 		\end{tabularx}
 	\end{table}
