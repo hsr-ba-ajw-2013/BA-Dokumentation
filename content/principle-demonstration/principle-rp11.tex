@@ -6,7 +6,7 @@
 Semantisches HTML bietet den Vorteil, dass ``\glspl{SearchEngineSpider}'' die Seite besser verstehen, interpretieren und kategorisieren können. Wird eine Seite gut kategorisiert erscheint sie eher bei einer Suche in einer Suchmaschine wie Google oder Bing.
 
 \subsection*{Geplante Umsetzung}
-Die Seiten, respektiv deren HTML Markup, der Anwendung sollen eine klare und logische Struktur beinhalten.
+Die Seiten, respektiv das HTML Markup der Anwendung, sollen eine klare und logische Struktur beinhalten.
 Alle Seiten haben einen Titel, eine Überschrift und Inhalt.
 Für Überschriften werden die Tags \emph{h1}, für die grösste und wichtigste Überschrift, bis \emph{h6} für die am wenig wichtigsten.
 Tabellen sollen für tabellarische Daten verwendet werden und nicht etwa um die Seite zu strukturieren, wie es in der Vergangenheit oft angewendet wurde.
@@ -26,3 +26,24 @@ Im folgenden Beispiel-HTML sieht man einen kleinen Ausschnitt aus dem Haupttempl
 \end{lstlisting}
 
 \subsection*{Diskussion}
+Semantisches HTML ist aus zwei Gründen eine gute Idee:
+\begin{itemize}
+	\item Suchmaschinenoptimierung
+	\item Barrierefreiheit
+\end{itemize}
+
+\subsubsection*{Suchmaschinenoptimierung}
+Suchmaschinen wenden komplexe Algorithmen an, um Webseiten zu analysieren und in verwertbare Suchresultate zu transferieren. Als Entwickler von Webseiten kann man es den Suchmaschinen einfacher machen, in dem man semantisch richtige Tags verwendet.
+Suchmaschinen können durch diese semantische Korrektheit mehr Informationen parsen und Fehler dabei reduzieren.
+\\ \\
+Zusätzlich helfen neue Standards, die von verschiedenen Organisationen und Interessensgruppen proklamiert werden.
+
+Einer dieser Standards, ``schema.org'' \cite{SchemaOrg}, wird von Google, Yahoo und Microsoft unterstützt und hat zum Ziel, die Maschinenlesbarkeit von Webseiten zu erhöhen und den einzelnen Teilen einer Seite einen analyisierbaren \emph{Sinn} zu geben.
+
+Mithilfe von ``schema.org'' können zum Beispiel Produkte kennzeichnet werden (Name, Preis, etc.). Wenn jemand nach solchen oder ähnlichen Produkten sucht, kann die Suchmaschine direkt Informationen dazu anzeigen und mögliche Kaufmöglichkeiten anzeigen.
+
+\subsubsection*{Barrierefreiheit}
+Nebst der Verbesserung der Sichtbarkeit bei Suchmaschinen ist ein semantisch korrektes HTML auch aus Sicht der Barrierefreiheit sinnvoll. Ein signifikanter Teil der Bevölkerung ist auf barrierefreie Webseiten angewiesen. Das Erstellen von barrierefreien Webseiten hilft Geräten wie Screen Reader etc. die Inhalte zu analysieren und dem Benutzer in einem für ihn verständlichen Format anzuzeigen.
+Semantische Tags sind eine der wichtigsten Schritte zu einer barrierefreien Webseite.
+\\ \\
+Das Projektteam ist aus den genannten Gründen der Meinung, dass semantische Tags sehr wichtig sind. Weitere Hilfsmittel wie ``schema.org'' \cite{SchemaOrg} helfen der Suchmaschinenoptimierung zusätzlich.
