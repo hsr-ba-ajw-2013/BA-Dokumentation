@@ -1,8 +1,8 @@
 \section{RP13 Progressive Enhancement}
 \label{sec:principle-rp13-progressive-enhancement}
 
-Die Client-Technologien HTML und CSS haben sich über Jahre weiterentwickelt. Dies aber immer mit dem Hintergedanken ``Progressive Enhancement''. Das bedeutet, dass die Entwicklung immer versucht hat, Rücksicht auf die älteren Browserversionen zu nehmen.
-Deutlich sieht man dies beim neuen HTML5 Standard. Neue Formularfeldtypen wie ``tel'' oder ``email''wurden eingeführt. Browser die HTML5 nicht unterstützen, wechseln bei einem für sie unbekannten Typ zum normalen Textfeld zurück.
+Die Client-Technologien HTML und CSS haben sich über Jahre weiterentwickelt. Dies auch meistens mit dem Hintergedanken ``Progressive Enhancement'' oder Rückwärtskompatiblität. Das bedeutet, dass die Entwicklung vielfach versucht hat, Rücksicht auf die älteren Browserversionen zu nehmen.
+Deutlich sieht man diese Rückwärtskompatibilität beim neuen HTML5 Standard. Neue Formularfeldtypen wie ``tel'' oder ``email''wurden eingeführt. Browser die HTML5 nicht unterstützen, wechseln bei einem für sie unbekannten Typ zum normalen Textfeld zurück.
 
 \begin{lstlisting}[language=HTML, caption={Formularfeld mit HTML5, welches eine Telefonnummer erwartet}, label={lst:html5TelInput}]
 <input type="tel" name="telefon">
@@ -16,7 +16,7 @@ Die Beispielanwendung soll, wie bereits in Kapitel \ref{sec:requirments-engineer
 Auch Browser auf Smartphones sollten nicht vernachlässigt werden. Hierfür sollen Safari 6 und höher und Android Browser 4.0 und höher unterstützt werden.
 
 \subsection*{Konkrete Umsetzung}
-Da nicht alle geplanten und zu unterstützenden Browser HTML5 interpretieren können, musste ein kleiner Trick angewendet werden, um so die Rückwärtskompatibilität zu erhöhen. Dieser Trick heisst ``modernizr'' \cite{modernizr}, eine JavaScript-Bibliothek, welche gezielt den verwendeten Browser auf seinen Funktions- und Unterstützungsumfang von HTML5 und CSS3 überprüft. Das Resultat wird dann in einem JavaScript-Objekt gespeichert und zur Verfügung gestellt.  Zusätzlich läuft modernizr in eine kleine Schleife, um die neuen Tags (head, section, article, nav, u.w.) zu aktivieren. Das bedeutet, dass diese Tags nicht mit ``div'' ersetzt werden müssen, wie dies sonst der Fall wäre.
+Da nicht alle geplanten und zu unterstützenden Browser HTML5 interpretieren können, musste ein kleiner Trick angewendet werden, um so die Rückwärtskompatibilität zu erhöhen. Dieser Trick heisst ``modernizr'' \cite{modernizr}, eine JavaScript-Bibliothek, welche gezielt den verwendeten Browser auf seinen Funktions- und Unterstützungsumfang von HTML und CSS überprüft. Das Resultat wird dann in einem JavaScript-Objekt gespeichert und zur Verfügung gestellt.  Zusätzlich läuft modernizr in eine kleine Schleife, um die neuen Tags (head, section, article, nav, u.w.) zu aktivieren. Das bedeutet, dass diese Tags nicht mit einem ``div''-Tag ersetzt werden müssen, wie dies sonst der Fall wäre.
 
 Um diese Bibliothek einzubinden, hat man nichts anderes zu tun als das Skript im Header hinzuzufügen.
 
@@ -25,7 +25,7 @@ Um diese Bibliothek einzubinden, hat man nichts anderes zu tun als das Skript im
 <script src="/javascripts/lib/custom.modernizr.js"></script>
 \end{lstlisting}
 
-Mit ``modernizr'' konnte erreicht werden, dass in allen geplanten Browser alle Elemente erscheinen, wenn auch nicht immer korrekt. Nicht immer korrekt, weil im Internet Explorer 8, die Darstellung des Bildes im oberen linken Rand nicht dem entspricht, was erwartet wurde.
+Mit ``modernizr'' konnte erreicht werden, dass in allen geplanten Browser alle Elemente erscheinen, wenn auch nicht immer korrekt. Nicht immer korrekt, weil im Internet Explorer 8 die Darstellung des Bildes im oberen linken Rand nicht dem entspricht, was erwartet wurde.
 
 \begin{figure}[H]
 	\centering
@@ -35,4 +35,8 @@ Mit ``modernizr'' konnte erreicht werden, dass in allen geplanten Browser alle E
 \end{figure}
 
 \subsection*{Diskussion}
+Je nach Zielpublikum der Webseite muss man mehr oder weniger auf die älteren Browser achten und dementsprechend eine ``Progressive Enhancement'' Technik anwenden. Mithilfe von Tools wie der erwähnten ``modernizr''-Bibliothek kann die Kompatibilität einfacher erreicht werden als ohne. Wie aber bei der Implementation auch gesehen wurde, ist es auch nicht allmächtig. Manuelles Testen ist trotzdem sehr wichtig.
+\\ \\
+Das Projektteam ist sich einig, dass ``Progressive Enhancement'' sehr wichtig ist. Insbesondere die Kompatibilität zu älteren Versionen von Internet Explorer stellt aber jeden Entwickler vor Probleme und verursacht immense Kosten.
 
+Weiter ist das Projektteam der Meinung, dass diese Probleme in Zukunft zwar nicht komplett wegfallen, aber immerhin verringert werden. Microsoft hat mit Internet Explorer 10 eine ähnliche Veröffentlichungsstrategie wie die grossen anderen Browser (Firefox und Chrome) gewählt: Häufigere Veröffentlichungen in kleineren Abständen \cite{MicrosoftQuickensIEReleaseCycle}. Dies und die höhere Partizipation von Microsoft bei der Entwicklung von Standards wird in einigen Jahren den Webapplikationsentwicklern helfen, grössere Kompatiblität zwischen Browsern innerhalb von weniger Zeit zu bewerkstelligen.
