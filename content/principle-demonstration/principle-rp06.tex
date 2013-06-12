@@ -1,13 +1,13 @@
 \section{RP6 Should-Formats}
 \label{sec:principle-rp6-should-formats}
-Wie bereits der Name ROCA sagt, sollen Anwendungen ressourcenorientiert sein. Damit diese Ressourcen auch in anderen Anwendungen als in einem Browser verwendet werden können, muss das erzeugte HTML entweder maschinenlesbar sein oder es müssen alternative Formate (wie z.B. JSON, XML usw.) verfügbar gemacht werden.
+Wie bereits der Name ROCA sagt, sollen Anwendungen ressourcen-orientiert sein. Damit diese Ressourcen auch in anderen Anwendungen als in einem Browser verwendet werden können, muss entweder das erzeugte HTML maschinenlesbar sein oder es müssen alternative Formate (wie z.B. JSON, XML usw.) verfügbar gemacht werden.
 
 \subsection*{Geplante Umsetzung}
 Im Abschnitt \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} wird darauf hingewiesen, dass eine REST API mit JSON als Datenformat verwendet werden soll.
 
 \subsection*{Konkrete Umsetzung}
-Das Abschnitt \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} zeigt, dass eine API umgesetzt werden konnte.
-Die Schnittstelle liefert JSON als Ausgabeformat. Dies wird garantiert, indem ein Objekt an die Express.js Response \cite{ExpressjsResSend} zurückgeliefert wird und Express.js automatisch JavaScript Objekte in JSON umwandelt.
+Abschnitt \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} zeigt, dass eine API umgesetzt wurde.
+Die Schnittstelle liefert JSON als Ausgabeformat. Dies wird garantiert, indem ein Objekt an die Express.js Response \cite{ExpressjsResSend} zurückgeliefert wird und Express.js automatisch JavaScript Objekte in JSON umwandelt \cite{ExpressjsResponseJsonConverter}.
 
 \begin{lstlisting}[language=JavaScript, caption=Community API getCommunityWithSlug \cite{roomiesCommunityApiExample}, label=lst:restApiCommunitySlug, firstnumber=333, escapeinside={@}{@}]
 /** Function: getCommunityWithSlug
@@ -39,6 +39,13 @@ function getCommunityWithSlug(success, error, slug) {
 }
 \end{lstlisting}
 
-Quelltext \ref{lst:restApiCommunitySlug} zeigt, wie das Community Objekt an den Success-Handler weitergegeben wird. Der Success-Handler ist von ``barefoot'' definiert und reicht den übergebenen Parameter an Express.js weiter, welcher daraus einen JSON String generiert.
+Quelltext \ref{lst:restApiCommunitySlug} zeigt, wie das Community Objekt an den Success-Handler weitergegeben wird. Der Success-Handler ist von ``barefoot'' definiert und reicht den übergebenen Parameter an Express.js weiter. Express.js generiert daraus einen JSON String.
 
 \subsection*{Diskussion}
+Diese Richtlinie scheint auf den ersten Blick nicht sonderlich viel zu bringen. Wenn in einer Applikation sowieso nur JSON für API-Calls verwendet wird, wieso sollte dann z.B. zusätzlich XML unterstützt werden?
+
+Die Richtlinie ist aber anders zu verstehen. Es soll zusätzlich zum generieren von HTML (welches aufgrund von \nameref{sec:principle-rp14-unobtrusive-javascript} ausdrücklich erforderlich ist) ein Ausgabeformat generieren, welches von Maschinen einfach lesbar ist (z.B. JSON oder XML).
+
+Um die beiden Richtlinien \nameref{sec:principle-rp5-non-browser} und \nameref{sec:principle-rp14-unobtrusive-javascript} umsetzen zu können, muss auch diese Richtlinie umgesetzt werden. Ob JSON oder XML verwendet wird ist grundsätzlich egal und muss pro Applikation entschieden werden.
+
+Das Projektteam kann diese Richtlinie uneingeschränkt empfehlen.
