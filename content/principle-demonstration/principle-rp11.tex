@@ -3,18 +3,22 @@
 
 ``POSH'', ausgeschrieben ``Plain Old Semantic HTML'', bezeichnet das Erstellen von HTML-Seiten mithilfe von semantischen Elementen. \cite{SemanticHTML}
 
-Semantisches HTML bietet den Vorteil, dass ``\glspl{SearchEngineSpider}'' die Seite besser verstehen, interpretieren und kategorisieren können. Wird eine Seite gut kategorisiert erscheint sie eher bei einer Suche in einer Suchmaschine wie Google oder Bing.
+Semantisches HTML bietet den Vorteil, dass ``\glspl{SearchEngineSpider}'' die Seite besser verstehen, interpretieren und kategorisieren können. Wird eine Seite gut kategorisiert erscheint sie eher bei einer Suche in einer Suchmaschine wie \emph{Google} oder \emph{Bing}.
 
 \subsection*{Geplante Umsetzung}
-Die Seiten, respektiv das HTML Markup der Anwendung, sollen eine klare und logische Struktur beinhalten.
-Alle Seiten haben einen Titel, eine Überschrift und Inhalt.
-Für Überschriften werden die Tags \emph{h1}, für die grösste und wichtigste Überschrift, bis \emph{h6} für die am wenig wichtigsten.
-Tabellen sollen für tabellarische Daten verwendet werden und nicht etwa um die Seite zu strukturieren, wie es in der Vergangenheit oft angewendet wurde.
+Das HTML Markup der Beispielapplikation sollen eine klare und logische Struktur aufweisen.
+
+Alle Seiten haben einen Titel, eine Überschrift und entsprechenden Inhalt.
+
+Für Überschriften werden die Tags \emph{h1}, für die grösste und wichtigste Überschrift, bis \emph{h6} für untergeordnete.
+
+Tabellen sollen für tabellarische Daten verwendet werden und nicht zur gestalterischen Strukturierung einer Seite.
+
 
 \subsection*{Konkrete Umsetzung}
-Um die möglichen semantischen Inkorrektheiten zu reduzieren, wurde mit Templates gearbeitet. So können beispielsweise Menüs oder Fusszeilen definiert und wiederverwendet werden, ohne dass man diese bei jeder Benutzung neu schreiben muss. Dies geht sehr stark nach dem ``\gls{DRY}'' Prinzip. So werden Fehler verhindert, indem man sie gar nicht zu schreiben hat.
+Um semantische Inkorrektheiten durch Wiederholungsfehler zu reduzieren, wurde in \emph{Roomies} mit Templates gearbeitet. So können bspw. Menüs oder Fusszeilen einmalig definiert und wiederverwendet werden. Dies geht sehr stark nach dem ``\gls{DRY}'' Prinzip. Fehler werden verhindert, indem man sie gar nicht zu schreiben hat.
 
-Im folgenden Beispiel-HTML sieht man einen kleinen Ausschnitt aus dem Haupttemplate von ``Roomies''. Man kann klar die Aufteilung der Seite erkennen. Oben beginnt der Header mit dem Menü, gefolgt von einem Platzhalter für allfällige Fehler-, Warnungs- oder Informationsmeldungen und die Hauptsektion mit der ID ``main''. Darin befinden sich die ganzen Inhalte. Und zum Schluss die Fusszeile, in welcher sich der Abmelde-Link befindet.
+Quelltext \ref{lst:layoutDefinition} zeigt einen Auschnitt des HTML-Markups vom Haupttemplate von \emph{Roomies}''. Die Seitestruktur ist klar zu erkennen: Oben beginnt der Header mit dem Menü, gefolgt von einem Platzhalter für allfällige Fehler-, Warnungs- oder Informationsmeldungen. Weiter ist der Hauptbereich mit der ID ``main'' ersichtlich, welcher zur Laufzeit mit eigentlichen Applikationsinhalten gefüllt wird. Abschliessend steht ein semantisch korrektes \emph{footer}-Element, welches final den Link zur Abmeldung des Benutzers enthalten wird.
 
 \begin{lstlisting}[language=HTML, caption=Layout Definition \cite{roomiesHtmlSkeleton}, label=lst:layoutDefinition, firstnumber=27]
 <body>
@@ -33,17 +37,19 @@ Semantisches HTML ist aus zwei Gründen eine gute Idee:
 \end{itemize}
 
 \subsubsection*{Suchmaschinenoptimierung}
-Suchmaschinen wenden komplexe Algorithmen an, um Webseiten zu analysieren und in verwertbare Suchresultate zu transferieren. Als Entwickler von Webseiten kann man es den Suchmaschinen einfacher machen, in dem man semantisch richtige Tags verwendet.
-Suchmaschinen können durch diese semantische Korrektheit mehr Informationen parsen und Fehler dabei reduzieren.
+Suchmaschinen wenden komplexe Algorithmen an, um Webseiten zu analysieren und in verwertbare Suchresultate zu transformieren. Als Entwickler von Webseiten und -applikationen kann durch die Verwendung von semantisch korrekten Tag-Elementen viel zur Optimierung des Suchprozesses beigetragen werden. Diese ermöglichen den Suchmaschinen ein fehlerfreies Interpretieren der untersuchten Informationen.
 \\ \\
-Zusätzlich helfen neue Standards, die von verschiedenen Organisationen und Interessensgruppen proklamiert werden.
+Ergänzend dazu helfen Standards wie \emph{schema.org} \cite{SchemaOrg}. Unterstützt von von Google, Yahoo und Microsoft, hat dieser hat zum Ziel, die Maschinenlesbarkeit von Webseiten zu erhöhen und spezifischen Teilen einer Seite analyisierbaren \emph{Sinn} zu geben.
 
-Einer dieser Standards, ``schema.org'' \cite{SchemaOrg}, wird von Google, Yahoo und Microsoft unterstützt und hat zum Ziel, die Maschinenlesbarkeit von Webseiten zu erhöhen und den einzelnen Teilen einer Seite einen analyisierbaren \emph{Sinn} zu geben.
+Mithilfe von \emph{schema.org} können bspw. Attribute von Produkten (Name, Preis etc.) gekennzeichnet und gezielt für Suchmaschinen verwertbar gemacht werden. Sucht ein Benutzer nach nun nach Produkten, kann die Suchmaschine die nun strukturierten Informationen besser durchsuchen und massgeschneiderte Suchergebnisse dem Benutzer präsentieren.
 
-Mithilfe von ``schema.org'' können zum Beispiel Produkte kennzeichnet werden (Name, Preis, etc.). Wenn jemand nach solchen oder ähnlichen Produkten sucht, kann die Suchmaschine direkt Informationen dazu anzeigen und mögliche Kaufmöglichkeiten anzeigen.
+Für Dienstanbieter ergibt sich so ein enormes Potential zur Monetarisierung.
 
 \subsubsection*{Barrierefreiheit}
-Nebst der Verbesserung der Sichtbarkeit bei Suchmaschinen ist ein semantisch korrektes HTML auch aus Sicht der Barrierefreiheit sinnvoll. Ein signifikanter Teil der Bevölkerung ist auf barrierefreie Webseiten angewiesen. Das Erstellen von barrierefreien Webseiten hilft Geräten wie Screen Reader etc. die Inhalte zu analysieren und dem Benutzer in einem für ihn verständlichen Format anzuzeigen.
-Semantische Tags sind eine der wichtigsten Schritte zu einer barrierefreien Webseite.
+Nebst der Verbesserung der Sichtbarkeit bei Suchmaschinen ist ein semantisch korrektes HTML-Markup auch aus Sicht der Barrierefreiheit sinnvoll.
+
+Ein signifikanter Teil der Bevölkerung ist auf barrierefreie Webseiten angewiesen \cite{BarrierefreiesInternet}. Das Erstellen von barrierefreien Webseiten unterstützt Geräte wie \emph{Screen Reader}, Inhalte zu analysieren und in einem für den gehandicapten Benutzer gerechten Format zugänglich zu machen.
+
+Semantische Tags sind einer der wichtigsten Schritte auf dem Weg zu einem barrierefreien Webangebot.
 \\ \\
-Das Projektteam ist aus den genannten Gründen der Meinung, dass semantische Tags sehr wichtig sind. Weitere Hilfsmittel wie ``schema.org'' \cite{SchemaOrg} helfen der Suchmaschinenoptimierung zusätzlich.
+Das Projektteam ist aufgrund der genannten Gründe der Meinung, dass semantische Tags und somit \emph{RP11 POSH} sehr wichtig ist und auch für eine Webapplikation umgesetzt werden sollte.
