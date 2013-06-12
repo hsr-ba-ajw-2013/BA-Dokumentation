@@ -1,12 +1,25 @@
-\section{Activity}
-\label{sec:Activity}
+\section{Zeitaufwand pro Aufgabenbereich}
+\label{sec:activity}
+
+\definecolor{pie_ColorA}{HTML}{0969A3}
+\definecolor{pie_ColorB}{HTML}{FFBB00}
+\definecolor{pie_ColorC}{HTML}{FF3D00}
+\definecolor{pie_ColorD}{HTML}{245A7A}
+\definecolor{pie_ColorE}{HTML}{BF9930}
+\definecolor{pie_ColorF}{HTML}{BF5230}
+\definecolor{pie_ColorG}{HTML}{03436A}
+\definecolor{pie_ColorH}{HTML}{A67A00}
+\definecolor{pie_ColorI}{HTML}{A62800}
+\definecolor{pie_ColorJ}{HTML}{3D9AD1}
+\definecolor{pie_ColorK}{HTML}{FFCC40}
+\definecolor{pie_ColorL}{HTML}{FF6E40}
 
 \newcommand{\slice}[5]{
 	\pgfmathparse{0.5*#1+0.5*#2}
 	\let\midangle\pgfmathresult
 
 	% slice
-	\draw[thick,fill=#5!10] (0,0) -- (#1:1) arc (#1:#2:1) -- cycle;
+	\draw[fill=#5!40, line width=0mm] (0,0) -- (#1:1) arc (#1:#2:1) -- cycle;
 
 	% outer label
 	\node[label=\midangle:#4] at (\midangle:1) {};
@@ -19,25 +32,62 @@
 	\node at (\midangle:\innerpos) {#3};
 }
 
-\begin{tikzpicture}[scale=3]
+\begin{figure}[H]
+	\begin{tikzpicture}[scale=5]
 
-\newcounter{a}
-\newcounter{b}
-\foreach \theValueInPercent/\innerLabel/\outerLabel/\theColor in {
-	47/503h/Feature/green,
-	5/55h/Organisation/blue,
-	26/273h/Dokumentation/black,
-	8/81h/Meeting/red,
-	14/151h/Quality/yellow}
-{
-	\setcounter{a}{\value{b}}
-	\addtocounter{b}{\theValueInPercent}
-	\slice
-		{\thea/100*360}
-		{\theb/100*360}
-		{\innerLabel}
-		{\outerLabel}
-		{\theColor}
-}
+	\newcounter{a}
+	\newcounter{b}
+	\foreach \theValueInPercent/\innerLabel/\outerLabel/\theColor in {
+		47/503h/Feature/pie_ColorA,
+		5/55h/Organisation/pie_ColorB,
+		26/273h/Dokumentation/pie_ColorC,
+		8/81h/Meeting/pie_ColorD,
+		14/151h/Quality/pie_ColorE}
+	{
+		\setcounter{a}{\value{b}}
+		\addtocounter{b}{\theValueInPercent}
+		\slice
+			{\thea/100*360}
+			{\theb/100*360}
+			{\innerLabel}
+			{\outerLabel}
+			{\theColor}
+	}
 
-\end{tikzpicture}
+	\end{tikzpicture}
+	\caption{Zeitaufwand pro Aufgabenbereich}
+\end{figure}
+
+
+
+\section{Zeitaufwand pro Iteration}
+\begin{figure}[H]
+	\begin{tikzpicture}[scale=5]
+
+	\newcounter{c}
+	\newcounter{d}
+	\foreach \theValueInPercent/\innerLabel/\outerLabel/\theColor in {
+		8/85h/Meeting/pie_ColorA,
+		5/53h/Inception/pie_ColorB,
+		11/126h/Elaboration/pie_ColorC,
+		12/136h/Construction 1/pie_ColorD,
+		9/95h/Construction 3/pie_ColorE,
+		10/111h/Construction 2/pie_ColorF,
+		9/93h/Construction 4/pie_ColorG,
+		11/116h/Construction 5/pie_ColorH,
+		10/103h/Transition/pie_ColorI,
+		15/160h/Abschluss/pie_ColorJ}
+	{
+		\setcounter{c}{\value{d}}
+		\addtocounter{d}{\theValueInPercent}
+		\slice
+			{\thec/100*360}
+			{\thed/100*360}
+			{\innerLabel}
+			{\outerLabel}
+			{\theColor}
+	}
+
+	\end{tikzpicture}
+	\caption{Zeitaufwand pro Iteration}
+\end{figure}
