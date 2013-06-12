@@ -1,17 +1,15 @@
 \section{RP9 Session}
 \label{sec:principle-rp9-session}
 
-Die Session sollte ausschliesslich für simple Authentifizierungsinformationen gebraucht werden. Dabei wird z.B. eine eindeutige Session-ID generiert, mit welcher der angemeldete User unmissverständlich erkennt werden kann. Dies reicht für die wiederholte Authentifizierung vollkommen aus.
+Eine Session sollte ausschliesslich für simple Authentifizierungsinformationen verwendet werden. Dabei wird eine eindeutige Session-ID generiert, mit welcher der angemeldete Benutzer unmissverständlich erkennt werden kann. Dies reicht für die wiederholte Authentifizierung aus.
 
 \subsection*{Geplante Umsetzung}
-Die Session ist kein Datenspeicher, aus diesen Grund sollen keine Datensätze oder Seitenvariablen darin gespeichert werden.
-
-Es sollen nur benötigte Logindaten mittels Session übermittelt werden.
+Der Session-Kontext soll nicht als Datenspeicher missbraucht werden. Aus diesem Grund soll dessen Verwendung auf die beschriebenen Authentisierungsinformationen beschränkt sein.
 
 \subsection*{Konkrete Umsetzung}
-Passport.js \cite{Passportjs}, die verwendete Bibliothek für die Authentifikation der User (siehe Abschnitt \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') speichert beim Anmelden die Benutzerdaten serialisiert in die Session. Ab diesen Punkt hat man, solange der User angemeldet ist, Zugriff auf seine Informationen.
+Die für Benutzer-Authentifikation verwendete Bibliothek \emph{Passport.js} \cite{Passportjs} (siehe auch \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') speichert beim erstmaligen Anmelden eines Benutzers dessen Benutzerdaten serialisiert in die Session. Ab diesen Punkt hat \emph{Roomies} bis zum Löschen der Session zugriff auf diese Informationen.
 
-Die Anwendung der Session wurde nicht nur für Authentifikationsdaten gebraucht. Temporäre Daten die vom Server benötigt werden, wurden ebenfalls in die Session gespeichert. Hauptsächlich ging es darum die Benutzerfreundlichkeit zu erhöhen. Konkret wurde es in der Beispielapplikation benutzt, um den Benutzer nach einem Login an die gewünschte Seite zu weiterleiten.
+Um die User Experience zu steigern wurde entschieden, zusätzlich auch transiente Informationen im Session-Kontext zwischenzuspeichern. Konkret handelt es sich dabei um die Zielseite einer Weiterleitung, wie folgendes Beispiel verdeutlicht:
 
 \begin{quotation}
 Ein Benutzer von ``Roomies'' liebt es, sich mit den anderen Mitbewohner zu vergleichen. Deswegen besucht er oft die Rangliste. Auch einen Favorit hat er auf die Seite gesetzt, damit er direkt auf der Rangliste landet.
@@ -19,7 +17,7 @@ Ein Benutzer von ``Roomies'' liebt es, sich mit den anderen Mitbewohner zu vergl
 Ist der Benutzer noch nicht angemeldet und möchte die Rangliste besuchen wird er vom System aufgefordert sich anzumelden. Nach dem Anmeldevorgang wird ihm wie gewünscht jene Seite gezeigt.
 \end{quotation}
 
-Das Weiterleiten auf die Rangliste ist nur möglich, weil der Server die \gls{URL} vor dem Login in die Session speichert (siehe Quelltext \ref{lst:router-set-redirecturl}).
+Das Weiterleiten auf die Rangliste ist nur möglich, da der Server die \gls{URL} vor dem Anmelden in den Session-Kontext speichert, wie der Quelltext \ref{lst:router-set-redirecturl} zeigt.
 
 \begin{lstlisting}[language=JavaScript, caption=Router - Autorisationskontrolle \cite{roomiesRouter}, label=lst:router-set-redirecturl, firstnumber=225]
 
@@ -38,12 +36,11 @@ Das Weiterleiten auf die Rangliste ist nur möglich, weil der Server die \gls{UR
 }
 \end{lstlisting}
 
-Nur so ist es möglich den Benutzer nach dem Anmelden an die ursprünglich aufgerufene Seite weiterzuleiten. Wäre diese \gls{URL} nicht zwischengespeichert würde das System dem Benutzer an eine fix definierte Seite weiterleiten, was der Benutzerfreundlichkeit Schaden würde.
 
 \subsection*{Diskussion}
-Wie in der konkreten Umsetzung angemerkt, kann diese Richtlinie nicht ohne weiteres immer eingehalten werden.
+Wie in der konkreten Umsetzung beschrieben, kann diese Richtlinie nicht ohne Weiteres immer eingehalten werden.
 
-Das Speichern von simplen Daten wie der Weiterleitungs-\gls{URL} ist aber aus Sicht des Projektteams in Ordnung. Kritisch wirds erst, wenn zum Beispiel der Warenkorb in einem Shop in der Session gespeichert wird. Sobald der User den Browser schliesst oder für einige Zeit nicht benutzt, ist der Warenkorb verloren. Dies kann nicht passieren, wenn dieser zum Beispiel in der Datenbank gespeichert wird.
+Das Speichern vergleichsweise einfacher Informationen wie der Weiterleitungs-\gls{URL} ist aus Sicht des Projektteams vertretbar. Kritischer zeigt sich die Situation bei extensiver Nutzung des Kontexts. Wird zum Beispiel ein kompletter Warenkorb eines Webshops im Session-Kontext abgelegt, hat dies mehrere negative Auswirkungen: Zum einen gehen die Informationen verloren, sobald der Benutzer die Session beendet (Browser schliessen usw.), zum anderen skaliert diese Implementation bei vielen Sessions schlecht, da die Arbeitsspeicherauslastung linear zur Anzahl Sessions steigt. Für persistente, komplexere Session-Daten sollte entsprechend auf den Persistency-Layer zurückgegriffen werden.
 
-Infolgedessen wird vom Projektteam den folgenden Rat gegeben: Solange nur kleine, simple und temporäre Daten in der Session zusätzlich gespeichert werden, ist dies in Ordnung. Es muss aber bei jeder Implementation genau überlegt werden, was die Trade-Offs sind.
-Weiter ist das Projektteam der Meinung, dass sobald für den Geschäftsprozess kritische temporäre Daten irgendwo abgelegt werden müssen, diese nicht in die Session gehören.
+Das Projektteam gibt entsprechend folgenden Ratschalg: Solange nur kleine, simple und temporäre Daten im Session-Kontext gespeichert werden, ist dies in problemlos vertretbar. Es muss aber bei jeder Implementation genau überlegt werden, ob und welche Trade-Offs entstehen.
+Weiter ist das Projektteam der Meinung, dass geschäftsprozess-kritische, transiente Informationen in keiner Situation im Session-Kontext abgelegt werden sollten.
