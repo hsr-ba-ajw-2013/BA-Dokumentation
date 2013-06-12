@@ -14,7 +14,7 @@ Die Architektur besteht aus folgenden zwei Haupt-Komponenten:
 \subsection{Shared Codebase mit barefoot}
 Barefoot \cite{Barefoot} ist ein Framework welches während der Bachelorarbeit entwickelt wurde.
 Dieses Framework ermöglicht Client und Server den gleichen Code für die MVC-Komponenten zu benutzen und setzt auf
-Backbone.js \cite{Backbonejs}auf.
+Backbone.js \cite{Backbonejs} auf.
 
 Der Router dient hier als Beispiel:
 \begin{lstlisting}[language=JavaScript, caption=Auszug aus Router der Beispielapplikation \cite{roomiesRouter}, label=lst:roomiesRouter, firstnumber=25]
@@ -58,7 +58,7 @@ module.exports = Router.extend({
 
 Der Router aus Quelltext \ref{lst:roomiesRouter} wird sowohl vom Client als auch vom Server verwendet und registriert URLs mit den entsprechenden Funktionen.
 
-Die ``HomeView'' ist in Quelltext \ref{lst:roomiesHomeView}, ``\nameref{lst:roomiesHomeView}'' zu sehen.
+Die ``HomeView'' ist in Quelltext \ref{lst:roomiesHomeView} zu sehen.
 
 \begin{lstlisting}[language=JavaScript, caption=Ausschnitt aus HomeView der Beispielapplikation \cite{roomiesHomeView}, label=lst:roomiesHomeView, firstnumber=7]
 module.exports = View.extend({
@@ -93,7 +93,7 @@ Ruft der Client eine API auf, wird ein AJAX-Aufruf gemacht. Wird die API
 hingegen vom Server aus aufgerufen, werden direkt die entsprechend definierten
 Callbacks für die gewünschte Route lokal aufgerufen.
 
-Der Quelltext \ref{lst:roomiesControllerExample} zeigt ein Beispiel für einen solchen
+Quelltext \ref{lst:roomiesControllerExample} zeigt ein Beispiel für einen solchen
 Callback, während Quelltext \ref{lst:roomiesComponentExample} ein Beispiel für
 eine API-Route aufzeigt.
 
@@ -148,7 +148,7 @@ api.get(prefix + '/:id(\\d+)', [
 	, controller.getCommunityWithId]);
 \end{lstlisting}
 
-Die Beispielapplikation ist somit nach einem MVC-Pattern aufgebaut. \\
+Die Beispielapplikation ist somit nach dem MVC-Pattern aufgebaut. \\
 Die einzelnen Komponenten haben folgende Aufgabe:
 \begin{itemize}
 	\item{\textbf{M}odel ist ein traditionelles Model welches zwischen Server \& Client geteilt wird}
