@@ -1,7 +1,7 @@
 \section{RP9 Session}
 \label{sec:principle-rp9-session}
 
-Die Session sollte ausschliesslich für simple Authentifizierungsinformationen gebraucht werden. Dabei wird z.B. eine eindeutige Session-ID generiert, mit welcher der angemeldete User eindeutig erkennt werden kann. Dies reicht für die wiederholte Authentifizierung vollkommen aus.
+Die Session sollte ausschliesslich für simple Authentifizierungsinformationen gebraucht werden. Dabei wird z.B. eine eindeutige Session-ID generiert, mit welcher der angemeldete User unmissverständlich erkennt werden kann. Dies reicht für die wiederholte Authentifizierung vollkommen aus.
 
 \subsection*{Geplante Umsetzung}
 Die Session ist kein Datenspeicher, aus diesen Grund sollen keine Datensätze oder Seitenvariablen darin gespeichert werden.
@@ -9,7 +9,7 @@ Die Session ist kein Datenspeicher, aus diesen Grund sollen keine Datensätze od
 Es sollen nur benötigte Logindaten mittels Session übermittelt werden.
 
 \subsection*{Konkrete Umsetzung}
-Passport.js \cite{Passportjs}, die verwendete Bibliothek für die Authentifikation der User (siehe Abschnitt \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') speichert beim Anmelden die Benutzerdaten serialisiert in die Session. Ab diesen Punkt hat man solange der User angemeldet ist Zugriff auf seine Informationen.
+Passport.js \cite{Passportjs}, die verwendete Bibliothek für die Authentifikation der User (siehe Abschnitt \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') speichert beim Anmelden die Benutzerdaten serialisiert in die Session. Ab diesen Punkt hat man, solange der User angemeldet ist, Zugriff auf seine Informationen.
 
 Die Anwendung der Session wurde nicht nur für Authentifikationsdaten gebraucht. Temporäre Daten die vom Server benötigt werden, wurden ebenfalls in die Session gespeichert. Hauptsächlich ging es darum die Benutzerfreundlichkeit zu erhöhen. Konkret wurde es in der Beispielapplikation benutzt, um den Benutzer nach einem Login an die gewünschte Seite zu weiterleiten.
 
@@ -41,3 +41,9 @@ Das Weiterleiten auf die Rangliste ist nur möglich, weil der Server die \gls{UR
 Nur so ist es möglich den Benutzer nach dem Anmelden an die ursprünglich aufgerufene Seite weiterzuleiten. Wäre diese \gls{URL} nicht zwischengespeichert würde das System dem Benutzer an eine fix definierte Seite weiterleiten, was der Benutzerfreundlichkeit Schaden würde.
 
 \subsection*{Diskussion}
+Wie in der konkreten Umsetzung angemerkt, kann diese Richtlinie nicht ohne weiteres immer eingehalten werden.
+
+Das Speichern von simplen Daten wie der Weiterleitungs-\gls{URL} ist aber aus Sicht des Projektteams in Ordnung. Kritisch wirds erst, wenn zum Beispiel der Warenkorb in einem Shop in der Session gespeichert wird. Sobald der User den Browser schliesst oder für einige Zeit nicht benutzt, ist der Warenkorb verloren. Dies kann nicht passieren, wenn dieser zum Beispiel in der Datenbank gespeichert wird.
+
+Infolgedessen wird vom Projektteam den folgenden Rat gegeben: Solange nur kleine, simple und temporäre Daten in der Session zusätzlich gespeichert werden, ist dies in Ordnung. Es muss aber bei jeder Implementation genau überlegt werden, was die Trade-Offs sind.
+Weiter ist das Projektteam der Meinung, dass sobald für den Geschäftsprozess kritische temporäre Daten irgendwo abgelegt werden müssen, diese nicht in die Session gehören.
