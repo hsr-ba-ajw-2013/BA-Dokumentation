@@ -3,13 +3,13 @@
 		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
 				\begin{umlseqdiag}
-					\umlactor[class=Browser]{client}
-					\umlboundary[class=ExpressJS]{app}
-					\umlobject[class=Router]{router}
-					\umlobject[class=View]{view}
-					\umlobject[class=Model]{model}
-					\umlobject[class=ApiAdapter]{apiAdapter}
-					\umlobject[class=DataStore]{dataStore}
+					\umlactor[class=Browser, fill=white]{client}
+					\umlboundary[class=ExpressJS, fill=white]{app}
+					\umlobject[class=Router, fill=sharedColor!20]{router}
+					\umlobject[class=View, fill=sharedColor!20]{view}
+					\umlobject[class=Model, fill=sharedColor!20]{model}
+					\umlobject[class=ApiAdapter, fill=apiColor!20]{apiAdapter}
+					\umlobject[class=DataStore, fill=barefootColor!20]{dataStore}
 
 					\begin{umlcall}[op={Click Menu Item, triggers GET Request}, return=HTML]{client}{app}
 						\begin{umlcall}[op=route(), with return]{app}{router}

@@ -3,13 +3,13 @@
 		\resizebox{0.9\textwidth}{!} {
 			\begin{tikzpicture}
 				\begin{umlseqdiag}
-					\umlactor[class=Browser]{client}
-					\umlobject[class=View]{current}
-					\umlobject[class=Router]{router}
-					\umlobject[class=View]{next}
-					\umlobject[class=Model]{model}
-					\umlobject[class=Backbone]{backbone}
-					\umlobject[class=ApiAdapter]{apiAdapter}
+					\umlactor[class=Browser, fill=white]{client}
+					\umlobject[class=View, fill=sharedColor!20]{current}
+					\umlobject[class=Router, fill=sharedColor!20]{router}
+					\umlobject[class=View, fill=sharedColor!20]{next}
+					\umlobject[class=Model, fill=sharedColor!20]{model}
+					\umlobject[class=Backbone, fill=white]{backbone}
+					\umlobject[class=ApiAdapter, fill=apiColor!20]{apiAdapter}
 
 					\begin{umlcall}[op=Click Menu Item, with return]{client}{current}
 						\begin{umlcall}[op=navigate(), with return]{current}{router}
