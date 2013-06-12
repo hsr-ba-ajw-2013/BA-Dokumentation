@@ -8,7 +8,7 @@
 					\umlobject[class=Router, fill=sharedColor!20]{router}
 					\umlobject[class=View, fill=sharedColor!20]{next}
 					\umlobject[class=Model, fill=sharedColor!20]{model}
-					\umlobject[class=Backbone, fill=white]{backbone}
+					\umlobject[class=Barefoot, fill=barefootColor!20]{barefoot}
 					\umlobject[class=ApiAdapter, fill=apiColor!20]{apiAdapter}
 
 					\begin{umlcall}[op=Click Menu Item, with return]{client}{current}
@@ -17,8 +17,8 @@
 								\begin{umlcallself}[op=renderView()]{router}
 									\begin{umlcall}[op=beforeRender(), with return]{router}{next}
 										\begin{umlcall}[op={fetch()}, return=success()]{next}{model}
-											\begin{umlcall}[op={sync()}, return=success()]{model}{backbone}
-												\begin{umlcall}[op={HTTP REST Request}, return=HTTP Response]{backbone}{apiAdapter}
+											\begin{umlcall}[op={sync()}, return=success()]{model}{barefoot}
+												\begin{umlcall}[op={HTTP REST Request}, return=HTTP Response]{barefoot}{apiAdapter}
 												\end{umlcall}
 											\end{umlcall}
 										\end{umlcall}
