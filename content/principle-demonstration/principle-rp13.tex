@@ -8,7 +8,7 @@ Deutlich sieht man diese Rückwärtskompatibilität beim neuen HTML5 Standard. N
 <input type="tel" name="telefon">
 \end{lstlisting}
 
-Natürlich gibt es keine Regel ohne Ausnahme. Manche Tags, die im HTML5 Standard eingeführt wurden, werden überhaupt nicht beachtet. Dies kann vor allem bei Versionen ``kleiner als Neun'' des Internet Explorers beobachtet werden.
+Natürlich gibt es keine Regel ohne Ausnahme. Manche Tags, die im HTML 5 Standard eingeführt wurden, werden überhaupt nicht beachtet. Dies kann vor allem bei Versionen \emph{kleiner Neun} des Internet Explorers beobachtet werden.
 
 \subsection*{Geplante Umsetzung}
 Die Beispielanwendung soll, wie bereits in Kapitel \ref{sec:requirments-engineering-nonfunctionals} erwähnt, folgende Versionen unterstützen: Internet Explorer 8 und höher, Chrome 25 und höher, Firefox 19 und höher und Safari 6 und höher.
@@ -35,8 +35,12 @@ Mit ``modernizr'' konnte erreicht werden, dass in allen geplanten Browser alle E
 \end{figure}
 
 \subsection*{Diskussion}
-Je nach Zielpublikum der Webseite muss man mehr oder weniger auf die älteren Browser achten und dementsprechend eine ``Progressive Enhancement'' Technik anwenden. Mithilfe von Tools wie der erwähnten ``modernizr''-Bibliothek kann die Kompatibilität einfacher erreicht werden als ohne. Wie aber bei der Implementation auch gesehen wurde, ist es auch nicht allmächtig. Manuelles Testen ist trotzdem sehr wichtig.
-\\ \\
-Das Projektteam ist sich einig, dass ``Progressive Enhancement'' sehr wichtig ist. Insbesondere die Kompatibilität zu älteren Versionen von Internet Explorer stellt aber jeden Entwickler vor Probleme und verursacht immense Kosten.
+Abhängig vom Zielpublikum der zu erstellenden Webapplikation gewinnt oder verliert die Unterstützung älterer Browser und somit ``Progressive Enhancement'' an Wichtigkeit. Mithilfe von Tools wie \emph{modernizr} kann Kompatibilität einfacher gewährleistet werden. Die Implementation der Beispielapplikation hat jedoch bewiesen, dass diese Werkzeuge kein Allheilmittel darstellen.
 
-Weiter ist das Projektteam der Meinung, dass diese Probleme in Zukunft zwar nicht komplett wegfallen, aber immerhin verringert werden. Microsoft hat mit Internet Explorer 10 eine ähnliche Veröffentlichungsstrategie wie die grossen anderen Browser (Firefox und Chrome) gewählt: Häufigere Veröffentlichungen in kleineren Abständen \cite{MicrosoftQuickensIEReleaseCycle}. Dies und die höhere Partizipation von Microsoft bei der Entwicklung von Standards wird in einigen Jahren den Webapplikationsentwicklern helfen, grössere Kompatiblität zwischen Browsern innerhalb von weniger Zeit zu bewerkstelligen.
+Manuelles Testen und insbesondere eventuelle manuelle Korrekturen sind und bleiben wichtig.
+\\ \\
+Das Projektteam ist sich einig: \emph{Progressive Enhancement} ist wichtig. Insbesondere die Sicherstellung der Kompatibilität zu älteren Versionen von Internet Explorer stellt immer noch eine Herausforderung dar und verursacht meist immense Kosten.
+
+Weiter ist das Projektteam der Meinung, dass diese Probleme in Zukunft zwar nicht komplett wegfallen werden, aber immerhin reduziert werden könnten.
+
+Microsoft verfolgt mit Internet Explorer 10 eine ähnliche Updatestrategie wie Mozilla und Google mit ihren Browsern: Häufige Veröffentlichung von Updates in kurzen Abständen \cite{MicrosoftQuickensIEReleaseCycle} ermöglichen Microsoft künftig die vermehrte Partizipation bei der Entwicklung von Web-Standards. In absehbarer Zeit wird dies Webapplikationsentwicklern helfen, bestmögliche Kompatibilität zwischen verschiedenen Browsern, innerhalb kürzester Zeit, zu gewährleisten.
