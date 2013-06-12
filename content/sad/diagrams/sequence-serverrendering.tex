@@ -11,7 +11,7 @@
 					\umlobject[class=ApiAdapter, fill=apiColor!20]{apiAdapter}
 					\umlobject[class=DataStore, fill=barefootColor!20]{dataStore}
 
-					\begin{umlcall}[op={Click Menu Item, triggers GET Request}, return=HTML]{client}{app}
+					\begin{umlcall}[op={Click -> Request}, return=HTML]{client}{app}
 						\begin{umlcall}[op=route(), with return]{app}{router}
 							\begin{umlcallself}[op=render()]{router}
 								\begin{umlcallself}[op=initDOM()]{router}
