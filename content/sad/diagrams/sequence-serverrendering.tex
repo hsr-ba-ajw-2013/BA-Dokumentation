@@ -5,11 +5,11 @@
 				\begin{umlseqdiag}
 					\umlactor[class=Browser, fill=white]{client}
 					\umlboundary[class=ExpressJS, fill=white]{app}
-					\umlobject[class=Router, fill=sharedColor!20]{router}
-					\umlobject[class=View, fill=sharedColor!20]{view}
-					\umlobject[class=Model, fill=sharedColor!20]{model}
-					\umlobject[class=ApiAdapter, fill=apiColor!20]{apiAdapter}
-					\umlobject[class=DataStore, fill=barefootColor!20]{dataStore}
+					\umlobject[class=Router, fill=sharedColor!40]{router}
+					\umlobject[class=View, fill=sharedColor!40]{view}
+					\umlobject[class=Model, fill=sharedColor!40]{model}
+					\umlobject[class=ApiAdapter, fill=apiColor!40]{apiAdapter}
+					\umlobject[class=DataStore, fill=barefootColor!40]{dataStore}
 
 					\begin{umlcall}[op={Click -> Request}, return=HTML]{client}{app}
 						\begin{umlcall}[op=route(), with return]{app}{router}

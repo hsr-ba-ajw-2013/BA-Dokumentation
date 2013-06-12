@@ -5,12 +5,8 @@ In diesem Abschnitt werden die verschiedenen Ebenen der Architektur der Beispiel
 
 Um einen grundsätzlichen Einblick zu erhalten wird jede Ebene zuerst komplett unabhängig von jeglicher konkreter Technologie vorgestellt. In einem weiteren Schritt werden die verwendeten Technologien eingeführt und kurz erläutert.
 
-In der Diagrammen stehen durchgezogene Pfeile jeweils für einen synchronen, gestrichelte Pfeile für einen asynchrone Kommunikationsvorgang.
-
 
 \subsection*{Technologieneutral}
-
---- SUBJECT TO CHANGE ---
 
 \begin{figure}[H]
 	\centering{
@@ -20,21 +16,47 @@ In der Diagrammen stehen durchgezogene Pfeile jeweils für einen synchronen, ges
 	\caption{Software Layers -- Technologieneutral}
 \end{figure}
 
-\subsubsection*{Client-Side}
-Diese Schicht wird im Browser selbst als JavaScript ausgeführt und synchronisiert sich mit dem Server über eine REST Schnittstelle.
+\subsubsection*{Shared}
+Die ``Shared''-Schicht beinhaltet jeglicher Quelltext, welcher sowohl auf Client als auch auf Server-Seite instanziert wird.
 
-\subsubsection*{Business}
-In der Business-Schicht wird die eigentliche Business-Logik definiert und mit der Datenbank über Models kommuniziert.
+\subsubsection*{Shared MVC}
+Jeglicher Quelltext auf der ``Shared''-Schicht ist mithilfe des MVC-Patterns strukturiert.
 
-\subsubsection*{Language Framework}
-Das Language Framework repräsentiert die von der jeweiligen konkreten Plattform zur Verfügung gestellten API.
+\subsubsection*{Templating Engine}
+Das rendern der Views wird mithilfe einer Templating Engine vereinfacht.
 
-\subsubsection*{Security}
-Sowohl Client wie auch Server beinhalten Sicherheitsmassnahmen um zu gewährleisten, dass ein \gls{Benutzer} immer authentisiert ist und keine gefährlichen Daten übermitteln kann.
+\subsubsection*{API}
+Es existiert eine entkoppelte \gls{REST}-API, welche von der ``Shared MVC''-Schicht für das manipulieren von Daten verwendet wird.
+
+\subsubsection*{Entities}
+Als Entities werden die \gls{ORM}-Models bezeichnet, welche Datenbanktabellen abstrahieren und die manipulation derer ermöglichen.
+
+\subsubsection*{ORM}
+Das ORM abstrahiert die Datenkbank-Verbindung und die Interaktion mit der Datenbank.
+
+\subsubsection*{\gls{Middleware}}
+Die \gls{Middleware} ist ein Konzept des verwendeten ``Web Frameworks'' und ermöglicht das manipulieren der ``Request'' und ``Response''.
+Die Middleware-Schicht beinhaltet mehrere Middlewares und nur eine davon ist ``Auth''.
+
+\subsubsection*{Auth}
+Auth ist eine speziell hervorgehobene Middleware, welche die Authentifizierung von Besuchern ermöglicht.
+
+\subsubsection*{Web Framework}
+Das Web Framework stellt Funktionen zur Verfügung, um ``Request'' und ``Response'' einfacher verarbeiten zu können.
+
+\subsubsection*{Validation}
+Die Validations-Schicht besteht aus mehreren Validatoren, welche die datenbasierte Validierung übernehmen. Datenbasierte Validierung bedeutet, dass die vom Client gesendeten Daten bezüglich dem Datentyp überprüft werden.
+
+\subsubsection*{Code Sharing Framework}
+Während der Bachelorarbeit wurde ein sogenanntes ``Code Sharing Framework'' entwickelt, welches die Architektur ermöglicht hat. Es erlaubt das instanzieren des gleichen Quelltexts auf Server- wie auch auf Client-Seite.
+
+\subsubsection*{Logging}
+Das Code Sharing Framework loggt jeden Request und mögliche Fehler mithilfe einer Logging-Komponente.
+
+\subsubsection*{MVC Framework}
+Das MVC Framework wird vom Code Sharing Framework verwendet, und bietet Basisklassen dafür.
 
 \subsection*{Konkrete Implementation}
-
---- SUBJECT TO CHANGE ---
 
 \begin{figure}[H]
 	\centering{
@@ -44,26 +66,38 @@ Sowohl Client wie auch Server beinhalten Sicherheitsmassnahmen um zu gewährleis
 	\caption{Software Layers -- Konkrete Implementation}
 \end{figure}
 
-\newpage
-\subsubsection*{Client-Side MVC}
-Auf der Client-Seite im Browser wird ebenfalls das MVC-Pattern \cite{MVC}verwendet. Dies ermöglicht eine entkoppelte Implementation.
+\subsubsection*{Shared MVC}
+Das Shared MVC ist auf ``barefoot'' \cite{Barefoot} aufgebaut, welches wiederum Backbone.js \cite{Backbonejs} verwendet.
 
-Das Client-Side MVC ist auf Backbone.js \cite{Backbonejs} aufgebaut.
+\subsubsection*{Handlebars}
+Die View des Shared MVC verwendet Handlebars \cite{Handlebars}. Die praxiserprobte Library ermöglicht die Erstellung von Templates ohne Logik.
 
-\subsubsection*{Handlebars Views}
-Die Präsentations-Schicht verwendet Handlebars \cite{Handlebars}. Die praxiserprobte Library ermöglicht die Erstellung von Templates mit minimaler enthaltener Programmlogik.
-
-\subsubsection*{Winston}
-Winston \cite{Winston} ist ein Logging-Framework für \gls{nodejs}. Einer der grössten Vorteile von Winston ist die umfangreiche Konfigurierbarkeit, wie die unterschiedlichen Logs behandelt werden sollen.
-
-\subsubsection*{CSRF}
-\gls{CSRF}-Schicht um CSRF-Attacken zu verhindern. Dies wird von Express.js zur Verfügung gestellt \cite{ExpressjsCSRF} und muss lediglich in der entsprechenden Applikation aktiviert werden.
-
-\subsubsection*{Validation}
-Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und bereinigt.
+\subsubsection*{Sequelize}
+Aus Kapitel \ref{sec:technology-evaluation} \nameref{sec:technology-evaluation} ist ersichtlich, dass Sequelize \cite{Sequelize} als ORM ausgewählt wurde.
 
 \subsubsection*{Passport}
 Passport \cite{Passportjs} ist ein Authentisierungs-Framework für \gls{nodejs}. Es bietet eine Vielzahl von Strategien (Strategy-Pattern \cite{StrategyPattern}) für das Einloggen über verschiedenste externe Authentisierungs-Provider (z.B. Facebook Login for Web \cite{facebooklogin}) an.
 
-\subsubsection*{Escaping}
-Um SQL-Injection \cite{sqlinjection} Attacken u.Ä. zu unterbinden, bietet das \gls{ORM} Sequelize \cite{Sequelize} umfangreiche Funktionalitäten für das Bereinigen von tendenziell gefährlichen \gls{SQL}-Abfragen an.
+\subsubsection*{Express.js}
+Express.js \cite{Expressjs} ist das populärste Web Framework für \gls{nodejs} und wurde in Kapitel \ref{sec:technology-evaluation} \nameref{sec:technology-evaluation} evaluiert und ausgewählt.
+
+\subsubsection*{node-validator}
+Formular-Inhalte werden durch ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und bereinigt.
+
+\subsubsection*{barefoot}
+``barefoot'' \cite{Barefoot} ist das erwähnte Code Sharing Framework und wurde während der Bachelorarbeit entwickelt.
+
+\subsubsection*{Winston}
+Winston \cite{Winston} ist ein Logging-Framework für \gls{nodejs}. Einer der grössten Vorteile von Winston ist die umfangreiche Konfigurierbarkeit, wie die unterschiedlichen Logs behandelt werden sollen.
+
+\subsubsection*{Backbone.js}
+``Backbone.js'' \cite{Backbonejs} ist das MVC Framework welches von ``barefooot'' verwendet wird und stellt folgende Basisklassen zur Verfügung:
+\begin{itemize}
+	\item Backbone.Model
+	\item Backbone.Collection
+	\item Backbone.Router
+	\item Backbone.Events
+	\item Backbone.View
+\end{itemize}
+
+Jede dieser Basisklassen wird von ``barefoot'' erweitert und es werden jeweils die abgeleiteten Klassen benutzt.
