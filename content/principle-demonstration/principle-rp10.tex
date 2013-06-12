@@ -1,22 +1,23 @@
 \section{RP10 Browser-Controls}
 \label{sec:principle-rp10-browser-controls}
+
 \begin{quotation}
 Man befindet sich auf einem Online-Shop und sucht mit Hilfe der eingebauten Suche Zubehör für seine neu ergatterte Fotokamera. Das Suchresultat ist aber noch zu grob. Deshalb klickt man auf den Zurück-Knopf des Browsers um auf die Suche zurück zu gelangen. Aber was uns hier erwartet, ist nicht etwa das Suchformular, welches man erwartet hätte, sondern die Startseite.
 \end{quotation}
-Dies ist nicht etwa ein fiktives Beispiel, sondern ein reelles Szenario aus dem Online-Shop des Elektronikgrosshändlers Digitec \cite{Digitec}.
+Dies ist kein fiktives Beispiel, sondern ein reelles Szenario aus dem Online-Shop des Elektronikgrosshändlers Digitec \cite{Digitec}.
 
-Das ROCA-Prinzip ``Browser-Controls'' will genau dieses unangenehme Erleben verhindern.
+Das ROCA-Prinzip ``Browser-Controls'' will genau dieses unangenehme Erleben verhindern. Dabei ist es eng mit dem Prinzip ``\nameref{sec:principle-rp4-link}'' verbunden. Indem jede Seite ihre eigene \gls{URI} hat und diese beim Navigieren in die ``History'' des Browsers hinzugefügt wird, funktionieren die Standardbedienelemente (Zurück, Vorwärts und Aktualisieren) eines Browsers weiterhin erwartungsgemäss.
+
 
 \subsection*{Geplante Umsetzung}
 
-``Browser-Controls'' ist sehr eng mit dem Prinzip ``\nameref{sec:principle-rp4-link}'' verbunden. Indem jede Seite ihre eigene \gls{URI} hat und diese beim Navigieren in die ``History'' des Browsers eingefügt wird, funktionieren die Standardbedienelemente (Zurück, Vorwärts und Aktualisieren) eines Browsers erwartungsgemäss.
-
-Dies soll auch in der Beispielanwendung ``Roomies'' der Fall sein. Jeder Seitenwechsel soll über den Webseitenverlauf im Browser nachvollziehbar sein und somit dem Benutzer erlauben, die eingebauten Funktionen des Browsers zu benutzen.
+Jeder Seitenwechsel innerhalb der Beispielapplikation \emph{Roomies} soll über den Verlauf im Browser nachvollziehbar sein und so dem Benutzer erlauben, die im Browser eingebauten Funktionen zur Navigation zu benutzen.
 
 \subsection*{Konkrete Umsetzung}
-Mit der Funktion ``Backbone.history.start()'' \cite{BackbonejsHistory} bietet Backbone.js eine Anbindung an die History API \cite{HistoryAPI} an und ermöglicht damit JavaScript Applikationen das dynamische Navigieren inklusive einer Aktualisierung der URL bei Seitenwechseln.
 
-\begin{lstlisting}[language=JavaScript, caption=Activierung der History in Barefoot \cite{BarefootStartClient}, label=lst:barefootStartClientHistory, firstnumber=29]
+Mit der Funktion ``Backbone.history.start()'' \cite{BackbonejsHistory} bietet \emph{Backbone.js} resp. \emph{barefoot} eine Anbindung an die History API \cite{HistoryAPI} und ermöglicht damit JavaScript Applikationen das Navigieren inkl. einer Aktualisierung der URL bei Seitenwechseln.
+
+\begin{lstlisting}[language=JavaScript, caption={Aktivierung der History in Barefoot \cite{BarefootStartClient}}, label=lst:barefootStartClientHistory, firstnumber=29]
 // from modernizr, MIT | BSD
 // http://modernizr.com/
 var useHistory = !!(window.history && history.pushState);
@@ -29,10 +30,9 @@ Backbone.history.start({
 \end{lstlisting}
 
 \subsection*{Diskussion}
-Die User Experience von zahlreichen Webseiten ist ähnlich wie im oben gezeigten Fall von Digitec. Diese Webseiten haben bewusst das Prinzip verletzt, dass jede Seite eine \gls{URL} hat, um Funktionen einzubinden welche früher noch nicht mit dem gleichzeitigen Wechsel einer \gls{URL} vereinbar waren.
 
-In der Zeit der Social Networks und des allgemeinen Willens, interessante Links mit Freunden zu teilen ist diese Richtlinie laut Projektteam Pflicht. Durch die neuen Features (u.a. ``History API'' \cite{HistoryAPI}) ist das Umsetzen dieser Richtlinie meistens kein Problem mehr.
+Das einleitende Beispiel \emph{Digitec} ist keine Seltenheit: Oft leidet die User Experience auf entsprechenden Angeboten extremst. Diese Internetseiten verletzen zudem meist absichtlich \nameref{sec:principle-rp4-link} um Funktionalitäten wie \emph{\gls{Frames}} einbinden zu können.
 
-Mit dem Erstellen von \glspl{URL} für jede Interaktion des Besuchers geht auch die Pflicht einher, welche in Abschnitt \ref{sec:principle-rp4-link} ``\nameref{sec:principle-rp4-link}'' erwähnt wurde: ``Cool URIs don't change''  \cite{CoolURIsTBL}. Falls zum Beispiel einer Webseite ein Relaunch unterzogen wird kommt dieses Prinzip häufig in den Überlegungen zu kurz. Dies schadet der Visibilität auf den Suchmaschinen und kann im Extremfall eine Umsatzeinbusse bewirken.
+In der Zeit der Social Networks gehört es zum Alltag, interessante Links mit Freunden zu teilen. Gerade hier wird dem Endbenutzer oft bewusst, dass das geteilte Angebot hintergründig nicht \emph{RP4} und somit \emph{RP10} befolgt. Dem Projektteam ist es unverständlich, warum nicht mehr Gebrauch von neuen Features wie dem \emph{History API} gemacht wird. Der Mehrwert für den Benutzer bzw. die Verbesserung der User Experience ist oft immens.
 
-Die Überlegung bezüglich den Suchmaschinen führt zu einem weiteren Grund, um \nameref{sec:principle-rp10-browser-controls} unbedingt umzusetzen: Ohne spezielle Sitemaps \cite{Sitemap} ist es den Suchmaschinen fast unmöglich, diese Daten zu indexieren. Das heisst eine ungleich schlechtere Sichtbarkeit auf z.B. Google.
+Abschliessend gehört für das Projektteam die Umsetzung von \emph{RP10 Browser-Controls} zu einem Muss.
