@@ -32,6 +32,7 @@
 \usepackage{geometry}
 \usepackage{tocstyle}
 \usepackage{pgfplots}
+\usepackage{tikz}
 \usepackage{tikz-uml}
 \usepackage{datetime}
 \usepackage{pgfgantt}

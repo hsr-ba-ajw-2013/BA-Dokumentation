@@ -1,0 +1,43 @@
+\section{Activity}
+\label{sec:Activity}
+
+\newcommand{\slice}[5]{
+	\pgfmathparse{0.5*#1+0.5*#2}
+	\let\midangle\pgfmathresult
+
+	% slice
+	\draw[thick,fill=#5!10] (0,0) -- (#1:1) arc (#1:#2:1) -- cycle;
+
+	% outer label
+	\node[label=\midangle:#4] at (\midangle:1) {};
+
+	% inner label
+	\pgfmathparse{min((#2-#1-10)/110*(-0.3),0)}
+	\let\temp\pgfmathresult
+	\pgfmathparse{max(\temp,-0.5) + 0.8}
+	\let\innerpos\pgfmathresult
+	\node at (\midangle:\innerpos) {#3};
+}
+
+\begin{tikzpicture}[scale=3]
+
+\newcounter{a}
+\newcounter{b}
+\foreach \theValueInPercent/\innerLabel/\outerLabel/\theColor in {
+	47/503h/Feature/green,
+	5/55h/Organisation/blue,
+	26/273h/Dokumentation/black,
+	8/81h/Meeting/red,
+	14/151h/Quality/yellow}
+{
+	\setcounter{a}{\value{b}}
+	\addtocounter{b}{\theValueInPercent}
+	\slice
+		{\thea/100*360}
+		{\theb/100*360}
+		{\innerLabel}
+		{\outerLabel}
+		{\theColor}
+}
+
+\end{tikzpicture}

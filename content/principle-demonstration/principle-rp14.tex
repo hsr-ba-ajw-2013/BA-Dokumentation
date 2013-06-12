@@ -55,7 +55,7 @@ Es ist bereits zu erahnen, dass diese Art von Webapplikation ohne JavaScript-Unt
 
 Die Richtlinie \emph{RP14 Unobtrusive JavaScript} aus dem ROCA Manifest verlangt, dass eine Webapplikation auch bei deaktiviertem JavaScript weiter funktionstüchtig bleibt. Soll JavaScript für ein modernes User Interface verwendet werden, muss gem. \emph{RP14} also eine Mischform aus den vorgestellten Applikationstypen verwendet werden.
 \newline\newline
-Bezieht man \emph{Unobtrusive Javascript} neben dem ``Wie und Wo'' User Interfaces gerendert werden auf die Thematik \emph{Codequalität}, gehört ein weiterer Aspekt zu diesem Bereich: Die Vermischung von HTML Markup und JavaScript Code soll unterbunden werden. Hierzu zeigt der Quelltext \ref{lst:badHtmlMarkupWithJavaScript} ein Beispiel, wie es unter keinen Umständen umgesetzt werden sollte.
+Neben dem ``Wie und Wo'' ein User Interface gerendert wird, ist die Richtlinie \emph{Unobtrusive Javascript} auch eng mit der Thematik \emph{Codequalität} verbunden: Die Vermengung von HTML Markup und JavaScript Code soll unterbunden werden. Hierzu zeigt der Quelltext \ref{lst:badHtmlMarkupWithJavaScript} ein Beispiel, wie es unter keinen Umständen umgesetzt werden sollte.
 
 \begin{lstlisting}[language=HTML, caption={Beispiel einer Vermischung von HTML Markup und JavaScript}, label={lst:badHtmlMarkupWithJavaScript}]
 <a href="adresses.html" onClick="$('#progressIndicator').removeClass('hidden');showAddresses();return false;">
