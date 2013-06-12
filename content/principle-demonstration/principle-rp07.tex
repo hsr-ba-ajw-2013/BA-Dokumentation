@@ -2,9 +2,9 @@
 \label{sec:principle-rp7-auth}
 
 
-Mit \emph{Basic Access Authentication} \cite{HTTPBasicAuth} steht seit Version 1.0 von \emph{HTTP} eine einfache Möglichkeit zur Verfügung, Ressourcen vor dem Zugriff Unbefugter zu schützen. Dank der frühen Integration in den HTTP Standard bedingten hohen Verbreitung, bringt der Verzicht auf Cookies, Session ID's oder Anmeldeseiten Eleganz durch Verwendung grundlegender Protokollfeatures.
+Mit \emph{Basic Access Authentication} \cite{HTTPBasicAuth} steht seit Version 1.0 von \emph{HTTP} eine einfache Möglichkeit zur Verfügung, Ressourcen vor dem Zugriff Unbefugter zu schützen. Dank der hohen Verbreitung, bedingt durch die frühe Integration in den HTTP Standard, bringt der Verzicht auf Cookies, Session ID's oder Anmeldeseiten Eleganz durch Verwendung grundlegender Protokollfeatures.
 
-Der Server kann durch Senden eines \emph{WWW-Authentication} Headers die Authentifizierung des Clients verlangen. Dieser wiederum sendet über den \emph{Authorization}-Header in seiner Antwort Benutzername und Passwort, welche mittels Base64 \cite{Base64} codiert sind.
+Der Server kann durch Senden eines \emph{WWW-Authentication} Headers die Authentifizierung des Clients verlangen. Dieser wiederum sendet über den \emph{Authorization}-Header in seiner Antwort Benutzername und Passwort, welche mittels Base64 \cite{Base64} kodiert sind.
 
 Wird \emph{HTTP Basic Auth} in dieser Form verwendet, werden Benutzername und Passwort in Klartext über das Internet übertragen. Abhilfe schafft \emph{Digest Access Authentication}, wenn auch nur unbefriedigend. Hierbei werden die Identifizierungsmerkmale vor dem Übertragen mit einem Hashing-Algorithmus, bspw. MD5 maskiert. Der Server vergleicht dann den übertragenen Wert mit dem selbst berechneten Hash.
 
