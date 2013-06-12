@@ -7,7 +7,7 @@ Eine Session sollte ausschliesslich für simple Authentifizierungsinformationen 
 Der Session-Kontext soll nicht als Datenspeicher missbraucht werden. Aus diesem Grund soll dessen Verwendung auf die beschriebenen Authentisierungsinformationen beschränkt sein.
 
 \subsection*{Konkrete Umsetzung}
-Die für Benutzer-Authentifikation verwendete Bibliothek \emph{Passport.js} \cite{Passportjs} (siehe auch \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') speichert beim erstmaligen Anmelden eines Benutzers dessen Benutzerdaten serialisiert in die Session. Ab diesen Punkt hat \emph{Roomies} bis zum Löschen der Session zugriff auf diese Informationen.
+Die für Benutzer-Authentifikation verwendete Bibliothek \emph{Passport.js} \cite{Passportjs} (siehe auch \ref{sec:principle-tp4-seperate-user-identity} ``\nameref{sec:principle-tp4-seperate-user-identity}'') speichert beim erstmaligen Anmelden eines Benutzers dessen Benutzerdaten serialisiert in die Session. Ab diesen Punkt hat \emph{Roomies} bis zum Löschen der Session Zugriff auf diese Informationen.
 
 Um die User Experience zu steigern wurde entschieden, zusätzlich auch transiente Informationen im Session-Kontext zwischenzuspeichern. Konkret handelt es sich dabei um die Zielseite einer Weiterleitung, wie folgendes Beispiel verdeutlicht:
 
@@ -38,9 +38,9 @@ Das Weiterleiten auf die Rangliste ist nur möglich, da der Server die \gls{URL}
 
 
 \subsection*{Diskussion}
-Wie in der konkreten Umsetzung beschrieben, kann diese Richtlinie nicht ohne Weiteres immer eingehalten werden.
+Wie in der konkreten Umsetzung beschrieben, kann diese Richtlinie nicht immer ohne Weiteres eingehalten werden.
 
 Das Speichern vergleichsweise einfacher Informationen wie der Weiterleitungs-\gls{URL} ist aus Sicht des Projektteams vertretbar. Kritischer zeigt sich die Situation bei extensiver Nutzung des Kontexts. Wird zum Beispiel ein kompletter Warenkorb eines Webshops im Session-Kontext abgelegt, hat dies mehrere negative Auswirkungen: Zum einen gehen die Informationen verloren, sobald der Benutzer die Session beendet (Browser schliessen usw.), zum anderen skaliert diese Implementation bei vielen Sessions schlecht, da die Arbeitsspeicherauslastung linear zur Anzahl Sessions steigt. Für persistente, komplexere Session-Daten sollte entsprechend auf den Persistency-Layer zurückgegriffen werden.
 
-Das Projektteam gibt entsprechend folgenden Ratschalg: Solange nur kleine, simple und temporäre Daten im Session-Kontext gespeichert werden, ist dies in problemlos vertretbar. Es muss aber bei jeder Implementation genau überlegt werden, ob und welche Trade-Offs entstehen.
+Das Projektteam gibt entsprechend folgenden Ratschalg: Solange nur kleine, simple und temporäre Daten im Session-Kontext gespeichert werden, ist dies problemlos vertretbar. Es muss aber bei jeder Implementation genau überlegt werden, ob und welche Trade-Offs entstehen.
 Weiter ist das Projektteam der Meinung, dass geschäftsprozess-kritische, transiente Informationen in keiner Situation im Session-Kontext abgelegt werden sollten.

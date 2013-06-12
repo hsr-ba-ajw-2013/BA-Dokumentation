@@ -3,10 +3,10 @@
 Wie bereits der Name ROCA sagt, sollen Anwendungen ressourcen-orientiert sein. Damit diese Ressourcen auch in anderen Anwendungen als in einem Browser verwendet werden können, muss entweder das erzeugte HTML maschinenlesbar sein oder es müssen alternative Formate (bspw. JSON, XML etc.) angeboten werden.
 
 \subsection*{Geplante Umsetzung}
-Im Abschnitt \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} wird darauf hingewiesen, dass eine REST API mit JSON als Datenformat umgesetzt werden soll.
+Im Abschnitt \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}'' wird darauf hingewiesen, dass eine REST API mit JSON als Datenformat umgesetzt werden soll.
 
 \subsection*{Konkrete Umsetzung}
-Abschnitt \ref{sec:principle-rp1-rest} \nameref{sec:principle-rp1-rest} zeigt, dass eine API umgesetzt wurde.
+Abschnitt \ref{sec:principle-rp1-rest} ``\nameref{sec:principle-rp1-rest}'' zeigt, dass eine API umgesetzt wurde.
 Die Schnittstelle liefert JSON als Ausgabeformat. Dies wird garantiert, indem ein JavaScript Objekt an \emph{Express.js} übergeben und anschliessend als JSON Response \cite{ExpressjsResponseJsonConverter} an den Client gesendet \cite{ExpressjsResSend} wird.
 
 \begin{lstlisting}[language=JavaScript, caption=Community API getCommunityWithSlug \cite{roomiesCommunityApiExample}, label=lst:restApiCommunitySlug, firstnumber=333, escapeinside={@}{@}]
@@ -44,7 +44,7 @@ Quelltext \ref{lst:restApiCommunitySlug} zeigt, wie das Community Objekt an den 
 \subsection*{Diskussion}
 Auf den ersten Blick scheint diese Richtlinie keinen sonderlichen Mehrwert zu liefern. Liefert die API einer Applikation bereits JSON, warum soll sie zusätzlich bspw. auch noch XML ausgeben können?
 
-\nameref{sec:principle-rp6-should-formats} ist anders zu verstehen: Es soll zusätzlich zum Generieren von HTML (welches aufgrund von \nameref{sec:principle-rp14-unobtrusive-javascript} ausdrücklich erforderlich ist) ein Ausgabeformat generiert werden, welches von Maschinen einfach lesbar ist, wie eben JSON oder XML.
+``\nameref{sec:principle-rp6-should-formats}'' ist anders zu verstehen: Es soll zusätzlich zum Generieren von HTML (welches aufgrund von ``\nameref{sec:principle-rp14-unobtrusive-javascript}'' ausdrücklich erforderlich ist) ein Ausgabeformat generiert werden, welches von Maschinen einfach lesbar ist, wie eben JSON oder XML.
 
 Um die beiden Richtlinien ``\nameref{sec:principle-rp5-non-browser}'' und ``\nameref{sec:principle-rp14-unobtrusive-javascript}'' umsetzen zu können muss auch \emph{RP6} umgesetzt werden. Ob JSON oder XML verwendet wird ist dabei gleichgültig und muss von der umsetzenden Applikation entschieden werden.
 
