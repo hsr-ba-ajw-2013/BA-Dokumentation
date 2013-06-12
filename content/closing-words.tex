@@ -11,9 +11,18 @@ Mit den ersten Arbeiten an der Beispielapplikation wurde dem Projektteam schnell
 \section*{Fazit}
 
 \subsection*{Architekturrichtlinien}
+
 Aus über 25 Richtlinien, Architekturkonzepten und Prinzipien wurden während der Vorselektion insgesamt 22 ausgewählt, um in einem weiteren Schritt an dem praktischen Beispiel \emph{Roomies} demonstriert zu werden.
 
-Bis auf einige wenige Ausnahmen wurden die meisten Konzepte erfolgreich mittels praktischen Beispielen
+Bis auf einige wenige Ausnahmen konnten alle Konzepte befriedigend implementiert werden. Dabei stechen \emph{No Duplication} und \emph{Unobtrusive JavaScript} aus dem ROCA-Katalog besonders hervor:
+
+Während der Implementation von \emph{Roomies} flossen über 40 Prozent des Gesamtaufwandes in die Umsetzung dieser Richtlinien. Insbesondere die Integration bestehender Codefragmente mit \emph{barefoot} verschlang immens Zeit.
+
+Die Qualität von \emph{barefoot} hat von diesem Prozess hingegen sehr profitiert. In dessen aktueller Version \emph{0.0.11} sind viele Fehler behoben und wichtige Features wurden ergänzt oder neu konzipiert.
+
+Negativ aufgefallen sind lediglich die Konzepte \emph{Auth} und \emph{Know Structure}: Letzteres war mit der Umsetzung von \emph{Unobtrusive JavaScript} nicht vereinbar, da diese beiden Prinzipien sich widersprechen. Ersteres wurde gezielt nicht umgesetzt, um den Workload auf das Team zu optimieren.
+
+Gesamtheitlich schätzt das Projektteam die bearbeiteten Architekturrichtlinien als zweckmässig und sehr hilfreich ein. Vielerorts muss jedoch wie dokumentiert von Situation zu Situation entschieden, welchen Konzepten aufgrund der vorliegenden Anforderungen der Vorzug gewährt wird.
 
 
 \subsection*{Tauglichkeit das für Unterrichtsmodul Internettechnologien}
