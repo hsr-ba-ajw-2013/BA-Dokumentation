@@ -85,7 +85,7 @@ Darin wird u.a. die ``barefootFactory'' instanziert und der ``DataStore'' initia
 Der ``DataStore'' ist ein ``barefoot''-Konzept \cite{barefootDatastore}. Es wird verwendet um Models und Collections vom Server zum Client zu senden.
 
 \newpage
-\subsection{Barefoot}
+\subsection{Barefoots Mixin Technik}
 
 \emph{Barefoot} \cite{Barefoot} ermöglicht die Verwendung desselben \emph{Backbone.js} Quelltexts sowohl auf dem Server als auch auf dem Client. Dies wird durch gezieltes Einsetzen von Codefragmenten mittels \gls{Mixin}s erreicht.
 
@@ -106,9 +106,9 @@ Sobald die spezifischen \gls{Mixin}s (Zeile \ref{lst:BarefootDetermineRuntimeEnv
 
 
 \subsection{JavaScript Callbacks}
-Insbesondere, aber nicht explizit nur, ein Problem von JavaScript betrifft die Strukturierung von verschachtelten Callback-Funktionen.
+Insbesondere, aber nicht explizit nur, ein Problemfeld von JavaScript betrifft die Strukturierung von verschachtelten Callback-Funktionen.
 
-Während der Implementation der API für \emph{Roomies} stellte sich wiederholt die Frage wie asynchron ausgeführter Quelltext am besten strukturiert werden sollte.
+Während der Implementation der API für \emph{Roomies} stellte sich wiederholt die Frage, wie asynchron ausgeführter Quelltext am besten strukturiert werden sollte.
 
 \begin{lstlisting}[language=JavaScript, firstnumber=136, caption={Ausschnitt aus Community Controller mit Callback Hell \cite{milestone7CommunityController}}, label={lst:callbackHell}]
 function createCommunity(req, res) {
@@ -148,8 +148,8 @@ function createCommunity(req, res) {
 }
 \end{lstlisting}
 
-Quelltext \ref{lst:callbackHell} zeigt einen Ausschnitt der \emph{createCommunity}-Funktion. Es ist offensichtlich, dass dieser Quelltext aufgrund der Verschachtlung von Funktionen sehr schwer lesbar ist. Diese Situation wird treffend als ``\emph{Callback hell}'' \ref{lst:callbackHell} bezeichnet.
-
+Quelltext \ref{lst:callbackHell} zeigt einen Ausschnitt der \emph{createCommunity}-Funktion. Es ist offensichtlich, dass dieser Quelltext aufgrund der Verschachtlung von Funktionen sehr schwer lesbar ist. Diese Situation wird treffend als ``\emph{Callback hell}'' bezeichnet.
+\\ \\
 Für ein Refactoring können folgende zwei Ansätze angewendet werden:
 
 \begin{itemize}
@@ -160,9 +160,9 @@ Für ein Refactoring können folgende zwei Ansätze angewendet werden:
 \subsubsection*{Funktional}
 Der funktionale Ansatz versucht Callbacks in eigene Funktionen auszulagern und dabei Seiteneffekte zu vermeiden.
 
-Die Vermeidung von Seiteneffekten ist wichtig und wünschenswert, bedingt aber meist (wie eben in Quelltext \ref{lst:callbackHell}) die Übergabe vieler einzelner Argumente beim Aufruf der ausgelagerten Funktion.
+Die Vermeidung von Seiteneffekten ist wichtig und wünschenswert, bedingt aber meist die Übergabe vieler einzelner Argumente beim Aufruf der ausgelagerten Funktion.
 
-Quelltext \ref{lst:callbackHellFunctional} zeigt einen Ausschnitt aus der überarbeiteten Version von \ref{lst:callbackHell}. Es wurde der funktionale Ansatz für das Refactoring gewählt.
+Quelltext \ref{lst:callbackHellFunctional} zeigt einen Ausschnitt der überarbeiteten Version von \ref{lst:callbackHell}. Es wurde der funktionale Ansatz für das Refactoring gewählt.
 
 \begin{lstlisting}[language=JavaScript, firstnumber=192, caption={Ausschnitt aus dem neusten Community Controller \cite{masterCommunityController}}, label={lst:callbackHellFunctional}]
 function createCommunity(success, error, data) {
@@ -208,9 +208,9 @@ function createCommunity(success, error, data) {
 }
 \end{lstlisting}
 
-Zwar ist der resultierende Quelltext um einiges klarer und einfacher zu interpretieren. Jedoch führt diese Strukturierung bei jedem Durchlauf zur Laufzeit zu einer Neudefinition und -initialisierung der entsprechenden Variablen.
+Zwar ist der resultierende Quelltext um einiges klarer und einfacher interpretierbar, jedoch führt diese Strukturierung bei jedem Laufzeit-Durchlauf zu einer Neudefinition und -initialisierung der beinhalteten Variablen.
 
-Der folgende Abschnitt zeigt wie die Problematik \emph{Callback Hell} auf eine andere und potentiell leistungsfähigere Weise gelöst werden kann.
+Der folgende Abschnitt zeigt wie die Problematik \emph{Callback Hell} auf eine andere und potentiell leistungstärkere Weise gelöst werden kann.
 
 
 \subsubsection*{Promises / Futures}
@@ -218,7 +218,7 @@ Der folgende Abschnitt zeigt wie die Problematik \emph{Callback Hell} auf eine a
 In \emph{barefoot} sind mehrere Schritte notwendig, um eine \emph{View} zu rendern (siehe Diagramm \ref{dig:serverrendering}).
 Jeder Funktionsaufruf wird asynchron ausgeführt, muss die definierte Ausführungs-Reihenfolge aber unter allen Umständen einhalten.
 
-\emph{Barefoot} verwendet zu diesem Zweck Promises, ein Pattern vergleichbar mit \emph{Futures} \cite{FuturesAndPromises}. Die frei zugängliche \emph{Promises}-Spezifikation \cite{PromisesAPlusSpec} wird dabei nicht selbst implementiert, sondern von der Bibliothek \emph{Q} \cite{QLibrary} umgesetzt.
+\emph{Barefoot} verwendet zu diesem Zweck Promises, ein Pattern vergleichbar mit \emph{Futures} \cite{FuturesAndPromises}. Die frei zugängliche \emph{Promises}-Spezifikation \cite{PromisesAPlusSpec} wird dabei nicht selbst implementiert sondern von der Bibliothek \emph{Q} \cite{QLibrary} umgesetzt.
 
 Quelltext \ref{lst:barefootRouterRenderWithQ} zeigt wie \emph{barefoot} Promises einsetzt.
 
@@ -230,8 +230,8 @@ Quelltext \ref{lst:barefootRouterRenderWithQ} zeigt wie \emph{barefoot} Promises
 	.done(writeHTTPResponse, writeHTTPError);
 \end{lstlisting}
 
-Im Vergleich zum funktionalen Ansatz wird mit Promises der Kontrollfluss zentral an einer Stelle gesteuert. Hingegen verteilen sich die Funktionsaufrufe  bei der funktionalen Implementierung über verschiedene Funktionen hinweg. Zudem entfällt die erwähnte Neudefinition jeglicher Variablen bei korrekter Umsetzung.
+Unter Verwendung von Promises wird der Kontrollfluss zentral an einer Stelle gesteuert. Beim funktionalen Refactoring werden diese über mehrere Funktionen verteilt wodurch das Nachvollziehen des Kontrollflusses erschwert wird. Zusätzlich entfällt die erwähnte Neudefinition jeglicher Variablen bei korrekter Umsetzung.
 \\ \\
-Beide vorgestellten Refactoring-Methoden bieten eine klare Verbesserung der Lesbarkeit und Wartbarkeit des Quelltexts. Promises können dabei unter Umständen konzeptuell schwerer greifbar sein als das funktionale Gegenstück.
+Beide vorgestellten Refactoring-Methoden bieten eine klare Verbesserung der Lesbarkeit und Wartbarkeit des Quelltexts. Promises können dabei unter Umständen konzeptuell schwerer greifbar sein als das funktionale Gegenstück, bieten dafür aber den Vorteil des zentral gesteuerten Kontrollflusses.
 
 Es kann und sollte pragmatisch entschieden werden, in welcher Situation welches Vorgehen angebrachter ist.
