@@ -90,7 +90,7 @@ Der ``DataStore'' ist ein ``barefoot''-Konzept \cite{barefootDatastore}. Es wird
 
 Dazu werden neutrale Versionen jeder \emph{barefoot}-Komponente während der Initialisierung des Frameworks (siehe Quelltext \ref{lst:BarefootDetermineRuntimeEnvironment}) mit umgebungsspezifischen Mixins ergänzt.
 
-\begin{lstlisting}[language=JavaScript, firstnumber=68, caption={Ermittlung der Runtime-Umgebung sowie anschliessendes applizieren der spezifischen \gls{Mixin}s \cite{BarefootDetermineRuntimeEnvironment}}, label={lst:BarefootDetermineRuntimeEnvironment}, escapeinside={@}{@}]
+\begin{lstlisting}[language=JavaScript, firstnumber=68, caption={Ermittlung der Runtime-Umgebung sowie anschliessendes applizieren der spezifischen \glspl{Mixin} \cite{BarefootDetermineRuntimeEnvironment}}, label={lst:BarefootDetermineRuntimeEnvironment}, escapeinside={@}{@}]
 function boot(options) {
 	var Backbone = require('backbone')
 		, util = require('./util')
@@ -101,3 +101,124 @@ function boot(options) {
 \end{lstlisting}
 
 Sobald die spezifischen \gls{Mixin}s (Zeile \ref{lst:BarefootDetermineRuntimeEnvironment_load}) geladen wurden, werden diese anschliessend ab Zeile \ref{lst:BarefootDetermineRuntimeEnvironment_applyMixins} auf die neutralen Vorlagen appliziert.
+
+\subsection{JavaScript Callbacks}
+Ein Problem das insbesondere in JavaScript, aber auch in anderen Sprachen ein Thema ist, ist das der Callbacks oder auch \emph{``Callback hell''}.
+
+Während der Implementation diverser APIs war auch immer wieder die Frage, wie man am Besten Code wie in Quelltext \ref{lst:callbackHell} strukturiert.
+
+\begin{lstlisting}[language=JavaScript, firstnumber=136, caption={Ausschnitt aus Community Controller mit Callback Hell \cite{milestone7CommunityController}}, label={lst:callbackHell}]
+function createCommunity(req, res) {
+	var resident = req.user
+		, db = req.app.get('db')
+		, Community = db.daoFactoryManager.getDAO('Community')
+		, communityData = {
+			name: req.param('name')
+		};
+	createUniqueShareLink(db, function(err, link) {
+		if (err) {
+			return res.send(500);
+		}
+		communityData.shareLink = link;
+
+		resident.getCommunity()
+			.success(function getSuccess(community) {
+				if (community && community.enabled) {
+					req.flash('error',
+						res.__('What exactly are you trying? You\'re ' +
+							'already in a community...'));
+					return res.redirect('/community');
+				}
+
+				Community.find({ where: { name: communityData.name }})
+					.success(function findResult(community) {
+						// ... more callbacks (see cited file)
+					})
+					.error(function findError() {
+						return res.send(500);
+					});
+			})
+			.error(function getError() {
+				return res.send(500);
+			});
+	});
+}
+\end{lstlisting}
+
+Quelltext \ref{lst:callbackHell} zeigt einen Ausschnitt der ``createCommunity''-Funktion. Es ist sofort offensichtlich, dass dieser Quelltext sehr schwer lesbar ist und entsprechend refactored werden sollte.
+
+Dazu gibt es zwei Ansätze:
+\begin{itemize}
+	\item Funktional
+	\item Promises / Futures
+\end{itemize}
+
+\subsubsection*{Funktional}
+Der funktionale Ansatz versucht jegliche Callbacks in eigene Funktionen auszulagern und dabei möglichst Seiteneffekte zu vermeiden.
+
+Das vermeiden von Seiteneffekten ist ein gutes Prinzip. Gerade in Funktionen wie in Quelltext \ref{lst:callbackHell} zum Teil aber relativ umständlich, da alle benötigten Kontext-Variablen mitgegeben werden.
+
+Quelltext \ref{lst:callbackHellFunctional} zeigt einen Ausschnitt aus der neusten Version derselben Funktionalität und ist mit dem funktionalen Ansatz umgeschrieben worden.
+
+\begin{lstlisting}[language=JavaScript, firstnumber=192, caption={Ausschnitt aus dem neusten Community Controller \cite{masterCommunityController}}, label={lst:callbackHellFunctional}]
+function createCommunity(success, error, data) {
+	var // ...
+		, forwardError = function forwardError(err) {
+			// ...
+		}
+		, afterCommunitySearch = function afterCommunitySearch(community) {
+			// ...
+			communityDao.create(communityData)
+				.success(afterCommunityCreate)
+				.error(forwardError);
+		}
+		, afterCommunityCreate = function afterCommunityCreate(community) {
+			// ...
+			createUniqueSlug(db, community.name, community.id
+				, function(err, slug) {
+					// ...
+					community.save()
+						.success(afterUpdateCommunitySlug)
+						.error(forwardError);
+				});
+		}
+		, afterUpdateCommunitySlug =
+			function afterUpdateCommunitySlug(community) {
+				// ...
+
+				updateResidentsCommunityMembership(
+					resident
+					, community
+					, function(err) {
+						// ...
+					}
+				);
+		};
+
+	createUniqueShareLink(db, function(err, shareLink) {
+		// ...
+		communityDao.find({ where: { name: communityData.name, enabled: true }})
+			.success(afterCommunitySearch)
+			.error(forwardError);
+	});
+}
+\end{lstlisting}
+
+Nachteil dieser Version sind die jeweiligen Runtime-Neudefinitionen der Funktionen bei jedem Funktionsaufruf. Dies wurde aber bewusst zugunsten der Klarheit in Kauf genommen.
+
+\subsubsection*{Promises / Futures}
+In ``barefoot'' sind mehrere Schritte notwendig, um bspw. eine View zu rendern (siehe Diagramm \ref{dig:serverrendering}).
+Jeder Funktionsaufruf welcher im Diagramm \ref{dig:serverrendering} gezeigt wird ist asynchron. Der Ablauf dieser Funktionen ist aber vorgegeben.
+Deswegen wurden sogenannte Promises (auch bekannt als Futures \cite{FuturesAndPromises}) mithilfe der Q Bibliothek \cite{QLibrary} implementiert.
+
+Quelltext \ref{lst:barefootRouterRenderWithQ} zeigt die Implementation in ``barefoot''.
+
+\begin{lstlisting}[language=JavaScript, firstnumber=215, caption={Ausschnitt aus Server router-mixin.js \cite{barefootRouterRenderWithQ}}, label={lst:barefootRouterRenderWithQ}]
+	Q.fcall(initDOM)
+	.then(renderMainView)
+	.then(renderView)
+	.then(serializeDataStore)
+	.done(writeHTTPResponse, writeHTTPError);
+\end{lstlisting}
+
+Mit diesen beiden Ansätzen bzw. Refactoring-Techniken ist es sehr einfach, gut les- und wartbaren Quelltext zu schreiben.
