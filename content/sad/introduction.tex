@@ -11,7 +11,7 @@ Die Architektur besteht aus folgenden zwei Haupt-Komponenten:
 	\caption{Architektur}
 \end{figure}
 
-\subsection{Shared Codebase mit barefoot}
+\subsection*{Shared Codebase mit barefoot}
 Barefoot \cite{Barefoot} ist ein Framework welches während der Bachelorarbeit entwickelt wurde.
 Dieses Framework ermöglicht Client und Server den gleichen Code für die MVC-Komponenten zu benutzen und setzt auf
 Backbone.js \cite{Backbonejs} auf.
@@ -85,7 +85,7 @@ module.exports = View.extend({
 });
 \end{lstlisting}
 
-\subsection{API-Komponente}
+\subsection*{API-Komponente}
 Auf Server-Seite ist eine REST-API \cite{REST} erstellt worden. Die Shared Codebase greift auf diese zu, um Daten zu speichern oder zu laden.
 
 Dabei unterscheidet ``barefoot'' intelligent zwischen API-Aufrufen des Servers oder des Clients.
