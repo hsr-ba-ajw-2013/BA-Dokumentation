@@ -14,7 +14,7 @@ Beim initialen Aufruf der Beispielapplikation werden die kompletten Inhalte des 
 \subsubsection*{Client}
 Das Sequenzdiagramm \ref{dig:clientrendering} zeigt den Kontrollfluss nachdem der Benutzer im Browser auf einen Eintrag im Navigationsmenü geklickt hat.
 
-Es gilt zu beachten dass die Aufrufe auf den \emph{APIAdapter} nicht lokal verarbeitet werden sondern direkt auf dem Server.
+Es gilt zu beachten, dass die Aufrufe auf den \emph{APIAdapter} nicht lokal sondern direkt auf dem Server verarbeitet werden.
 
 \input{content/sad/diagrams/sequence-clientrendering}
 
@@ -31,7 +31,7 @@ Hinter dem Element \emph{Controllers} stehen neben dem eigentlichen API-Controll
 \newpage
 
 \subsection{Quellcode Organisation}
-Für Applikationen mit \gls{nodejs} ist üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich eigenständige Komponenten zu unterteilen.
+Für Applikationen mit \gls{nodejs} ist es üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich eigenständige Komponenten zu unterteilen.
 
 Ein gutes Beispiel hierfür ist die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekappselt werden.
 
@@ -56,8 +56,8 @@ Die Beispielapplikation \emph{Roomies} verwendet mehrere Komponenten aus NPM (si
 
 Jede Komponente mit JavaScript-Code kann mittels einem \emph{require()}-Befehl eingebunden werden womit automatisch die enthaltene \emph{index.js}-Datei geladen wird.
 
-
-\begin{lstlisting}[language=JavaScript, caption=Einbindung der Community-Komponente, float=ht!]
+\newpage
+\begin{lstlisting}[language=JavaScript, caption=Einbindung der Community-Komponente]
 // Requires actually src/server/api/community/index.js:
 // Found in src/server/api/index.js
 var setupCommunityApi = require('./community');
@@ -84,6 +84,7 @@ Darin wird u.a. die ``barefootFactory'' instanziert und der ``DataStore'' initia
 
 Der ``DataStore'' ist ein ``barefoot''-Konzept \cite{barefootDatastore}. Es wird verwendet um Models und Collections vom Server zum Client zu senden.
 
+\newpage
 \subsection{Barefoot}
 
 \emph{Barefoot} \cite{Barefoot} ermöglicht die Verwendung desselben \emph{Backbone.js} Quelltexts sowohl auf dem Server als auch auf dem Client. Dies wird durch gezieltes Einsetzen von Codefragmenten mittels \gls{Mixin}s erreicht.
@@ -105,7 +106,7 @@ Sobald die spezifischen \gls{Mixin}s (Zeile \ref{lst:BarefootDetermineRuntimeEnv
 \subsection{JavaScript Callbacks}
 Ein Problem das insbesondere in JavaScript, aber auch in anderen Sprachen ein Thema ist, ist das der Callbacks oder auch \emph{``Callback hell''}.
 
-Während der Implementation diverser APIs war auch immer wieder die Frage, wie man am Besten Code wie in Quelltext \ref{lst:callbackHell} strukturiert.
+Während der Implementation diverser APIs war auch immer wieder die Frage, wie man am besten Code wie in Quelltext \ref{lst:callbackHell} strukturiert.
 
 \begin{lstlisting}[language=JavaScript, firstnumber=136, caption={Ausschnitt aus Community Controller mit Callback Hell \cite{milestone7CommunityController}}, label={lst:callbackHell}]
 function createCommunity(req, res) {
@@ -145,7 +146,7 @@ function createCommunity(req, res) {
 }
 \end{lstlisting}
 
-Quelltext \ref{lst:callbackHell} zeigt einen Ausschnitt der ``createCommunity''-Funktion. Es ist sofort offensichtlich, dass dieser Quelltext sehr schwer lesbar ist und entsprechend refactored werden sollte.
+Der obenstehende Quelltext zeigt einen Ausschnitt der ``createCommunity''-Funktion. Es ist sofort offensichtlich, dass dieser Quelltext schwer lesbar ist und entsprechend refactored werden sollte.
 
 Dazu gibt es zwei Ansätze:
 \begin{itemize}
@@ -156,7 +157,7 @@ Dazu gibt es zwei Ansätze:
 \subsubsection*{Funktional}
 Der funktionale Ansatz versucht jegliche Callbacks in eigene Funktionen auszulagern und dabei möglichst Seiteneffekte zu vermeiden.
 
-Das vermeiden von Seiteneffekten ist ein gutes Prinzip. Gerade in Funktionen wie in Quelltext \ref{lst:callbackHell} zum Teil aber relativ umständlich, da alle benötigten Kontext-Variablen mitgegeben werden.
+Das Vermeiden von Seiteneffekten ist ein gutes Prinzip. Gerade in Funktionen wie in Quelltext \ref{lst:callbackHell} zum Teil aber relativ umständlich, da alle benötigten Kontext-Variablen mitgegeben werden müssen.
 
 Quelltext \ref{lst:callbackHellFunctional} zeigt einen Ausschnitt aus der neusten Version derselben Funktionalität und ist mit dem funktionalen Ansatz umgeschrieben worden.
 
@@ -207,13 +208,13 @@ function createCommunity(success, error, data) {
 Nachteil dieser Version sind die jeweiligen Runtime-Neudefinitionen der Funktionen bei jedem Funktionsaufruf. Dies wurde aber bewusst zugunsten der Klarheit in Kauf genommen.
 
 \subsubsection*{Promises / Futures}
-In ``barefoot'' sind mehrere Schritte notwendig, um bspw. eine View zu rendern (siehe Diagramm \ref{dig:serverrendering}).
+In ``barefoot'' sind mehrere Schritte notwendig, um bspw. eine View zu rendern (siehe Sequenzdiagramm \ref{dig:serverrendering}).
 Jeder Funktionsaufruf welcher im Diagramm \ref{dig:serverrendering} gezeigt wird ist asynchron. Der Ablauf dieser Funktionen ist aber vorgegeben.
 Deswegen wurden sogenannte Promises (auch bekannt als Futures \cite{FuturesAndPromises}) mithilfe der Q Bibliothek \cite{QLibrary} implementiert.
 
 Quelltext \ref{lst:barefootRouterRenderWithQ} zeigt die Implementation in ``barefoot''.
 
-\begin{lstlisting}[language=JavaScript, firstnumber=215, caption={Ausschnitt aus Server router-mixin.js \cite{barefootRouterRenderWithQ}}, label={lst:barefootRouterRenderWithQ}]
+\begin{lstlisting}[language=JavaScript, firstnumber=215, caption={Ausschnitt aus server/router-mixin.js \cite{barefootRouterRenderWithQ}}, label={lst:barefootRouterRenderWithQ}]
 	Q.fcall(initDOM)
 	.then(renderMainView)
 	.then(renderView)

@@ -61,7 +61,7 @@ var TaskController = {
 module.exports = TaskController;
 \end{lstlisting}
 
-In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Linie \ref{lst:sailsjstaskcontroller_idparam}) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. In anderem ORMs könnte man auf dem ``task''-Objekt direkt ``.user'' aufrufen. Dies geht bei Waterline nicht und man muss den Umweg über ``User.find()'' (Zeile \ref{lst:sailsjstaskcontroller_userfind}) gehen.
+In diesem Controller wird ein Task aufgrund des GET-Parameters ``id'' (Zeile \ref{lst:sailsjstaskcontroller_idparam}) geladen. Das Code-Stück zeigt die grosse Schwäche des ORMs Waterline \cite{Waterline}. In anderem ORMs könnte man auf dem ``task''-Objekt direkt ``.user'' aufrufen. Dies geht bei Waterline nicht und man muss den Umweg über ``User.find()'' (Zeile \ref{lst:sailsjstaskcontroller_userfind}) gehen.
 
 Bei einem ausgereiften ORM würden solche Methoden wegen der Definition von Relationen direkt zur Verfügung stehen.
 

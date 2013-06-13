@@ -71,9 +71,9 @@ In den Quelltexten \ref{lst:goodHtmlMarkupWithoutJS} und \ref{lst:goodJSOutsideH
 
 \begin{lstlisting}[language=JavaScript, caption={Beispiel Event-Handler in ausgelagerter JavaScript Datei}, label={lst:goodJSOutsideHtmlMarkup}]
 $(function() {
-	$('#showAddresses', showAddresses);
+	$('#showAddresses').on('click', showAddresses);
 
-	function showAddresses(evt) {
+	function showAddresses() {
 		$('#progressIndicator').removeClass('hidden');
 		// ... show addresses
 		return false;

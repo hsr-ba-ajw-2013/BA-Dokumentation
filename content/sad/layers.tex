@@ -17,7 +17,7 @@ Um einen grundsätzlichen Einblick zu erhalten wird jede Ebene zuerst komplett u
 \end{figure}
 
 \subsubsection*{Shared \& Shared MVC}
-Die ``Shared''-Schicht beinhaltet jeglichen Quelltext, welcher sowohl auf Client als auch auf Server-Seite instanziert wird. Der Hauptteil auf diesem Layer ist strukturiert anhand des \emph{MVC}-Patterns
+Die ``Shared''-Schicht beinhaltet jeglichen Quelltext, welcher sowohl auf Client als auch auf Server-Seite instanziert wird. Der Hauptteil auf diesem Layer ist strukturiert anhand des \emph{MVC}-Patterns.
 
 \subsubsection*{Templating Engine}
 Das Rendern der Views wird mithilfe einer Templating Engine vereinfacht.
@@ -32,7 +32,7 @@ Als Entities werden die \gls{ORM}-Models bezeichnet, welche Datenbanktabellen ab
 Die ORM-Komponente abstrahiert die Datenkbank-Verbindung sowie jegliche Interaktion mit der Datenbank.
 
 \subsubsection*{\gls{Middleware} \& Auth}
-Die \gls{Middleware} ist ein Konzept des verwendeten ``Web Frameworks'' und ermöglicht das Manipulieren von HTTP Requests und Responses unter Verwendung des \emph{Filter}-Patterns.
+Die \gls{Middleware} ist ein Konzept des verwendeten Web Frameworks Express.js \cite{Expressjs} und ermöglicht das Manipulieren von HTTP Requests und Responses unter Verwendung des \emph{Filter}-Patterns \cite{POSA2}.
 
 Die Middleware-Schicht beinhaltet mehrere Middlewares. ``Auth'' ist dabei eine konkrete Implementation welche sich um die Authentifizierung von Benutzern resp.. der Kommunikation mit diesen kümmert.
 
@@ -49,7 +49,7 @@ Während der Bachelorarbeit wurde ein ``Code Sharing Framework'' entwickelt, wel
 Das Code Sharing Framework loggt Request und Fehler mithilfe einer Logging-Komponente.
 
 \subsubsection*{MVC Framework}
-Das MVC Framework wird vom Code Sharing Framework verwendet, und bietet Basisklassen entsprechende Basisklassen wie \emph{View}, \emph{Model} und \emph{Controller} dafür.
+Das MVC Framework wird vom Code Sharing Framework verwendet und bietet entsprechende Basisklassen wie \emph{View}, \emph{Model} und \emph{Controller} dafür.
 
 \subsection*{Konkrete Implementation}
 
@@ -65,13 +65,13 @@ Das MVC Framework wird vom Code Sharing Framework verwendet, und bietet Basiskla
 Das Shared MVC ist auf ``barefoot'' \cite{Barefoot} aufgebaut, welches wiederum Backbone.js \cite{Backbonejs} verwendet.
 
 \subsubsection*{Handlebars}
-Die View des Shared MVC verwendet das praxiserprobte ``Handlebars'' \cite{Handlebars} für das Rendering effektiven HTML Markups.
+Die View des Shared MVC verwendet das praxiserprobte ``Handlebars'' \cite{Handlebars} für das Rendering des effektiven HTML Markups.
 
 \subsubsection*{Sequelize}
 Das aus Kapitel \ref{sec:technology-evaluation} \nameref{sec:technology-evaluation} bekannte Sequelize \cite{Sequelize} wird als ORM eingesetzt und dient zur Abstraktion des Datenbanksystems.
 
 \subsubsection*{Passport}
-Passport \cite{Passportjs} ist ein Authentisierungs-Framework für \gls{nodejs}. Es bietet eine Vielzahl verschiedener Strategien (siehe auch Strategy-Pattern \cite{StrategyPattern}) für die Authentifizierung über externe Identiy Provider (Facebook Login for Web \cite{facebooklogin} etc.).
+Passport \cite{Passportjs} ist ein Authentifizierungs-Framework für \gls{nodejs}. Es bietet eine Vielzahl verschiedener Strategien (siehe auch Strategy-Pattern \cite{StrategyPattern}) für die Authentifizierung über externe Identiy Provider (Facebook Login for Web \cite{facebooklogin} etc.).
 
 \subsubsection*{Express.js}
 Express.js \cite{Expressjs} ist ein erprobtes Web Framework für \gls{nodejs} und wurde in der \nameref{sec:technology-evaluation} bereits näher erläutert.
@@ -80,10 +80,10 @@ Express.js \cite{Expressjs} ist ein erprobtes Web Framework für \gls{nodejs} un
 Eingehende Schnittstellenaufrufe werde mittels ``node-validator'' \cite{nodevalidator} auf vorher definierte Bedingungen überprüft und ggf. bereinigt.
 
 \subsubsection*{barefoot}
-``barefoot'' \cite{Barefoot} für das Code Sharing Framework zwischen Client und Server zuständig. Es wurde während dieser Bachelorarbeit entwickelt.
+``barefoot'' \cite{Barefoot} ist für das Code Sharing Framework zwischen Client und Server zuständig. Es wurde während dieser Bachelorarbeit entwickelt.
 
 \subsubsection*{Winston}
-Winston \cite{Winston} ist ein einfach konfigurierbares Logging-Framework für \gls{nodejs}. Es wird von barefoot eingesetzt.
+Winston \cite{Winston} ist ein einfach konfigurierbares Logging-Framework für \gls{nodejs}. Es wird von ``barefoot'' eingesetzt.
 
 \subsubsection*{Backbone.js}
 ``Backbone.js'' \cite{Backbonejs} ist das MVC Framework und bietet die grundlegende Klassen welche ``barefooot'' kapselt und/oder erweitert:

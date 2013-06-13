@@ -17,7 +17,7 @@ Ein Benutzer von ``Roomies'' liebt es, sich mit den anderen Mitbewohner zu vergl
 Ist der Benutzer noch nicht angemeldet und möchte die Rangliste besuchen wird er vom System aufgefordert sich anzumelden. Nach dem Anmeldevorgang wird ihm wie gewünscht jene Seite gezeigt.
 \end{quotation}
 
-Das Weiterleiten auf die Rangliste ist nur möglich, da der Server die \gls{URL} vor dem Anmelden in den Session-Kontext speichert, wie der Quelltext \ref{lst:router-set-redirecturl} zeigt.
+Das Weiterleiten auf die Rangliste ist nur möglich, da der Server die \gls{URL} vor dem Anmelden in den Session-Kontext speichert, wie Quelltext \ref{lst:router-set-redirecturl} zeigt.
 
 \begin{lstlisting}[language=JavaScript, caption=Router - Autorisationskontrolle \cite{roomiesRouter}, label=lst:router-set-redirecturl, firstnumber=225]
 
@@ -42,5 +42,5 @@ Wie in der konkreten Umsetzung beschrieben, kann diese Richtlinie nicht immer oh
 
 Das Speichern vergleichsweise einfacher Informationen wie der Weiterleitungs-\gls{URL} ist aus Sicht des Projektteams vertretbar. Kritischer zeigt sich die Situation bei extensiver Nutzung des Kontexts. Wird zum Beispiel ein kompletter Warenkorb eines Webshops im Session-Kontext abgelegt, hat dies mehrere negative Auswirkungen: Zum einen gehen die Informationen verloren, sobald der Benutzer die Session beendet (Browser schliessen usw.), zum anderen skaliert diese Implementation bei vielen Sessions schlecht, da die Arbeitsspeicherauslastung linear zur Anzahl Sessions steigt. Für persistente, komplexere Session-Daten sollte entsprechend auf den Persistency-Layer zurückgegriffen werden.
 
-Das Projektteam gibt entsprechend folgenden Ratschalg: Solange nur kleine, simple und temporäre Daten im Session-Kontext gespeichert werden, ist dies problemlos vertretbar. Es muss aber bei jeder Implementation genau überlegt werden, ob und welche Trade-Offs entstehen.
+Das Projektteam gibt entsprechend folgenden Ratschlag: Solange nur kleine, simple und temporäre Daten im Session-Kontext gespeichert werden, ist dies problemlos vertretbar. Es muss aber bei jeder Implementation genau überlegt werden, ob und welche Trade-Offs entstehen.
 Weiter ist das Projektteam der Meinung, dass geschäftsprozess-kritische, transiente Informationen in keiner Situation im Session-Kontext abgelegt werden sollten.

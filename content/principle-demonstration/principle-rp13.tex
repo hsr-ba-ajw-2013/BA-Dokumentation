@@ -1,7 +1,7 @@
 \section{RP13 Progressive Enhancement}
 \label{sec:principle-rp13-progressive-enhancement}
 
-Die Client-Technologien HTML und CSS haben sich über Jahre weiterentwickelt. Dies auch meistens mit dem Hintergedanken ``Progressive Enhancement'' oder Rückwärtskompatiblität. Das bedeutet, dass die Entwicklung vielfach versucht hat, Rücksicht auf die älteren Browserversionen zu nehmen.
+Die Client-Technologien HTML und CSS haben sich über Jahre weiterentwickelt. Dies auch meistens mit dem Hintergedanken ``Progressive Enhancement'' oder Rückwärtskompatibilität. Das bedeutet, dass die Entwicklung vielfach versucht hat, Rücksicht auf die älteren Browserversionen zu nehmen.
 Deutlich sieht man diese Rückwärtskompatibilität beim neuen HTML5 Standard. Neue Formularfeldtypen wie ``tel'' oder ``email''wurden eingeführt. Browser die HTML5 nicht unterstützen, wechseln bei einem für sie unbekannten Typ zum normalen Textfeld zurück.
 
 \begin{lstlisting}[language=HTML, caption={Formularfeld mit HTML5, welches eine Telefonnummer erwartet}, label={lst:html5TelInput}]
@@ -20,8 +20,7 @@ Da nicht alle geplanten und zu unterstützenden Browser HTML5 interpretieren kö
 
 Um diese Bibliothek einzubinden, hat man nichts anderes zu tun als das Skript im Header hinzuzufügen.
 
-\begin{lstlisting}[language=HTML, caption=Einbinden von modernizr \cite{roomiesLayout}, firstnumber=11, label=lst:mdernizrLayoutServer]
-<link href="/stylesheets/app.css" rel="stylesheet"/>
+\begin{lstlisting}[language=HTML, caption=Einbinden von modernizr \cite{roomiesLayout}, firstnumber=12, label=lst:mdernizrLayoutServer]
 <script src="/javascripts/lib/custom.modernizr.js"></script>
 \end{lstlisting}
 
@@ -43,4 +42,4 @@ Das Projektteam ist sich einig: \emph{Progressive Enhancement} ist wichtig. Insb
 
 Weiter ist das Projektteam der Meinung, dass diese Probleme in Zukunft zwar nicht komplett wegfallen werden, aber immerhin reduziert werden könnten.
 
-Microsoft verfolgt mit Internet Explorer 10 eine ähnliche Updatestrategie wie Mozilla und Google mit ihren Browsern: Häufige Veröffentlichung von Updates in kurzen Abständen \cite{MicrosoftQuickensIEReleaseCycle} ermöglichen Microsoft künftig die vermehrte Partizipation bei der Entwicklung von Web-Standards. In absehbarer Zeit wird dies Webapplikationsentwicklern helfen, bestmögliche Kompatibilität zwischen verschiedenen Browsern, innerhalb kürzester Zeit, zu gewährleisten.
+Microsoft verfolgt mit Internet Explorer 10 eine ähnliche Updatestrategie wie Mozilla und Google mit ihren Browsern: Häufige Veröffentlichung von Updates in kurzen Abständen \cite{MicrosoftQuickensIEReleaseCycle} ermöglichen Microsoft künftig die vermehrte Partizipation bei der Entwicklung von Web-Standards. In absehbarer Zeit wird dies Webapplikationsentwicklern helfen, bestmögliche Kompatibilität zwischen verschiedenen Browsern innerhalb kürzester Zeit zu gewährleisten.

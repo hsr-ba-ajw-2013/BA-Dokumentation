@@ -9,7 +9,7 @@ function evilFunction(message) {
 }
 \end{lstlisting}
 
-Der Quelltext \ref{lst:evalIsEvil} ist nicht nur schwer wartbar, die Verwendung von \emph{eval} \cite{mdnEval} stellt zusätzlich ein nicht abschätzbares Sicherheitsrisiko dar: Das übergebene String-Argument, welches den auszuführenden Quellcode enthält, kann von Angreifern problemlos angepasst werden. Auf diese Weise ist es ohne grossen Aufwand möglich, Schadcode in eine Applikation einzuschleusen.
+Quelltext \ref{lst:evalIsEvil} ist nicht nur schwer wartbar, die Verwendung von \emph{eval} \cite{mdnEval} stellt zusätzlich ein nicht abschätzbares Sicherheitsrisiko dar: Das übergebene String-Argument, welches den auszuführenden Quellcode enthält, kann von Angreifern problemlos angepasst werden. Auf diese Weise ist es ohne grossen Aufwand möglich, Schadcode in eine Applikation einzuschleusen.
 
 Die \emph{Static Assets} ROCA Richtlinie will, dass jeglicher JavaScript Code in statischer Form vorliegt. Diese Anforderung erweitert sie zusätzlich auf alle CSS Formatierungsinformationen aus.
 

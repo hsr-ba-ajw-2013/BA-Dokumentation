@@ -39,7 +39,7 @@ function getCommunityWithSlug(success, error, slug) {
 }
 \end{lstlisting}
 
-Quelltext \ref{lst:restApiCommunitySlug} zeigt, wie das Community Objekt an den Success-Handler weitergegeben wird. Der Success-Handler ist von \emph{barefoot} definiert und reicht den übergebenen Parameter an \emph{Express.js} weiter. Express.js generiert daraus einen JSON String.
+Quelltext \ref{lst:restApiCommunitySlug} zeigt, wie das Community Objekt an den Success-Handler weitergegeben wird. Der Success-Handler ist von \emph{barefoot} definiert und reicht den übergebenen Parameter an \emph{Express.js} weiter. \emph{Express.js} generiert daraus einen JSON String.
 
 \subsection*{Diskussion}
 Auf den ersten Blick scheint diese Richtlinie keinen sonderlichen Mehrwert zu liefern. Liefert die API einer Applikation bereits JSON, warum soll sie zusätzlich bspw. auch noch XML ausgeben können?

@@ -28,7 +28,7 @@ Der ``SequelizeStore'' \cite{SequelizeStore} übernimmt die Speicherung der Sess
 Das Einbinden von mehr Informationen in Cookies hat mehrere Nachteile:
 \begin{itemize}
 	\item Sicherheit \\
-		Wenn Benutzername und Passwort in ein Cookie gespeichert werden kann dies ohne Probleme von Drittpersonen mitgelesen werden. Falls HTTPS eingesetzt (auch wenn dies nur direkt im Browser geschieht) bildet dies ein nicht tragbares Risiko. \\
+		Wenn Benutzername und Passwort in ein Cookie gespeichert werden kann dies ohne Probleme von Drittpersonen mitgelesen werden. Auch wenn HTTPS eingesetzt wird, (auch wenn dies nur direkt im Browser geschieht) bildet dies trotzdem ein nicht tragbares Risiko. \\
 		Ausserdem ist es einem Benutzer möglich seine Cookies abzuändern. Dies könnte nur mithilfe von Validierung und dem Einsetzen eines \glspl{MAC} erkennbar gemacht werden.
 	\item Datenmenge \\
 		Cookies werden mit jeder Anfrage und jeder Antwort zwischen Client und Server mitgeschickt. Zwar ist die Grösse eines Cookies beschränkt, trotzdem wird die Datenmenge unnötig grösser.
