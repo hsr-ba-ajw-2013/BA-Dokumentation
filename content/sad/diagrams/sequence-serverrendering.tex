@@ -20,17 +20,17 @@
 								\end{umlcallself}
 
 								\begin{umlcallself}[op=renderView()]{router}
-									\begin{umlcall}[op=beforeRender(), with return]{router}{view}
+									\begin{umlcall}[op=beforeRender(), with return, dt=5]{router}{view}
 										\begin{umlcall}[op={fetch()}, return=success()]{view}{model}
-											\begin{umlcall}[op={sync()}, return=success()]{model}{apiAdapter}
+											\begin{umlcall}[op={sync()}, return=success(), dt=5]{model}{apiAdapter}
 											\end{umlcall}
 										\end{umlcall}
 									\end{umlcall}
 
-									\begin{umlcall}[op=renderView(), return=HTML]{router}{view}
+									\begin{umlcall}[op=renderView(), return=HTML, dt=5]{router}{view}
 									\end{umlcall}
 
-									\begin{umlcall}[op=afterRender(), with return]{router}{view}
+									\begin{umlcall}[op=afterRender(), with return, dt=5]{router}{view}
 									\end{umlcall}
 								\end{umlcallself}
 

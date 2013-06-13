@@ -15,7 +15,7 @@
 						\begin{umlcall}[op=navigate(), with return]{current}{router}
 							\begin{umlcallself}[op=render()]{router}
 								\begin{umlcallself}[op=renderView()]{router}
-									\begin{umlcall}[op=beforeRender(), with return]{router}{next}
+									\begin{umlcall}[op=beforeRender(), with return, dt=5]{router}{next}
 										\begin{umlcall}[op={fetch()}, return=success()]{next}{model}
 											\begin{umlcall}[op={sync()}, return=success()]{model}{barefoot}
 												\begin{umlcall}[op={HTTP REST Request}, return=HTTP Response]{barefoot}{apiAdapter}
@@ -24,10 +24,10 @@
 										\end{umlcall}
 									\end{umlcall}
 
-									\begin{umlcall}[op=renderView(), return=HTML]{router}{next}
+									\begin{umlcall}[op=renderView(), return=HTML, dt=5]{router}{next}
 									\end{umlcall}
 
-									\begin{umlcall}[op=afterRender(), with return]{router}{next}
+									\begin{umlcall}[op=afterRender(), with return, dt=5]{router}{next}
 									\end{umlcall}
 								\end{umlcallself}
 
