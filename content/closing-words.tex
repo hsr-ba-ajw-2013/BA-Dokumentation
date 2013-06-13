@@ -1,6 +1,7 @@
 \chapter{Schlussfolgerung}
 
 \section*{Roll Up}
+
 In den vorangegangenen drei Kapiteln hat sich das Projektteam ausführlich mit verschiedenen Aspekten moderner Webapplikationen befasst. Es wurde eine Zusammenstellung von Architekturrichtlinien analysiert und dabei jedes Konzept aus unterschiedlichen Perspektiven sowohl theoretisch als auch praktisch bewertet.
 
 Nach der Evaluation dreier Technologiekandidaten und mehrerer Bibliotheken wurde unter Verwendung von \emph{JavaScript} und \emph{Express.js} mit \emph{Roomies} eine Applikation zur Veranschaulichung der ausgewählten Konzepte entwickelt.
@@ -8,7 +9,9 @@ Nach der Evaluation dreier Technologiekandidaten und mehrerer Bibliotheken wurde
 Mit den ersten Arbeiten an der Beispielapplikation wurde dem Projektteam schnell klar, dass die Anforderungen der \emph{Unobtrusive JavaScript}-Richtlinie einiges mehr an Aufwand verschlingen würden als zuerst angenommen wurde. Die Anstrengungen in diesem Gebiet wurden mit dem wiederverwendbaren Framework \emph{barefoot} belohnt: Unter dessen Integration kann \emph{Roomies}' Quellcode ohne mehrfache Implementation sowohl auf dem Server als auch auf dem Client verwendet werden.
 
 
+
 \section*{Fazit}
+
 
 \subsection*{Architekturrichtlinien}
 
@@ -22,14 +25,24 @@ Die Qualität von \emph{barefoot} hat von diesem Prozess hingegen sehr profitier
 
 Negativ aufgefallen sind lediglich die Konzepte \emph{Auth} und \emph{Know Structure}: Letzteres war mit der Umsetzung von \emph{Unobtrusive JavaScript} nicht vereinbar, da diese beiden Prinzipien sich widersprechen. Ersteres wurde gezielt nicht umgesetzt, um den Workload auf das Team zu optimieren.
 
-Gesamtheitlich schätzt das Projektteam die bearbeiteten Architekturrichtlinien als zweckmässig und sehr hilfreich ein. Vielerorts muss jedoch wie dokumentiert von Situation zu Situation entschieden werden, welchen Konzepten aufgrund der vorliegenden Anforderungen den Vorzug gewährt wird.
+Gesamtheitlich schätzt das Projektteam die bearbeiteten Architekturrichtlinien als zweckmässig und sehr hilfreich ein. Vielerorts muss jedoch wie dokumentiert von Situation zu Situation entschieden werden, welchen Konzepten aufgrund der vorliegenden Anforderungen der Vorzug gewährt wird.
 
 
-\subsection*{Tauglichkeit das für Unterrichtsmodul Internettechnologien}
+\subsection*{Tauglichkeit das für Unterrichtmodul Internettechnologien}
 
+Seit der gemeinsamen Definition der Aufgabenstellung gehörte die Idee, neue Vorschläge für das Unterrichtmodul \emph{Internettechnologien} zu liefern, fest zur Idee dieser Bachelorarbeit dazu.
+
+Neben der praktischen Demonstration sollte insbesondere auch der theoretische Teil der Arbeit darüber Aufschluss geben, inwiefern die neuen, zu untersuchenden Architekturkonzepte für den Unterricht und damit den Entwickleralltag tauglich sind.
+
+Mit der Beispielapplikation \emph{Roomies} sind alle Richtlinien bis auf zwei Ausnahmen praktisch umgesetzt und demonstriert worden. Das vorliegende Produkt verfügt über eine klare und durchgehende Komponentenarchitektur. Das Projektteam ist davon überzeugt, dass Aspekte wie die \emph{REST}-basierte API oder das umgesetzte \emph{MVC}-Pattern für das User Interface Mustergültigkeit haben.
+
+Im grösseren Zusammenspiel, insbesondere in Kombination mit dem \emph{Express.js Middleware}-Konzept sowie dem experimentellen \emph{Code Sharing}-Ansatz \emph{barefoot}s, ergibt sich eine komplexe Kombination der für sich einfachen Komponenten. Das Projektteam ist sich darum nicht sicher, in wie weit die Beispielapplikation als ganzes tatsächlich in den Unterricht integriert werden kann.
+
+Die vollständige Analyse der Richtlinien im Kapitel \ref{sec:principle-demonstration} ``\nameref{sec:principle-demonstration}'' bietet eine optimale Grundlage für das Übertragen der untersuchten Prinzipien in den Unterricht. Ausführliche Quellenangaben und Querverweise erleichtern zudem das Erarbeiten weiterführender Themen. So hält das Projektteam diesen Teil des Arbeitsergebnisses für uneingeschränkt wertvoll und wiederverwendbar.
 
 
 \subsection*{Kontroverse: JavaScript}
+
 Während der Technologieevaluation war umstritten, ob \emph{JavaScript} wirklich für den geplanten Einsatz geeignet sei. Zwar wurden bereits Lösungen mit \emph{Node.js} für den produktiven Einsatz umgesetzt, altbekannten Vorbehalte waren aber sowohl im Projekt- als auch Betreuerteam klar spürbar:
 
 \begin{itemize}
@@ -42,9 +55,8 @@ Die gemachten Erfahrungen mit der Umsetzung von \emph{Roomies} beweisen, dass \e
 
 Werkzeuge wie \emph{JSHint}, \emph{Mocha}, \emph{Travis CI} oder \emph{JSCoverage} ermöglichen die Sicherstellung der Codequalität von \emph{JavaScript} Quelltext-Artefakten.
 
-\emph{JavaScript} ist definitiv seinen Kinderschuhen entwachsen und wird heute über die \emph{ECMAScript} Spezifikation rege weiterentwickelt.
+\emph{JavaScript} ist definitiv seinen Kinderschuhen entwachsen und wird heute rege weiterentwickelt. Das Projektteam hat die Entscheidung für \emph{JavaScript} keine Sekunde bereut und kann auch nach erfolgreicher Durchführung dieser Arbeit voll und ganz hinter dieser Entscheidung stehen.
 
-Das Projektteam hat die Entscheidung für \emph{JavaScript} keine Sekunde bereut und kann auch nach erfolgreicher Durchführung dieser Arbeit voll und ganz hinter dieser Entscheidung stehen.
 
 
 \section*{Ausblick}
