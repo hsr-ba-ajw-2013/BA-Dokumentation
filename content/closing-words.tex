@@ -2,11 +2,11 @@
 
 \section*{Roll Up}
 
-In den vorangegangenen drei Kapiteln hat sich das Projektteam ausführlich mit verschiedenen Aspekten moderner Webapplikationen befasst. Es wurde eine Zusammenstellung von Architekturrichtlinien analysiert und dabei jedes Konzept aus unterschiedlichen Perspektiven sowohl theoretisch als auch praktisch bewertet.
+In den vorangegangenen drei Kapiteln hat sich das Projektteam ausführlich mit den verschiedenen Aspekten moderner Webapplikationen befasst. Es wurde eine Zusammenstellung von Architekturrichtlinien analysiert und dabei jedes Konzept aus unterschiedlichen Perspektiven sowohl theoretisch als auch praktisch bewertet.
 
 Nach der Evaluation dreier Technologiekandidaten und mehrerer Bibliotheken wurde unter Verwendung von \emph{JavaScript} und \emph{Express.js} mit \emph{Roomies} eine Applikation zur Veranschaulichung der ausgewählten Konzepte entwickelt.
 
-Mit den ersten Arbeiten an der Beispielapplikation wurde dem Projektteam schnell klar, dass die Anforderungen der \emph{Unobtrusive JavaScript}-Richtlinie einiges mehr an Aufwand verschlingen würden als zuerst angenommen wurde. Die Anstrengungen in diesem Gebiet wurden mit dem wiederverwendbaren Framework \emph{barefoot} belohnt: Unter dessen Integration kann \emph{Roomies}' Quellcode ohne mehrfache Implementation sowohl auf dem Server als auch auf dem Client verwendet werden.
+Währen den ersten Arbeiten an der Beispielapplikation wurde dem Projektteam schnell klar, dass die Anforderungen der \emph{Unobtrusive JavaScript}-Richtlinie einiges mehr an Aufwand verschlingen würden als zuerst angenommen wurde. Die Anstrengungen in diesem Gebiet wurden mit dem wiederverwendbaren Framework \emph{barefoot} belohnt: Unter dessen Integration kann \emph{Roomies}' Quellcode ohne mehrfache Implementation sowohl auf dem Server als auch auf dem Client verwendet werden.
 
 
 \section*{Fazit}
@@ -18,16 +18,16 @@ Aus über 25 Richtlinien, Architekturkonzepten und Prinzipien wurden während de
 
 Bis auf einige wenige Ausnahmen konnten alle Konzepte befriedigend implementiert werden. Dabei stechen \emph{No Duplication} und \emph{Unobtrusive JavaScript} aus dem ROCA-Katalog besonders hervor:
 
-Während der Implementation von \emph{Roomies} flossen über 40 Prozent des Gesamtaufwandes in die Umsetzung dieser Richtlinien. Insbesondere die Integration bestehender Codefragmente mit \emph{barefoot} verschlang immens Zeit.
+Während der Implementation von \emph{Roomies} flossen über 40 Prozent des Gesamtaufwandes in die Umsetzung dieser Richtlinien. Insbesondere die Integration bestehender Codefragmente mit \emph{barefoot} verschlang ausserordentlich viel Zeit.
 
-Die Qualität von \emph{barefoot} hat von diesem Prozess hingegen sehr profitiert. In dessen aktueller Version \emph{0.0.11} sind viele Fehler behoben und wichtige Features wurden ergänzt oder neu konzipiert.
+Die Qualität von \emph{barefoot} konnte von diesem Prozess hingegen sehr profitieren. In dessen aktueller Version \emph{0.0.11} sind viele der ursprünglichen Fehler behoben und wichtige Features wurden ergänzt oder neu konzipiert.
 
-Negativ aufgefallen sind lediglich die Konzepte \emph{Auth} und \emph{Know Structure}: Letzteres war mit der Umsetzung von \emph{Unobtrusive JavaScript} nicht vereinbar, da diese beiden Prinzipien sich widersprechen. Ersteres wurde gezielt nicht umgesetzt, um den Workload auf das Team zu optimieren.
+Negativ aufgefallen sind lediglich die Konzepte \emph{Know Structure} und \emph{Auth}: Ersteres war mit der Umsetzung von \emph{Unobtrusive JavaScript} nicht zu vereinbaren, da diese miteinander im Widerspruch stehen. \emph{Auth} wurde gezielt nicht umgesetzt, um den Workload auf das Team zu optimieren.
 
 Gesamtheitlich schätzt das Projektteam die bearbeiteten Architekturrichtlinien als zweckmässig und sehr hilfreich ein. Vielerorts muss jedoch wie dokumentiert von Situation zu Situation entschieden werden, welchen Konzepten aufgrund der vorliegenden Anforderungen der Vorzug gewährt wird.
 
 
-\subsection*{Tauglichkeit das für Unterrichtmodul Internettechnologien}
+\subsection*{Tauglichkeit das für Unterrichtsmodul Internettechnologien}
 
 Seit der gemeinsamen Definition der Aufgabenstellung gehörte die Idee, neue Vorschläge für das Unterrichtmodul \emph{Internettechnologien} zu liefern, fest zum Thema dieser Bachelorarbeit dazu.
 
@@ -35,7 +35,7 @@ Neben der praktischen Demonstration sollte insbesondere auch der theoretische Te
 
 Mit der Beispielapplikation \emph{Roomies} sind alle Richtlinien bis auf zwei Ausnahmen praktisch umgesetzt und demonstriert worden. Das vorliegende Produkt verfügt über eine klare und durchgehende Komponentenarchitektur. Das Projektteam ist davon überzeugt, dass Aspekte wie die \emph{REST}-basierte API oder das umgesetzte \emph{MVC}-Pattern für das User Interface Mustergültigkeit haben.
 
-Im grösseren Zusammenspiel, insbesondere in Kombination mit dem \emph{Express.js Middleware}-Konzept sowie dem experimentellen \emph{Code Sharing}-Ansatz \emph{barefoot}s, ergibt sich eine komplexe Kombination der für sich einfachen Komponenten. Das Projektteam ist sich darum nicht sicher, in wie weit die Beispielapplikation als ganzes tatsächlich in den Unterricht integriert werden kann.
+Im grösseren Zusammenspiel, insbesondere in Kombination mit dem \emph{Express.js Middleware}-Konzept sowie dem experimentellen \emph{Code Sharing}-Ansatz \emph{barefoot}s, ergibt sich eine komplexe Kombination der für sich einfachen Komponenten. Das Projektteam ist sich deshalb nicht sicher, in wie weit die Beispielapplikation als Ganzes tatsächlich in den Unterricht integriert werden kann.
 
 Die vollständige Analyse der Richtlinien im Kapitel \ref{sec:principle-demonstration} ``\nameref{sec:principle-demonstration}'' bietet eine optimale Grundlage für das Übertragen der untersuchten Prinzipien in den Unterricht. Ausführliche Quellenangaben und Querverweise erleichtern zudem das Erarbeiten weiterführender Themen. So hält das Projektteam diesen Teil des Arbeitsergebnisses für uneingeschränkt wertvoll und wiederverwendbar.
 
@@ -57,7 +57,8 @@ Werkzeuge wie \emph{JSHint}, \emph{Mocha}, \emph{Travis CI} oder \emph{JSCoverag
 \emph{JavaScript} ist definitiv seinen Kinderschuhen entwachsen und wird rege weiterentwickelt. Das Projektteam hat die Entscheidung für \emph{JavaScript} keine Sekunde bereut und kann auch nach erfolgreicher Durchführung dieser Arbeit voll und ganz hinter dieser Entscheidung stehen.
 
 
-
 \section*{Ausblick}
 
+Der vorliegenden Bericht hat mit seinen ausführlichen Analysen vorgestellter Richtlinien eine umfassende Grundlage zur Konzipierung neuer Inhalte im Unterrichtsmodul \emph{Internettechnologien} geschaffen. Zusammen mit der Beispielapplikation bildet er ein Gesamtpaket aus theoretischen und praktischen Beispielen. Das Projektteam hofft, mit diesen Ergebnisse einen grossen Beitrag zur Weiterentwicklung der Vorlesung und den Übungslektionen leisten zu können.
 
+Als drittes, offizielles Produkt wurde mit \emph{barefoot} eine frei zugängliche Bibliothek veröffentlicht. Das Projektteam ist davon überzeugt, dass diese für andere Projekte von grossem Nutzen ist. Um das Fortbestehen der Bibliothek zu sichern, hat sich das Projektteam darum entschieden, nach Abschluss dieser Bachelorarbeit für den Unterhalt und die Weiterentwicklung von \emph{barefoot} zu sorgen.
