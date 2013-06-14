@@ -9,6 +9,7 @@ Die Kommunikation des Clients mit dem Server über \gls{REST} soll unter anderem
 
 Um normale HTML-Formulare \gls{RESTful} zu machen, soll ein Weg gefunden werden, mit dem nebst ``POST'' auch ``PUT'' und ``DELETE'' Abfragen ermöglicht werden.
 
+\newpage
 \subsection*{Konkrete Umsetzung}
 Die Umsetzung ist wie geplant ausgeführt worden. Als Beispiel zeigt Quelltext \ref{lst:roomiesCommunityModel} ein \emph{Barefoot.Model} \cite{barefootModel}, welches eine URL zur API definiert und über diese synchronisiert werden kann.
 
@@ -76,6 +77,7 @@ Die Unterstützung dieser zusätzlichen Methoden erfordert eine Hilfskonstruktio
 	\item und ruft danach den entsprechenden Controller mit der entsprechenden Methode auf.
 \end{itemize}
 
+\newpage
 Quelltext \ref{lst:expressMethodOverride} zeigt die Anbindung der entsprechenden ``MethodOverride'' Middleware \cite{methodOverrideMiddleware} an eine Express-Applikation auf Zeile \ref{lst:expressMethodOverride_Override}.
 
 \begin{lstlisting}[language=JavaScript, caption=HTTP Middleware \cite{roomiesHTTPMiddleware}, label=lst:expressMethodOverride, firstnumber=18, escapeinside={@}{@}]

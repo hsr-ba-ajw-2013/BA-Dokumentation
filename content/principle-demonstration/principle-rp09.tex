@@ -17,10 +17,10 @@ Ein Benutzer von ``Roomies'' liebt es, sich mit den anderen Mitbewohner zu vergl
 Ist der Benutzer noch nicht angemeldet und möchte die Rangliste besuchen wird er vom System aufgefordert sich anzumelden. Nach dem Anmeldevorgang wird ihm wie gewünscht jene Seite gezeigt.
 \end{quotation}
 
+\newpage
 Das Weiterleiten auf die Rangliste ist nur möglich, da der Server die \gls{URL} vor dem Anmelden in den Session-Kontext speichert, wie Quelltext \ref{lst:router-set-redirecturl} zeigt.
 
 \begin{lstlisting}[language=JavaScript, caption=Router - Autorisationskontrolle \cite{roomiesRouter}, label=lst:router-set-redirecturl, firstnumber=225]
-
 /** Function: redirectIfNotAuthorized
  * If the client is not authorized it will redirect. Otherwise it returns
  * false to indicate that the calling method can continue work.
