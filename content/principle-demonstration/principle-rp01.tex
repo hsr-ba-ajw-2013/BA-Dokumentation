@@ -69,7 +69,7 @@ module.exports = function initCommunityApi(api, apiPrefix) {
 };
 \end{lstlisting}
 
-Bei Zeile \autoref{lst:restApiRoomies_get} wird eine ``GET'' API-Methode für das Abfragen einer Community mit der \emph{ID} definiert. Wie man im definierten Array sieht, werden dabei mehrere Callbacks definiert, welche der Reihe nach aufgerufen werden und sicherstellen, dass jede Anfrage authentifiziert und authorisiert ist.
+Bei Zeile \autoref{lst:restApiRoomies_get} wird eine ``GET'' API-Methode für das Abfragen einer Community mit der \emph{ID} definiert. Wie man im definierten Array sieht, werden dabei mehrere Callbacks definiert, welche der Reihe nach aufgerufen werden und sicherstellen, dass jede Anfrage authentifiziert und autorisiert ist.
 
 Zeile \autoref{lst:restApiRoomies_post} definiert eine ``POST'' API-Route um eine neue Community zu erstellen. Auch hier wird überprüft ob der Benutzer authentifiziert ist. Zusätzlich wird ein Daten-Validator verwendet, damit sichergestellt werden kann dass die Daten korrekt und ohne unerwünschte Zeichen sind.
 

@@ -18,7 +18,7 @@ Tabellen sollen für tabellarische Daten verwendet werden und nicht zur gestalte
 \subsection*{Konkrete Umsetzung}
 Um semantische Inkorrektheiten durch Wiederholungsfehler zu reduzieren, wurde in \emph{Roomies} mit Templates gearbeitet. So können bspw. Menüs oder Fusszeilen einmalig definiert und wiederverwendet werden. Dies geht sehr stark nach dem ``\gls{DRY}'' Prinzip. Fehler werden verhindert, indem man sie gar nicht zu schreiben hat.
 
-Quelltext \ref{lst:layoutDefinition} zeigt einen Auschnitt des HTML-Markups vom Haupttemplate von \emph{Roomies}''. Die Seitenstruktur ist klar zu erkennen: Oben beginnt der Header mit dem Menü, gefolgt von einem Platzhalter für allfällige Fehler-, Warnungs- oder Informationsmeldungen. Weiter ist der Hauptbereich mit der ID ``main'' ersichtlich, welcher zur Laufzeit mit eigentlichen Applikationsinhalten gefüllt wird. Abschliessend steht ein semantisch korrektes \emph{footer}-Element, welches final den Link zur Abmeldung des Benutzers enthalten wird.
+Quelltext \ref{lst:layoutDefinition} zeigt einen Ausschnitt des HTML-Markups vom Haupttemplate von \emph{Roomies}''. Die Seitenstruktur ist klar zu erkennen: Oben beginnt der Header mit dem Menü, gefolgt von einem Platzhalter für allfällige Fehler-, Warnungs- oder Informationsmeldungen. Weiter ist der Hauptbereich mit der ID ``main'' ersichtlich, welcher zur Laufzeit mit eigentlichen Applikationsinhalten gefüllt wird. Abschliessend steht ein semantisch korrektes \emph{footer}-Element, welches final den Link zur Abmeldung des Benutzers enthalten wird.
 
 \begin{lstlisting}[language=HTML, caption=Layout Definition \cite{roomiesHtmlSkeleton}, label=lst:layoutDefinition, firstnumber=27]
 <body>
@@ -37,9 +37,9 @@ Semantisches HTML ist aus zwei Gründen eine gute Idee:
 \end{itemize}
 
 \subsubsection*{Suchmaschinenoptimierung}
-Suchmaschinen wenden komplexe Algorithmen an, um Webseiten zu analysieren und in verwertbare Suchresultate zu transformieren. Ein Entwickler von Webseiten und -applikationen kann durch die Verwendung von semantisch korrekten Tag-Elementen viel zur Optimierung des Suchprozesses beitragen. Diese ermöglichen den Suchmaschinen ein fehlerfreies Interpretieren der untersuchten Informationen.
+Suchmaschinen wenden komplexe Algorithmen an, um Webseiten zu analysieren und in verwertbare Suchresultate zu transformieren. Ein Entwickler von Webseiten und Applikationen kann durch die Verwendung von semantisch korrekten Tag-Elementen viel zur Optimierung des Suchprozesses beitragen. Diese ermöglichen den Suchmaschinen ein fehlerfreies Interpretieren der untersuchten Informationen.
 \\ \\
-Ergänzend dazu helfen Standards wie \emph{schema.org} \cite{SchemaOrg}. Unterstützt von Google, Yahoo und Microsoft, hat dieser zum Ziel, die Maschinenlesbarkeit von Webseiten zu erhöhen und spezifischen Teilen einer Seite analyisierbaren \emph{Sinn} zu geben.
+Ergänzend dazu helfen Standards wie \emph{schema.org} \cite{SchemaOrg}. Unterstützt von Google, Yahoo und Microsoft, hat dieser zum Ziel, die Maschinenlesbarkeit von Webseiten zu erhöhen und spezifischen Teilen einer Seite analysierbaren \emph{Sinn} zu geben.
 
 Mithilfe von \emph{schema.org} können bspw. Attribute von Produkten (Name, Preis etc.) gekennzeichnet und gezielt für Suchmaschinen verwertbar gemacht werden. Sucht ein Benutzer nun nach Produkten, kann die Suchmaschine die nun strukturierten Informationen besser durchsuchen und massgeschneiderte Suchergebnisse dem Benutzer präsentieren.
 

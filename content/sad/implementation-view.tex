@@ -33,7 +33,7 @@ Hinter dem Element \emph{Controllers} stehen neben dem eigentlichen API-Controll
 \subsection{Quellcode Organisation}
 Für Applikationen mit \gls{nodejs} ist es üblich (\cite{TJH_ComponentStructure}, \cite{IZS_ComponentStructure}), den Quellcode soweit wie möglich eigenständige Komponenten zu unterteilen.
 
-Ein gutes Beispiel hierfür ist die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekappselt werden.
+Ein gutes Beispiel hierfür ist die Vielzahl an verfügbaren Modulen welche über den Komponentenmanager NPM \cite{NPM} installierbar sind. Selbst Bibliotheken mit minimalem Umfang werden und sollten als eigene Module gekapselt werden.
 
 Die Beispielapplikation \emph{Roomies} verwendet mehrere Komponenten aus NPM (siehe Quelltext \ref{lst:roomiesPackageJson}) und ist dabei selbst in Komponenten unterteilt. Die Ordnerstruktur in Abbildung \ref{fig:roomiesFolderStructure} veranschaulicht dieses Prinzip.
 
@@ -210,7 +210,7 @@ function createCommunity(success, error, data) {
 
 Zwar ist der resultierende Quelltext um einiges klarer und einfacher interpretierbar, jedoch führt diese Strukturierung bei jedem Laufzeit-Durchlauf zu einer Neudefinition und -initialisierung der beinhalteten Funktionen.
 
-Der folgende Abschnitt zeigt wie die Problematik \emph{Callback Hell} auf eine andere und potentiell leistungstärkere Weise gelöst werden kann.
+Der folgende Abschnitt zeigt wie die Problematik \emph{Callback Hell} auf eine andere und potentiell leistungsstärkere Weise gelöst werden kann.
 
 
 \subsubsection*{Promises / Futures}
